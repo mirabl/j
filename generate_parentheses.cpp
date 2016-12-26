@@ -41,7 +41,6 @@ void generate_rec(string& prefix, int remaining_open, int active_open, vector<st
 		generate_rec(prefix, remaining_open, active_open - 1, res);
 		prefix.pop_back();
 	}
-
 }
 
 vector<string> generateParenthesis(int n) {
@@ -57,5 +56,4 @@ int main() {
 	for (int i = 0; i < (int)res.size(); ++i) {
 		cout << res[i] << endl;
 	}
-
 }
