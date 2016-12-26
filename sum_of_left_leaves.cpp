@@ -16,6 +16,7 @@ alias a='g++ -Wall -g sum_of_left_leaves.cpp && ./a.out'
 
 */
 #include <iostream>
+#include <queue>
 
 using namespace std;
 
@@ -44,6 +45,7 @@ int sum_of_left_leaves(TreeNode *root, bool is_left) {
 int sumOfLeftLeaves(TreeNode* root) {
     return sum_of_left_leaves(root, false);
 }
+
 
 int main() {
 	TreeNode n3(3);
