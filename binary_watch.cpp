@@ -23,6 +23,9 @@ Note:
 The order of output does not matter.
 The hour must not contain a leading zero, for example "01:00" is not valid, it should be "1:00".
 The minute must be consist of two digits and may contain a leading zero, for example "10:2" is not valid, it should be "10:02"
+
+
+alias a='g++ binary_watch.cpp -Wall -g && ./a.out'
 */
 #include <iostream>
 #include <string>
