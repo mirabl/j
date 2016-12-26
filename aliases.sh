@@ -5,4 +5,6 @@ alias gd='git diff'
 alias gs='git status'
 alias g='git'
 
-
+alias ff='ls -l'
+alias f='ls'
+alias q='cd ..'
