@@ -42,11 +42,8 @@ string convert(const string& s, int n) {
 	}
 
 	return res;
-
 }
 
 int main() {
-
 	cout << convert("0123456789", 5) << endl;
-
 }
