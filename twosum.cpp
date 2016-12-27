@@ -1,7 +1,7 @@
 /*
 *
 * https://leetcode.com/problems/two-sum/
-* alias a='g++ --std=c++11 a.cpp && ./a.out '
+alias a='g++ --std=c++11 twosum.cpp && ./a.out '
 */
 #include <iostream>
 #include <vector>
@@ -27,7 +27,7 @@ vector<int> findIndexForTwoSumQuadratic(const vector<int>& array, int target_sum
 }
 
 
-vector<int> findIndexForTwoSum(const vector<int>& array, int target_sum) {
+vector<int> twoSum(const vector<int>& array, int target_sum) {
 	vector<int> index;
 	unordered_map<int, int> H;
 	int n = array.size();
@@ -44,6 +44,7 @@ vector<int> findIndexForTwoSum(const vector<int>& array, int target_sum) {
 }
 
 
+
 int main(void) {
 	vector<int> index;
 
@@ -54,7 +55,7 @@ int main(void) {
 	v1.push_back(15);
 	int s1 = 9;
 
-	index = findIndexForTwoSum(v1, s1);
+	index = twoSum(v1, s1);
 
 	for (int i = 0; i < index.size(); ++i) {
 		cout << index[i] << " " << endl;
@@ -67,7 +68,7 @@ int main(void) {
 	v2.push_back(1);
 	int s2 = 0;
 
-	index = findIndexForTwoSum(v2, s2);
+	index = twoSum(v2, s2);
 
 	for (int i = 0; i < index.size(); ++i) {
 		cout << index[i] << " " << endl;
@@ -83,7 +84,7 @@ int main(void) {
 	v3.push_back(7);
 	int s3 = 11;
 
-	index = findIndexForTwoSum(v3, s3);
+	index = twoSum(v3, s3);
 
 	for (int i = 0; i < index.size(); ++i) {
 		cout << index[i] << " " << endl;
@@ -98,7 +99,7 @@ int main(void) {
 	v4.push_back(7);
 	int s4 = 8;
 
-	index = findIndexForTwoSum(v4, s4);
+	index = twoSum(v4, s4);
 
 	for (int i = 0; i < index.size(); ++i) {
 		cout << index[i] << " " << endl;

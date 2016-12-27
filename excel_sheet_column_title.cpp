@@ -17,7 +17,7 @@ For example:
     27 -> AA
     28 -> AB 
 
-  alias a='g++ -Wall -g excel_sheel_column_title.cpp && ./a.out'
+  alias a='g++ -Wall -g excel_sheet_column_title.cpp && ./a.out'
 */
 #include <iostream>
 #include <string>
