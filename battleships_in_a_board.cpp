@@ -21,7 +21,7 @@ alias a='g++ -Wall -std=c++11 -g battleships_in_a_board.cpp && ./a.out < battles
 
 for i in 0 1 2 3 4 5 6;
 do
- diff <(./a.out < battleships_in_a_board.$i.in) battleships_in_a_board.$i.out
+diff <(./a.out < battleships_in_a_board.$i.in) battleships_in_a_board.$i.out
 done
 
 */
