@@ -4,19 +4,20 @@ You are a professional robber planning to rob houses along a street. Each house 
 
 Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.
 
-alias a='g++ -Wall house_robber.cpp -g && ./a.out'
+alias a='g++ -Wall -std=c++11 house_robber.cpp -g && ./a.out'
 
 */
 #include <iostream>
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
-int main() {
-
-	int n_houses = 5;
-	int gain[n_houses + 2] = {0, 1, 2, 1, 1, 5, 0};
-
+int rob(const vector<int>& nums) {
+	vector<int> gain(nums);
+	gain.insert(gain.begin(), 0);
+	gain.push_back(0);
+	int n_houses = (int)gain.size() - 2;
 	int max_gain[n_houses + 2];
 
 	for (int i = 0; i < n_houses + 2; ++i) {
@@ -24,32 +25,21 @@ int main() {
 	}
 
 	for (int i = 0; i < n_houses + 2; ++i) {
-		cout << max_gain[i] << " ";
-	}
-	cout << endl;
-
-	for (int i = 0; i < n_houses + 2; ++i) {
 		for (int j = i + 2; j < n_houses + 1; ++j) {
-			cout << "i " << i << ", j " << j << ": " << max_gain[j] << " / " << max_gain[i] + gain[j] << endl;
 			max_gain[j] = max(max_gain[j], max_gain[i] + gain[j]);
-
-			cout << "\t\t\t";
-			for (int i = 0; i < n_houses + 2; ++i) {
-				cout << max_gain[i] << " ";
-			}
-			cout << endl;
-
 		}
 	}
 
 	for (int i = 0; i < n_houses + 1; ++i) {
 		max_gain[n_houses + 1] = max(max_gain[n_houses + 1], max_gain[i]);
 	}
+	return max_gain[n_houses + 1];
+}
 
-	for (int i = 0; i < n_houses + 2; ++i) {
-		cout << max_gain[i] << " ";
-	}
-	cout << endl;
 
+int main() {
+	vector<int> gain = {0, 1, 2, 1, 1, 5, 0};
+	cout << rob(gain) << endl;
+	cout << rob(vector<int>{1, 1, 1}) << endl;
 	return 0;
 }
