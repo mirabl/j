@@ -32,14 +32,12 @@ bool isPowerOfFour(int num) {
 	return true;
 }
 
-
 int main() {
 	cout << isPowerOfFour(0) << " false" << endl;
 	cout << isPowerOfFour(1) << " false" << endl;
 	cout << isPowerOfFour(4) << " true" << endl;
-	cout << isPowerOfFour(-4) << " true" << endl;
+	cout << isPowerOfFour(-4) << " false" << endl;
 	cout << isPowerOfFour(16) << " true" << endl;
-	cout << isPowerOfFour(-16) << " true" << endl;
 	cout << isPowerOfFour(64) << " true" << endl;
 	cout << isPowerOfFour(5) << " false" << endl;
 	cout << isPowerOfFour(53) << " false" << endl;
