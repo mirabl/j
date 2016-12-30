@@ -13,3 +13,4 @@ alias n='nano'
 alias lrt='ls -lrt'
 
 alias co='g++ -Wall -std=c++11 -g'
+alias coex='g++ -Wall -std=c++11 -g && ./a.out'
