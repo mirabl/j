@@ -1,18 +1,33 @@
 /*
-alias a='g++ -Wall -std=c++11 util.cpp && ./a.out'
+https://leetcode.com/problems/invert-binary-tree/
+226. Invert Binary Tree   Add to List QuestionEditorial Solution  My Submissions
+Total Accepted: 142522
+Total Submissions: 287198
+Difficulty: Easy
+Contributors: Admin
+Invert a binary tree.
+
+     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+to
+     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
 */
+#include <iostream>
+#include <vector>
 #include <iostream>
 #include <vector>
 #include <queue>
 #include <iomanip>
+#include <utility>
 
 using namespace std;
-
-void print_vector(vector<int>& v) {
-	for (int i = 0; i < (int)v.size(); ++i) {
-		cout << v[i] << " ";
-	}
-}
 
 struct TreeNode {
 	int val;
@@ -74,14 +89,14 @@ void printTree(TreeNode *n) {
 	}
 }
 
-void build_tree_from_vector(vector<TreeNode*>& v) {
+void build_tree_from_vector(const vector<TreeNode*>& v) {
 	int n = (int)v.size();
 	for (int i = 1; i < n; ++i) {
 		if (v[i] == NULL) {
 			continue;
 		}
-		int parent = i / 2;
-		if (i % 2 == 0) {
+		int parent = (i - 1) / 2;
+		if ((i - 1) % 2 == 0) {
 			v[parent]->left = v[i];
 		} else {
 			v[parent]->right = v[i];
@@ -89,14 +104,26 @@ void build_tree_from_vector(vector<TreeNode*>& v) {
 	}
 }
 
-int main() {
-	TreeNode n0(0);
-	TreeNode n1(1);
-	TreeNode n2(2);
-	TreeNode n3(3);
-	n0.left = &n1;
-	n1.left = &n2;
-	n1.right = &n3;
-	printTree(&n0);
+TreeNode* invertTree(TreeNode* root) {
+	if (root == NULL) {
+		return NULL;
+	}
+	swap(root->left, root->right);
+	invertTree(root->left);
+	invertTree(root->right);
+	return root;
+}
 
+int main() {
+	TreeNode n4(4);
+	TreeNode n2(2);
+	TreeNode n7(7);
+	TreeNode n1(1);
+	TreeNode n3(3);
+	TreeNode n6(6);
+	TreeNode n9(9);
+	build_tree_from_vector(vector<TreeNode*>{&n4, &n2, &n7, &n1, &n3, &n6, &n9});
+	printTree(&n4);
+	invertTree(&n4);
+	printTree(&n4);
 }
