@@ -12,5 +12,25 @@ alias q='cd ..'
 alias n='nano'
 alias lrt='ls -lrt'
 
-alias co='g++ -Wall -std=c++11 -g'
-alias coex='g++ -Wall -std=c++11 -g && ./a.out'
+function co {
+	g++ -Wall -std=c++11 -g $1
+}
+
+function coex {
+	co $1 && ./a.out
+}
+
+function lce {
+f=$1 
+while inotifywait -qq $f -e close_write  ; do coex $1 ; done
+}
+
+function lc {
+f=$1 
+while inotifywait -qq $f -e close_write  ; do co $1 ; done
+}
+
+function nf {
+f=$1
+touch $f ; subl $f ; lce $f
+}
