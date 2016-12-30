@@ -10,3 +10,6 @@ alias ff='ls -l'
 alias f='ls'
 alias q='cd ..'
 alias n='nano'
+alias lrt='ls -lrt'
+
+alias co='g++ -Wall -std=c++11 -g'
