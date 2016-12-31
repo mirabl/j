@@ -11,6 +11,7 @@ alias f='ls'
 alias q='cd ..'
 alias n='nano'
 alias lrt='ls -lrt'
+alias l=less
 
 function co {
 	g++ -Wall -std=c++11 -g $1
