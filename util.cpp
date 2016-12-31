@@ -8,6 +8,14 @@ alias a='g++ -Wall -std=c++11 util.cpp && ./a.out'
 
 using namespace std;
 
+// void print_list(ListNode *n) {
+// 	ListNode *p = n;
+// 	while (p != NULL) {
+// 		cout << p->val << " ";
+// 		p = p->next;
+// 	}
+// }
+
 void print_vector(const vector<int>& v) {
 	for (int i = 0; i < (int)v.size(); ++i) {
 		cout << v[i] << " ";
