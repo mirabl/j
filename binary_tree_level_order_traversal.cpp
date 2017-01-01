@@ -1,33 +1,52 @@
 /*
-alias a='g++ -Wall -std=c++11 util.cpp && ./a.out'
+https://leetcode.com/problems/binary-tree-level-order-traversal/
+
 */
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <iostream>
+#include <vector>
+#include <queue>
 #include <iomanip>
-
 using namespace std;
-
-// void print_list(ListNode *n) {
-// 	ListNode *p = n;
-// 	while (p != NULL) {
-// 		cout << p->val << " ";
-// 		p = p->next;
-// 	}
-// }
-
-void print_vector(const vector<int>& v) {
-	for (int i = 0; i < (int)v.size(); ++i) {
-		cout << v[i] << " ";
-	}
-}
 
 struct TreeNode {
 	int val;
-	TreeNode *left;
-	TreeNode *right;
+	TreeNode *left, *right;
 	TreeNode(int v): val(v), left(NULL), right(NULL) { }
 };
+
+vector<vector<int>> levelOrder(TreeNode* root) {
+	vector<vector<int>> res;
+	if (root == NULL) {
+		return res;
+	}
+	queue<TreeNode*> Q;
+	Q.push(root);
+	Q.push(NULL);
+	vector<int> current_level;
+	while (!Q.empty()) {
+		TreeNode *n = Q.front();
+		Q.pop();
+		if (n == NULL) {
+			res.push_back(current_level);
+			current_level.resize(0); 
+			if (!Q.empty()) {
+				Q.push(NULL);
+			}
+		} else {
+			current_level.push_back(n->val);
+			if (n->left)  {
+				Q.push(n->left);
+			}
+			if (n->right) {
+				Q.push(n->right);
+			}
+		}
+	}
+	return res;
+}
 
 int depth(TreeNode *n) {
 	if (n == NULL) {
@@ -80,8 +99,7 @@ void printTree(TreeNode *n) {
 			}
 		}
 	}
-}
-
+} 
 
 void build_tree_from_array(TreeNode* v[], int n) {
 	for (int i = 1; i < n; ++i) {
@@ -103,13 +121,19 @@ void build_tree_from_array(TreeNode* v[], int n) {
 
 
 int main() {
-	TreeNode n0(0);
-	TreeNode n1(1);
-	TreeNode n2(2);
-	TreeNode n3(3);
-	n0.left = &n1;
-	n1.left = &n2;
-	n1.right = &n3;
-	printTree(&n0);
 
+	TreeNode* x[] = {new TreeNode(3), new TreeNode(9), new TreeNode(20),
+	                 NULL, NULL, new TreeNode(15), new TreeNode(7)};
+	build_tree_from_array(x, 7);
+	// [3,9,20,null,null,15,7]
+	printTree(x[0]);
+
+	vector<vector<int>> order = levelOrder(x[0]);
+	for (int i = 0; i < (int)order.size(); ++i) {
+		cout << "[";
+		for (int j = 0; j < (int)order[i].size(); ++j) {
+			cout << order[i][j] << " ";
+		}
+		cout << endl;
+	}
 }
