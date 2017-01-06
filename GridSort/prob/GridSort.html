@@ -1,0 +1,122 @@
+<html>
+<head>
+    <title>GridSort</title>
+</head>
+<body>
+<h1><a href="/tc?module=ProblemDetail&amp;rd=16832&amp;pm=14442">GridSort</a></h1>
+
+<p><em>Single Round Match 702 Sponsored By BAH Round 1 - Division II, Level Two</em></p>
+
+<h2>Statement</h2>
+
+<p>Charlie has a grid of <em>n</em> rows by <em>m</em> columns.
+The rows are numbered 0 through <em>n</em>-1 from top to bottom.
+The columns are numbered 0 through <em>m</em>-1 from left to right.</p>
+
+<p>Each cell of the grid contains a positive integer.
+The integers in Charlie's grid are a permutation of the numbers 1 through <em>n</em><em>*m</em>.
+(I.e., each of these numbers occurs in the grid exactly once.)</p>
+
+<p>Given a grid, its value list is a sequence constructed by listing all values in the grid in row major order.
+That is, we first list the values in row 0 from left to right, then the values in row 1 from left to right, and so on.</p>
+
+<p>You are given the ints <em>n</em> and <em>m</em>: the dimensions of Charlie's grid.
+You are also given a int[] <em>grid</em>: the value list for Charlie's grid.
+(Formally, <em>grid</em>[i<em>*m</em>+j] is the value stored in row i, column j of the grid.)</p>
+
+<p>Charlie can modify his grid in two ways: He may swap any two rows, and he may swap any two columns.
+Charlie now wonders whether there is a sequence of swaps that would sort his grid - that is, rearrange its elements in such a way that the value list of the new grid will be the ordered sequence (1,2,3,...,<em>n</em><em>*m</em>).</p>
+
+<p>If it is possible to sort Charlie's grid, return "Possible". Otherwise, return "Impossible".</p>
+
+<h2>Definitions</h2>
+
+<ul>
+<li><em>Class</em>: <code>GridSort</code></li>
+<li><em>Method</em>: <code>sort</code></li>
+<li><em>Parameters</em>: <code>int, int, int[]</code></li>
+<li><em>Returns</em>: <code>String</code></li>
+<li><em>Method signature</em>: <code>String sort(int n, int m, int[] grid)</code></li>
+</ul>
+
+
+<h2>Constraints</h2>
+
+<ul>
+<li>n,m will be between 1 and 50, inclusive.</li>
+<li><em>grid</em> will be a permutation of [1,...,<em>n</em><em>*m</em>].</li>
+</ul>
+
+
+<h2>Examples</h2>
+
+<h3>Example 1</h3>
+
+<h4>Input</h4>
+
+<p><c>2,<br />2,<br />[<br /> 1,2,<br /> 3,4<br />]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Possible"</c></p>
+
+<h4>Reason</h4>
+
+<p>This grid is already sorted, so Charlie doesn't need to do anything.</p>
+
+<h3>Example 2</h3>
+
+<h4>Input</h4>
+
+<p><c>2,<br />2,<br />[<br /> 3,4,<br /> 1,2<br />]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Possible"</c></p>
+
+<h4>Reason</h4>
+
+<p>Charlie can sort this grid by swapping rows 0 and 1.</p>
+
+<h3>Example 3</h3>
+
+<h4>Input</h4>
+
+<p><c>2,<br />2,<br />[<br /> 4,3,<br /> 1,2<br />]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Impossible"</c></p>
+
+<h3>Example 4</h3>
+
+<h4>Input</h4>
+
+<p><c>1,<br />10,<br />[4,5,1,2,9,8,3,10,7,6]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Possible"</c></p>
+
+<h3>Example 5</h3>
+
+<h4>Input</h4>
+
+<p><c>3,<br />5,<br />[<br /> 10,6,8,9,7,<br /> 5,1,3,4,2,<br /> 15,11,13,14,12<br />]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Possible"</c></p>
+
+<h3>Example 6</h3>
+
+<h4>Input</h4>
+
+<p><c>6,<br />2,<br />[<br /> 11,12,<br /> 2,1,<br /> 9,10,<br /> 7,8,<br /> 6,5,<br /> 3,4<br />]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Impossible"</c></p>
+
+</body>
+</html>
