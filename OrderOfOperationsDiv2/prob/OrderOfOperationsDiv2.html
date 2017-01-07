@@ -1,0 +1,121 @@
+<html>
+<head>
+    <title>OrderOfOperationsDiv2</title>
+</head>
+<body>
+<h1><a href="/tc?module=ProblemDetail&amp;rd=16547&amp;pm=13988">OrderOfOperationsDiv2</a></h1>
+
+<p><em>Single Round Match 667 Round 1 - Division II, Level Two</em></p>
+
+<h2>Statement</h2>
+
+<p>Cat Noku has just finished writing his first computer program.
+Noku's computer has m memory cells.
+The cells have addresses 0 through m-1.
+Noku's program consists of n instructions.
+The instructions have mutually independent effects and therefore they may be executed in any order.
+The instructions must be executed sequentially (i.e., one after another) and each instruction must be executed exactly once.</p>
+
+<p>You are given a description of the n instructions as a String[] with n elements.
+Each instruction is a String of m characters.
+For each i, character i of an instruction is '1' if this instruction accesses memory cell i, or '0' if it does not.</p>
+
+<p>Noku's computer uses caching, which influences the time needed to execute an instruction.
+More precisely, executing an instruction takes k<sup>2</sup> units of time, where k is the number of new memory cells this instruction accesses.
+(I.e., k is the number of memory cells that are accessed by this instruction but have not been accessed by any previously executed instruction.
+Note that k may be zero, in which case the current instruction is indeed executed in 0 units of time.)</p>
+
+<p>Noku's instructions can be executed in many different orders.
+Clearly, different orders may lead to a different total time of execution.
+Find and return the shortest amount of time in which it is possible to execute all instructions.</p>
+
+<h2>Definitions</h2>
+
+<ul>
+<li><em>Class</em>: <code>OrderOfOperationsDiv2</code></li>
+<li><em>Method</em>: <code>minTime</code></li>
+<li><em>Parameters</em>: <code>String[]</code></li>
+<li><em>Returns</em>: <code>int</code></li>
+<li><em>Method signature</em>: <code>int minTime(String[] s)</code></li>
+</ul>
+
+
+<h2>Constraints</h2>
+
+<ul>
+<li>n,m will be between 1 and 20, inclusive.</li>
+<li><em>s</em> will have exactly n elements.</li>
+<li>Each element of <em>s</em> will have exactly m characters.</li>
+<li>Each character of <em>s</em>[i] will be either '0' or '1' for all valid i.</li>
+</ul>
+
+
+<h2>Examples</h2>
+
+<h3>Example 1</h3>
+
+<h4>Input</h4>
+
+<p><c>[<br /> "111",<br /> "001",<br /> "010"<br />]</c></p>
+
+<h4>Output</h4>
+
+<p><c>3</c></p>
+
+<h4>Reason</h4>
+
+<p>Cat Noku has 3 instructions.
+The first instruction ("111") accesses all three memory cells.
+The second instruction ("001") accesses only memory cell 2.
+The third instruction ("010") accesses only memory cell 1.
+If Noku executes these three instructions in the given order, it will take 3<sup>2</sup> + 0<sup>2</sup> + 0<sup>2</sup> = 9 units of time.
+However, if he executes them in the order "second, third, first", it will take only 1<sup>2</sup> + 1<sup>2</sup> + 1<sup>2</sup> = 3 units of time.
+This is one optimal solution.
+Another optimal solution is to execute the instructions in the order "third, second, first".</p>
+
+<h3>Example 2</h3>
+
+<h4>Input</h4>
+
+<p><c>[<br /> "11101",<br /> "00111",<br /> "10101",<br /> "00000",<br /> "11000"<br />]</c></p>
+
+<h4>Output</h4>
+
+<p><c>9</c></p>
+
+<h3>Example 3</h3>
+
+<h4>Input</h4>
+
+<p><c>[<br />  "11111111111111111111"<br />]</c></p>
+
+<h4>Output</h4>
+
+<p><c>400</c></p>
+
+<h4>Reason</h4>
+
+<p>A single instruction that accesses all 20 memory cells.</p>
+
+<h3>Example 4</h3>
+
+<h4>Input</h4>
+
+<p><c>[<br />  "1000",<br />  "1100",<br />  "1110"<br />]</c></p>
+
+<h4>Output</h4>
+
+<p><c>3</c></p>
+
+<h3>Example 5</h3>
+
+<h4>Input</h4>
+
+<p><c>[<br />  "111",<br />  "111",<br />  "110",<br />  "100"<br />]</c></p>
+
+<h4>Output</h4>
+
+<p><c>3</c></p>
+
+</body>
+</html>
