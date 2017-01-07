@@ -1,0 +1,109 @@
+<html>
+<head>
+    <title>Quorum</title>
+</head>
+<body>
+<h1><a href="/tc?module=ProblemDetail&amp;rd=16708&amp;pm=14219">Quorum</a></h1>
+
+<p><em>Single Round Match 687 Round 1 - Division II, Level Two</em></p>
+
+<h2>Statement</h2>
+
+<p>In one organization they have n different committees.
+The organization has a very large number of employees.
+Each employee is a member of each committee.</p>
+
+<p>Each committee has a quorum: the smallest number of members that have to be present to have an official meeting.
+You are given a int[] <em>arr</em> with n elements.
+Each element of <em>arr</em> is the quorum of one committee.</p>
+
+<p>You are also given an int <em>k</em>.
+Yesterday, <em>k</em> different committees had an official meeting, all at the same time.
+Obviously, each person attended at most one of those meetings.
+Compute and return the smallest possible number of people who attended a meeting yesterday.</p>
+
+<h2>Definitions</h2>
+
+<ul>
+<li><em>Class</em>: <code>Quorum</code></li>
+<li><em>Method</em>: <code>count</code></li>
+<li><em>Parameters</em>: <code>int[], int</code></li>
+<li><em>Returns</em>: <code>int</code></li>
+<li><em>Method signature</em>: <code>int count(int[] arr, int k)</code></li>
+</ul>
+
+
+<h2>Notes</h2>
+
+<ul>
+<li>The value of n is not given explicitly. Instead, you can determine it as the number of elements in <em>arr</em>.</li>
+</ul>
+
+
+<h2>Constraints</h2>
+
+<ul>
+<li><em>arr</em> will contain between 1 and 50 elements, inclusive.</li>
+<li>Each element of <em>arr</em> will be between 1 and 50.</li>
+<li><em>k</em> will be between 1 and the number of elements of <em>arr</em>, inclusive.</li>
+</ul>
+
+
+<h2>Examples</h2>
+
+<h3>Example 1</h3>
+
+<h4>Input</h4>
+
+<p><c>[5,2,3],<br />1</c></p>
+
+<h4>Output</h4>
+
+<p><c>2</c></p>
+
+<h4>Reason</h4>
+
+<p>There are three committees.
+The first committee requires 5 members to start a meeting, the second requires 2, and the third requires 3 members.
+As <em>k</em>=1, there was one meeting yesterday.
+The smallest possible solution is that it was a meeting of the second committee and that exactly 2 employees attended that meeting.</p>
+
+<h3>Example 2</h3>
+
+<h4>Input</h4>
+
+<p><c>[1,1,1,1,1],<br />5</c></p>
+
+<h4>Output</h4>
+
+<p><c>5</c></p>
+
+<h4>Reason</h4>
+
+<p>All five committees had a meeting yesterday.
+We need at least one person per meeting.
+No person can attend more than one meeting.
+Hence, there must have been at least 5 different people.</p>
+
+<h3>Example 3</h3>
+
+<h4>Input</h4>
+
+<p><c>[50,2,9,49,38],<br />3</c></p>
+
+<h4>Output</h4>
+
+<p><c>49</c></p>
+
+<h3>Example 4</h3>
+
+<h4>Input</h4>
+
+<p><c>[20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],<br />14</c></p>
+
+<h4>Output</h4>
+
+<p><c>105</c></p>
+
+</body>
+</html>
