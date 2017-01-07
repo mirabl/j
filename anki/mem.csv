@@ -1,2 +1,9 @@
 compute depth of a binary tree;recursive 1 + max()
 reverse a linked list;recursive
+reverse array in place;swap elements, maybe middle 
+last-M-th element of a linked list;2 pointers, one M ahead
+cycle length of a linked list;2 pointers 
+is a linked list a palindrome?;reverse second half, check (and restore)
+find where 2 linked list merge;2 pointers 
+remove a node from a linked list;careful cases
+middle of a linked list;2 pointers
