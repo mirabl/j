@@ -1,0 +1,119 @@
+<html>
+<head>
+    <title>NonDeterministicSubstring</title>
+</head>
+<body>
+<h1><a href="/tc?module=ProblemDetail&amp;rd=16710&amp;pm=14246">NonDeterministicSubstring</a></h1>
+
+<p><em>Single Round Match 689 Round 1 - Division II, Level Two</em></p>
+
+<h2>Statement</h2>
+
+<p>You are given two Strings: <em>A</em> and <em>B</em>.
+Each character in <em>A</em> is either '0' or '1'.
+Each character in <em>B</em> is '0', '1', or '?'.</p>
+
+<p>A string C matches <em>B</em> if we can change <em>B</em> into C by changing each '?' in <em>B</em> either to '0' or to '1'.
+Different occurrences of '?' may be changed to different digits.
+For example, C = "0101" matches <em>B</em> = "01??".
+Note that each character in C must be either '0' or '1', there cannot be any '?' remaining.</p>
+
+<p>Consider all possible strings that match <em>B</em>.
+How many of these strings occur as a (contiguous) substring in <em>A</em>?
+Compute and return their number.
+Note that we only count each good string once, even if it has multiple occurrences in <em>A</em>.</p>
+
+<h2>Definitions</h2>
+
+<ul>
+<li><em>Class</em>: <code>NonDeterministicSubstring</code></li>
+<li><em>Method</em>: <code>ways</code></li>
+<li><em>Parameters</em>: <code>String, String</code></li>
+<li><em>Returns</em>: <code>long</code></li>
+<li><em>Method signature</em>: <code>long ways(String A, String B)</code></li>
+</ul>
+
+
+<h2>Constraints</h2>
+
+<ul>
+<li><em>A</em> will contain between 1 and 50 characters, inclusive.</li>
+<li><em>B</em> will contain between 1 and 50 characters, inclusive.</li>
+<li>Each character in <em>A</em> will be '0' or '1'.</li>
+<li>Each character in <em>B</em> will be '0', '1' or '?'.</li>
+</ul>
+
+
+<h2>Examples</h2>
+
+<h3>Example 1</h3>
+
+<h4>Input</h4>
+
+<p><c>"00010001",<br />"??"</c></p>
+
+<h4>Output</h4>
+
+<p><c>3</c></p>
+
+<h4>Reason</h4>
+
+<p>There are four strings that match <em>B</em>: the strings "00", "01", "10", and "11".
+Out of these, the string "11" does not occur in <em>A</em> as a substring.
+The other three do occur, hence the answer is 3.</p>
+
+<h3>Example 2</h3>
+
+<h4>Input</h4>
+
+<p><c>"00000000",<br />"??0??0"</c></p>
+
+<h4>Output</h4>
+
+<p><c>1</c></p>
+
+<h4>Reason</h4>
+
+<p>There are 16 different strings that match <em>B</em>, but out of those only the string "000000" is a substring of <em>A</em>.</p>
+
+<h3>Example 3</h3>
+
+<h4>Input</h4>
+
+<p><c>"001010101100010111010",<br />"???"</c></p>
+
+<h4>Output</h4>
+
+<p><c>8</c></p>
+
+<h4>Reason</h4>
+
+<p>Each of the 8 strings that match <em>B</em> occurs somewhere in <em>A</em>.</p>
+
+<h3>Example 4</h3>
+
+<h4>Input</h4>
+
+<p><c>"00101",<br />"??????"</c></p>
+
+<h4>Output</h4>
+
+<p><c>0</c></p>
+
+<h4>Reason</h4>
+
+<p>Here, the length of <em>B</em> is greater than the length of <em>A</em>.
+Clearly, a string that matches this <em>B</em> cannot be a substring of this <em>A</em>.</p>
+
+<h3>Example 5</h3>
+
+<h4>Input</h4>
+
+<p><c>"1101010101111010101011111111110001010101",<br />"???????????????????????????????????"</c></p>
+
+<h4>Output</h4>
+
+<p><c>6</c></p>
+
+</body>
+</html>
