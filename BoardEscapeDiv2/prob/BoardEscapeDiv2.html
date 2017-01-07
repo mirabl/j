@@ -1,0 +1,140 @@
+<html>
+<head>
+    <title>BoardEscapeDiv2</title>
+</head>
+<body>
+<h1><a href="/tc?module=ProblemDetail&amp;rd=16626&amp;pm=13299">BoardEscapeDiv2</a></h1>
+
+<p><em>Single Round Match 676 Round 1 - Division II, Level Two</em></p>
+
+<h2>Statement</h2>
+
+<p>Alice and Bob have a rectangular board divided into a grid with r rows and c columns.
+The grid is described by the String[] <em>s</em>.
+Each character of <em>s</em> represents one cell.
+There are four types of cells:</p>
+
+<p>'E' denotes an exit. There may be arbitrarily many exits, possibly zero.
+'T' means the square contains a single token. Initially there will be exactly one token on the entire board.
+'#' denotes an obstacle.
+'.' denotes an empty cell.</p>
+
+<p>Alice and Bob will play a game on this board.
+The game is parameterized by the int <em>k</em>.
+The token initially has the number <em>k</em> on it.
+The players will take alternating turns, starting with Alice.
+A player's turn consists of the following steps:</p>
+
+<p>The player moves the token one square up, down, left, or right. The token cannot go over the edge of the board and it cannot enter a cell with an obstacle.
+If this token is on an exit, it disappears from the board.
+Otherwise, subtract one from the number on the token. If the number on the token is zero, remove it from the board.</p>
+
+<p>The first player unable to make a move loses the game.
+(This happens when the token is stuck and also when it already left the board.)</p>
+
+<p>You are given the String[] <em>s</em> and the int <em>k</em>
+Compute the winner of the game, assuming both Alice and Bob play optimally.
+Return the winner's name: either "Alice" or "Bob".
+Note that the return value is case-sensitive.</p>
+
+<h2>Definitions</h2>
+
+<ul>
+<li><em>Class</em>: <code>BoardEscapeDiv2</code></li>
+<li><em>Method</em>: <code>findWinner</code></li>
+<li><em>Parameters</em>: <code>String[], int</code></li>
+<li><em>Returns</em>: <code>String</code></li>
+<li><em>Method signature</em>: <code>String findWinner(String[] s, int k)</code></li>
+</ul>
+
+
+<h2>Constraints</h2>
+
+<ul>
+<li>r,c will be between 1 and 50, inclusive.</li>
+<li><em>s</em> will contain exactly r elements, each consisting of c characters.</li>
+<li>Each character of each element of <em>s</em> will be one of 'T', 'E', '#', or '.'.</li>
+<li>There will be exactly 1 'T' charcters within all elements of <em>s</em>.</li>
+<li><em>k</em> will be between 1 and 100, inclusive.</li>
+</ul>
+
+
+<h2>Examples</h2>
+
+<h3>Example 1</h3>
+
+<h4>Input</h4>
+
+<p><c>["T.#",<br /> "#.E"],<br />3</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Alice"</c></p>
+
+<h4>Reason</h4>
+
+<p>The token starts in row 0, column 0.
+At the beginning of the game the number on the token is 3.
+In her first move Alice must push the token to the right and decrease the number to 2.
+Bob can then move the token either left (back where it started) or down.
+Either way, after Bob's move the number on the token will be 1.
+Regardless of which option Bob chose, Alice can always make the token disappear in her second move:
+either she reaches the exit, or the token disappears on its own after its counter reaches zero.
+Afterwards Bob cannot make his second move and therefore Alice wins the game.</p>
+
+<h3>Example 2</h3>
+
+<h4>Input</h4>
+
+<p><c>["E#E",<br /> "#T#",<br /> "E#E"],<br />99</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Bob"</c></p>
+
+<h4>Reason</h4>
+
+<p>As the token is stuck between obstacles, Alice has no valid move to make and therefore she immediately loses the game.</p>
+
+<h3>Example 3</h3>
+
+<h4>Input</h4>
+
+<p><c>["#E...",<br /> "#...E",<br /> "E.T#.",<br /> "..#.."],<br />13</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Alice"</c></p>
+
+<h3>Example 4</h3>
+
+<h4>Input</h4>
+
+<p><c>["TE"],<br />50</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Alice"</c></p>
+
+<h3>Example 5</h3>
+
+<h4>Input</h4>
+
+<p><c>[".T."],<br />1</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Alice"</c></p>
+
+<h3>Example 6</h3>
+
+<h4>Input</h4>
+
+<p><c>["..........................",<br /> "......EEE..EEE..E...E.....",<br /> ".....E.....E..E.EE.EE.....",<br /> "......EEE..EEE..E.E.E.....",<br /> ".........E.E.E..E...E.....",<br /> "......EEE..E..E.E...E.....",<br /> "..........................",<br /> "...E#E#E#E#E#E#E#E#E#E#...",<br /> "..........................",<br /> "......EEE..EEE...EEE......",<br /> ".....E........E.E.........",<br /> "......EEE.....E..EEE......",<br /> ".....E...E...E..E...E.....",<br /> "......EEE....E...EEE......",<br /> "..........................",<br /> "...#E#E#E#E#E#E#E#E#E#E...",<br /> "..........................",<br /> "....EE...E...E..E.EEE.E...",<br /> "...E.....E...E..E.E...E...",<br /> "...E.EE..E...EEEE.EE..E...",<br /> "...E..E..E...E..E.E.......",<br /> "....EE...EEE.E..E.E...E...",<br /> "T........................."],<br />100</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Bob"</c></p>
+
+</body>
+</html>
