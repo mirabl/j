@@ -1,0 +1,136 @@
+<html>
+<head>
+    <title>Quacking</title>
+</head>
+<body>
+<h1><a href="/tc?module=ProblemDetail&amp;rd=16708&amp;pm=14218">Quacking</a></h1>
+
+<p><em>Single Round Match 687 Round 1 - Division II, Level Two</em></p>
+
+<h2>Statement</h2>
+
+<p>Ducks have started mysteriously appearing in your room.
+All ducks make the same sound: "quack".
+Each duck makes the sound one or more times, one after another.
+For example, valid sounds for a single duck are "quack", "quackquackquackquack", "quackquack", etc.</p>
+
+<p>You have lost count of how many ducks are in your room.
+The ducks are quacking, and the sounds of their quacks are getting mixed up.
+You have recorded the sounds, obtaining a String of characters.
+When you later listened to the recording, you realized that the quacking of each individual duck forms a (not necessarily contiguous) subsequence of the recording.
+You also noticed that each letter in the recording belongs to exactly one duck.
+For example, if there were two ducks, you may have recorded "quqacukqauackck".</p>
+
+<p>You are given a String <em>s</em> that contains an arbitrary recording.
+Find and return the smallest number of ducks that could have produced the recording.
+Note that it is possible that the given recording is not a valid recording of quacking ducks.
+In such case, return -1.</p>
+
+<h2>Definitions</h2>
+
+<ul>
+<li><em>Class</em>: <code>Quacking</code></li>
+<li><em>Method</em>: <code>quack</code></li>
+<li><em>Parameters</em>: <code>String</code></li>
+<li><em>Returns</em>: <code>int</code></li>
+<li><em>Method signature</em>: <code>int quack(String s)</code></li>
+</ul>
+
+
+<h2>Constraints</h2>
+
+<ul>
+<li><em>s</em> will have between 5 and 2,500 characters, inclusive.</li>
+<li>Each character of <em>s</em> will be 'q', 'u', 'a', 'c', or 'k'.</li>
+</ul>
+
+
+<h2>Examples</h2>
+
+<h3>Example 1</h3>
+
+<h4>Input</h4>
+
+<p><c>"quqacukqauackck"</c></p>
+
+<h4>Output</h4>
+
+<p><c>2</c></p>
+
+<h4>Reason</h4>
+
+<p>This is the same as the one from the problem statement.</p>
+
+<h3>Example 2</h3>
+
+<h4>Input</h4>
+
+<p><c>"kcauq"</c></p>
+
+<h4>Output</h4>
+
+<p><c>-1</c></p>
+
+<h4>Reason</h4>
+
+<p>A backward duck is not a real duck.</p>
+
+<h3>Example 3</h3>
+
+<h4>Input</h4>
+
+<p><c>"quackquackquackquackquackquackquackquackquackquack"</c></p>
+
+<h4>Output</h4>
+
+<p><c>1</c></p>
+
+<h4>Reason</h4>
+
+<p>A single duck can make arbitrarily many quack sounds.</p>
+
+<h3>Example 4</h3>
+
+<h4>Input</h4>
+
+<p><c>"qqqqqqqqqquuuuuuuuuuaaaaaaaaaacccccccccckkkkkkkkkk"</c></p>
+
+<h4>Output</h4>
+
+<p><c>10</c></p>
+
+<h3>Example 5</h3>
+
+<h4>Input</h4>
+
+<p><c>"quqaquuacakcqckkuaquckqauckack"</c></p>
+
+<h4>Output</h4>
+
+<p><c>3</c></p>
+
+<h4>Reason</h4>
+
+<p>This is one possible solution with 3 ducks.
+Mixed: quqaquuacakcqckkuaquckqauckack
+Duck1: <em><em><strong>q_u</strong>a</em><strong>ck</strong></em><em><em><em><strong><em><strong><strong><strong>
+Duck2: </strong>q</strong>u_ac_k_q</strong></em>ua</strong>ckq_u<strong>ack
+Duck3: qu_a</strong></em></em></em><strong>c</strong><em>k<strong>qu</strong></em>a_ck___
+Here, we can verify that each letter comes from exactly one duck.</p>
+
+<h3>Example 6</h3>
+
+<h4>Input</h4>
+
+<p><c>"quackqauckquack"</c></p>
+
+<h4>Output</h4>
+
+<p><c>-1</c></p>
+
+<h4>Reason</h4>
+
+<p>Note that the second quack is misspelled.</p>
+
+</body>
+</html>
