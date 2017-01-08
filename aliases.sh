@@ -4,7 +4,7 @@ alias ga='git add'
 alias gd='git diff'
 alias gs='git status'
 alias g='git'
-alias gg='ga *cpp; gc; gp'
+alias gg='ga *cpp anki/*; gc; gp'
 
 alias ff='ls -l'
 alias f='ls'
