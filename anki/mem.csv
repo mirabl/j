@@ -7,3 +7,23 @@ is a linked list a palindrome?;reverse second half, check (and restore)
 find where 2 linked list merge;2 pointers 
 remove a node from a linked list;careful cases
 middle of a linked list;2 pointers
+iterative in-order traversal of binary tree;stack and curnode pointer
+determine if a string has only unique characters (with and without memory);use a set, or sort the string
+rotate matrix by 90 degree;in place in onion layers
+implement stack with O(1) min;push (x, min) when pushing x, or use second stack
+hanoi Towers;x
+implement a queue using two stacks;empty first stack into second stack
+sort a stack;using a second stack, or recursively
+is there a route between two nodes of a directed graph;careful with cycles
+from sorted array, create BST with minimal height;take middle of array then recursive
+find lowest common ancestor of two nodes in a binary tree;LCA has one node on each side
+explain what the following code does: ((n & (n-1)) == 0);test if power of 2
+generate the n-th Fibonacci number;recursive, recursive with memo, DP with table, DP without table
+compute subsets of a set;recursive, iterative
+compute all permutations of a string;recursive
+print valid n-parentheses;try a character, recurse if allowed
+8 queens;x
+find element in a sorted rotated array;modified BS
+find element in row-and-column-sorted matrix;start from NE corner
+number of trailing zeroes in a factorial;powers of 2, 5
+
