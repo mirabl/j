@@ -27,4 +27,5 @@ find element in a sorted rotated array;modified BS
 find element in row-and-column-sorted matrix;start from NE corner
 number of trailing zeroes in a factorial;powers of 2, 5
 merge k sorted arrays;heap
-
+union of intervals;x
+max number of intersecting intervals;x
