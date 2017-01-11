@@ -1,6 +1,7 @@
 /*
 https://leetcode.com/problems/minimum-path-sum/
 */
+// Could only store two rows or cols.
 class Solution {
 public:
     int minPathSum(vector<vector<int>>& grid) {
