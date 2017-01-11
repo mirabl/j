@@ -30,3 +30,4 @@ merge k sorted arrays;heap
 union of intervals;x
 max number of intersecting intervals;x
 is subsequence;iterate 
+rotate image by 90 degrees;ring by ring, or reverse up to down (r2l) and transpose
