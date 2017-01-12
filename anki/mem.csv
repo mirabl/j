@@ -9,7 +9,6 @@ remove a node from a linked list;careful cases
 middle of a linked list;2 pointers
 iterative in-order traversal of binary tree;stack and curnode pointer
 determine if a string has only unique characters (with and without memory);use a set, or sort the string
-rotate matrix by 90 degree;in place in onion layers
 implement stack with O(1) min;push (x, min) when pushing x, or use second stack
 hanoi Towers;x
 implement a queue using two stacks;empty first stack into second stack
@@ -34,3 +33,6 @@ rotate image by 90 degrees;ring by ring, or reverse up to down (r2l) and transpo
 insertion sort;insert A[i] in A[0]...A[i-1]
 selection sort;select min put it at A[i=0], i++
 bubble sort;swap pairs to put max at i=end of array, i--
+merge sort;merge sorted subarrays with auxiliary array (allocate once)
+quicksort;(randomize first), partition, sort left and right partition
+stack in C++;#include <stack>, push(), pop(), top()

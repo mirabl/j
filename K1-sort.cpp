@@ -87,45 +87,75 @@ void merge_sort(vector<int>& A) {
 }
 
 void quick_sort_rec(vector<int>& A, int lo, int hi) {
-	// assume random order.
-
-	// Partition, pivot: A[lo].
-	int i = lo + 1;
-	int j = hi;
-	while (i < j) {
-		if (A[i] > A[lo]) {
+	if (lo >= hi) {
+		return;
+	}
+	int pivot = A[hi];
+	int i = lo;
+	for (int j = lo; j < hi; j++) {
+		if (A[j] <= pivot) {
 			swap(A[i], A[j]);
-			j--;
-		} else {
 			i++;
 		}
 	}
-	swap(A[i], A[lo]); // ?
-	quick_sort_rec(A, lo, i);
+	swap(A[i], A[hi]);
+
+	quick_sort_rec(A, lo, i - 1);
 	quick_sort_rec(A, i + 1, hi);
 }
 
-
 void quick_sort(vector<int>& A) {
+	// assume random order.
 	quick_sort_rec(A, 0, int(A.size()) - 1);
+}
+
+/* **************************************************** */
+
+bool is_sorted(vector<int>& A) {
+	for (int i = 0; i < int(A.size()) - 1; i++) {
+		if (A[i] > A[i + 1]) {
+			return false;
+		}
+	}
+	return true;
 }
 
 int main() {
 	srand(time(0));
 
-	int n = 9;
+	int n = 15;
 	vector<int> A;
 	for (int i = 0; i < n; ++i) {
 		A.push_back(i + 1);
 	}
+
 	random_shuffle(A.begin(), A.end());
 	print_vector(A);
+	cout << "   (*)" << endl;
+	
+	random_shuffle(A.begin(), A.end());
+	selection_sort(A);
+	print_vector(A);
+	cout << " " << (is_sorted(A) ? "OK" : "NOK") << endl;
 	cout << endl;
-	// selection_sort(A);
-	// selection_sort(A);
-	// bubble_sort(A);
+
+	random_shuffle(A.begin(), A.end());
+	bubble_sort(A);
+	print_vector(A);
+	cout << " " << (is_sorted(A) ? "OK" : "NOK") << endl;
+	cout << endl;
+
+	random_shuffle(A.begin(), A.end());
 	merge_sort(A);
 	print_vector(A);
+	cout << " " << (is_sorted(A) ? "OK" : "NOK") << endl;
 	cout << endl;
+
+	random_shuffle(A.begin(), A.end());
+	quick_sort(A);
+	print_vector(A);
+	cout << " " << (is_sorted(A) ? "OK" : "NOK") << endl;
 	cout << endl;
+
+	cout << "-----------" << endl;
 }
