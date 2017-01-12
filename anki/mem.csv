@@ -31,3 +31,6 @@ union of intervals;x
 max number of intersecting intervals;x
 is subsequence;iterate 
 rotate image by 90 degrees;ring by ring, or reverse up to down (r2l) and transpose
+insertion sort;insert A[i] in A[0]...A[i-1]
+selection sort;select min put it at A[i=0], i++
+bubble sort;swap pairs to put max at i=end of array, i--

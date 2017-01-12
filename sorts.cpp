@@ -1,0 +1,131 @@
+/*
+*/
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+void print_vector(const vector<int>& v) {
+        for (int i = 0; i < (int)v.size(); ++i) {
+                cout << v[i] << " ";
+        }
+}
+
+void selection_sort(vector<int>& A) {
+	int n = int(A.size());
+	for (int i = 0; i < n - 1; ++i) {
+		int min_i = i;
+		for (int j = i + 1; j < n; ++j) {
+			if (A[j] < A[min_i]) {
+				min_i = j;
+			}
+		}
+		swap(A[i], A[min_i]);
+	}
+}
+
+void insertion_sort(vector<int>& A) {
+	int n = int(A.size());
+	for (int i = 1; i < n; i++) {
+		// insert A[i] in A[0]...A[i-1]
+		int j = 0;
+		while (j < i && A[j] < A[i]) {
+			j++;
+		}
+		int tmp = A[i];
+		// insert A[i] at position j and shift A[j]...A[i - 1] to A[j + 1]...A[i]
+		for (int k = i; k > j; k--) {
+			A[k] = A[k - 1];
+		}
+		A[j] = tmp;
+	}
+}
+
+void bubble_sort(vector<int>& A) {
+	int n = int(A.size());
+	for (int i = n - 1; i > 0; i--) {
+		// Put the max of A[0]...A[i] in A[i]
+		for (int j = 0; j < i; j++) {
+			if (A[j] > A[j + 1]) {
+				swap(A[j], A[j + 1]);
+			}
+		}
+	}
+}
+
+void merge_sort_rec(vector<int>& A, int lo, int hi, vector<int>& B) {
+	if (lo >= hi) {
+		return;
+	}
+	int mid = lo + (hi - lo) / 2;
+	merge_sort_rec(A, lo, mid, B);
+	merge_sort_rec(A, mid + 1, hi, B);
+	int i = lo;
+	int j = mid + 1;
+	int k = lo;
+	while (i < mid + 1 || j < hi + 1) {
+		if (j == hi + 1 || (i < mid + 1 && A[i] < A[j])) {
+			B[k] = A[i];
+			i++;
+		} else {
+			B[k] = A[j];
+			j++;
+		}
+		k++;
+	}
+	for (k = lo; k < hi + 1; k++) {
+		A[k] = B[k];
+	}
+}
+
+void merge_sort(vector<int>& A) {
+	int n = int(A.size());
+	vector<int> B(n);
+	merge_sort_rec(A, 0, n - 1, B);
+}
+
+void quick_sort_rec(vector<int>& A, int lo, int hi) {
+	// assume random order.
+
+	// Partition, pivot: A[lo].
+	int i = lo + 1;
+	int j = hi;
+	while (i < j) {
+		if (A[i] > A[lo]) {
+			swap(A[i], A[j]);
+			j--;
+		} else {
+			i++;
+		}
+	}
+	swap(A[i], A[lo]); // ?
+	quick_sort_rec(A, lo, i);
+	quick_sort_rec(A, i + 1, hi);
+}
+
+
+void quick_sort(vector<int>& A) {
+	quick_sort_rec(A, 0, int(A.size()) - 1);
+}
+
+int main() {
+	srand(time(0));
+
+	int n = 9;
+	vector<int> A;
+	for (int i = 0; i < n; ++i) {
+		A.push_back(i + 1);
+	}
+	random_shuffle(A.begin(), A.end());
+	print_vector(A);
+	cout << endl;
+	// selection_sort(A);
+	// selection_sort(A);
+	// bubble_sort(A);
+	merge_sort(A);
+	print_vector(A);
+	cout << endl;
+	cout << endl;
+}
