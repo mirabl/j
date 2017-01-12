@@ -7,39 +7,22 @@ Given a list of non-negative integers representing the amount of money of each h
 alias a='g++ -Wall -std=c++11 house_robber.cpp -g && ./a.out'
 
 */
-#include <iostream>
-#include <algorithm>
-#include <vector>
-
-using namespace std;
-
-int rob(const vector<int>& nums) {
-	vector<int> gain(nums);
-	gain.insert(gain.begin(), 0);
-	gain.push_back(0);
-	int n_houses = (int)gain.size() - 2;
-	int max_gain[n_houses + 2];
-
-	for (int i = 0; i < n_houses + 2; ++i) {
-		max_gain[i] = gain[i];
-	}
-
-	for (int i = 0; i < n_houses + 2; ++i) {
-		for (int j = i + 2; j < n_houses + 1; ++j) {
-			max_gain[j] = max(max_gain[j], max_gain[i] + gain[j]);
-		}
-	}
-
-	for (int i = 0; i < n_houses + 1; ++i) {
-		max_gain[n_houses + 1] = max(max_gain[n_houses + 1], max_gain[i]);
-	}
-	return max_gain[n_houses + 1];
+class Solution {
+public:
+int rob(vector<int>& nums) {
+    int n = int(nums.size());
+    if (n == 0) {
+        return 0;
+    } else if (n == 1) {
+        return nums[0];
+    }
+    vector<int> M(n);
+    M[0] = nums[0];
+    M[1] = max(nums[0], nums[1]);
+    for (int i = 2; i < n; ++i) {
+        M[i] = max(M[i - 1], nums[i] + M[i - 2]);
+    }
+    return M[n - 1];
 }
 
-
-int main() {
-	vector<int> gain = {0, 1, 2, 1, 1, 5, 0};
-	cout << rob(gain) << endl;
-	cout << rob(vector<int>{1, 1, 1}) << endl;
-	return 0;
-}
+};
