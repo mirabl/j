@@ -26,15 +26,12 @@ public:
         bool A[n + 1];
         A[0] = true;
         for (int i = 1; i < n + 1; i++) {
-            int j;
-            for (j = 0; j < i; j++) {
+            A[i] = false;
+            for (int j = 0; j < i; j++) {
                 if (A[j] && S.count(s.substr(j, i - j)) == 1) {
                     A[i] = true;
                     break;
                 }
-            }
-            if (j == i) {
-                A[i] = false;
             }
         }
         return A[n];
