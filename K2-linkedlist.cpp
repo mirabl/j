@@ -4,6 +4,14 @@ insert
 find
 deleteNode
 reverse
+
+Linked List:
+Reverse a singly linked list
+Delete/Insert a node in a linked list
+Detect if there is a cycle in the list and return its starting point
+Merge two sorted lists
+Split a list into two lists one has even indexes other has odd indexes
+
 */
 #include <iostream>
 

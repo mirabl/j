@@ -36,3 +36,4 @@ bubble sort;swap pairs to put max at i=end of array, i--
 merge sort;merge sorted subarrays with auxiliary array (allocate once)
 quicksort;(randomize first), partition, sort left and right partition
 stack in C++;#include <stack>, push(), pop(), top()
+queue in C++;#include <queue>, push(), pop(), front()
