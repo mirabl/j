@@ -17,7 +17,6 @@ is there a route between two nodes of a directed graph;careful with cycles
 from sorted array, create BST with minimal height;take middle of array then recursive
 find lowest common ancestor of two nodes in a binary tree;LCA has one node on each side
 explain what the following code does: ((n & (n-1)) == 0);test if power of 2
-generate the n-th Fibonacci number;recursive, recursive with memo, DP with table, DP without table
 compute subsets of a set;recursive, iterative
 compute all permutations of a string;recursive
 print valid n-parentheses;try a character, recurse if allowed
@@ -34,6 +33,6 @@ insertion sort;insert A[i] in A[0]...A[i-1]
 selection sort;select min put it at A[i=0], i++
 bubble sort;swap pairs to put max at i=end of array, i--
 merge sort;merge sorted subarrays with auxiliary array (allocate once)
-quicksort;(randomize first), partition, sort left and right partition
+quicksort;(randomize first), select pivot, partition, sort left and right partition
 stack in C++;#include <stack>, push(), pop(), top()
 queue in C++;#include <queue>, push(), pop(), front()

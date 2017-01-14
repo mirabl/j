@@ -11,6 +11,7 @@ Lowest common ancestor of 2 nodes in a tree
 */
 #include <iostream>
 #include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -38,6 +39,46 @@ void DFSinOrder(TreeNode *n) {
 	DFSinOrder(n->right);
 }
 
+void DFSinOrderIter(TreeNode *n) {
+	if (!n) {
+		return;
+	}
+
+	stack<TreeNode*> S;
+	TreeNode *p;
+	TreeNode *cur = n;
+
+	while (cur || !S.empty()) {
+		if (cur) {
+			S.push(cur);
+			cur = cur->left;
+		} else {
+			p = S.top();
+			S.pop();
+			cout << p->val << " ";
+			cur = p->right;
+		}
+	}
+}
+
+void DFSpreOrderIter(TreeNode *n) {
+	if (!n) { 
+		return;
+	}
+	stack<TreeNode*> S;
+	S.push(n);
+	while (!S.empty()) {
+		TreeNode *p = S.top();
+		S.pop();
+		if (!p) {
+			continue;
+		}
+		cout << p->val << " ";
+		S.push(p->right);
+		S.push(p->left);
+	}
+}
+
 void DFSpreOrder(TreeNode *n) {
 	if (!n) {
 		return;
@@ -45,6 +86,26 @@ void DFSpreOrder(TreeNode *n) {
 	cout << n->val << " ";
 	DFSpreOrder(n->left);
 	DFSpreOrder(n->right);
+}
+
+void DFSpostOrderIter(TreeNode *n) {
+	stack<TreeNode*> S;
+	stack<TreeNode*> T;
+	T.push(n);
+	while (!T.empty()) {
+		TreeNode *p = T.top();
+		T.pop();
+		if (!p) {
+			continue;
+		}
+		S.push(p);
+		T.push(p->left);
+		T.push(p->right);
+	}
+	while (!S.empty()) {
+		cout << S.top()->val << " ";
+		S.pop();
+	}
 }
 
 void DFSpostOrder(TreeNode *n) {
@@ -96,10 +157,18 @@ int main() {
 	DFSinOrder(&n0);
 	cout << " == 6 3 1 0 4 2 5 7" << endl;
 
+	DFSinOrderIter(&n0);
+	cout << " == 6 3 1 0 4 2 5 7" << endl;
+
+
 	DFSpreOrder(&n0);
+	cout << " == 0 1 3 6 2 4 5 7" << endl;
+	DFSpreOrderIter(&n0);
 	cout << " == 0 1 3 6 2 4 5 7" << endl;
 
 	DFSpostOrder(&n0);
+	cout << " == 6 3 1 4 7 5 2 0" << endl;
+	DFSpostOrderIter(&n0);
 	cout << " == 6 3 1 4 7 5 2 0" << endl;
 
 
