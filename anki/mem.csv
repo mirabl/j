@@ -36,3 +36,5 @@ merge sort;merge sorted subarrays with auxiliary array (allocate once)
 quicksort;(randomize first), select pivot, partition, sort left and right partition
 stack in C++;#include <stack>, push(), pop(), top()
 queue in C++;#include <queue>, push(), pop(), front()
+insertion in linked list tip;use dummy first node
+
