@@ -1,0 +1,111 @@
+<html>
+<head>
+    <title>MazeWanderingEasy</title>
+</head>
+<body>
+<h1><a href="/tc?module=ProblemDetail&amp;rd=13748&amp;pm=10288">MazeWanderingEasy</a></h1>
+
+<p><em>Single Round Match 440 Round 1 - Division II, Level Two</em></p>
+
+<h2>Statement</h2>
+
+<p>According to research conducted recently, listening to classical music increases one's mental abilities, while listening to metal decreases them.  Now, yet another experiment is being conducted to try to prove or disprove this statement.</p>
+
+<p>In this new experiment, a mouse is placed in a rectangular maze consisting of NxM squares.  Each square either contains a wall or is empty.  The maze is structured in such a way that for any two empty squares, there exists exactly one path between them.  A path is a sequence of pairwise distinct empty squares such that every two consecutive squares are neighboring.  Two squares are considered neighboring if they share a common edge.</p>
+
+<p>One of the empty squares in the maze contains a piece of cheese.  The mouse's goal is to reach that square without visiting the same square twice.  The mouse can only move between neighboring squares.  Since the mouse has been listening to classical music for a week, he is extremely intelligent and guaranteed to achieve his goal.</p>
+
+<p>As the mouse moves from his starting point to the cheese, he may encounter some squares where he must choose between several neighboring squares to continue.  This happens when the mouse steps into a square which has more than one neighboring empty square, excluding the square from which he came, or when he has more than one neighboring empty square at the start.  These situations are called "decisions" and the mouse will always make the right choice.</p>
+
+<p>You are given a String[] <em>maze</em> representing the maze.  It contains N elements, each containing M characters.  Empty squares are denoted by '.', walls are denoted by uppercase 'X', the mouse's starting point is denoted by 'M', and the square containing the cheese is denoted by '*'.  Return the number of decisions the mouse will make on his way to the cheese.</p>
+
+<h2>Definitions</h2>
+
+<ul>
+<li><em>Class</em>: <code>MazeWanderingEasy</code></li>
+<li><em>Method</em>: <code>decisions</code></li>
+<li><em>Parameters</em>: <code>String[]</code></li>
+<li><em>Returns</em>: <code>int</code></li>
+<li><em>Method signature</em>: <code>int decisions(String[] maze)</code></li>
+</ul>
+
+
+<h2>Constraints</h2>
+
+<ul>
+<li><em>maze</em> will contain between 1 and 50 elements, inclusive.</li>
+<li>Each element of <em>maze</em> will contain between 1 and 50 characters, inclusive.</li>
+<li>Elements of <em>maze</em> will be of the same length.</li>
+<li><em>maze</em> will contain only '.', 'X', 'M' or '*' characters.</li>
+<li>There will be exactly one '<em>' character in </em>maze*.</li>
+<li>There will be exactly one 'M' character in <em>maze</em>.</li>
+<li>For every pair of empty squares in the maze, there will exist exactly one path between them.</li>
+</ul>
+
+
+<h2>Examples</h2>
+
+<h3>Example 1</h3>
+
+<h4>Input</h4>
+
+<p><c>["*.M"]</c></p>
+
+<h4>Output</h4>
+
+<p><c>0</c></p>
+
+<h4>Reason</h4>
+
+<p>From each square, the mouse can only move to one other square, so he never has to make any decisions.</p>
+
+<h3>Example 2</h3>
+
+<h4>Input</h4>
+
+<p><c>["*.M",<br /> ".X."]</c></p>
+
+<h4>Output</h4>
+
+<p><c>1</c></p>
+
+<h4>Reason</h4>
+
+<p>The mouse has to make a decision right at the start.</p>
+
+<h3>Example 3</h3>
+
+<h4>Input</h4>
+
+<p><c>["...",<br /> "XMX",<br /> "..*"]</c></p>
+
+<h4>Output</h4>
+
+<p><c>2</c></p>
+
+<h4>Reason</h4>
+
+<p>The mouse makes decisions at both squares before reaching the cheese.</p>
+
+<h3>Example 4</h3>
+
+<h4>Input</h4>
+
+<p><c>[".X.X......X",<br /> ".X*.X.XXX.X",<br /> ".XX.X.XM...",<br /> "......XXXX."]</c></p>
+
+<h4>Output</h4>
+
+<p><c>3</c></p>
+
+<h3>Example 5</h3>
+
+<h4>Input</h4>
+
+<p><c>["..........*",<br /> ".XXXXXXXXXX",<br /> "...........",<br /> "XXXXXXXXXX.",<br /> "M.........."]</c></p>
+
+<h4>Output</h4>
+
+<p><c>0</c></p>
+
+</body>
+</html>
