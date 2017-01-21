@@ -1,0 +1,132 @@
+<html>
+<head>
+    <title>ColorfulRoad</title>
+</head>
+<body>
+<h1><a href="/tc?module=ProblemDetail&amp;rd=15708&amp;pm=12837">ColorfulRoad</a></h1>
+
+<p><em>Single Round Match 596 Round 1 - Division II, Level Two</em></p>
+
+<h2>Statement</h2>
+
+<p>There is a one-dimensional road.
+The road is separated into N consecutive parts.
+The parts are numbered 0 through N-1, in order.
+Ciel is going to walk from part 0 to part N-1.</p>
+
+<p>Ciel also noticed that each part of the road has a color: either red, green, or blue.
+Part 0 is red.</p>
+
+<p>Ciel is going to perform a sequence of steps.
+Each step must lead in the positive direction.
+That is, if her current part is i, the next step will take her to one of the parts i+1 through N-1, inclusive.
+Her steps can be arbitrarily long.
+However, longer steps are harder: a step of length j costs j*j energy.</p>
+
+<p>Additionally, Ciel wants to step on colors in a specific order: red, green, blue, red, green, blue, ...
+That is, she starts on the red part 0, makes a step to a green part, from there to a blue part, and so on, always repeating red, green, and blue in a cycle.
+Note that the final part N-1 also has some color and thus Ciel must reach it in a corresponding step.</p>
+
+<p>You are given a String <em>road</em> containing N elements.
+For each i, element i of <em>road</em> is the color of part i: 'R' represents red, 'G' green, and 'B' blue.
+If Ciel can reach part N-1 in the way described above, return the smallest possible total cost of doing so.
+Otherwise, return -1.</p>
+
+<h2>Definitions</h2>
+
+<ul>
+<li><em>Class</em>: <code>ColorfulRoad</code></li>
+<li><em>Method</em>: <code>getMin</code></li>
+<li><em>Parameters</em>: <code>String</code></li>
+<li><em>Returns</em>: <code>int</code></li>
+<li><em>Method signature</em>: <code>int getMin(String road)</code></li>
+</ul>
+
+
+<h2>Constraints</h2>
+
+<ul>
+<li><em>road</em> will contain between 2 and 15 characters, inclusive.</li>
+<li>Each character of <em>road</em> will be either 'R' or 'G' or 'B'.</li>
+<li>The first character of <em>road</em> will be 'R'.</li>
+</ul>
+
+
+<h2>Examples</h2>
+
+<h3>Example 1</h3>
+
+<h4>Input</h4>
+
+<p><c>"RGGGB"</c></p>
+
+<h4>Output</h4>
+
+<p><c>8</c></p>
+
+<h4>Reason</h4>
+
+<p>The optimum solution is to step part 0 -> part 2 -> part 4.
+The total cost is 2<em>2 + 2</em>2 = 8.</p>
+
+<h3>Example 2</h3>
+
+<h4>Input</h4>
+
+<p><c>"RGBRGBRGB"</c></p>
+
+<h4>Output</h4>
+
+<p><c>8</c></p>
+
+<h4>Reason</h4>
+
+<p>The optimum solution is to make steps of length 1.
+It costs 1*1 = 1 per each step, so the total cost is 8.</p>
+
+<h3>Example 3</h3>
+
+<h4>Input</h4>
+
+<p><c>"RBBGGGRR"</c></p>
+
+<h4>Output</h4>
+
+<p><c>-1</c></p>
+
+<h4>Reason</h4>
+
+<p>It is impossible to reach the destination.</p>
+
+<h3>Example 4</h3>
+
+<h4>Input</h4>
+
+<p><c>"RBRRBGGGBBBBR"</c></p>
+
+<h4>Output</h4>
+
+<p><c>50</c></p>
+
+<h3>Example 5</h3>
+
+<h4>Input</h4>
+
+<p><c>"RG"</c></p>
+
+<h4>Output</h4>
+
+<p><c>1</c></p>
+
+<h3>Example 6</h3>
+
+<h4>Input</h4>
+
+<p><c>"RBRGBGBGGBGRGGG"</c></p>
+
+<h4>Output</h4>
+
+<p><c>52</c></p>
+
+</body>
+</html>
