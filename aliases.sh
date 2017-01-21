@@ -35,3 +35,6 @@ function nf {
 f=$1
 touch $f ; subl $f ; lce $f
 }
+
+alias md='make demo'
+alias ms='make sys'

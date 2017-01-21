@@ -1,0 +1,173 @@
+<html>
+<head>
+    <title>AlphabetOrderDiv2</title>
+</head>
+<body>
+<h1><a href="/tc?module=ProblemDetail&amp;rd=16856&amp;pm=14474">AlphabetOrderDiv2</a></h1>
+
+<p><em>Single Round Match 705 Sponsored by Blizzard Round 1 - Division II, Level Two</em></p>
+
+<h2>Statement</h2>
+
+<p>The ancient civilization of Nlogonia used the same 26 letters as modern English: 'a'-'z'.
+However, we do not know the order in which these letters appeared in the Nlogonian alphabet.</p>
+
+<p>One particular custom in Nlogonia was that in a good word the letters appear in non-decreasing order.
+For example, in English the word "ciel" is not a good word because in the alphabet 'i' is after 'e'.
+The word "ceil" is a good word because 'c' &lt;= 'e' &lt;= 'i' &lt;= 'l'.</p>
+
+<p>You are given the String[] <em>words</em>.
+Each element of <em>words</em> is a nonempty string of lowercase English letters.
+Return "Possible" if it is possible that all elements of <em>words</em> were good words in Nlogonian, and "Impossible" otherwise.</p>
+
+<p>In other words, return "Possible" if and only if there is at least one possible Nlogonian alphabet such that the letters of each word in <em>words</em> are in non-decreasing alphabetical order.</p>
+
+<h2>Definitions</h2>
+
+<ul>
+<li><em>Class</em>: <code>AlphabetOrderDiv2</code></li>
+<li><em>Method</em>: <code>isOrdered</code></li>
+<li><em>Parameters</em>: <code>String[]</code></li>
+<li><em>Returns</em>: <code>String</code></li>
+<li><em>Method signature</em>: <code>String isOrdered(String[] words)</code></li>
+</ul>
+
+
+<h2>Constraints</h2>
+
+<ul>
+<li><em>words</em> has between 2 and 100 elements inclusive.</li>
+<li>The size of each element of <em>words</em> will be between 1 and 100 inclusive.</li>
+<li>Elements of <em>words</em> contains only English lowercase letters from 'a' to 'z'.</li>
+</ul>
+
+
+<h2>Examples</h2>
+
+<h3>Example 1</h3>
+
+<h4>Input</h4>
+
+<p><c>["single","round","match"]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Possible"</c></p>
+
+<h4>Reason</h4>
+
+<p>One possible Nlogonian alphabet is "bfjkmapqrositchundglevwxyz".</p>
+
+<h3>Example 2</h3>
+
+<h4>Input</h4>
+
+<p><c>["topcoder","topcoder"]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Impossible"</c></p>
+
+<h4>Reason</h4>
+
+<p>The word "topcoder" can never be a good word.
+The character 'o' cannot be both before 'p' and after 'p' in the alphabet.</p>
+
+<h3>Example 3</h3>
+
+<h4>Input</h4>
+
+<p><c>["algorithm", "contest"]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Impossible"</c></p>
+
+<h3>Example 4</h3>
+
+<h4>Input</h4>
+
+<p><c>["pink","floyd"]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Possible"</c></p>
+
+<h3>Example 5</h3>
+
+<h4>Input</h4>
+
+<p><c>["gimnasia","y","esgrima","la","plata"]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Impossible"</c></p>
+
+<h3>Example 6</h3>
+
+<h4>Input</h4>
+
+<p><c>["hello","hello"]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Possible"</c></p>
+
+<h4>Reason</h4>
+
+<p>This is a good word for any alphabet in which the letters 'h', 'e', 'l', and 'o' appear in this order.</p>
+
+<h3>Example 7</h3>
+
+<h4>Input</h4>
+
+<p><c>["abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Possible"</c></p>
+
+<h4>Reason</h4>
+
+<p>In this case the English alphabet is one of the valid permutations.</p>
+
+<h3>Example 8</h3>
+
+<h4>Input</h4>
+
+<p><c>["abc","bca"]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Impossible"</c></p>
+
+<h4>Reason</h4>
+
+<p>'a' must come before 'c' (because of the first name) and after 'c' (because of the second name) and that is a contradiction. Thus, there is no valid solution.</p>
+
+<h3>Example 9</h3>
+
+<h4>Input</h4>
+
+<p><c>["aaaaa","eeeee","iiiii","ooooo","uuuuu"]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Possible"</c></p>
+
+<h4>Reason</h4>
+
+<p>Any order is valid in this case</p>
+
+<h3>Example 10</h3>
+
+<h4>Input</h4>
+
+<p><c>["ab","bc","ca"]</c></p>
+
+<h4>Output</h4>
+
+<p><c>"Impossible"</c></p>
+
+</body>
+</html>
