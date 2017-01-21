@@ -38,3 +38,8 @@ touch $f ; subl $f ; lce $f
 
 alias md='make demo'
 alias ms='make sys'
+alias msv='make sysv'
+alias msv='make sysv'
+function msvc {
+ make sysv case=$1
+}
