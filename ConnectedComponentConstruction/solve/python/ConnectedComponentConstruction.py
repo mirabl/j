@@ -1,0 +1,2 @@
+def construct(s):
+    return []
