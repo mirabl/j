@@ -1,0 +1,2 @@
+graph: reduce graph to large steps when possible (ThreeTeleports)
+graph: re-use graph structure passed as argument to save time, even if string[]
