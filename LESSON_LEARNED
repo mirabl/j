@@ -1,2 +1,7 @@
 graph: reduce graph to large steps when possible (ThreeTeleports)
 graph: re-use graph structure passed as argument to save time, even if string[]
+graph: don't rush into graph algorithm if simpler geometric trick (CirclesCountry)
+sorting: sorting repeatedly when only small change? can use heap (BoxesDiv2)
+math: coins when values are multiple, simplifies math problem
+div: avoid extra storage when possible, temp arrays when original data can be used in place
+div: construct optimal solution by looking at solution without constraint then adding them
