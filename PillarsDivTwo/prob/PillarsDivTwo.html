@@ -1,0 +1,98 @@
+<html>
+<head>
+    <title>PillarsDivTwo</title>
+</head>
+<body>
+<h1><a href="/tc?module=ProblemDetail&amp;rd=14739&amp;pm=12075">PillarsDivTwo</a></h1>
+
+<p><em>Single Round Match 547 Round 1 - Division II, Level Two</em></p>
+
+<h2>Statement</h2>
+
+<p>On a horizontal line, there are N uniformly spaced vertical pillars.
+The pillars are numbered 0 through N-1, in order.
+For each i, the distance between the bottoms of pillars i and i+1 is exactly <em>w</em>.
+For each i, the height of pillar i (0-based index) is an integer between 1 and <em>heights</em>[i], inclusive.
+We want to take a single piece of rope and use it to join the top ends of all pillars, in order.
+(Once in place, the rope will have the shape of a polyline consisting of N-1 segments.)
+What is the shortest length of rope that is guaranteed to be sufficient, regardless of the actual pillar heights?</p>
+
+<p>You are given the int[] <em>heights</em> and the int <em>w</em>.
+Compute and return the answer to the above question.
+In other words, find a sequence of pillar heights (within the given constraints) for which the length of the rope we need is maximized, and return that maximum.</p>
+
+<h2>Definitions</h2>
+
+<ul>
+<li><em>Class</em>: <code>PillarsDivTwo</code></li>
+<li><em>Method</em>: <code>maximalLength</code></li>
+<li><em>Parameters</em>: <code>int[], int</code></li>
+<li><em>Returns</em>: <code>double</code></li>
+<li><em>Method signature</em>: <code>double maximalLength(int[] height, int w)</code></li>
+</ul>
+
+
+<h2>Notes</h2>
+
+<ul>
+<li>Your return value must have a relative or an absolute error of less than 1e-9.</li>
+</ul>
+
+
+<h2>Constraints</h2>
+
+<ul>
+<li><em>heights</em> will contain between 1 and 50 elements, inclusive.</li>
+<li>Each element of <em>heights</em> will be between 1 and 100, inclusive.</li>
+<li><em>w</em> will be between 1 and 100, inclusive.</li>
+</ul>
+
+
+<h2>Examples</h2>
+
+<h3>Example 1</h3>
+
+<h4>Input</h4>
+
+<p><c>[3,3,3],<br />2</c></p>
+
+<h4>Output</h4>
+
+<p><c>5.656854249492381</c></p>
+
+<h3>Example 2</h3>
+
+<h4>Input</h4>
+
+<p><c>[1,1,1,1],<br />100</c></p>
+
+<h4>Output</h4>
+
+<p><c>300.0</c></p>
+
+<h3>Example 3</h3>
+
+<h4>Input</h4>
+
+<p><c>[100,2,100,2,100],<br />4</c></p>
+
+<h4>Output</h4>
+
+<p><c>396.32310051270036</c></p>
+
+<h4>Reason</h4>
+
+<p>We will need the most rope if columns 0, 2, and 4 have height 100 each, and columns 1 and 3 have height 1 each.</p>
+
+<h3>Example 4</h3>
+
+<h4>Input</h4>
+
+<p><c>[2,1,1,2],<br />1</c></p>
+
+<h4>Output</h4>
+
+<p><c>3.82842712474619</c></p>
+
+</body>
+</html>
