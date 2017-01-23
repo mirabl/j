@@ -1,0 +1,117 @@
+<html>
+<head>
+    <title>DoubleWeights</title>
+</head>
+<body>
+<h1><a href="/tc?module=ProblemDetail&amp;rd=16689&amp;pm=14191">DoubleWeights</a></h1>
+
+<p><em>Single Round Match 685 Round 1 - Division II, Level Two</em></p>
+
+<h2>Statement</h2>
+
+<p>We have a simple undirected graph G with n nodes, labeled 0 through n-1.
+Each edge of this graph has two weights.
+You are given the description of G encoded into String[]s <em>weight1</em> and <em>weight2</em>.
+If nodes i and j are connected by an edge, both <em>weight1</em>[i][j] and <em>weight2</em>[i][j] are nonzero digits ('1'-'9'), and these represent the two weights of this edge.
+Otherwise, both <em>weight1</em>[i][j] and <em>weight2</em>[i][j] are periods ('.').</p>
+
+<p>Your task is to find the cheapest path from node 0 to node 1.
+The cost of a path is calculated as (W1 * W2), where W1 is the sum of all first weights and W2 is the sum of all second weights of the edges on your path.
+Return the smallest possible cost of a path from node 0 to node 1.
+If there is no such path, return -1 instead.</p>
+
+<h2>Definitions</h2>
+
+<ul>
+<li><em>Class</em>: <code>DoubleWeights</code></li>
+<li><em>Method</em>: <code>minimalCost</code></li>
+<li><em>Parameters</em>: <code>String[], String[]</code></li>
+<li><em>Returns</em>: <code>int</code></li>
+<li><em>Method signature</em>: <code>int minimalCost(String[] weight1, String[] weight2)</code></li>
+</ul>
+
+
+<h2>Constraints</h2>
+
+<ul>
+<li>n will be between 2 and 20, inclusive.</li>
+<li><em>weight1</em> and <em>weight2</em> will contain exactly n elements, each.</li>
+<li>Each element in <em>weight1</em> and <em>weight2</em> will contain exactly n characters.</li>
+<li>Each character in <em>weight1</em> and <em>weight2</em> will be '.' or '1' - '9'.</li>
+<li>For each i, <em>weight1</em>[i][i] = <em>weight2</em>[i][i] = '.'.</li>
+<li>For each i and j, <em>weight1</em>[i][j] = <em>weight1</em>[j][i].</li>
+<li>For each i and j, <em>weight2</em>[i][j] = <em>weight2</em>[j][i].</li>
+<li><em>weight1</em>[i][j] = '.' if and only if <em>weight2</em>[i][j] = '.'.</li>
+</ul>
+
+
+<h2>Examples</h2>
+
+<h3>Example 1</h3>
+
+<h4>Input</h4>
+
+<p><c>["..14",<br /> "..94",<br /> "19..",<br /> "44.."],<br />["..94",<br /> "..14",<br /> "91..",<br /> "44.."]</c></p>
+
+<h4>Output</h4>
+
+<p><c>64</c></p>
+
+<h4>Reason</h4>
+
+<p>The best path is 0 -> 3 -> 1.
+The cost of this path is (4+4) * (4+4) = 64.</p>
+
+<p>Note that the other possible path (0 -> 2 -> 1) is more expensive.
+Its cost is (1+9) * (9+1) = 100.</p>
+
+<h3>Example 2</h3>
+
+<h4>Input</h4>
+
+<p><c>["..14",<br /> "..14",<br /> "11..",<br /> "44.."],<br />["..94",<br /> "..94",<br /> "99..",<br /> "44.."]</c></p>
+
+<h4>Output</h4>
+
+<p><c>36</c></p>
+
+<h4>Reason</h4>
+
+<p>This time the best path is 0->2->1, the cost is (1+1) * (9+9) = 36.</p>
+
+<h3>Example 3</h3>
+
+<h4>Input</h4>
+
+<p><c>["..",<br /> ".."],<br />["..",<br /> ".."]</c></p>
+
+<h4>Output</h4>
+
+<p><c>-1</c></p>
+
+<h4>Reason</h4>
+
+<p>There is no path between node 0 and node 1, so you should return -1.</p>
+
+<h3>Example 4</h3>
+
+<h4>Input</h4>
+
+<p><c>[".....9",<br /> "..9...",<br /> ".9.9..",<br /> "..9.9.",<br /> "...9.9",<br /> "9...9."],<br />[".....9",<br /> "..9...",<br /> ".9.9..",<br /> "..9.9.",<br /> "...9.9",<br /> "9...9."]</c></p>
+
+<h4>Output</h4>
+
+<p><c>2025</c></p>
+
+<h3>Example 5</h3>
+
+<h4>Input</h4>
+
+<p><c>[".4...1",<br /> "4.1...",<br /> ".1.1..",<br /> "..1.1.",<br /> "...1.1",<br /> "1...1."],<br />[".4...1",<br /> "4.1...",<br /> ".1.1..",<br /> "..1.1.",<br /> "...1.1",<br /> "1...1."]</c></p>
+
+<h4>Output</h4>
+
+<p><c>16</c></p>
+
+</body>
+</html>
