@@ -1,35 +1,16 @@
-/*
-https://leetcode.com/problems/reverse-integer/
-alias a='g++ reverse_integer.cpp -Wall && ./a.out'
+class Solution {
+public:
+    int reverse(int x) {
 
-*/
-#include <iostream>
-
-using namespace std;
-
-int reverse_integer(int x) {
-	int y = 0;
-
-	bool negative = (x < 0);
-	if (negative) {
-		x = -x;
-	}
-
-	while (x != 0) {
-		y = y * 10 + (x % 10);
-		x = x / 10;
-	}
-
-	if (negative) {
-		y = -y;
-	}
-
-	return y;
-}
-
-int main() {
-	cout << reverse_integer(100) << endl;
-	cout << reverse_integer(-123) << endl;
-	cout << reverse_integer(0) << endl;
-	return 0;
-}
+    int y = 0;
+    while (x != 0) {
+        int temp = y * 10 + (x % 10);
+        if (temp / 10 != y) {
+            return 0;
+        }
+        y = temp;
+        x = x / 10;
+    }
+    return y;
+    }
+};
