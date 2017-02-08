@@ -28,3 +28,5 @@ public:
         return rec(n, 1, k);
     }
 };
+// better
+// https://discuss.leetcode.com/topic/14641/my-c-solution-backtracking
