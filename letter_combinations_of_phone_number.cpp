@@ -106,3 +106,33 @@ int main() {
 	cout << endl;
 	return 0;
 }
+
+
+class Solution {
+public:
+    map<char, string> M;
+
+    void rec(string& digits, int offset, string& pref, vector<string>& res) {
+        if (offset == digits.size()) {
+            res.push_back(pref);
+        } else {
+            for (char c: M[digits[offset]]) {
+                pref.push_back(c);
+                rec(digits, offset + 1, pref, res);
+                pref.pop_back();
+            }
+        }
+    }
+
+    vector<string> letterCombinations(string digits) {
+        vector<string> res;
+        if (digits.empty()) {
+            return res;
+        }
+        string pref;
+        M['2'] = "abc"; M['3'] = "def"; M['4'] = "ghi"; M['5'] = "jkl"; M['6'] = "mno"; M['7'] = "pqrs"; M['8'] = "tuv"; M['9'] = "wxyz";
+        rec(digits, 0, pref, res);
+        return res;
+    }
+};
+
