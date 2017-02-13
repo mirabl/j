@@ -1,128 +1,3 @@
-
-#include <iostream>
-#include <queue>
-#include <stack>
-
-using namespace std;
-
-struct TreeNode {
-	int val;
-	TreeNode *left;
-	TreeNode *right;
-	TreeNode(int v): val(v), left(NULL), right(NULL) { }
-};
-
-// Off by +1?
-int height(TreeNode *n) {
-	if (n == NULL) { 
-		return 0;
-	}
-	return 1 + max(height(n->left), height(n->right));
-}
-
-void DFSinOrder(TreeNode *n) {
-	if (!n) {
-		return;
-	}
-	DFSinOrder(n->left);
-	cout << n->val << " ";
-	DFSinOrder(n->right);
-}
-
-void DFSinOrderIter(TreeNode *n) {
-	if (!n) {
-		return;
-	}
-
-	stack<TreeNode*> S;
-	TreeNode *p;
-	TreeNode *cur = n;
-
-	while (cur || !S.empty()) {
-		if (cur) {
-			S.push(cur);
-			cur = cur->left;
-		} else {
-			p = S.top();
-			S.pop();
-			cout << p->val << " ";
-			cur = p->right;
-		}
-	}
-}
-
-void DFSpreOrderIter(TreeNode *n) {
-	if (!n) { 
-		return;
-	}
-	stack<TreeNode*> S;
-	S.push(n);
-	while (!S.empty()) {
-		TreeNode *p = S.top();
-		S.pop();
-		if (!p) {
-			continue;
-		}
-		cout << p->val << " ";
-		S.push(p->right);
-		S.push(p->left);
-	}
-}
-
-void DFSpreOrder(TreeNode *n) {
-	if (!n) {
-		return;
-	}
-	cout << n->val << " ";
-	DFSpreOrder(n->left);
-	DFSpreOrder(n->right);
-}
-
-void DFSpostOrderIter(TreeNode *n) {
-	stack<TreeNode*> S;
-	stack<TreeNode*> T;
-	T.push(n);
-	while (!T.empty()) {
-		TreeNode *p = T.top();
-		T.pop();
-		if (!p) {
-			continue;
-		}
-		S.push(p);
-		T.push(p->left);
-		T.push(p->right);
-	}
-	while (!S.empty()) {
-		cout << S.top()->val << " ";
-		S.pop();
-	}
-}
-
-void DFSpostOrder(TreeNode *n) {
-	if (!n) {
-		return;
-	}
-	DFSpostOrder(n->left);
-	DFSpostOrder(n->right);
-	cout << n->val << " ";
-}
-
-void BFS(TreeNode *n) {
-	queue<TreeNode*> Q;
-	Q.push(n);
-	while (!Q.empty()) {
-		TreeNode *p = Q.front();
-		Q.pop();
-		if (!p) {
-			continue;
-		}
-		cout << p->val << " ";
-		Q.push(p->left);
-		Q.push(p->right);
-	}
-}
-
-/*
 #include <iostream>
 #include <queue>
 #include <stack>
@@ -237,7 +112,6 @@ void BFS(TreeNode* r) {
 	}
 
 }
-*/
 
 /* ******************************** */
 
@@ -320,5 +194,3 @@ int main() {
 */
 
 }
-
-

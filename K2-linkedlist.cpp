@@ -1,18 +1,4 @@
-/*
-structure
-insert
-find
-deleteNode
-reverse
 
-Linked List:
-Reverse a singly linked list
-Delete/Insert a node in a linked list
-Detect if there is a cycle in the list and return its starting point
-Merge two sorted lists
-Split a list into two lists one has even indexes other has odd indexes
-
-*/
 #include <iostream>
 
 using namespace std;
@@ -84,7 +70,89 @@ ListNode* reverse(ListNode *head) {
 	return n;
 }
 
+/*
+// 1046
+// 1058
+#include <iostream>
+using namespace std;
+struct ListNode {
+	int val;
+	ListNode *next;
+	ListNode(int v): val(v) { }
+};
+
+ListNode* insert(ListNode *head, int val) {
+	ListNode* q = new ListNode(val);
+	if (!head) {
+		return q;
+	} else {
+		ListNode *p = head;
+		while (p->next) {
+			p = p->next;
+		}
+		p->next = q;
+		return head;
+	}
+}
+
+ListNode* find(ListNode *head, int v) {
+	ListNode *p = head;
+	while (p && p->val != v) {
+		p = p->next;
+	}
+	return p;
+}
+
+ListNode* deleteNode(ListNode *head, ListNode *p) {
+	if (!head) {
+		return NULL;
+	} 
+	if (head == p) {
+		return head->next;
+	}
+
+	ListNode *q = head;
+	while (q && q->next != p) {
+		q = q->next;
+	}
+	q->next = p->next;
+	p->next = NULL;
+
+	return head;
+}
+
+ListNode* reverse(ListNode *head) {
+	ListNode *p = head;
+	ListNode *h = head;
+	p = head->next;
+	h->next = NULL;
+	while (p) {
+		ListNode *tmp = p->next;
+		p->next = h;
+		h = p;
+		p = tmp;
+	}
+	return h;
+}
+*/
+
 /* *********************************** */
+
+/*
+structure
+insert
+find
+deleteNode
+reverse
+
+Linked List:
+Reverse a singly linked list
+Delete/Insert a node in a linked list
+Detect if there is a cycle in the list and return its starting point
+Merge two sorted lists
+Split a list into two lists one has even indexes other has odd indexes
+
+*/
 
 void print_list(ListNode *n) {
 	ListNode *p = n;
@@ -97,23 +165,31 @@ void print_list(ListNode *n) {
 
 int main() {
 	ListNode *h;
+	cout << "\n\n[insert]" << endl;
 	h = insert(NULL, 0);
 	h = insert(h, 1);
 	h = insert(h, 2);
 	print_list(h);
-	cout << " == 0 1 2" << endl << endl;
+	cout << " == 0 1 2" << endl;
+
+	cout << "\n\n[find]" << endl;
 
 	cout << find(h, 3) << " == 0 " << endl;
 	cout << find(h, 1)->val << " == 1 " << endl;
 	cout << find(h, 0)->val << " == 0 " << endl;
 	cout << find(h, 2)->val << " == 2 " << endl;
 
+	cout << "\n\n[delete]" << endl;
+
 	h = deleteNode(h, h);
 	print_list(h);
-	cout << " == 1 2" << endl << endl;
+	cout << " == 1 2" << endl;
 	h = deleteNode(h, h->next);
 	print_list(h);
-	cout << " == 1" << endl << endl;
+	cout << " == 1" << endl;
+
+
+	cout << "\n\n[reverse]" << endl;
 
 	h = deleteNode(h, h);
 	h = insert(h, 0);
@@ -121,6 +197,6 @@ int main() {
 	h = insert(h, 2);
 	h = reverse(h);
 	print_list(h);
-	cout << " == 2 1 0" << endl << endl;
+	cout << " == 2 1 0" << endl;
 
 }

@@ -7,11 +7,7 @@
 
 using namespace std;
 
-void print_vector(const vector<int>& v) {
-        for (int i = 0; i < (int)v.size(); ++i) {
-                cout << v[i] << " ";
-        }
-}
+
 
 void selection_sort(vector<int>& A) {
 	int n = int(A.size());
@@ -111,6 +107,17 @@ void quick_sort(vector<int>& A) {
 
 /* **************************************************** */
 
+/*
+selection sort
+insertion sort
+
+*/
+void print_vector(const vector<int>& v) {
+        for (int i = 0; i < (int)v.size(); ++i) {
+                cout << v[i] << " ";
+        }
+}
+
 bool is_sorted(vector<int>& A) {
 	for (int i = 0; i < int(A.size()) - 1; i++) {
 		if (A[i] > A[i + 1]) {
@@ -145,6 +152,8 @@ int main() {
 	cout << " " << (is_sorted(A) ? "OK" : "NOK") << endl;
 	cout << endl;
 
+/*
+
 	random_shuffle(A.begin(), A.end());
 	merge_sort(A);
 	print_vector(A);
@@ -156,6 +165,7 @@ int main() {
 	print_vector(A);
 	cout << " " << (is_sorted(A) ? "OK" : "NOK") << endl;
 	cout << endl;
+*/
 
 	cout << "-----------" << endl;
 }
