@@ -136,3 +136,30 @@ public:
     }
 };
 
+
+class Solution {
+public:
+    map<char, string> M{{'2', "abc" }, {'3', "def"}, {'4', "ghi"}, {'5', "jkl"}, {'6', "mno"}, {'7', "pqrs"}, {'8', "tuv"}, {'9', "wxyz"}};
+
+    void rec(string& digits, int offset, string& pref, vector<string>& res) {
+        if (offset == digits.size()) {
+            res.push_back(pref);
+        } else {
+            for (char c: M[digits[offset]]) {
+                pref.push_back(c);
+                rec(digits, offset + 1, pref, res);
+                pref.pop_back();
+            }
+        }
+    }
+
+    vector<string> letterCombinations(string digits) {
+        vector<string> res;
+        if (digits.empty()) {
+            return res;
+        }
+        string pref;
+        rec(digits, 0, pref, res);
+        return res;
+    }
+};
