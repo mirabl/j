@@ -1,196 +1,141 @@
+/* ********************************** */
+#include <vector>
 #include <iostream>
-#include <queue>
-#include <stack>
+#include <map>
 using namespace std;
-// 1109
-// 1137
-
-struct TreeNode {
-	int val;
-	TreeNode *left, *right;
-	TreeNode(int v) : val(v), left(NULL), right(NULL) { }
-};
-
-int height(TreeNode *r) {
-	if (!r) { 
-		return 0;
-	}
-	return 1 + max(height(r->left), height(r->right));
-}
-
-void DFSinOrder(TreeNode *r) {
-	if (r) {
-		DFSinOrder(r->left);
-		cout << r->val << " ";
-		DFSinOrder(r->right);
-	}
-}
-
-void DFSinOrderIter(TreeNode *r) {
-	TreeNode *cur;
-	stack<TreeNode*> S;
-	cur = r;
-	while (cur || !S.empty()) {
-		if (cur) {
-			S.push(cur);
-			cur = cur->left;
-		} else {
-			TreeNode *x = S.top();
-			S.pop();
-			cout << x->val << " ";
-			cur = x->right;
-		}
-	}
-}
-
-void DFSpreOrder(TreeNode *r) {
-	if (r) {
-		cout << r->val << " ";
-		DFSpreOrder(r->left);
-		DFSpreOrder(r->right);
-	}
-}
-
-void DFSpreOrderIter(TreeNode* r) {
-	TreeNode *cur;
-	stack<TreeNode*> S;
-	cur = r;
-	while (cur || !S.empty()) {
-		if (cur) {
-			cout << cur->val << " ";
-			S.push(cur);
-			cur = cur->left;
-		} else {
-			TreeNode *x = S.top();
-			S.pop();
-			cur = x->right;
-		}
-	}
-}
-
-void DFSpostOrder(TreeNode *r) {
-	if (r) {
-		DFSpostOrder(r->left);
-		DFSpostOrder(r->right);
-		cout << r->val << " ";
-	}
-}
-
-void DFSpostOrderIter(TreeNode* r) {
-	TreeNode *cur;
-	stack<TreeNode*> S, T;
-
-	S.push(r);
-	while (!S.empty()) {
-		TreeNode *x = S.top();
-		S.pop();
-		if (x) {
-			S.push(x->left);
-			S.push(x->right);
-			T.push(x);
-		}
-	}
-
-
-	while (!T.empty()) {
-		cout << T.top()->val << " ";
-		T.pop();
-	}
-}
-
-void BFS(TreeNode* r) {
-	queue<TreeNode*> Q;
-	Q.push(r);
-	while (!Q.empty()) {
-		TreeNode *x = Q.front();
-		Q.pop();
-		if (x) {
-			cout << x->val << " ";
-			Q.push(x->left);
-			Q.push(x->right);
-		}
-	}
-
-}
-
-/* ******************************** */
-
-
 /*
+Dynamic programming:
+Given you can climb 1,2, or 3 stairs in one step, how many ways of reaching the top
+	3 ways: bottom up (O(n) and O(1) space), top-down
 
-Trees:
-structure
-height
-dfsinorder (rec, iter)
-preorder
-postorder
-bfs
-
-
-Check if tree is balanced
-All traversals, recursive and iterative implementations
-BFS/DFS
-Construct a BST from a sorted array
-Check if two trees are mirror image of each other
-Find max path sum in the tree, negative nodes possible
-Lowest common ancestor of 2 nodes in a tree
+How many ways to go from top left of a grid to bottom right of the grid with some obstacles in between
 
 */
+
+
+
+int stairs(int N) {
+	vector<int> A(N + 1, 0);
+	A[0] = 1;
+	for (int i = 1; i <= N; i++) {
+		for (int j = 1; j <= 3 && i - j >= 0; j++) {
+			A[i] += A[i - j];
+		}
+	}
+	return A[N];
+}
+
+int stairsDPNoStorage(int N) {
+	if (N < 2) {
+		return 1;
+	}
+	vector<int> A{1, 1, 2};
+	for (int i = 0; i < N - 2; i++) {
+		int tmp = A[0] + A[1] + A[2];
+		A[0] = A[1];
+		A[1] = A[2];
+		A[2] = tmp;
+	}
+	return A[2];
+}
+
+int stairsTopDownRec(int N, map<int, int>& memo) {
+	if (N < 0) {
+		return 0;
+	}
+	if (memo.count(N) == 0) {
+		int c = stairsTopDownRec(N - 1, memo) + stairsTopDownRec(N - 2, memo) + stairsTopDownRec(N - 3, memo);
+		memo[N] = c;
+	}
+	return memo[N];
+}
+
+int stairsTopDown(int N) {
+	map<int, int> memo{{0, 1}};
+	return stairsTopDownRec(N, memo);
+}
+
+int gridWays(vector<vector<int>>& grid) {
+	int nrows = grid.size();
+	int ncols = grid[0].size();
+	vector<vector<int>> A(nrows, vector<int>(ncols, 0));
+	A[0][0] = grid[0][0] ^ 1;
+	for (int row = 0; row < nrows; row++) {
+		for (int col = 0; col < ncols; col++) {
+			if (grid[row][col] == 1) {
+				continue;
+			}
+			if (row > 0) {
+				A[row][col] += A[row - 1][col];
+			}
+			if (col > 0) {
+				A[row][col] += A[row][col - 1];
+			}
+		}
+	}
+	return A[nrows - 1][ncols - 1];
+}
+
+int gridWaysTopDownRec(vector<vector<int>>& grid, int row, int col, vector<vector<int>>& memo) {
+	int nrows = grid.size();
+	int ncols = grid[0].size();
+	if (row < 0 || row >= nrows || col < 0 || col >= ncols) {
+		return 0;
+	}
+	if (memo[row][col] == -1) {
+		if (grid[row][col] == 1) {
+			memo[row][col] = 0;
+		} else {
+			memo[row][col] = gridWaysTopDownRec(grid, row - 1, col, memo) + gridWaysTopDownRec(grid, row, col - 1, memo);
+		}
+	}
+	return memo[row][col];
+}
+
+int gridWaysTopDown(vector<vector<int>>& grid) {
+	int nrows = grid.size();
+	int ncols = grid[0].size();
+	vector<vector<int>> memo(nrows, vector<int>(ncols, -1));
+	memo[0][0] = grid[0][0] ^ 1;
+	return gridWaysTopDownRec(grid, nrows - 1, ncols - 1, memo);
+}
+
 
 
 int main() {
-	TreeNode n0(0);
-	TreeNode n1(1);
-	TreeNode n2(2);
-	TreeNode n3(3);
-	TreeNode n4(4);
-	TreeNode n5(5);
-	TreeNode n6(6);
-	TreeNode n7(7);
+	int n = 8;
+	cout << stairs(n) << " == 81 " << endl;
+	cout << stairsDPNoStorage(n) << " == 81 " << endl;
+	cout << stairsTopDown(n) << " == 81 " << endl;
 
-	n0.left = &n1;
-	n0.right = &n2;
-	n1.left = &n3;
-	n2.left = &n4;
-	n2.right = &n5;
-	n3.left = &n6;
-	n5.right = &n7;
-
-	cout << "\n\n[height]" << endl;
-	cout << height(&n0) << " == 4" << endl;
-
-	cout << "\n\n[DFSinOrder]" << endl;
-	DFSinOrder(&n0);
-	cout << " == 6 3 1 0 4 2 5 7" << endl;
-
-	DFSinOrderIter(&n0);
-	cout << " == 6 3 1 0 4 2 5 7" << endl;
+	vector<vector<int>> grid{{0, 1},
+							 {0, 0}};
+	cout << gridWays(grid) << " == 1" << endl;
+	cout << gridWaysTopDown(grid) << " == 1" << endl;
 
 
-	cout << "\n\n[DFSpreOrder]" << endl;
-	DFSpreOrder(&n0);
-	cout << " == 0 1 3 6 2 4 5 7" << endl;
-	DFSpreOrderIter(&n0);
-	cout << " == 0 1 3 6 2 4 5 7" << endl;
-
-	cout << "\n\n[DFSpostOrder]" << endl;
-	DFSpostOrder(&n0);
-	cout << " == 6 3 1 4 7 5 2 0" << endl;
-	DFSpostOrderIter(&n0);
-	cout << " == 6 3 1 4 7 5 2 0" << endl;
-
-	cout << "\n\n[BFS]" << endl;
-	BFS(&n0);
-	cout << " == 0 1 2 3 4 5 6 7" << endl;
+	vector<vector<int>> grid2{{0, 1},
+							 {1, 0}};
+	cout << gridWays(grid2) << " == 0" << endl;
+	cout << gridWaysTopDown(grid2) << " == 0" << endl;
 
 
-/*
+	vector<vector<int>> grid3{{0, 0},
+							  {0, 0}};
+	cout << gridWays(grid3) << " == 2" << endl;
+	cout << gridWaysTopDown(grid3) << " == 2" << endl;
 
-    0
-  1   2
- 3   4 5
-6       7  
 
-*/
+	vector<vector<int>> grid4{{0, 0, 0},
+							  {0, 0, 0}};
+	cout << gridWays(grid4) << " == 3" << endl;
+	cout << gridWaysTopDown(grid4) << " == 3" << endl;
 
+
+
+	vector<vector<int>> grid5{{0, 0, 1},
+							  {0, 0, 0},
+							  {1, 0, 0}};
+	cout << gridWays(grid5) << " == 4" << endl;
+	cout << gridWaysTopDown(grid5) << " == 4" << endl;
 }
