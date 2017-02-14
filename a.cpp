@@ -1,141 +1,144 @@
-/* ********************************** */
-#include <vector>
-#include <iostream>
-#include <map>
-using namespace std;
 /*
-Dynamic programming:
-Given you can climb 1,2, or 3 stairs in one step, how many ways of reaching the top
-	3 ways: bottom up (O(n) and O(1) space), top-down
-
-How many ways to go from top left of a grid to bottom right of the grid with some obstacles in between
-
+permutations
+combinations
+subsets (bits, recursive)
 */
 
 
+#include <algorithm>
+#include <iostream>
+#include <vector>
+using namespace std;
 
-int stairs(int N) {
-	vector<int> A(N + 1, 0);
-	A[0] = 1;
-	for (int i = 1; i <= N; i++) {
-		for (int j = 1; j <= 3 && i - j >= 0; j++) {
-			A[i] += A[i - j];
+
+void permutations_rec(vector<char>& v, int offset, vector<vector<char>>& res) {
+	if (offset == v.size()) {
+		res.push_back(v);
+	} else {
+		for (int i = offset; i < v.size(); i++) {
+			swap(v[i], v[offset]);
+			permutations_rec(v, offset + 1, res);
+			swap(v[i], v[offset]);
 		}
 	}
-	return A[N];
 }
 
-int stairsDPNoStorage(int N) {
-	if (N < 2) {
-		return 1;
-	}
-	vector<int> A{1, 1, 2};
-	for (int i = 0; i < N - 2; i++) {
-		int tmp = A[0] + A[1] + A[2];
-		A[0] = A[1];
-		A[1] = A[2];
-		A[2] = tmp;
-	}
-	return A[2];
+vector<vector<char>> permutations(vector<char>& v) {
+	vector<vector<char>> res;
+	permutations_rec(v, 0, res);
+	return res;
 }
 
-int stairsTopDownRec(int N, map<int, int>& memo) {
-	if (N < 0) {
-		return 0;
-	}
-	if (memo.count(N) == 0) {
-		int c = stairsTopDownRec(N - 1, memo) + stairsTopDownRec(N - 2, memo) + stairsTopDownRec(N - 3, memo);
-		memo[N] = c;
-	}
-	return memo[N];
-}
-
-int stairsTopDown(int N) {
-	map<int, int> memo{{0, 1}};
-	return stairsTopDownRec(N, memo);
-}
-
-int gridWays(vector<vector<int>>& grid) {
-	int nrows = grid.size();
-	int ncols = grid[0].size();
-	vector<vector<int>> A(nrows, vector<int>(ncols, 0));
-	A[0][0] = grid[0][0] ^ 1;
-	for (int row = 0; row < nrows; row++) {
-		for (int col = 0; col < ncols; col++) {
-			if (grid[row][col] == 1) {
-				continue;
-			}
-			if (row > 0) {
-				A[row][col] += A[row - 1][col];
-			}
-			if (col > 0) {
-				A[row][col] += A[row][col - 1];
+vector<vector<char>> subsets_bits(vector<char>& v) {
+	const int n = v.size();
+	vector<vector<char>> res;
+	for (int x = 0; x < 1<<n; x++) {
+		vector<char> V;
+		for (int i = 0; i < n; i++) {
+			if (((x >> i) & 1) == 1) {
+				V.push_back(v[i]);
 			}
 		}
+		res.push_back(V);
 	}
-	return A[nrows - 1][ncols - 1];
+	return res;
+
 }
 
-int gridWaysTopDownRec(vector<vector<int>>& grid, int row, int col, vector<vector<int>>& memo) {
-	int nrows = grid.size();
-	int ncols = grid[0].size();
-	if (row < 0 || row >= nrows || col < 0 || col >= ncols) {
-		return 0;
+void subsets_rec(vector<char>& v, int offset, vector<char>& pref, vector<vector<char>>& res) {
+	if (offset == v.size()) {
+		res.push_back(pref);
+	} else {
+		subsets_rec(v, offset + 1, pref, res);
+		pref.push_back(v[offset]);
+		subsets_rec(v, offset + 1, pref, res);
+		pref.pop_back();
 	}
-	if (memo[row][col] == -1) {
-		if (grid[row][col] == 1) {
-			memo[row][col] = 0;
-		} else {
-			memo[row][col] = gridWaysTopDownRec(grid, row - 1, col, memo) + gridWaysTopDownRec(grid, row, col - 1, memo);
-		}
-	}
-	return memo[row][col];
 }
 
-int gridWaysTopDown(vector<vector<int>>& grid) {
-	int nrows = grid.size();
-	int ncols = grid[0].size();
-	vector<vector<int>> memo(nrows, vector<int>(ncols, -1));
-	memo[0][0] = grid[0][0] ^ 1;
-	return gridWaysTopDownRec(grid, nrows - 1, ncols - 1, memo);
+vector<vector<char>> subsets(vector<char>& v) {
+	vector<vector<char>> res;
+	vector<char> pref;
+	subsets_rec(v, 0, pref, res);
+	return res;
+}
+
+void combinations_rec(vector<char>& v, int k, int offset, vector<char>& pref, vector<vector<char>>& res) {
+	if (k == pref.size()) {
+		res.push_back(pref);
+	} else if (offset < v.size()) {
+		combinations_rec(v, k, offset + 1, pref, res);
+		pref.push_back(v[offset]);
+		combinations_rec(v, k, offset + 1, pref, res);
+		pref.pop_back();
+	}
+}
+
+vector<vector<char>> combinations(vector<char>& v, int k) {
+	vector<vector<char>> res;
+	vector<char> pref;
+	combinations_rec(v, k, 0, pref, res);
+	return res;
 }
 
 
+void print_vector(vector<char>& v) {
+	for (int i = 0; i < (int)v.size(); ++i) {
+		cout << v[i] << " ";
+	}
+	cout << endl;
+}
 
 int main() {
-	int n = 8;
-	cout << stairs(n) << " == 81 " << endl;
-	cout << stairsDPNoStorage(n) << " == 81 " << endl;
-	cout << stairsTopDown(n) << " == 81 " << endl;
+	int n = 3;
+	vector<char> v;
+	for (int i = 0; i < n; i++) {
+		v.push_back('a' + i);
+	}
 
-	vector<vector<int>> grid{{0, 1},
-							 {0, 0}};
-	cout << gridWays(grid) << " == 1" << endl;
-	cout << gridWaysTopDown(grid) << " == 1" << endl;
-
-
-	vector<vector<int>> grid2{{0, 1},
-							 {1, 0}};
-	cout << gridWays(grid2) << " == 0" << endl;
-	cout << gridWaysTopDown(grid2) << " == 0" << endl;
-
-
-	vector<vector<int>> grid3{{0, 0},
-							  {0, 0}};
-	cout << gridWays(grid3) << " == 2" << endl;
-	cout << gridWaysTopDown(grid3) << " == 2" << endl;
-
-
-	vector<vector<int>> grid4{{0, 0, 0},
-							  {0, 0, 0}};
-	cout << gridWays(grid4) << " == 3" << endl;
-	cout << gridWaysTopDown(grid4) << " == 3" << endl;
+	cout << "[permutations]" << endl;
+	vector<vector<char>> pp = permutations(v);
+	for (auto p: pp) {
+		print_vector(p);
+	}
+	sort(pp.begin(), pp.end());
+	vector<vector<char>> expected{{'a', 'b', 'c'}, {'a', 'c', 'b'}, {'b', 'a', 'c'}, {'b', 'c', 'a'}, {'c', 'a', 'b'}, {'c', 'b', 'a'}};
+	cout << (pp == expected) << " == 1" << endl;
 
 
 
-	vector<vector<int>> grid5{{0, 0, 1},
-							  {0, 0, 0},
-							  {1, 0, 0}};
-	cout << gridWays(grid5) << " == 4" << endl;
-	cout << gridWaysTopDown(grid5) << " == 4" << endl;
+	cout << "\n[subsets-bits]" << endl;
+	pp = subsets_bits(v);
+	sort(pp.begin(), pp.end());
+	for (auto p: pp) {
+		print_vector(p);
+	}
+	expected = {{}, {'a'}, {'a', 'b'}, {'a', 'b', 'c'}, {'a', 'c'}, {'b'}, {'b', 'c'}, {'c'}};
+	cout << (pp == expected) << " == 1" << endl;
+
+	cout << endl;
+	cout << "\n[subsets-rec]" << endl;
+	pp = subsets(v);
+	sort(pp.begin(), pp.end());
+	for (auto p: pp) {
+		print_vector(p);
+	}
+	expected = {{}, {'a'}, {'a', 'b'}, {'a', 'b', 'c'}, {'a', 'c'}, {'b'}, {'b', 'c'}, {'c'}};
+
+	cout << (pp == expected) << " == 1" << endl;
+
+
+	cout << "\n[combinations]" << endl;
+	pp = combinations(v, 2);
+	for (auto p: pp) {
+		print_vector(p);
+	}
+	sort(pp.begin(), pp.end());
+	expected = {{'a', 'b'}, {'a', 'c'}, {'b', 'c'}};
+	cout << (pp == expected) << " == 1" << endl;
+
+	cout << endl;
+
+
 }
+

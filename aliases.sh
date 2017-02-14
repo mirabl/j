@@ -4,7 +4,7 @@ alias ga='git add'
 alias gd='git diff'
 alias gs='git status'
 alias g='git'
-alias gg='nano LESSON_LEARNED ; ga LESSON_LEARNED aliases.sh *cpp anki/*; gc; gp'
+alias gg='ga LESSON_LEARNED TODO TMP aliases.sh *cpp anki/*; gc; gp'
 
 alias ff='ls -l'
 alias f='ls'
@@ -42,4 +42,12 @@ alias msv='make sysv'
 alias msv='make sysv'
 function msvc {
  make sysv case=$1
+}
+
+function random_kata {
+	ls K*cpp|grep -v KX|shuf|head -1
+}
+
+function kata_file {
+	awk '/BEGIN/{flag=1;next}/END/{flag=0}flag' $1 > $2
 }

@@ -1,4 +1,12 @@
+/*
+Linked List:
+Reverse a singly linked list
+Delete/Insert a node in a linked list
+Detect if there is a cycle in the list and return its starting point
+Merge two sorted lists
+Split a list into two lists one has even indexes other has odd indexes
 
+*/
 #include <iostream>
 
 using namespace std;
@@ -71,8 +79,6 @@ ListNode* reverse(ListNode *head) {
 }
 
 /*
-// 1046
-// 1058
 #include <iostream>
 using namespace std;
 struct ListNode {
@@ -136,23 +142,26 @@ ListNode* reverse(ListNode *head) {
 }
 */
 
-/* *********************************** */
+/* BEGIN */
 
 /*
 structure
-insert
-find
-deleteNode
-reverse
+*/
+/*
+ListNode* insert(ListNode *head, int val) {
+}
 
-Linked List:
-Reverse a singly linked list
-Delete/Insert a node in a linked list
-Detect if there is a cycle in the list and return its starting point
-Merge two sorted lists
-Split a list into two lists one has even indexes other has odd indexes
+ListNode* find(ListNode *head, int v) {
+}
+
+ListNode* deleteNode(ListNode *head, ListNode *p) {
+}
+
+ListNode* reverse(ListNode *head) {
 
 */
+
+
 
 void print_list(ListNode *n) {
 	ListNode *p = n;
@@ -200,3 +209,5 @@ int main() {
 	cout << " == 2 1 0" << endl;
 
 }
+
+/* END */

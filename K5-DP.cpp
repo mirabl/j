@@ -102,6 +102,86 @@ int gridWaysTopDown(vector<vector<int>>& grid) {
 	return gridWaysTopDownRec(grid, num_rows - 1, num_cols - 1, M);
 }
 
+
+
+/* BEGIN */
+#include <vector>
+#include <iostream>
+using namespace std;
+/*
+Dynamic programming:
+Given you can climb 1,2, or 3 stairs in one step, how many ways of reaching the top
+	3 ways: bottom up (O(n) and O(1) space), top-down
+
+How many ways to go from top left of a grid to bottom right of the grid with some obstacles in between
+(cell == 0: free, cell == 1: obstacle)
+*/
+
+/*
+
+int stairs(int N) {
+
+}
+
+int stairsDPNoStorage(int N) {
+
+}
+
+int stairsTopDown(int N) {
+
+}
+
+int gridWays(vector<vector<int>>& grid) {
+
+}
+
+int gridWaysTopDown(vector<vector<int>>& grid) {
+
+}
+
+*/
+
+int main() {
+	int n = 8;
+	cout << stairs(n) << " == 81 " << endl;
+	cout << stairsDPNoStorage(n) << " == 81 " << endl;
+	cout << stairsTopDown(n) << " == 81 " << endl;
+
+	vector<vector<int>> grid{{0, 1},
+							 {0, 0}};
+	cout << gridWays(grid) << " == 1" << endl;
+	cout << gridWaysTopDown(grid) << " == 1" << endl;
+
+
+	vector<vector<int>> grid2{{0, 1},
+							 {1, 0}};
+	cout << gridWays(grid2) << " == 0" << endl;
+	cout << gridWaysTopDown(grid2) << " == 0" << endl;
+
+
+	vector<vector<int>> grid3{{0, 0},
+							  {0, 0}};
+	cout << gridWays(grid3) << " == 2" << endl;
+	cout << gridWaysTopDown(grid3) << " == 2" << endl;
+
+
+	vector<vector<int>> grid4{{0, 0, 0},
+							  {0, 0, 0}};
+	cout << gridWays(grid4) << " == 3" << endl;
+	cout << gridWaysTopDown(grid4) << " == 3" << endl;
+
+
+
+	vector<vector<int>> grid5{{0, 0, 1},
+							  {0, 0, 0},
+							  {1, 0, 0}};
+	cout << gridWays(grid5) << " == 4" << endl;
+	cout << gridWaysTopDown(grid5) << " == 4" << endl;
+}
+
+/* END */
+
+
 /*
 int stairs(int N) {
 	vector<int> A(N + 1, 0);
@@ -190,78 +270,3 @@ int gridWaysTopDown(vector<vector<int>>& grid) {
 }
 
 */
-
-/* ********************************** */
-#include <vector>
-#include <iostream>
-using namespace std;
-/*
-Dynamic programming:
-Given you can climb 1,2, or 3 stairs in one step, how many ways of reaching the top
-	3 ways: bottom up (O(n) and O(1) space), top-down
-
-How many ways to go from top left of a grid to bottom right of the grid with some obstacles in between
-
-*/
-
-/*
-
-int stairs(int N) {
-
-}
-
-int stairsDPNoStorage(int N) {
-
-}
-
-int stairsTopDown(int N) {
-
-}
-
-int gridWays(vector<vector<int>>& grid) {
-
-}
-
-int gridWaysTopDown(vector<vector<int>>& grid) {
-
-}
-
-*/
-
-int main() {
-	int n = 8;
-	cout << stairs(n) << " == 81 " << endl;
-	cout << stairsDPNoStorage(n) << " == 81 " << endl;
-	cout << stairsTopDown(n) << " == 81 " << endl;
-
-	vector<vector<int>> grid{{0, 1},
-							 {0, 0}};
-	cout << gridWays(grid) << " == 1" << endl;
-	cout << gridWaysTopDown(grid) << " == 1" << endl;
-
-
-	vector<vector<int>> grid2{{0, 1},
-							 {1, 0}};
-	cout << gridWays(grid2) << " == 0" << endl;
-	cout << gridWaysTopDown(grid2) << " == 0" << endl;
-
-
-	vector<vector<int>> grid3{{0, 0},
-							  {0, 0}};
-	cout << gridWays(grid3) << " == 2" << endl;
-	cout << gridWaysTopDown(grid3) << " == 2" << endl;
-
-
-	vector<vector<int>> grid4{{0, 0, 0},
-							  {0, 0, 0}};
-	cout << gridWays(grid4) << " == 3" << endl;
-	cout << gridWaysTopDown(grid4) << " == 3" << endl;
-
-
-
-	vector<vector<int>> grid5{{0, 0, 1},
-							  {0, 0, 0},
-							  {1, 0, 0}};
-	cout << gridWays(grid5) << " == 4" << endl;
-	cout << gridWaysTopDown(grid5) << " == 4" << endl;
-}
