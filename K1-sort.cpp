@@ -42,10 +42,11 @@ void insertion_sort(vector<int>& A) {
 /* BEGIN */
 
 /*
-selection sort
-insertion sort
-*/
-/*
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
 void selection_sort(vector<int>& A) {
 }
 
@@ -89,11 +90,10 @@ int main() {
 	cout << endl;
 
 	random_shuffle(A.begin(), A.end());
-	bubble_sort(A);
+	insertion_sort(A);
 	print_vector(A);
 	cout << " " << (is_sorted(A) ? "OK" : "NOK") << endl;
 	cout << endl;
-
 
 
 	cout << "-----------" << endl;
@@ -190,4 +190,36 @@ void quick_sort(vector<int>& A) {
 	cout << endl;
 */
 
+/*
+void selection_sort(vector<int>& A) {
+	int n = A.size();
+	for (int i = n - 1; i > 0; i--) {
+		int k = 0;
+		for (int j = 0; j <= i; j++) {
+			if (A[j] > A[k]) {
+				k = j;
+			}
+		}
+		swap(A[i], A[k]);
+	}
+}
+
+void insertion_sort(vector<int>& A) {
+	int n = A.size();
+	// insert A[i] in sorted A[0]..A[i - 1]
+	for (int i = 1; i < n; i++) {
+		int k = 0;
+		while (A[i] > A[k]) {
+			k++;
+		}
+		// insert before A[k]
+		int tmp = A[i];
+		for (int j = i; j > k; j--) {
+			A[j] = A[j - 1];
+		}
+		A[k] = tmp;
+	}
+}
+
+*/
 	

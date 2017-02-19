@@ -92,11 +92,6 @@ vector<vector<char>> combinations(vector<char>& v, int k) {
 
 /* BEGIN */
 /*
-permutations
-combinations
-subsets (bits, recursive)
-*/
-/*
 #include <algorithm>
 #include <iostream>
 #include <vector>
@@ -338,4 +333,78 @@ vector<vector<char>> combinations(vector<char>& v, int k) {
 	return res;
 }
 
+*/
+/*
+void permutations_rec(vector<char>& v, int offset, vector<vector<char>>& res) {
+	if (offset == v.size()) {
+		res.push_back(v);
+	} else {
+		for (int i = offset; i < v.size(); i++) {
+			swap(v[i], v[offset]);
+			permutations_rec(v, offset + 1, res);
+			swap(v[i], v[offset]);
+		}
+	}
+}
+
+vector<vector<char>> permutations(vector<char>& v) {
+	vector<vector<char>> res;
+	permutations_rec(v, 0, res);
+	return res;
+}
+
+vector<vector<char>> subsets_bits(vector<char>& v) {
+	vector<vector<char>> res;
+	int n = v.size();
+	for (int x = 0; x < (1<<n); x++) {
+		vector<char> sub;
+		for (int i = 0; i < n; i++) {
+			if ((x >> i) & 1) {
+				sub.push_back(v[i]);
+			}
+		}
+		res.push_back(sub);
+	}
+	return res;
+}
+
+void subsets_rec(vector<char>& v, int offset, vector<char>& sub, vector<vector<char>>& res) {
+	if (offset == v.size()) {
+		res.push_back(sub);
+	} else {
+		subsets_rec(v, offset + 1, sub, res);
+		sub.push_back(v[offset]);
+		subsets_rec(v, offset + 1, sub, res);
+		sub.pop_back();
+	}
+}
+
+vector<vector<char>> subsets(vector<char>& v) {
+	vector<vector<char>> res;
+	vector<char> sub;
+	subsets_rec(v, 0, sub, res);
+	return res;
+}
+
+void combinations_rec(vector<char>& v, int k, int offset, vector<char>& comb, vector<vector<char>>& res) {
+	if (offset == v.size()) {
+		if (k == 0) {
+			res.push_back(comb);		
+		}
+	} else {
+		combinations_rec(v, k, offset + 1, comb, res);
+		if (k > 0) {
+			comb.push_back(v[offset]);
+			combinations_rec(v, k - 1, offset + 1, comb, res);
+			comb.pop_back();
+		}
+	}
+}
+
+vector<vector<char>> combinations(vector<char>& v, int k) {
+	vector<vector<char>> res;
+	vector<char> comb;
+	combinations_rec(v, k, 0, comb, res);
+	return res;
+}
 */

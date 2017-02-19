@@ -145,9 +145,10 @@ ListNode* reverse(ListNode *head) {
 /* BEGIN */
 
 /*
+#include <iostream>
+using namespace std;
 structure
-*/
-/*
+
 ListNode* insert(ListNode *head, int val) {
 }
 
@@ -158,7 +159,7 @@ ListNode* deleteNode(ListNode *head, ListNode *p) {
 }
 
 ListNode* reverse(ListNode *head) {
-
+}
 */
 
 
@@ -211,3 +212,64 @@ int main() {
 }
 
 /* END */
+
+/*
+struct ListNode {
+	int val;
+	ListNode *next;
+	ListNode(int v): val(v), next(NULL) { }
+};
+
+
+ListNode* insert(ListNode *head, int val) {
+	ListNode *n = new ListNode(val);
+	if (!head) {
+		return n;
+	} else {
+		ListNode *p = head;
+		while (p->next) {
+			p = p->next;
+		}
+		p->next = n;
+		return head;
+	}
+}
+
+ListNode* find(ListNode *head, int v) {
+	ListNode *p = head;
+	while (p && p->val != v) {
+		p = p->next;
+	}
+	return p;
+}
+
+ListNode* deleteNode(ListNode *head, ListNode *p) {
+	if (p == head) {
+		return head->next;
+	} else {
+		ListNode *q = head;
+		while (q->next != p) {
+			q = q->next;
+		}
+		q->next = q->next->next;
+		return head;
+	}
+}
+
+ListNode* reverse(ListNode *head) {
+	if (!head) { 
+		return NULL;
+	}
+	ListNode *nh = head;
+	ListNode *p = head->next;
+	nh->next = NULL;
+	while (p) {
+		ListNode *q = p->next;
+		p->next = nh;
+		nh = p;
+		p = q;
+	}
+	return nh;
+}
+
+*/
