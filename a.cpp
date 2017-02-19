@@ -1,4 +1,5 @@
 
+
 #include <iostream>
 using namespace std;
 
@@ -53,6 +54,8 @@ ListNode* reverse(ListNode *head) {
 	}
 	return nh;
 }
+
+
 
 
 void print_list(ListNode *n) {
