@@ -361,4 +361,82 @@ int gridWaysTopDown(vector<vector<int>>& grid) {
 	return gridWaysTopDownRec(grid, nrows - 1, ncols - 1, A);
 }
 
+int stairs(int N) {
+	vector<int> A(max(3, N + 1));
+	A[0] = 1;
+	A[1] = 1;
+	A[2] = 2;
+	for (int i = 3; i < N + 1; i++) {
+		A[i] = A[i - 3] + A[i - 2] + A[i - 1];
+	}
+	return A[N];
+}
+
+int stairsDPNoStorage(int N) {
+	if (N < 2) {
+		return 1;
+	}
+	int x = 1;
+	int y = 1;
+	int z = 2;
+	for (int i = 3; i <= N; i++) {
+		int t = x + y + z;
+		x = y;
+		y = z;
+		z = t;
+	}
+	return z;
+}
+
+int stairsTopDownRec(int N, vector<int>& A) {
+	if (N < 0) {
+		return 0;
+	}
+	if (A[N] == -1) {
+		A[N] = stairsTopDownRec(N - 1, A) + stairsTopDownRec(N - 2, A) + stairsTopDownRec(N - 3, A);
+	}
+	return A[N];
+}
+
+
+int stairsTopDown(int N) {
+	vector<int> A(N + 1, -1);
+	A[0] = 1;
+	return stairsTopDownRec(N, A);
+}
+
+int gridWays(vector<vector<int>>& grid) {
+	int nrows = grid.size();
+	int ncols = grid[0].size();
+	vector<vector<int>> A(nrows, vector<int>(ncols, 0));
+	A[0][0] = grid[0][0] ^ 1;
+	for (int row = 0; row < nrows; row++) {
+		for (int col = 0; col < ncols; col++) {
+			if (grid[row][col] == 0) {
+				A[row][col] += (row > 0 ? A[row - 1][col] : 0);
+				A[row][col] += (col > 0 ? A[row][col - 1] : 0);
+			}
+		}
+	}
+	return A[nrows - 1][ncols - 1];
+}
+
+int gridWaysTopDownRec(vector<vector<int>>& grid, int row, int col, vector<vector<int>>& A) {
+	if (row < 0 || col < 0 || grid[row][col] == 1) {
+		return 0;
+	}
+	if (A[row][col] == -1) {
+		A[row][col] = gridWaysTopDownRec(grid, row - 1, col, A) + gridWaysTopDownRec(grid, row, col - 1, A);
+	}
+	return A[row][col];
+}
+
+int gridWaysTopDown(vector<vector<int>>& grid) {
+	int nrows = grid.size();
+	int ncols = grid[0].size();
+	vector<vector<int>> A(nrows, vector<int>(ncols, -1));
+	A[0][0] = grid[0][0] ^ 1;
+	return gridWaysTopDownRec(grid, nrows - 1, ncols - 1, A);
+}
+
 */
