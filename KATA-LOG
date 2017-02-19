@@ -1,5 +1,13 @@
 13/2 K1-sort
 13/2 K2-linkedlist
-13/2 K3-tree -
+13/2 K3-tree - (old version)
 13/2 K4-backtracking +
 13/2 K5-DP -
+14/2 K3-tree +
+14/2 K4-backtracking - error with recursive calls for subsets/combinations 
+18/2 K1-sort +
+18/2 K2-linkedlist =
+18/2 K3-tree +
+18/2 K4-backtrack - segfault in combinations
+18/2 K5-DP - slow
+19/2 K6-BS - mix up < and >

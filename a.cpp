@@ -1,143 +1,104 @@
-#include <vector>
+
 #include <iostream>
 using namespace std;
-/*
-Dynamic programming:
-Given you can climb 1,2, or 3 stairs in one step, how many ways of reaching the top
-	3 ways: bottom up (O(n) and O(1) space), top-down
 
-How many ways to go from top left of a grid to bottom right of the grid with some obstacles in between
-(cell == 0: free, cell == 1: obstacle)
-*/
+struct ListNode {
+	int val;
+	ListNode *next;
+	ListNode(int v): val(v), next(NULL) { }
+};
+
+ListNode* insert(ListNode *head, int val) {
+	ListNode dummy(0);
+	dummy.next = head;
+	ListNode *p = &dummy;
+	while (p->next) {
+		p = p->next;
+	}
+	p->next = new ListNode(val);
+	return dummy.next;
+}
+
+ListNode* find(ListNode *head, int v) {
+	ListNode *p = head;
+	while (p && p->val != v) {
+		p = p->next;
+	}
+	return p;
+}
+
+ListNode* deleteNode(ListNode *head, ListNode *p) {
+	ListNode dummy(0);
+	dummy.next = head;
+	ListNode *q = &dummy;
+	while (q->next != p) {
+		q = q->next;
+	}
+	q->next = q->next->next;
+	return dummy.next;
+}
+
+ListNode* reverse(ListNode *head) {
+	if (!head) {
+		return NULL;
+	}
+	ListNode *nh = head;
+	ListNode *p = head->next;
+	nh->next = NULL;
+	while (p) {
+		ListNode *q = p->next;
+		p->next = nh;
+		nh = p;
+		p = q;
+	}
+	return nh;
+}
 
 
-
-int stairsRec(int N, vector<int>& memo) {
-	if (N < 0) {
-		return 0;
-	} else {
-		if (memo[N] == -1) {
-			memo[N] = stairsRec(N - 1, memo) + stairsRec(N - 2, memo) + stairsRec(N - 3, memo);
-		}
-		return memo[N];
+void print_list(ListNode *n) {
+	ListNode *p = n;
+	while (p != NULL) {
+		cout << p->val << " ";
+		p = p->next;
 	}
 }
-
-int stairsTopDown(int N) {
-	vector<int> memo(N + 1, -1);
-	memo[0] = 1;
-	return stairsRec(N, memo);
-}
-
-int stairsDPNoStorage(int N) {
-	int x = 1;
-	int y = 1;
-	int z = 2;
-
-	if (N < 2) {
-		return 1;
-	} else {
-		for (int i = 2; i < N; i++) {
-			int t = x + y + z;
-			x = y;
-			y = z;
-			z = t;
-		}
-	}
-
-	return z;
-}
-
-int stairs(int N) {
-	vector<int> A(max(N + 1, 3), 1);
-	A[1] = 1;
-	A[2] = 2;
-	for (int i = 3; i <= N; i++) {
-		A[i] = A[i - 3] + A[i - 2] + A[i - 1];
-	}
-	return A[N];
-}
-
-int gridWays(vector<vector<int>>& grid) {
-	int nrows = grid.size();
-	int ncols = grid[0].size();
-	vector<vector<int>> A(nrows, vector<int>(ncols, 0));
-	A[0][0] = (grid[0][0] == 0);
-	for (int row = 0; row < nrows; row++) {
-		for (int col = 0; col < ncols; col++) {
-			if (grid[row][col] == 1) {
-				continue;
-			}
-			if (row > 0) {
-				A[row][col] += A[row - 1][col];
-			}
-			if (col > 0) {
-				A[row][col] += A[row][col - 1];
-			}
-		}
-	}
-	return A[nrows - 1][ncols - 1];
-}
-
-int gridWaysTopDownRec(vector<vector<int>>& grid, int row, int col, vector<vector<int>>& A) {
-	if (row < 0 || col < 0) {
-		return 0;
-	}
-	if (A[row][col] == -1) {
-		if (grid[row][col] == 0) {
-			A[row][col] = gridWaysTopDownRec(grid, row - 1, col, A) + gridWaysTopDownRec(grid, row, col - 1, A);
-		} else {
-			A[row][col] = 0;
-		}
-	}
-	return A[row][col];
-}
-
-int gridWaysTopDown(vector<vector<int>>& grid) {
-	int nrows = grid.size();
-	int ncols = grid[0].size();
-	vector<vector<int>> A(nrows, vector<int>(ncols, -1));
-	A[0][0] = (grid[0][0] == 0);
-	return gridWaysTopDownRec(grid, nrows - 1, ncols - 1, A);
-}
-
 
 
 int main() {
-	int n = 8;
-	cout << stairs(n) << " == 81 " << endl;
-	cout << stairsDPNoStorage(n) << " == 81 " << endl;
-	cout << stairsTopDown(n) << " == 81 " << endl;
+	ListNode *h;
+	cout << "\n\n[insert]" << endl;
+	h = insert(NULL, 0);
+	h = insert(h, 1);
+	h = insert(h, 2);
+	print_list(h);
+	cout << " == 0 1 2" << endl;
 
-	vector<vector<int>> grid{{0, 1},
-							 {0, 0}};
-	cout << gridWays(grid) << " == 1" << endl;
-	cout << gridWaysTopDown(grid) << " == 1" << endl;
+	cout << "\n\n[find]" << endl;
 
+	cout << find(h, 3) << " == 0 " << endl;
+	cout << find(h, 1)->val << " == 1 " << endl;
+	cout << find(h, 0)->val << " == 0 " << endl;
+	cout << find(h, 2)->val << " == 2 " << endl;
 
-	vector<vector<int>> grid2{{0, 1},
-							 {1, 0}};
-	cout << gridWays(grid2) << " == 0" << endl;
-	cout << gridWaysTopDown(grid2) << " == 0" << endl;
+	cout << "\n\n[delete]" << endl;
 
-
-	vector<vector<int>> grid3{{0, 0},
-							  {0, 0}};
-	cout << gridWays(grid3) << " == 2" << endl;
-	cout << gridWaysTopDown(grid3) << " == 2" << endl;
-
-
-	vector<vector<int>> grid4{{0, 0, 0},
-							  {0, 0, 0}};
-	cout << gridWays(grid4) << " == 3" << endl;
-	cout << gridWaysTopDown(grid4) << " == 3" << endl;
+	h = deleteNode(h, h);
+	print_list(h);
+	cout << " == 1 2" << endl;
+	h = deleteNode(h, h->next);
+	print_list(h);
+	cout << " == 1" << endl;
 
 
+	cout << "\n\n[reverse]" << endl;
 
-	vector<vector<int>> grid5{{0, 0, 1},
-							  {0, 0, 0},
-							  {1, 0, 0}};
-	cout << gridWays(grid5) << " == 4" << endl;
-	cout << gridWaysTopDown(grid5) << " == 4" << endl;
+	h = deleteNode(h, h);
+	h = insert(h, 0);
+	h = insert(h, 1);
+	h = insert(h, 2);
+	h = reverse(h);
+	print_list(h);
+	cout << " == 2 1 0" << endl;
+
 }
 

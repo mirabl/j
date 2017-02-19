@@ -1,5 +1,5 @@
 compute depth of a binary tree;recursive 1 + max()
-reverse a linked list;recursive
+reverse a linked list;iterative
 reverse array in place;swap elements, maybe middle 
 last-M-th element of a linked list;2 pointers, one M ahead
 cycle length of a linked list;2 pointers 
