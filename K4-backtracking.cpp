@@ -407,4 +407,76 @@ vector<vector<char>> combinations(vector<char>& v, int k) {
 	combinations_rec(v, k, 0, comb, res);
 	return res;
 }
+
+void permutations_rec(vector<char>& v, int offset, vector<vector<char>>& res) {
+	if (offset == v.size()) {
+		res.push_back(v);
+	} else {
+		for (int i = offset; i < v.size(); i++) {
+			swap(v[offset], v[i]);
+			permutations_rec(v, offset + 1, res);
+			swap(v[offset], v[i]);
+		}
+	}
+}
+
+vector<vector<char>> permutations(vector<char>& v) {
+	vector<vector<char>> res;
+	permutations_rec(v, 0, res);
+	return res;
+}
+
+vector<vector<char>> subsets_bits(vector<char>& v) {
+	int n = v.size();
+	vector<vector<char>>  res;
+	for (int x = 0; x < (1<<n); x++) {
+		vector<char> sub;
+		for (int i = 0; i < n; i++) {
+			if ((x >> i) & 1) {
+				sub.push_back(v[i]);
+			}
+		}
+		res.push_back(sub);
+	}
+	return res;
+}
+
+void subsets_rec(vector<char>& v, int offset, vector<char>& sub, vector<vector<char>>& res) {
+	if (offset == v.size()) {
+		res.push_back(sub);
+	} else {
+		subsets_rec(v, offset + 1, sub, res);
+		sub.push_back(v[offset]);
+		subsets_rec(v, offset + 1, sub, res);
+		sub.pop_back();
+	}
+}
+
+vector<vector<char>> subsets(vector<char>& v) {
+	vector<vector<char>> res;
+	vector<char> sub;
+	subsets_rec(v, 0, sub, res);
+	return res;
+}
+
+void combinations_rec(vector<char>& v, int k, int offset, vector<char>& sub, vector<vector<char>>& res) {
+	if (offset == v.size()) {
+		if (k == 0) {
+			res.push_back(sub);
+		}
+	} else {
+		combinations_rec(v, k, offset + 1, sub, res);
+		sub.push_back(v[offset]);
+		combinations_rec(v, k - 1, offset + 1, sub, res);
+		sub.pop_back();
+	}
+}
+
+vector<vector<char>> combinations(vector<char>& v, int k) {
+	vector<vector<char>> res;
+	vector<char> sub;
+	combinations_rec(v, k, 0, sub, res);
+	return res;
+}
+
 */

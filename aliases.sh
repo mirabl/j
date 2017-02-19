@@ -51,3 +51,5 @@ function random_kata {
 function kata_file {
 	awk '/BEGIN/{flag=1;next}/END/{flag=0}flag' $1 > a.cpp
 }
+
+alias kata='kata_file $(random_kata); subl a.cpp &'

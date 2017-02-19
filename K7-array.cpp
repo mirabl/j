@@ -16,6 +16,7 @@ void reverse(vector<int>& A) {
 /* BEGIN */
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -26,7 +27,7 @@ void reverse(vector<int>& A) {
 
 int main() {
 	srand(time(0));
-	int n = 15;
+	int n = 15 + (random() % 2);
 	int m = 100;
 	vector<int> A;
 	for (int i = 0; i < n; i++) {
