@@ -221,5 +221,35 @@ void insertion_sort(vector<int>& A) {
 	}
 }
 
+void selection_sort(vector<int>& A) {
+	int n = A.size();
+	for (int i = 0; i < n - 1; i++) {
+		int k = i;
+		for (int j = i; j < n; j++) {
+			if (A[j] < A[k]) {
+				k = j;
+			}
+		}
+		swap(A[i], A[k]);
+	}
+}
+
+void insertion_sort(vector<int>& A) {
+	int n = A.size();
+	// insert A[i] in A[0]..A[i-1]
+	for (int i = 0; i < n; i++) {
+		int j = 0;
+		while (A[i] > A[j]) {
+			j++;
+		}
+		int next = A[i];
+		while (j <= i) {
+			swap(A[j], next);
+			j++;
+		}
+	}
+}
+
+
 */
 	
