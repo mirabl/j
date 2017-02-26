@@ -4,7 +4,7 @@ alias ga='git add'
 alias gd='git diff'
 alias gs='git status'
 alias g='git'
-alias gg='ga KATA-LOG LESSON_LEARNED TODO TMP aliases.sh *cpp anki/*; gc; gp'
+alias gg='ga .gitignore KATA-LOG LESSON_LEARNED TODO TMP aliases.sh *cpp anki/*; gc; gp'
 
 alias ff='ls -l'
 alias f='ls'
