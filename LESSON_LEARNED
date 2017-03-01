@@ -7,3 +7,4 @@ div: avoid extra storage when possible, temp arrays when original data can be us
 div: construct optimal solution by looking at solution without constraint then adding them
 delete element from linked list: use dummy node
 overflow: use - or / instead of + and *
+BST: inorder traversal is sorted list of values
