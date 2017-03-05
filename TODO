@@ -2,3 +2,6 @@ reservoir sampling
 getline pattern
 hashtable
 kata: matrix spiral
+difficult: cycle finding in directed graph (course schedule)
+custom sort in c++
+typedef needed for struct?
