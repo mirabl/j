@@ -31,6 +31,8 @@ f=$1
 while inotifywait -qq $f -e close_write  ; do co $1 ; done
 }
 
+alias e='./a.out'
+
 function nf {
 f=$1
 touch $f ; subl $f ; lce $f

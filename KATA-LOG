@@ -17,3 +17,5 @@
 19/2 K4-backtrack - mix V/sub in subsets_rec
 19/2 K3-tree +
 19/2 K5-DP = error with init[0][0] for grid
+24/3 K7-array +
+24/3 K2-linkedlist - infinite loop in reverse, dummy->next instead of dummy.next
