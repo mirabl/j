@@ -19,3 +19,4 @@
 19/2 K5-DP = error with init[0][0] for grid
 24/3 K7-array +
 24/3 K2-linkedlist - infinite loop in reverse, dummy->next instead of dummy.next
+24/3 K1-sort - segfault in insertion sort (k++ instead of k--)
