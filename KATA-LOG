@@ -21,3 +21,4 @@
 24/3 K2-linkedlist - infinite loop in reverse, dummy->next instead of dummy.next
 24/3 K1-sort - segfault in insertion sort (k++ instead of k--)
 24/3 K6-BS +
+24/3 K4-backtrack - forgot returns
