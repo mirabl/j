@@ -138,3 +138,41 @@ int main() {
 
 /* END */
 
+
+
+/*
+struct TreeNode {
+	int val;
+	TreeNode *left, *right;
+	TreeNode(int v): val(v), left(NULL), right(NULL) { }
+};
+
+int height(TreeNode *r) {
+	if (!r) {
+		return 0;
+	}
+	return 1 + max(height(r->left), height(r->right));
+}
+
+void DFSinOrder(TreeNode *r) {
+	if (r) {
+		DFSinOrder(r->left);
+		cout << r->val << " ";
+		DFSinOrder(r->right);
+	}
+}
+
+void BFS(TreeNode* r) {
+	queue<TreeNode*> Q;
+	Q.push(r);
+	while (!Q.empty()) {
+		TreeNode *p = Q.front();
+		Q.pop();
+		if (p) {
+			cout << p->val << " ";
+			Q.push(p->left);
+			Q.push(p->right);
+		}
+	}
+}
+*/
