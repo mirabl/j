@@ -29,3 +29,29 @@ public:
 
 // could avoid using a set:
 // https://discuss.leetcode.com/topic/50481/clean-16ms-c-o-n-space-o-klogn-time-solution-using-priority-queue
+
+class Solution {
+public:
+    vector<pair<int, int>> kSmallestPairs(vector<int>& nums1, vector<int>& nums2, int k) {
+        if (nums1.empty() || nums2.empty()) {
+            return {};
+        }
+        priority_queue<pair<int, pair<int, int>>> Q; // or use special comparator
+        for (int j = 0; j < nums2.size(); j++) {
+            Q.push({- (nums1[0] + nums2[j]), {0, j}});
+        }
+        vector<pair<int, int>> res;
+        while (k > 0 && !Q.empty()) {
+            auto p = Q.top();
+            int x = p.second.first;
+            int y = p.second.second;
+            Q.pop();
+            res.push_back({nums1[x], nums2[y]});
+            if (x + 1 < nums1.size()) {
+                Q.push({- (nums1[x + 1] + nums2[y]), {x + 1, y}});
+            }
+            k--;
+        }
+        return res;
+    }
+};
