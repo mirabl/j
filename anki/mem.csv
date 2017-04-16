@@ -1,7 +1,6 @@
 compute depth of a binary tree;recursive 1 + max()
 reverse a linked list;iterative
 reverse array in place;swap elements, maybe middle 
-last-M-th element of a linked list;2 pointers, one M ahead
 cycle length of a linked list;2 pointers 
 is a linked list a palindrome?;reverse second half, check (and restore)
 find where 2 linked list merge;2 pointers 
@@ -9,7 +8,6 @@ remove a node from a linked list;careful cases
 middle of a linked list;2 pointers
 iterative in-order traversal of binary tree;stack and curnode pointer
 determine if a string has only unique characters (with and without memory);use a set, or sort the string
-implement stack with O(1) min;push (x, min) when pushing x, or use second stack
 hanoi Towers;x
 implement a queue using two stacks;empty first stack into second stack
 sort a stack;using a second stack, or recursively
@@ -39,3 +37,18 @@ queue in C++;#include <queue>, push(), pop(), front()
 insertion in linked list tip;use dummy first node
 vector in C++;pop_back()
 two ways to do BFS level order of tree;with NULL marker, or empty queue at each step
+2sum: Given an array of integers, return indices of the two numbers such that they add up to a specific target.;same element twice? Use hash table O(n)|O(n), sort+two pointers O(n log n)|O(1), sort+BS O(n log n)|O(1)
+Longest Substring Without Repeating Characters;left and right pointers, hash set for characters in the substring, move either left or right O(n)|O(n) // traverse left to right, maintaining longest valid substring ending at this position, use map<char,position> to know where current character appeared last O(n)|O(n)
+Longest Palindromic Substring;for each position, find longest even and odd length substring with this center O(n^2)|O(1) // DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1) // O(n) difficult algorithm exists
+Container With Most Water;two pointers, from start and end, reduce width and stop only when height increases, O(n)|O(1)
+3Sum  Find all unique triplets in the array which gives the sum of zero;sort, loop for first element and then 2sum sweep, avoid duplicates by avoiding duplicate first element O(n^2)|O(1)
+substring search;naive O(n*m) // robin-karp rolling hash O(n + m) // advanced O(n)
+next permutation;?
+combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., same number can be repeated;backtracking (or DP)
+maximum subarray sum;one pass, at each position either extend or start new subarray O(n)|O(1)
+merge intervals;sort by start, one pass O(nlog n)|O(n)
+index in permutation sequence;
+Find the smallest window in a string containing all characters of another string;sliding window O(n)|O(n)
+gray code;formula, recursion?
+last-M-th element of a linked list;2 pointers, one M ahead
+implement stack with O(1) min;push (x, min) when pushing x, or use second stack
