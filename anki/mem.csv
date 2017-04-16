@@ -19,11 +19,10 @@ compute subsets of a set;recursive, iterative
 compute all permutations of a string;recursive
 print valid n-parentheses;try a character, recurse if allowed
 8 queens;x
-find element in a sorted rotated array;modified BS
+find element in a sorted rotated array;double BS
 find element in row-and-column-sorted matrix;start from NE corner
 number of trailing zeroes in a factorial;powers of 2, 5
 merge k sorted arrays;heap
-union of intervals;x
 max number of intersecting intervals;x
 is subsequence;iterate 
 rotate image by 90 degrees;ring by ring, or reverse up to down (r2l) and transpose
@@ -35,7 +34,7 @@ quicksort;(randomize first), select pivot, partition, sort left and right partit
 stack in C++;#include <stack>, push(), pop(), top()
 queue in C++;#include <queue>, push(), pop(), front()
 insertion in linked list tip;use dummy first node
-vector in C++;pop_back()
+vector in C++ access/remove last element;back()/pop_back()
 two ways to do BFS level order of tree;with NULL marker, or empty queue at each step
 2sum: Given an array of integers, return indices of the two numbers such that they add up to a specific target.;same element twice? Use hash table O(n)|O(n), sort+two pointers O(n log n)|O(1), sort+BS O(n log n)|O(1)
 Longest Substring Without Repeating Characters;left and right pointers, hash set for characters in the substring, move either left or right O(n)|O(n) // traverse left to right, maintaining longest valid substring ending at this position, use map<char,position> to know where current character appeared last O(n)|O(n)
