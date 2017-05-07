@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
 import sys
 import random
+import os
 
 rand = False
-filename = 'mem.csv'
+curdir = os.path.basename(os.path.dirname(os.path.realpath(__file__)))
+filename = os.path.join(curdir, 'mem.csv')
 
-if len(sys.argv) >= 1:
-	filename = sys.argv[1]
 if len(sys.argv) >= 2:
+	if sys.argv[1] == 'r':
+		rand = True
+	else:
+		filename = sys.argv[1]
+if len(sys.argv) >= 3:
 	rand = True
+
 
 entries = []
 with open(filename) as f:

@@ -51,3 +51,13 @@ Find the smallest window in a string containing all characters of another string
 gray code;formula, recursion?
 last-M-th element of a linked list;2 pointers, one M ahead
 implement stack with O(1) min;push (x, min) when pushing x, or use second stack
+Breadth First Traversal or BFS for a Graph;O(V + E)/O(V)
+Depth First Traversal or DFS for a Graph;O(V + E)/O(V)
+ Shortest Path from source to all vertices **Dijkstra** ;Time: O(V^2). Better complexity with Fibonacci heap.
+Shortest Path from every vertex to every other vertex **Floyd Warshall**;O(V^3)/O(V^2)
+To detect cycle in a Graph **Union Find** (method1);O(EV) if naive O(n) implementation of union() and find()
+Minimum Spanning tree **Prim** ;greedy vertices: add new vertex of minimum distance to partial tree. O(V^2), can be reduced with binary heap.
+Minimum Spanning tree **Kruskal** ;sort edges by weight, (take min edge, check if it introduces a cycle in the partial tree, discard or add). Cycle detection with union-find. O(E log V) = O(E log E)
+Topological Sort; on DAG. DFS with stack: push to stack after calling DFS on adjacent vertices (so they are on the stack below). O(V + E)
+Boggle (Find all possible words in a board of characters);DFS from every start cell, mark visited cells. Complexity? Better solution with Tree.
+Bridges in a Graph;Naive: remove edge, see if graph is still connected: O(E (V + E)). Better algorithm based on DFS O(V + E) exists.
