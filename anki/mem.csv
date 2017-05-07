@@ -61,3 +61,6 @@ Minimum Spanning tree **Kruskal** ;sort edges by weight, (take min edge, check i
 Topological Sort; on DAG. DFS with stack: push to stack after calling DFS on adjacent vertices (so they are on the stack below). O(V + E)
 Boggle (Find all possible words in a board of characters);DFS from every start cell, mark visited cells. Complexity? Better solution with Tree.
 Bridges in a Graph;Naive: remove edge, see if graph is still connected: O(E (V + E)). Better algorithm based on DFS O(V + E) exists.
+Detect beginning of a cycle;method1: count cycle length, count first segment length. method2: smarter, TODO. O(n)
+Sort a linked list;use merge sort
+Select random node from linked list;method1: count nodes first. method2:reservoir sampling O(n) one pass.
