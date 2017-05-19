@@ -4,7 +4,6 @@ reverse array in place;swap elements, maybe middle
 cycle length of a linked list;2 pointers 
 is a linked list a palindrome?;reverse second half, check (and restore)
 find where 2 linked list merge;2 pointers 
-remove a node from a linked list;careful cases
 middle of a linked list;2 pointers
 iterative in-order traversal of binary tree;stack and curnode pointer
 determine if a string has only unique characters (with and without memory);use a set, or sort the string
@@ -19,7 +18,7 @@ compute subsets of a set;recursive, iterative
 compute all permutations of a string;recursive
 print valid n-parentheses;try a character, recurse if allowed
 8 queens;x
-find element in a sorted rotated array;double BS
+find element in a sorted rotated array;double BS: find the frontier, BS on left or right part
 find element in row-and-column-sorted matrix;start from NE corner
 number of trailing zeroes in a factorial;powers of 2, 5
 merge k sorted arrays;heap
@@ -46,14 +45,14 @@ next permutation;?
 combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., same number can be repeated;backtracking (or DP)
 maximum subarray sum;one pass, at each position either extend or start new subarray O(n)|O(1)
 merge intervals;sort by start, one pass O(nlog n)|O(n)
-index in permutation sequence;
+index in permutation sequence;TODO
 Find the smallest window in a string containing all characters of another string;sliding window O(n)|O(n)
-gray code;formula, recursion?
+gray code;formula, recursion? TODO
 last-M-th element of a linked list;2 pointers, one M ahead
 implement stack with O(1) min;push (x, min) when pushing x, or use second stack
 Breadth First Traversal or BFS for a Graph;O(V + E)/O(V)
 Depth First Traversal or DFS for a Graph;O(V + E)/O(V)
- Shortest Path from source to all vertices **Dijkstra** ;Time: O(V^2). Better complexity with Fibonacci heap.
+Shortest Path from source to all vertices **Dijkstra** ;Time: O(V^2). Better complexity with Fibonacci heap.
 Shortest Path from every vertex to every other vertex **Floyd Warshall**;O(V^3)/O(V^2)
 To detect cycle in a Graph **Union Find** (method1);O(EV) if naive O(n) implementation of union() and find()
 Minimum Spanning tree **Prim** ;greedy vertices: add new vertex of minimum distance to partial tree. O(V^2), can be reduced with binary heap.
@@ -81,6 +80,28 @@ Remove nodes on root to leaf paths of length < K;TODO
 Lowest Common Ancestor in a Binary Search Tree;TODO
 Check if a binary tree is subtree of another binary tree;Naive O(n^2), O(n): inorder and preorder of subtree must be substrings of big tree
 Reverse alternate levels of a perfect binary tree;TODO
+radix sort;TODO
+famous classes of NP-complete problems;TODO
+sort when element are nearly sorted (2 ways);heapsort, insertion sort
+sort when limited range of keys;counting sort O(n + k)/O(n + k), bucket sort O(n + k)/O(nk), radix sort O(w n)/O(w + n)
+name of sort which preserves original order for same key values;stable sort
+idea of A*, difference with dijkstra;choose vertex which score minimizing distance processed vertices and _distance to target_
+shortest path when edges have no weight;BFS
+search a key in a heap;difficult O(n)
+extract minimum with streaming data;use heap
+what is a bipartite graph?;vertices are split in to sets, no edges within a set
+space complexity of quicksort;O(log n) in-place partitioning
+complexity of insert/extract-min in a heap;O(log n)
+best and worst case of selection sort;no difference, always O(n^2)/O(1) auxiliary
+best and worst case of insertion sort;best: sorted O(n)/O(1) aux, worst: reverse sorted O(n^2)/O(1) aux
+best and worst case of QuickSort;best: pivot splits array in half each time O(n log n)/O(log n), worst: pivot is min (or max), O(n^2)/O(log n)
+best and worst case of MergeSort;always O(n log n)/O(n) aux
+Heap: algo for insert;add element to bottom right, bubble up O(log n)
+Heap: algo for extract-min;save top element, put bottom right at top, bubble down O(log n)
+pivot choosing methods of QuickSort (3);first, random, median of random 3
+space complexity of merge sort;O(n) auxiliary
+heapify;O(n) when heapifying from the lower levels to the upper levels, "sinkdown" roots of subtrees
+
 
 
 
