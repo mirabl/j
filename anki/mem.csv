@@ -1,40 +1,4 @@
-compute depth of a binary tree;recursive 1 + max()
-reverse a linked list;iterative
-reverse array in place;swap elements, maybe middle 
-cycle length of a linked list;2 pointers 
-is a linked list a palindrome?;reverse second half, check (and restore)
-find where 2 linked list merge;2 pointers 
-middle of a linked list;2 pointers
-iterative in-order traversal of binary tree;stack and curnode pointer
-determine if a string has only unique characters (with and without memory);use a set, or sort the string
-hanoi Towers;x
-implement a queue using two stacks;empty first stack into second stack
-sort a stack;using a second stack, or recursively
-is there a route between two nodes of a directed graph;careful with cycles
-from sorted array, create BST with minimal height;take middle of array then recursive
-find lowest common ancestor of two nodes in a binary tree;LCA has one node on each side
-explain what the following code does: ((n & (n-1)) == 0);test if power of 2
-compute subsets of a set;recursive, iterative
-compute all permutations of a string;recursive
-print valid n-parentheses;try a character, recurse if allowed
-8 queens;x
-find element in a sorted rotated array;double BS: find the frontier, BS on left or right part
-find element in row-and-column-sorted matrix;start from NE corner
-number of trailing zeroes in a factorial;powers of 2, 5
-merge k sorted arrays;heap
-max number of intersecting intervals;x
-is subsequence;iterate 
-rotate image by 90 degrees;ring by ring, or reverse up to down (r2l) and transpose
-insertion sort;insert A[i] in A[0]...A[i-1]
-selection sort;select min put it at A[i=0], i++
-bubble sort;swap pairs to put max at i=end of array, i--
-merge sort;merge sorted subarrays with auxiliary array (allocate once)
-quicksort;(randomize first), select pivot, partition, sort left and right partition
-stack in C++;#include <stack>, push(), pop(), top()
-queue in C++;#include <queue>, push(), pop(), front()
-insertion in linked list tip;use dummy first node
-vector in C++ access/remove last element;back()/pop_back()
-two ways to do BFS level order of tree;with NULL marker, or empty queue at each step
+Max number of intersecting intervals;sort events: enter and exist of intervals. O(n log n)|O(n) aux
 2sum: Given an array of integers, return indices of the two numbers such that they add up to a specific target.;same element twice? Use hash table O(n)|O(n), sort+two pointers O(n log n)|O(1), sort+BS O(n log n)|O(1)
 Longest Substring Without Repeating Characters;left and right pointers, hash set for characters in the substring, move either left or right O(n)|O(n) // traverse left to right, maintaining longest valid substring ending at this position, use map<char,position> to know where current character appeared last O(n)|O(n)
 Longest Palindromic Substring;for each position, find longest even and odd length substring with this center O(n^2)|O(1) // DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1) // O(n) difficult algorithm exists
@@ -44,64 +8,31 @@ substring search;naive O(n*m) // robin-karp rolling hash O(n + m) // advanced O(
 next permutation;?
 combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., same number can be repeated;backtracking (or DP)
 maximum subarray sum;one pass, at each position either extend or start new subarray O(n)|O(1)
-merge intervals;sort by start, one pass O(nlog n)|O(n)
-index in permutation sequence;TODO
-Find the smallest window in a string containing all characters of another string;sliding window O(n)|O(n)
-gray code;formula, recursion? TODO
-last-M-th element of a linked list;2 pointers, one M ahead
-implement stack with O(1) min;push (x, min) when pushing x, or use second stack
-Breadth First Traversal or BFS for a Graph;O(V + E)/O(V)
-Depth First Traversal or DFS for a Graph;O(V + E)/O(V)
+Merge intervals;sort by start, one pass O(nlog n)|O(n)
+Complexity of Breadth First Traversal or BFS for a Graph;O(V + E)/O(V)
+Complexity of Depth First Traversal or DFS for a Graph;O(V + E)/O(V)
 Shortest Path from source to all vertices **Dijkstra** ;Time: O(V^2). Better complexity with Fibonacci heap.
 Shortest Path from every vertex to every other vertex **Floyd Warshall**;O(V^3)/O(V^2)
 To detect cycle in a Graph **Union Find** (method1);O(EV) if naive O(n) implementation of union() and find()
-Minimum Spanning tree **Prim** ;greedy vertices: add new vertex of minimum distance to partial tree. O(V^2), can be reduced with binary heap.
-Minimum Spanning tree **Kruskal** ;sort edges by weight, (take min edge, check if it introduces a cycle in the partial tree, discard or add). Cycle detection with union-find. O(E log V) = O(E log E)
+Minimum Spanning tree **Prim**: algorithm and complexity;greedy vertices: add new vertex of minimum distance to partial tree. O(V^2), can be reduced with binary heap.
+Minimum Spanning tree **Kruskal**: algorithm and complexity;sort edges by weight, (take min edge, check if it introduces a cycle in the partial tree, discard or add). Cycle detection with union-find. O(E log V) = O(E log E)
 Topological Sort; on DAG. DFS with stack: push to stack after calling DFS on adjacent vertices (so they are on the stack below). O(V + E)
-Boggle (Find all possible words in a board of characters);DFS from every start cell, mark visited cells. Complexity? Better solution with Tree.
 Bridges in a Graph;Naive: remove edge, see if graph is still connected: O(E (V + E)). Better algorithm based on DFS O(V + E) exists.
 Detect beginning of a cycle;method1: count cycle length, count first segment length. method2: smarter, TODO. O(n)
-Sort a linked list;use merge sort
-Select random node from linked list;method1: count nodes first. method2:reservoir sampling O(n) one pass.
 Longest Common Subsequence;DP O(nm)
 Longest Increasing Subsequence;DP O(n^2). also possible in O(n log n) with active lists and binary search
-Edit Distance;DP O(mn)
 Minimum difference partition;DP CanMakeSum[i][T], T <= S/2, O(n S)
 Subset sum: a subset of array sums to T;DP CanMakeSum[i][T], O(n S)
-Coin Game: coins in a row, pick one;DP F(from i-th coin to j-th coin) = max(. + min(), . + min()), O(n^2)
 0-1 Knapsack: max weight, items with values and weights, maximize value;DP Best[i][w] O(n W)
 Maximum path sum in a binary tree;recursive, only left, only right, both. O(n)
-Check if array can represent pre-order traversal of BST;TODO
 Next Greater element in an array;using a stack, O(n)/O(n)
-Check if binary tree is full (not complete);recursive O(n)
 Bottom view of binary tree;BFS with (ordered) map: M[x-coordinate] = value. O(n)/O(n)
-Top view of binary tree;vertical traversal TODO
-Remove nodes on root to leaf paths of length < K;TODO
-Lowest Common Ancestor in a Binary Search Tree;TODO
 Check if a binary tree is subtree of another binary tree;Naive O(n^2), O(n): inorder and preorder of subtree must be substrings of big tree
-Reverse alternate levels of a perfect binary tree;TODO
-radix sort;TODO
-famous classes of NP-complete problems;TODO
-sort when element are nearly sorted (2 ways);heapsort, insertion sort
-sort when limited range of keys;counting sort O(n + k)/O(n + k), bucket sort O(n + k)/O(nk), radix sort O(w n)/O(w + n)
-name of sort which preserves original order for same key values;stable sort
-idea of A*, difference with dijkstra;choose vertex which score minimizing distance processed vertices and _distance to target_
-shortest path when edges have no weight;BFS
-search a key in a heap;difficult O(n)
-extract minimum with streaming data;use heap
-what is a bipartite graph?;vertices are split in to sets, no edges within a set
-space complexity of quicksort;O(log n) in-place partitioning
-complexity of insert/extract-min in a heap;O(log n)
-best and worst case of selection sort;no difference, always O(n^2)/O(1) auxiliary
-best and worst case of insertion sort;best: sorted O(n)/O(1) aux, worst: reverse sorted O(n^2)/O(1) aux
-best and worst case of QuickSort;best: pivot splits array in half each time O(n log n)/O(log n), worst: pivot is min (or max), O(n^2)/O(log n)
-best and worst case of MergeSort;always O(n log n)/O(n) aux
-Heap: algo for insert;add element to bottom right, bubble up O(log n)
-Heap: algo for extract-min;save top element, put bottom right at top, bubble down O(log n)
-pivot choosing methods of QuickSort (3);first, random, median of random 3
-space complexity of merge sort;O(n) auxiliary
-heapify;O(n) when heapifying from the lower levels to the upper levels, "sinkdown" roots of subtrees
-
-
-
-
+A*: idea, difference with dijkstra;choose vertex which score minimizing distance processed vertices and _distance to target_
+MergeSort: space complexity;O(n) auxiliary
+Heapify: algorithm and complexity;O(n) when heapifying from the lower levels to the upper levels, "sinkdown" roots of subtrees
+Reverse an array without affecting special characters;O(n) one passe, in-place: two pointers at start and end<br>swap or skip and meet in the middle<br>O(n)|O(1) aux
+Count triplets with sum smaller than a given value in O(n^2);sort, loop for first element, use two-pointer-sum<br>O(n^2)|O(1) aux
+Convert array into Zig-Zag fashion: distinct element or not cases;distinct O(n)|O(1) aux bubble sort-like swap<br>not distinct QuickSelect to find median, partition
+Smallest subarray with sum greater than a given value;Keep adding array elements while current sum is smaller than x<br>If current sum becomes greater than x, update min length, remove starting elements
+Stock Buy Sell to Maximize Profit (buy & sell multiple times);1. Find the local minima and store it as starting index. If not exists, return.<br>2. Find the local maxima. and store it as ending index. If we reach the end, set the end as ending index.<br>3. Update the solution (Increment count of buy sell pairs)<br>4. Repeat the above steps if end is not reached.
