@@ -21,3 +21,23 @@ public:
         return res;
     }
 };
+
+// https://discuss.leetcode.com/topic/87850/java-solution-presum-hashmap
+
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        unordered_map<int, int> H;
+        H[0] = 1;
+        int s = 0;
+        int res = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            s += nums[i];
+            if (H[s - k] != 0) {
+                res += H[s - k];
+            }
+            H[s]++;
+        }
+        return res;
+    }
+};
