@@ -1,60 +1,59 @@
-compute depth of a binary tree;recursive 1 + max()
-reverse a linked list;iterative
-find where 2 linked list merge;2 pointers 
-cycle length of a linked list;2 pointers 
-implement a queue using two stacks;empty first stack into second stack
-from sorted array, create BST with minimal height;take middle of array then recursive
-explain what the following code does: ((n & (n-1)) == 0);test if power of 2
-find element in a sorted rotated array;double BS: find the frontier, BS on left or right part
-find element in row-and-column-sorted matrix;start from NE corner
+LinkedList: reverse a linked list;iterative
+LinkedList: find where 2 linked list merge;2 pointers 
+LinkedList: cycle length of a linked list;2 pointers 
+DS: implement a queue using two stacks;empty first stack into second stack
+Tree: from sorted array, create BST with minimal height;take middle of array then recursive
+Bit: test if a number is a power of two;((n & (n-1)) == 0)
+Search: find element in a sorted rotated array;double BS: find the frontier, BS on left or right part
+Search: find element in row-and-column-sorted matrix;start from NE corner
 print valid n-parentheses;try a character, recurse if allowed
 merge k sorted arrays;heap
-insertion sort;insert A[i] in A[0]...A[i-1]
-selection sort;select min put it at A[i=0], i++
-stack in C++;#include <stack>, push(), pop(), top()
-two ways to do BFS level order of tree;with NULL marker, or empty queue at each step
-last-M-th element of a linked list;2 pointers, one M ahead
-middle of a linked list;2 pointers
+Sort: insertion sort;insert A[i] in A[0]...A[i-1]
+Sort: selection sort;select min put it at A[i=0], i++
+C++: stack API;#include <stack>, push(), pop(), top()
+Graph/Tree: two ways to do BFS level order of tree;with NULL marker, or empty queue at each step
+LinkedList: last-M-th element of a linked list;2 pointers, one M ahead
+LinkedList: middle of a linked list;2 pointers
 reverse array in place;swap elements, maybe middle 
-is a linked list a palindrome?;reverse second half, check (and restore)
-iterative in-order traversal of binary tree;stack and curnode pointer
+LinkedList: is a linked list a palindrome?;reverse second half, check (and restore)
+Tree: iterative in-order traversal of binary tree;stack and curnode pointer
 sort a stack;using a second stack, or recursively
 determine if a string has only unique characters (with and without memory);use a set, or sort the string
 compute subsets of a set;recursive, iterative
 compute all permutations of a string;recursive
-Sort a linked list;use merge sort
-is there a route between two nodes of a directed graph;careful with cycles
-find lowest common ancestor of two nodes in a binary tree;LCA has one node on each side
-number of trailing zeroes in a factorial;powers of 2, 5
+LinkedList: Sort a linked list;use merge sort
+Graph: is there a route between two nodes of a directed graph;careful with cycles
+Tree: find lowest common ancestor of two nodes in a binary tree;LCA has one node on each side
+Math: number of trailing zeroes in a factorial;powers of 2, 5
 rotate image by 90 degrees;ring by ring, or reverse up to down (r2l) and transpose
-bubble sort;swap pairs to put max at i=end of array, i--
-merge sort;merge sorted subarrays with auxiliary array (allocate once)
-queue in C++;#include <queue>, push(), pop(), front()
+Sort: bubble sort;swap pairs to put max at i=end of array, i--
+Sort: merge sort;merge sorted subarrays with auxiliary array (allocate once)
+C++: queue API;#include <queue>, push(), pop(), front()
 Edit Distance;DP O(mn)
-search a key in a heap;difficult O(n)
-shortest path when edges have no weight;BFS
-extract minimum with streaming data;use heap
-Select random node from linked list;method1: count nodes first. method2:reservoir sampling O(n) one pass.
+Heap: search a key in a heap;difficult O(n)
+Graph: shortest path when edges have no weight;BFS
+DS: extract minimum with streaming data;use heap
+LinkedList: Select random node from linked list;method1: count nodes first. method2:reservoir sampling O(n) one pass.
 Boggle (Find all possible words in a board of characters);DFS from every start cell, mark visited cells. Complexity? Better solution with Tree.
-Check if binary tree is full (not complete);recursive O(n)
-famous classes of NP-complete problems;TODO
-sort when element are nearly sorted (2 ways);heapsort, insertion sort
-name of sort which preserves original order for same key values;stable sort
+Tree: Check if binary tree is full (not complete);recursive O(n)
+Sort: sort when element are nearly sorted (2 ways);heapsort, insertion sort
+Sort: name of sort which preserves original order for same key values;stable sort
 MergeSort: best and worst case;always O(n log n)/O(n) aux
-selection sort: best and worst case;no difference, always O(n^2)/O(1) auxiliary
-insertion sort: best and worst case;best: sorted O(n)/O(1) aux, worst: reverse sorted O(n^2)/O(1) aux
-complexity of insert/extract-min in a heap;O(log n)
-space complexity of quicksort;O(log n) in-place partitioning
-best and worst case of QuickSort;best: pivot splits array in half each time O(n log n)/O(log n), worst: pivot is min (or max), O(n^2)/O(log n)
-what is a bipartite graph?;vertices are split in to sets, no edges within a set
+Selection sort: best and worst case;no difference, always O(n^2)/O(1) auxiliary
+Insertion sort: best and worst case;best: sorted O(n)/O(1) aux, worst: reverse sorted O(n^2)/O(1) aux
+Heap: complexity of insert/extract-min;O(log n)
+QuickSort: space complexity of quicksort;O(log n) in-place partitioning
+QuickSort: best and worst case of QuickSort;best: pivot splits array in half each time O(n log n)/O(log n), worst: pivot is min (or max), O(n^2)/O(log n)
+Graph: what is a bipartite graph?;vertices are split in to sets, no edges within a set
 sort when limited range of keys;counting sort O(n + k)/O(n + k), bucket sort O(n + k)/O(nk), radix sort O(w n)/O(w + n)
 Coin Game: coins in a row, pick one;DP F(from i-th coin to j-th coin) = max(. + min(), . + min()), O(n^2)
 Find the smallest window in a string containing all characters of another string;sliding window O(n)|O(n)
 is subsequence;iterate, not need for dp
-quicksort;(randomize first), select pivot, partition, sort left and right partition
-insertion in linked list tip;use dummy first node
-vector in C++ access/remove last element;back()/pop_back()
-implement stack with O(1) min;push (x, min) when pushing x, or use second stack
+QuickSort: algorithm;(randomize first), select pivot, partition, sort left and right partition
+LinkedList: insertion in linked list tip;use dummy first node
+C++: vector in C++ access/remove last element;back()/pop_back()
+Stack: implement stack with O(1) min;push (x, min) when pushing x, or use second stack
 Heap: algo for insert;add element to bottom right, bubble up O(log n)
 Heap: algo for extract-min;save top element, put bottom right at top, bubble down O(log n)
-pivot choosing methods of QuickSort (3);first, random, median of random 3
+Quicksort: pivot choosing methods? (3);first, random, median of random 3
+famous classes of NP-complete problems;TODO
