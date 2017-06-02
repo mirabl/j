@@ -36,3 +36,5 @@ Count triplets with sum smaller than a given value in O(n^2);sort, loop for firs
 Convert array into Zig-Zag fashion: distinct element or not cases;distinct O(n)|O(1) aux bubble sort-like swap<br>not distinct QuickSelect to find median, partition
 Smallest subarray with sum greater than a given value;Keep adding array elements while current sum is smaller than x<br>If current sum becomes greater than x, update min length, remove starting elements
 Stock Buy Sell to Maximize Profit (buy & sell multiple times);1. Find the local minima and store it as starting index. If not exists, return.<br>2. Find the local maxima. and store it as ending index. If we reach the end, set the end as ending index.<br>3. Update the solution (Increment count of buy sell pairs)<br>4. Repeat the above steps if end is not reached.
+Union-find: naive + 2 optimizations;naive: attach root of x to root of y. Union by rank: attach smaller tree to larger. Path compression: when find is used, nodes on the path to root point to the root (recursive).
+Union-find complexity with optimization;amortized O(1) in time|O(n) space.
