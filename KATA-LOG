@@ -24,3 +24,6 @@
 24/3 K4-backtrack - forgot returns
 24/3 K5-DP - forgot initialization
 24/3 K3-tree - forgot initalization of pointers in struct, wrong type for queue<>
+02/6 K7-array +
+02/6 K4-backtrack - confuse v/cur in variable names
+02/6 L2-linkedlist = forgot p=p->next in find

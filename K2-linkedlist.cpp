@@ -378,4 +378,56 @@ ListNode* reverse(ListNode *head) {
 }
 
 
+
+
+struct ListNode {
+	int val;
+	ListNode *next;
+	ListNode(int v): val(v) {}
+};
+
+ListNode* insert(ListNode *head, int val) {
+	ListNode *n = new ListNode(val);
+	n->next = head;
+	return n;
+}
+
+ListNode* find(ListNode *head, int v) {
+	ListNode *p = head;
+	while (p) {
+		if (p->val == v) {
+			return p;
+		}
+		p = p->next;
+	}
+	return NULL;
+}
+
+ListNode* deleteNode(ListNode *head, ListNode *p) {
+	ListNode dummy(0);
+	dummy.next = head;
+	ListNode *q = &dummy;
+	while (q->next != p) {
+		q = q->next;
+	}
+	q->next = q->next->next;
+	return dummy.next;
+}
+
+ListNode* reverse(ListNode *head) {
+	ListNode *new_head = NULL;
+	ListNode *p = head;
+
+	while (p) {
+		ListNode *q = p->next;
+		p->next = new_head;
+		new_head = p;
+		p = q;
+	}
+
+	return new_head;
+}
+
+
+
 */
