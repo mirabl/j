@@ -39,3 +39,4 @@ Stock Buy Sell to Maximize Profit (buy & sell multiple times);1. Find the local 
 Union-find: naive + 2 optimizations;naive: attach root of x to root of y. Union by rank: attach smaller tree to larger. Path compression: when find is used, nodes on the path to root point to the root (recursive).
 Union-find complexity with optimization;amortized O(1) in time|O(n) space.
 Topological sort: BFS-style algorithm;find vertices of in-degree 0, process, remove edges to other vertices, repeat
+Reverse order of words;reverse string character by character, reverse within each word
