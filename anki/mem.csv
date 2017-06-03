@@ -9,8 +9,8 @@ next permutation;?
 combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., same number can be repeated;backtracking (or DP)
 maximum subarray sum;one pass, at each position either extend or start new subarray O(n)|O(1)
 Merge intervals;sort by start, one pass O(nlog n)|O(n)
-Complexity of Breadth First Traversal or BFS for a Graph;O(V + E)/O(V)
-Complexity of Depth First Traversal or DFS for a Graph;O(V + E)/O(V)
+Complexity of Breadth First Traversal or BFS for a Graph;O(V + E) if adjacency list, O(V^2) if adjacency matrix/O(V)
+Complexity of Depth First Traversal or DFS for a Graph;time: O(V + E) if adjacency list, O(V^2) if adjacency matrix/O(V) 
 Shortest Path from source to all vertices **Dijkstra** ;Time: O(V^2). Better complexity with Fibonacci heap.
 Shortest Path from every vertex to every other vertex **Floyd Warshall**;O(V^3)/O(V^2)
 To detect cycle in a Graph **Union Find** (method1);O(EV) if naive O(n) implementation of union() and find()
