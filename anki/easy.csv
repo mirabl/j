@@ -7,7 +7,7 @@ Bit: test if a number is a power of two;((n & (n-1)) == 0)
 Search: find element in a sorted rotated array;double BS: find the frontier, BS on left or right part
 Search: find element in row-and-column-sorted matrix;start from NE corner
 print valid n-parentheses;try a character, recurse if allowed
-merge k sorted arrays;heap
+DS: merge k sorted arrays;heap
 Sort: insertion sort;insert A[i] in A[0]...A[i-1]
 Sort: selection sort;select min put it at A[i=0], i++
 C++: stack API;#include <stack>, push(), pop(), top()
@@ -17,24 +17,24 @@ LinkedList: middle of a linked list;2 pointers
 reverse array in place;swap elements, maybe middle 
 LinkedList: is a linked list a palindrome?;reverse second half, check (and restore)
 Tree: iterative in-order traversal of binary tree;stack and curnode pointer
-sort a stack;using a second stack, or recursively
-determine if a string has only unique characters (with and without memory);use a set, or sort the string
+Stack: sort a stack;using a second stack, or recursively
+String: determine if a string has only unique characters (with and without memory);use a set, or sort the string
 compute subsets of a set;recursive, iterative
 compute all permutations of a string;recursive
 LinkedList: Sort a linked list;use merge sort
 Graph: is there a route between two nodes of a directed graph;careful with cycles
 Tree: find lowest common ancestor of two nodes in a binary tree;LCA has one node on each side
 Math: number of trailing zeroes in a factorial;powers of 2, 5
-rotate image by 90 degrees;ring by ring, or reverse up to down (r2l) and transpose
+Array: rotate image by 90 degrees;ring by ring, or reverse up to down (r2l) and transpose
 Sort: bubble sort;swap pairs to put max at i=end of array, i--
 Sort: merge sort;merge sorted subarrays with auxiliary array (allocate once)
 C++: queue API;#include <queue>, push(), pop(), front()
-Edit Distance;DP O(mn)
+String: Edit Distance;DP O(mn)
 Heap: search a key in a heap;difficult O(n)
 Graph: shortest path when edges have no weight;BFS
 DS: extract minimum with streaming data;use heap
 LinkedList: Select random node from linked list;method1: count nodes first. method2:reservoir sampling O(n) one pass.
-Boggle (Find all possible words in a board of characters);DFS from every start cell, mark visited cells. Complexity? Better solution with Tree.
+2D Array: Boggle (Find all possible words in a board of characters);DFS from every start cell, mark visited cells. Complexity? Better solution with Tree.
 Tree: Check if binary tree is full (not complete);recursive O(n)
 Sort: sort when element are nearly sorted (2 ways);heapsort, insertion sort
 Sort: name of sort which preserves original order for same key values;stable sort
@@ -45,10 +45,10 @@ Heap: complexity of insert/extract-min;O(log n)
 QuickSort: space complexity of quicksort;O(log n) in-place partitioning
 QuickSort: best and worst case of QuickSort;best: pivot splits array in half each time O(n log n)/O(log n), worst: pivot is min (or max), O(n^2)/O(log n)
 Graph: what is a bipartite graph?;vertices are split in to sets, no edges within a set
-sort when limited range of keys;counting sort O(n + k)/O(n + k), bucket sort O(n + k)/O(nk), radix sort O(w n)/O(w + n)
+Sort: sort when limited range of keys;counting sort O(n + k)/O(n + k), bucket sort O(n + k)/O(nk), radix sort O(w n)/O(w + n)
 Coin Game: coins in a row, pick one;DP F(from i-th coin to j-th coin) = max(. + min(), . + min()), O(n^2)
-Find the smallest window in a string containing all characters of another string;sliding window O(n)|O(n)
-is subsequence;iterate, not need for dp
+String: Find the smallest window in a string containing all characters of another string;sliding window O(n)|O(n)
+Array: is subsequence;iterate, not need for dp
 QuickSort: algorithm;(randomize first), select pivot, partition, sort left and right partition
 LinkedList: insertion in linked list tip;use dummy first node
 C++: vector in C++ access/remove last element;back()/pop_back()
@@ -56,4 +56,29 @@ Stack: implement stack with O(1) min;push (x, min) when pushing x, or use second
 Heap: algo for insert;add element to bottom right, bubble up O(log n)
 Heap: algo for extract-min;save top element, put bottom right at top, bubble down O(log n)
 Quicksort: pivot choosing methods? (3);first, random, median of random 3
-famous classes of NP-complete problems;TODO
+Array: Longest Common Subsequence;DP O(nm)
+Array: Longest Increasing Subsequence;DP O(n^2). also possible in O(n log n) with active lists and binary search
+Minimum difference partition;DP CanMakeSum[i][T], T <= S/2, O(n S)
+Subset sum: a subset of array sums to T;DP CanMakeSum[i][T], O(n S)
+0-1 Knapsack: max weight, items with values and weights, maximize value;DP Best[i][w] O(n W)
+Tree: Maximum path sum in a binary tree;recursive, only left, only right, both. O(n)
+Array: Next Greater element in an array;using a stack, O(n)/O(n)
+Tree: Bottom view of binary tree;BFS with (ordered) map: M[x-coordinate] = value. O(n)/O(n)
+Longest Palindromic Substring;for each position, find longest even and odd length substring with this center O(n^2)|O(1) // DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1) // O(n) difficult algorithm exists Manacher.
+MergeSort: space complexity;O(n) auxiliary
+String: substring search;naive O(n*m) // robin-karp rolling hash O(n + m) // advanced O(n)
+Merge intervals;sort by start, one pass O(nlog n)|O(n)
+Array: 3Sum  Find all unique triplets in the array which gives the sum of zero;sort, loop for first element and then 2sum sweep, avoid duplicates by avoiding duplicate first element O(n^2)|O(1)
+Array: 2sum: Given an array of integers, return indices of the two numbers such that they add up to a specific target.;same element twice? Use hash table O(n)|O(n), sort+two pointers O(n log n)|O(1), sort+BS O(n log n)|O(1)
+String: Longest Substring Without Repeating Characters;Window. left and right pointers, hash set for characters in the substring, move either left or right O(n)|O(n) // traverse left to right, maintaining longest valid substring ending at this position, use map<char,position> to know where current character appeared last O(n)|O(n)
+Container With Most Water;two pointers, from start and end, reduce width and stop only when height increases, O(n)|O(1)
+Graph: Shortest Path from every vertex to every other vertex **Floyd Warshall**;O(V^3)/O(V^2)
+Graph: Complexity of shortest Path from source to all vertices **Dijkstra** ;Time: O(V^2). Better complexity with Fibonacci heap.
+Graph: Minimum Spanning tree **Prim**: algorithm and complexity;greedy vertices: add new vertex of minimum distance to partial tree. O(V^2), can be reduced with binary heap.
+Graph: Minimum Spanning tree **Kruskal**: algorithm and complexity;sort edges by weight, (take min edge, check if it introduces a cycle in the partial tree, discard or add). Cycle detection with union-find. O(E log V) = O(E log E)
+Graph: A*: idea, difference with dijkstra;choose vertex which score minimizing distance processed vertices and _distance to target_
+Heapify: algorithm and complexity;O(n) when heapifying from the lower levels to the upper levels, "sinkdown" roots of subtrees
+Array: Count triplets with sum smaller than a given value in O(n^2);sort, loop for first element, use two-pointer-sum<br>O(n^2)|O(1) aux
+Array: find subarray with maximum sum;one pass, at each position either extend or start new subarray O(n)|O(1)
+Max number of intersecting intervals;sort events: enter and exist of intervals. O(n log n)|O(n) aux
+combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., same number can be repeated;backtracking (or DP)
