@@ -24,4 +24,5 @@ Find reachable cells from the upper-left corner in a grid with forbidden cells;T
 Millionth query to a set of servers gets a prize;TODO
 Implement a set DS with O(1) add, remove and getrandom ;TODO
 Implement a hash table on string;TOOD
+Tree: Convert BT to doubly LL;TODO
 DS: what is a trie;TODO

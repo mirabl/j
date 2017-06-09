@@ -19,8 +19,8 @@ LinkedList: is a linked list a palindrome?;reverse second half, check (and resto
 Tree: iterative in-order traversal of binary tree;stack and curnode pointer
 Stack: sort a stack;using a second stack, or recursively
 String: determine if a string has only unique characters (with and without memory);use a set, or sort the string
-compute subsets of a set;recursive, iterative
-compute all permutations of a string;recursive
+Combinatorics: compute subsets of a set;recursive, iterative
+Combinatorics: compute all permutations of a string;recursive
 LinkedList: Sort a linked list;use merge sort
 Graph: is there a route between two nodes of a directed graph;careful with cycles
 Tree: find lowest common ancestor of two nodes in a binary tree;LCA has one node on each side
@@ -101,3 +101,5 @@ Tree: Check if a binary tree is subtree of another binary tree;Naive O(n^2), O(n
 Array: Smallest subarray with sum greater than a given value;Sliding window: keep adding array elements while current sum is smaller than x<br>If current sum becomes greater than x, update min length, remove starting elements
 Array: Rotate an array;1. With a temp array of size K. 2. With cycles (compute gcd)
 Tree: Connect same level siblings;BFS level order
+String: Regex matching;Recursive, DP. With offset going from left to right.
+Tree: Print tree perimeter (border);print left boundary without leaf, print leaves, print right in reverse (recursive)
