@@ -12,3 +12,16 @@ next permutation;TODO
 K-th permutation;TODO
 SD: define sharding;TODO
 famous classes of NP-complete problems;TODO
+Array: Stock Buy Sell to Maximize Profit with cooldown;TODO
+Graph:Given two words and dictionary, find path from one to the other changing one letter by one;TODO
+Array: Compute the K-running average of an array;TODO
+determine the number of bits required to convert integer A to integer B;TODO
+Find greatest number by reordering digits (but less than current number);TODO
+Array: Print matrix in spiral;TODO
+Count number of islands in a grid;TODO
+Given an inf amount of 3 coins of diff value, print ordered possible sums up to N;queue?
+Find reachable cells from the upper-left corner in a grid with forbidden cells;TODO
+Millionth query to a set of servers gets a prize;TODO
+Implement a set DS with O(1) add, remove and getrandom ;TODO
+Implement a hash table on string;TOOD
+DS: what is a trie;TODO
