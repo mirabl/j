@@ -40,4 +40,4 @@ SD: NoSQL wide-column store;BigTable, HBase, Cassandra
 SD: NoSQL graph database;neo4j, flockdb
 SD: how many world-wide round trips per second;6-7
 SD: how many round trips per second within a data center;2,000
-
+DS: implement LRU cache;Queue + hash: Queue using a doubly linked list (size: cache size). most recently used at front. A Hash with page number as key and address of the corresponding queue node as value.
