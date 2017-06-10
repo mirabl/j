@@ -103,3 +103,36 @@ Array: Rotate an array;1. With a temp array of size K. 2. With cycles (compute g
 Tree: Connect same level siblings;BFS level order
 String: Regex matching;Recursive, DP. With offset going from left to right.
 Tree: Print tree perimeter (border);print left boundary without leaf, print leaves, print right in reverse (recursive)
+Graph: Find connected components of a graph;BFS/DFS O(V + E), keep track of components with Union-Find.
+Graph: Detect cycle in a graph;Colorized DFS look for back-edge O(V + E). Also possible with Union-Find: loop on edges, union-find on vertices O(E)?
+SD: RAM R/W speed;10 GB/s
+SD: SSD R/W speed;500 MB/s
+SD: HDD R/W speed;100 MB/s
+SD: RAM latency;100 ns
+SD: SSD latency;0.1 ms
+SD: HDD latency;10 ms, disk seek
+Array: Find maximum in sliding window;1. use self-balanced BST O(n log n). 2. Use dequeue keeping only useful elements O(n)
+Tree: Check if a tree is a BST (2);1. recursive propagate min/max O(n), 2. check if in-order traversal is sorted O(n)
+Tree: Serialize/Deserialize;Special case? BST, complete, full?. Inorder array with null marker
+Tree: Inorder sucessor in BT with parent pointer;If right subtree of node is not NULL, successor in minimum of right subtree. Else then succ is one of the ancestors. Travel up using the parent pointer until you see a node which is left child of it’s parent. The parent of such a node is the succ. O(h)
+Tree: Inorder sucessor in BST without parent pointer;Search from root O(h). Instead of traveling up with parent pointers: Travel down the tree, if a node’s data is greater than root’s data then go right side, otherwise go to left side.
+Tree: k-th highest element of BST;reverse inorder traversal of BST. O(h + k)
+SD: L1 cache reference; 1 ns
+SD: L2 cache reference;10 ns       10x L1 cache
+SD: Main memory reference;100 ns       100x L1 cache, 10x L2 cache
+Array: Given infinite coins of value (V1, V2, … ,VN), find the minimum number of coins with sum S;DP(n, S)
+Array: Continuous median;maintain 2 big balanced heaps
+Array: Given an array of integers, every element appears twice except for one. Find that single one;XOR O(n)
+String: Is a string with (), {}, [] balanced;stack with active items O(n)
+SD: vertical scaling;add more power to a machine
+SD: horizontal scaling;add more machines
+SD: Master-slave replication;The master serves reads and writes, replicating writes to one or more slaves, which serve only reads. Slaves can also replicate to additional slaves in a tree-like fashion. If the master goes offline, the system can continue to operate in read-only mode until a slave is promoted to a master or a new master is provisioned.
+SD: Master-master replication;Both masters serve reads and writes and coordinate with each other on writes. If either master goes down, the system can continue to operate with both reads and writes.
+SD: Federation;(or functional partitioning) splits up databases by function. For example, instead of a single, monolithic database, you could have three databases: forums, users, and products
+SD: Sharding;distributes data across different databases such that each database can only manage a subset of the data.
+SD: Denormalization;attempts to improve read performance at the expense of some write performance. Redundant copies of the data are written in multiple tables to avoid expensive joins. 
+SD: NoSQL; is a collection of data items represented in a key-value store, document-store, wide column store, or a graph database. Data is denormalized, and joins are generally done in the application code.
+SD: NoSQL key-value store;Redis, memcached
+SD: NoSQL document store;MongoDB, CouchDB, ElasticSearch
+SD: NoSQL wide-column store;BigTable, HBase, Cassandra
+SD: NoSQL graph database;neo4j, flockdb
