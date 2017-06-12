@@ -77,16 +77,16 @@ Graph: Minimum Spanning tree **Prim**: algorithm and complexity;greedy vertices:
 Graph: Minimum Spanning tree **Kruskal**: algorithm and complexity;sort edges by weight, (take min edge, check if it introduces a cycle in the partial tree, discard or add). Cycle detection with union-find. O(E log V) = O(E log E)
 Graph: A*: idea, difference with dijkstra;choose vertex which score minimizing distance processed vertices and _distance to target_
 Heapify: algorithm and complexity;O(n) when heapifying from the lower levels to the upper levels, "sinkdown" roots of subtrees
-Array: Count triplets with sum smaller than a given value in O(n^2);sort, loop for first element, use two-pointer-sum<br>O(n^2)|O(1) aux
+Array: Count triplets with sum smaller than a given value in O(n^2);sort, loop for first element, use two-pointer-sum -- O(n^2)|O(1) aux
 Array: find subarray with maximum sum;one pass, at each position either extend or start new subarray O(n)|O(1)
 Max number of intersecting intervals;sort events: enter and exist of intervals. O(n log n)|O(n) aux
 combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., same number can be repeated;backtracking (or DP)
 Graph: Bridges in a Graph;Naive: remove edge, see if graph is still connected: O(E (V + E)). Better algorithm based on DFS O(V + E) exists.
-Array: Reverse an array without affecting special characters;O(n) one pass, in-place: two pointers at start and end<br>swap or skip and meet in the middle<br>O(n)|O(1) aux
+Array: Reverse an array without affecting special characters;O(n) one pass, in-place: two pointers at start and end -- swap or skip and meet in the middle -- O(n)|O(1) aux
 Array: find the median of non-sorted array;QuickSelect O(n)
 Array: find the majority element;Voting algorithm O(n)
-Array: Stock Buy Sell to Maximize Profit (buy & sell multiple times);1. Find the local minima and store it as starting index. If not exists, return.<br>2. Find the local maxima. and store it as ending index. If we reach the end, set the end as ending index.<br>3. Update the solution (Increment count of buy sell pairs)<br>4. Repeat the above steps if end is not reached.
-Array: Convert array into Zig-Zag fashion: distinct element or not cases;distinct O(n)|O(1) aux bubble sort-like swap<br>not distinct QuickSelect to find median, partition O(n)
+Array: Stock Buy Sell to Maximize Profit (buy & sell multiple times);1. Find the local minima and store it as starting index. If not exists, return. -- 2. Find the local maxima. and store it as ending index. If we reach the end, set the end as ending index. -- 3. Update the solution (Increment count of buy sell pairs) -- 4. Repeat the above steps if end is not reached.
+Array: Convert array into Zig-Zag fashion: distinct element or not cases;distinct O(n)|O(1) aux bubble sort-like swap -- not distinct QuickSelect to find median, partition O(n)
 
 LinkedList: Detect beginning of a cycle;method1: count cycle length, count first segment length. method2: smarter, TODO. O(n)
 Graph: Topological sort of DAG (2); 1. DFS with stack: push to stack after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). 2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
@@ -97,7 +97,7 @@ Union-find: naive + 2 optimizations;naive: attach root of x to root of y. Union 
 Union-find complexity with optimization;amortized O(1) in time |O(n) space.
 Sudoku Solver;Backtracking. Only check if one value is already in a row/col/square.
 Tree: Check if a binary tree is subtree of another binary tree;Naive O(n^2), O(n): inorder and preorder of subtree must be substrings of big tree
-Array: Smallest subarray with sum greater than a given value;Sliding window: keep adding array elements while current sum is smaller than x<br>If current sum becomes greater than x, update min length, remove starting elements
+Array: Smallest subarray with sum greater than a given value;Sliding window: keep adding array elements while current sum is smaller than x -- If current sum becomes greater than x, update min length, remove starting elements
 Array: Rotate an array;1. With a temp array of size K. 2. With cycles (compute gcd)
 Tree: Connect same level siblings;BFS level order
 String: Regex matching;Recursive, DP. With offset going from left to right.
@@ -135,3 +135,4 @@ SD: NoSQL key-value store;Redis, memcached
 SD: NoSQL document store;MongoDB, CouchDB, ElasticSearch
 SD: NoSQL wide-column store;BigTable, HBase, Cassandra
 SD: NoSQL graph database;neo4j, flockdb
+Tree: Lowest Common Ancestor in a Binary Search Tree;recursive O(n)
