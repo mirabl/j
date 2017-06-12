@@ -17,3 +17,5 @@ DS: how many YT videos watched every day;5B
 DS: how many YT visitors per day;30M
 DS: BigTable scale: machines, memory, disk, r/w per second;thousands of machines, TB memory, PB disk, millions of r/w per second
 DS: how many queries per second for a MySQL DB server;no answer, depends on query/HW. 1K QPS
+Tree: find lowest common ancestor of two nodes in a binary tree (not BST);1. find path to x, to y, find last common element. O(n) 2 traversals. 2. rec: LCA has one node on each side. O(n) 1 traversal.
+Misc: websocket;persistent bi-directionnal connnection over TCP, less overhead than HTTP, no need to do new TCP handshake

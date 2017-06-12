@@ -23,7 +23,6 @@ Combinatorics: compute subsets of a set;recursive, iterative
 Combinatorics: compute all permutations of a string;recursive
 LinkedList: Sort a linked list;use merge sort
 Graph: is there a route between two nodes of a directed graph;careful with cycles
-Tree: find lowest common ancestor of two nodes in a binary tree;LCA has one node on each side
 Math: number of trailing zeroes in a factorial;powers of 2, 5
 Array: rotate image by 90 degrees;ring by ring, or reverse up to down (r2l) and transpose
 Sort: bubble sort;swap pairs to put max at i=end of array, i--
