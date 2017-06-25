@@ -31,3 +31,5 @@ Array: Print matrix in spiral;four variables top, bottom, left, right. Reduce
 Graph: Word Ladder. Given two words and dictionary, find path from one to the other changing one letter by one;BFS from start word
 DS: range minimum or range sum;Segment Tree
 Array: largest rectangle under histogram;O(n) left to right with stack
+DS: definition of TreeNode; struct TreeNode { int val; TreeNode *left, *right; TreeNode(int x): val(x), left(NULL), right(NULL) {}};
+DS: definition of ListNode;TODO
