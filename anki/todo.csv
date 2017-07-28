@@ -17,3 +17,8 @@ Implement a set DS with O(1) add, remove and getrandom ;TODO
 Implement a hash table on string;TOOD
 Tree: Convert BT to doubly LL;TODO
 DS: what is a trie;TODO
+Lang: polymorphism;
+Lang: function overloading;
+Lang: virtual function;
+Lang: virtual destructor;
+Lang: abstract class;
