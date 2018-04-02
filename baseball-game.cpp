@@ -24,3 +24,33 @@ public:
         return points.top().second;
     }
 };
+
+
+class Solution {
+public:
+    int calPoints(vector<string>& ops) {
+        stack<pair<int, int>> S;
+        S.push({0, 0});
+        for (string s: ops) {
+            if (s == "C") {
+                S.pop();
+            } else if (s == "D") {
+                auto p = S.top();
+                S.push({2 * p.first, p.second + 2 * p.first});
+            } else if (s == "+") {
+                auto p1 = S.top();
+                S.pop();
+                auto p2 = S.top();
+                S.pop();
+                S.push(p2);
+                S.push(p1);
+                int z = p1.first + p2.first;
+                S.push({z, z + S.top().second});
+            } else {
+                int n = stoi(s);
+                S.push({n, n + S.top().second});
+            }
+        }
+        return S.top().second;
+    }
+};
