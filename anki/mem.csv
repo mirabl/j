@@ -58,3 +58,6 @@ SD: in MySQL master-slave; how to ensure read-after-write has most recent value,
 SD: replication lag for MySQL,time between read/write to master and replication to all slaves
 Graph: clique definition,complete subgraph
 Graph: maximum clique algorithm,difficult; there are heuristics
+SD: streaming frameworks,kafka; rabbitmq
+SD: distributed file system,HDFS
+SD: binary serialization,protobuf; thrift; avro
