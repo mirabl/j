@@ -48,3 +48,4 @@ Sort: sort when limited range of keys	counting sort O(n + k)/O(n + k), bucket so
 Coin Game: coins in a row, pick one	DP F(from i-th coin to j-th coin) = max(. + min(), . + min()), O(n^2)
 String: Find the smallest window in a string containing all characters of another string	sliding window O(n)|O(n)
 Array: is subsequence	iterate, not need for dp
+test	val
