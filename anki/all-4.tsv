@@ -1,0 +1,50 @@
+DS: how many tweets per second,6000
+DS: total storage for YT/FB,500 PB
+DS: how many YT videos watched every day,5B
+DS: how many YT visitors per month,1B AU
+DS: BigTable scale: machines	 memory	 disk	 r/w per second,thousands of machines	 TB memory	 PB disk	 millions of r/w per second
+DS: how many queries per second for a MySQL DB server,no answer	 depends on query/HW. 1K QPS
+Tree: find lowest common ancestor of two nodes in a binary tree (not BST),1. find path to x	 to y	 find last common element. O(n) 2 traversals. 2. rec: LCA has one node on each side. O(n) 1 traversal.
+Misc: websocket,persistent bi-directionnal connnection over TCP	 less overhead than HTTP	 no need to do new TCP handshake
+DS: hashing for sharding,Consistent hashing is a special kind of hashing such that when a hash table is resized	 only K/n keys need to be remapped on average (K keys	 n slots)
+Graph: max flow problem,edge with capacities	 maximum flow from a source vertex to a destination
+Graph: Bellman-Ford algorithm,O(VE) for minimum distances from a source vertex: process all edges	 |V| times
+Misc: NP-complete problems,SAT	 knapsack	 traveling salesman
+Tree: k-d tree,split in 1 dimension at each node (median of coordinate to get balance)
+Tree: quad-tree,2D partition	 each node has 4 children. Split when max capacity reached.
+Tree: 2 types of balanced BSTs,AVL	 Red-black
+Count number of islands in a grid,DFS/BFS
+Array: Print matrix in spiral,four variables top	 bottom	 left	 right. Reduce
+Graph: Word Ladder. Given two words and dictionary	 find path from one to the other changing one letter by one,BFS from start word
+DS: range minimum or range sum,Segment Tree
+Array: largest rectangle under histogram,O(n) left to right with stack
+DS: definition of TreeNode, struct TreeNode { int val		 TreeNode *left	 *right		 TreeNode(int x): val(x)	 left(NULL)	 right(NULL) {}}
+DS: definition of ListNode,TODO
+DS: good sort for a linked list,good: merge sort	 possible but more difficult?: quick sort
+SD: tunable consistency,from "writes never fail" to "block for all replicas to be readable"	 with quorum levels
+SD: shared nothing,each node is independent	 no SPOF (eg. centrally stored state info or DB)
+SD: hashing for sharding,consistent hashing: circle with many pseudo-random points per node. Rendezvous hashing
+SD: types of replication,asynchronous: MySQL default	 synchronous: two phase commit MySQL-cluster default
+SD: ACID,atomicity	 consistency	 isolation	 durability
+SD: 2 types of failover,active-passive (master-slave)	 active-active (master-master)
+DS: external merge sort,sort chunck & write to disk	 load chunk of chuck and merge-write
+Lang: pure virtual function,has to be implemented by a class that is not abstract
+SD: MySQL index based on which data structure in general,B-tree (or B+ ?)
+DS: B-Tree,self balancing tree	 not binary	 good for r/w to external memory (DB	 FS)
+SD: drawback of DNS load balancing,results are cached by intermediate servers	 so not responsive when change
+SD: Geo load-balancing with DNS,some DNS servers have IP range tables and can have different responses for different ranges
+SD: advantages and disadvantages of hardware load balancers,+: reliable	 -: expensive	 have to be connected to servers that are physically close
+DS: check if item is in known set,Bloom filter
+SD: difference between YouTube and Spotify,upload	 (video/audio)
+SD: consistency problems in DB,read-after-write
+SD: topics to adress,HA	 scaling	 sizing	 discovery	 latency	 build whole system with client
+SD: CAP theorem,Consistency	 Availability	 Network Partition Tolerance
+SD: mechanism for asynchronicity,queues
+SD: 2 types of consistency,strong consistency vs. eventual consistency
+SD: in MySQL master-slave	 how to ensure read-after-write has most recent value,read from Master
+SD: replication lag for MySQL,time between read/write to master and replication to all slaves
+Graph: clique definition,complete subgraph
+Graph: maximum clique algorithm,difficult	 there are heuristics
+SD: streaming frameworks,kafka	 rabbitmq
+SD: distributed file system,HDFS
+SD: binary serialization,protobuf	 thrift	 avro
