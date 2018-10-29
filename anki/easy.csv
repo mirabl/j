@@ -87,9 +87,8 @@ Array: find the median of non-sorted array;QuickSelect O(n)
 Array: find the majority element;Voting algorithm O(n)
 Array: Stock Buy Sell to Maximize Profit (buy & sell multiple times);1. Find the local minima and store it as starting index. If not exists, return. -- 2. Find the local maxima. and store it as ending index. If we reach the end, set the end as ending index. -- 3. Update the solution (Increment count of buy sell pairs) -- 4. Repeat the above steps if end is not reached.
 Array: Convert array into Zig-Zag fashion: distinct element or not cases;distinct O(n)|O(1) aux bubble sort-like swap -- not distinct QuickSelect to find median, partition O(n)
-
 LinkedList: Detect beginning of a cycle;method1: count cycle length, count first segment length. method2: smarter, TODO. O(n)
-Graph: Topological sort of DAG (2); 1. DFS with stack: push to stack after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). 2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
+Graph: Topological sort of DAG (2); 1. DFS: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). 2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
 Graph: Complexity of Breadth First Traversal for a Graph;O(V + E) if adjacency list, O(V^2) if adjacency matrix/O(V)
 Graph: Complexity of Depth First Traversal for a Graph;time: O(V + E) if adjacency list, O(V^2) if adjacency matrix/O(V) 
 String: Reverse words in a sentence;1. Word by word from the end. 2. reverse whole string char-by-char, reverse within each word
