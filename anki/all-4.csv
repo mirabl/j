@@ -1,16 +1,3 @@
-SD: Read 1 MB sequentially from memory,250 us
-SD: Read 1 MB sequentially from SSD,1 ms
-SD: Read 1 MB sequentially from HDD,20 ms;   20X SSD
-SD: Read 4K randomly from SSD,150 us
-SD: Send 1K bytes over 1 Gbps network,10 us
-SD: Round trip within same datacenter,500 us
-SD: Send packet CA->Netherlands->CA,150 ms.     300X datacenter
-SD: how many world-wide round trips per second,6-7
-SD: how many round trips per second within a data center,2;000
-DS: implement LRU cache,Queue + hash: Queue using a doubly linked list (size: cache size). most recently used at front. A Hash with page number as key and address of the corresponding queue node as value.
-DS: how many FB users,2B MontlyAU
-DS: most followers on twitter,1B
-DS: how many tweets each day,500 million
 DS: how many tweets per second,6000
 DS: total storage for YT/FB,500 PB
 DS: how many YT videos watched every day,5B
