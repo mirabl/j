@@ -1,7 +1,7 @@
 alias ga='git add'
 alias gc='git commit --allow-empty-message -m "."'
 alias gd='git diff'
-alias gg='ga .gitignore KATA-LOG LESSON_LEARNED TODO aliases.sh *cpp anki/{easy,todo,mem}.csv; gc; gp'
+alias gg='ga .gitignore KATA-LOG LESSON_LEARNED TODO aliases.sh *cpp anki/*tsv; gc; gp'
 alias gp='git push -u origin master'
 alias gs='git status'
 alias kata='kata_file $(random_kata); subl a.cpp &'
