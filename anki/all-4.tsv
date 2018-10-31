@@ -1,4 +1,3 @@
-DS: how many tweets per second	6000
 DS: total storage for YT/FB	500 PB
 DS: how many YT videos watched every day	5B
 DS: how many YT visitors per month	1B AU
@@ -11,8 +10,8 @@ Graph: max flow problem edge with capacities	 maximum flow from a source vertex 
 Graph: Bellman-Ford algorithm   O(VE) for minimum distances <br>from a source vertex: process all edges	 |V| times
 Misc: NP-complete problems	SAT, knapsack, traveling salesman
 Tree: k-d tree	split in 1 dimension at each node (median of coordinate to get balance)
-Tree: quad-tree 2D partition	 each node has 4 children. Split when max capacity reached.
-Tree: 3 types of balanced BSTs	AVL, Red-black, B-tree
+Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capacity reached.
+Tree: 3 types of balanced BSTs	AVL<br>Red-black<br>B-tree
 Count number of islands in a grid	DFS/BFS
 Array: Print matrix in spiral	four variables top bottom left right. Reduce
 Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	BFS from start word
@@ -26,7 +25,7 @@ SD: shared nothing	each node is independent, no SPOF (eg. centrally stored state
 SD: hashing for sharding	consistent hashing: circle with many pseudo-random points per node. Rendezvous hashing
 SD: types of replication	asynchronous: MySQL default, <br>synchronous: two phase commit MySQL-cluster default
 SD: ACID	atomicity, consistency, isolation, durability
-SD: 2 types of failover active-passive (master-slave)	active-active (master-master)
+SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
 DS: external merge sort	sort chunck & write to disk, load chunk of chuck and merge-write
 Lang: pure virtual function	has to be implemented by a class that is not abstract
 SD: MySQL index based on which data structure in general	B-tree (or B+ ?)
@@ -35,7 +34,6 @@ SD: drawback of DNS load balancing	results are cached by intermediate servers, s
 SD: Geo load-balancing with DNS	some DNS servers have IP range tables and can have different responses for different ranges
 SD: advantages and disadvantages of hardware load balancers	+: reliable<br> -: expensive, have to be connected to servers that are physically close
 DS: check if item is in known set	Bloom filter if no space for hash table
-SD: difference between YouTube and Spotify	upload (video/audio)
 SD: consistency problems in DB	read-after-write
 SD: topics to adress	HA, scaling, sizing, discovery, latency, build whole system with client
 SD: CAP theorem	Consistency, Availability, Network Partition Tolerance
