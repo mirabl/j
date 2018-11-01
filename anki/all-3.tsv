@@ -5,7 +5,7 @@ Graph: Find connected components of a graph	BFS/DFS O(V + E), <br>keep track of 
 Graph: Detect cycle in a graph	Colorized DFS look for back-edge O(V + E).<br><br> Also possible with Union-Find: loop on edges, union-find on vertices O(E)?
 SD: RAM SSD HDD R/W speed	RAM 10 GB/s<br>SSD 500 MB/s<br> HDD 100 MB/s
 SD: RAM SSD HDD latency	RAM 100 ns<br>SSD 0.1 ms<br>HDD 10 ms
-rray: Find maximum in sliding window	1. use self-balanced BST O(n log n). <br><br>2. Use dequeue keeping only useful elements O(n)
+Array: Find maximum in sliding window	1. use self-balanced BST O(n log n). <br><br>2. Use dequeue keeping only useful elements O(n)
 Tree: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if in-order traversal is sorted O(n)
 Tree: Serialize/Deserialize	Special case? BST, complete, full?. <br>Inorder array with null marker
 Tree: Inorder sucessor in BT with parent pointer	If right subtree of node is not NULL, successor in minimum of right subtree. <br>Else then succ is one of the ancestors. <br>Travel up using the parent pointer until you see a node which is left child of it’s parent. <br>The parent of such a node is the succ. O(h)
