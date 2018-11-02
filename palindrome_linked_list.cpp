@@ -100,3 +100,52 @@ int main() {
 	// cout << endl;
 
 }
+
+
+
+/////
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        ListNode *f = head, *b = head;
+        while (b) {
+            f = f->next;
+            b = b->next ? b->next->next : NULL;
+        }
+        
+        if (!f) {
+            return true;
+        }
+        
+        auto nhead = f;
+        auto rest = f->next;
+        nhead->next = NULL;
+        
+        while (rest) {
+            auto nrest = rest->next;
+            rest->next = nhead;
+            nhead = rest;
+            rest = nrest;
+        }
+            
+        b = head;
+        f = nhead;
+        while (f) {
+            if (f->val != b->val) {
+                return false;
+            }
+            f = f->next;
+            b = b->next;
+        }
+        return true;
+    }
+};
