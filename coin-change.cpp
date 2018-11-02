@@ -66,3 +66,28 @@ public:
         return dp[amount] != INFTY ? dp[amount] : -1;
     }
 };
+
+
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        if (coins.empty()) {
+            return -1;
+        }
+        int INFTY = 1e8;
+        vector<int> dp(amount + 1, INFTY);
+
+        dp[0] = 0;
+        
+        for (int i = 1; i <= amount; i++) {
+            for (auto c: coins) {
+                if (i >= c) {
+                  dp[i] = min(dp[i], dp[i - c] + 1);
+                }
+            }
+        }
+        
+        return dp[amount] != INFTY ? dp[amount] : -1;
+    }
+};
+
