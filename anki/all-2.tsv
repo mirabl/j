@@ -1,49 +1,41 @@
-QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
-LinkedList: insertion in linked list tip	use dummy first node
-Stack: implement stack with O(1) min	push (x, min) when pushing x, <br><br>or use second stack
-Heap: algo for insert	add element to bottom right, <br>bubble up <br><br>O(log n)
-Heap: algo for extract-min	save top element, <br>put bottom right at top, <br>bubble down <br><br>O(log n)
-Quicksort: pivot choosing methods? (3)	first, <br>random, <br>median of random 3
-Array: Longest Common Subsequence	DP O(nm)
-Array: Longest Increasing Subsequence	DP O(n^2). <br><br>also possible in O(n log n)<br> with active lists and binary search
-Minimum difference partition	DP CanMakeSum[i][T], <br>T <= S/2<br>O(n S)
-Subset sum: a subset of array sums to T	DP CanMakeSum[i][T]<br>O(n S)
 0-1 Knapsack: max weight, items with values and weights, maximize value	DP Best[i][w]<br>O(n W)
-Tree: Maximum path sum in a binary tree	recursive, only left, only right, both<br>O(n)
-Array: Next Greater element in an array	using a stack<br>O(n)/O(n)
-Tree: Bottom view of binary tree	BFS with (ordered) map: <br>M[x-coordinate] = value<br><br>O(n)/O(n)
-Longest Palindromic Substring	for each position, find longest even and odd length substring with this center O(n^2)|O(1)<br>DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1)<br><br>O(n) difficult algorithm exists Manacher.
-MergeSort: space complexity	O(n) auxiliary
-String: substring search	naive O(n*m) <br><br> robin-karp rolling hash O(n + m) <br><br> advanced O(n)
-Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
-Array: 3Sum  Find all unique triplets in the array which gives the sum of zero	sort, loop for first element and then 2sum sweep, <br>avoid duplicates by avoiding duplicate first element <br>O(n^2)|O(1)
 Array: 2sum: Given an array of integers, return indices of the two numbers such that they add up to a specific target.	same element twice?<br> Use hash table O(n)|O(n), <br>sort+two pointers O(n log n)|O(1), <br>sort+BS O(n log n)|O(1)
-String: Longest Substring Without Repeating Characters	Window. left and right pointers, hash set for characters in the substring, move either left or right O(n)|O(n) // traverse left to right, maintaining longest valid substring ending at this position, use map<char,position> to know where current character appeared last O(n)|O(n)
-Container With Most Water	two pointers, from start and end, <br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
-Graph: Shortest Path from every vertex to every other vertex Floyd Warshall	O(V^3)/O(V^2)
-Graph: Complexity of shortest Path from source to all vertices Dijkstra 	Time: O(V^2). <br><br>Better complexity with Fibonacci heap.
-Graph: Minimum Spanning tree Prim: algorithm and complexity	greedy vertices: add new vertex of minimum distance to partial tree. <br>O(V^2), <br>can be reduced with binary heap.
-Graph: Minimum Spanning tree Kruskal: algorithm and complexity	sort edges by weight, <br>(take min edge, check if it introduces a cycle in the partial tree, discard or add). <br>Cycle detection with union-find<br><br>O(E log V) = O(E log E)
-Graph: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and _distance to target_
-Heapify: algorithm and complexity	O(n) when heapifying from the lower levels to the upper levels, "sinkdown" roots of subtrees
+Array: 3Sum  Find all unique triplets in the array which gives the sum of zero	sort, loop for first element and then 2sum sweep, <br>avoid duplicates by avoiding duplicate first element <br>O(n^2)|O(1)
+Array: Convert array into Zig-Zag fashion: distinct element or not cases	distinct O(n)|O(1) aux bubble sort-like swap <br> not distinct QuickSelect to find median, partition O(n)
 Array: Count triplets with sum smaller than a given value in O(n^2)	sort, loop for first element, use two-pointer-sum <br> O(n^2)|O(1) aux
 Array: find subarray with maximum sum	one pass, at each position either extend or start new subarray O(n)|O(1)
-Max number of intersecting intervals	sort events: enter and exist of intervals. O(n log n)|O(n) aux
-combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., <br>same number can be repeated<br>	backtracking (or DP)
-Graph: Bridges in a Graph	Naive: remove edge, see if graph is still connected: O(E (V + E)). Better algorithm based on DFS O(V + E) exists.
-Array: Reverse an array without affecting special characters	O(n) one pass, in-place: two pointers at start and end <br> swap or skip and meet in the middle <br> O(n)|O(1) aux
-Array: find the median of non-sorted array	QuickSelect O(n)
 Array: find the majority element	Boyer-Moore voting algorithm O(n)
-Array: Stock Buy Sell to Maximize Profit (buy & sell multiple times)	1. Find the local minima and store it as starting index. If not exists, return. <br> 2. Find the local maxima. and store it as ending index. If we reach the end, set the end as ending index. <br> 3. Update the solution (Increment count of buy sell pairs) <br> 4. Repeat the above steps if end is not reached.
-Array: Convert array into Zig-Zag fashion: distinct element or not cases	distinct O(n)|O(1) aux bubble sort-like swap <br> not distinct QuickSelect to find median, partition O(n)
-LinkedList: Detect beginning of a cycle	method1: count cycle length, count first segment length. <br><br>method2: smarter, TODO. O(n)
-Graph: Topological sort of DAG (2)	 1. DFS: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br>2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
-Graph: Complexity of Breadth First Traversal for a Graph	O(V + E) if adjacency list<br> O(V^2) if adjacency matrix/O(V)
-Graph: Complexity of Depth First Traversal for a Graph	time: O(V + E) if adjacency list<br> O(V^2) if adjacency matrix/O(V) 
-String: Reverse words in a sentence	1. Word by word from the end. 2. reverse whole string char-by-char, reverse within each word
-Union-find: naive + 2 optimizations	naive: attach root of x to root of y. <br>Union by rank: attach smaller tree to larger. <br>Path compression: when find is used, nodes on the path to root point to the root (recursive).
-Union-find complexity with optimization	amortized O(1) in time |O(n) space.
-Sudoku Solver	Backtracking. <br><br>Only check if one value is already in a row/col/square.
-Tree: Check if a binary tree is subtree of another binary tree	Naive O(n^2), <br><br>O(n): inorder and preorder of subtree must be substrings of big tree
-Array: Smallest subarray with sum greater than a given value	Sliding window: keep adding array elements while current sum is smaller than x <br> If current sum becomes greater than x, update min length, remove starting elements
+Array: find the median of non-sorted array	QuickSelect O(n)
+Array: Longest Common Subsequence	DP O(nm)
+Array: Longest Increasing Subsequence	DP O(n^2). <br><br>also possible in O(n log n)<br> with active lists and binary search
+Array: Next Greater element in an array	using a stack<br>O(n)/O(n)
+Array: Reverse an array without affecting special characters	O(n) one pass, in-place: two pointers at start and end <br> swap or skip and meet in the middle <br> O(n)|O(1) aux
 Array: Rotate an array	1. With a temp array of size K. <br><br>or 2. With cycles (compute gcd)
+Array: Smallest subarray with sum greater than a given value	Sliding window: keep adding array elements while current sum is smaller than x <br> If current sum becomes greater than x, update min length, remove starting elements
+Array: Stock Buy Sell to Maximize Profit (buy & sell multiple times)	1. Find the local minima and store it as starting index. If not exists, return. <br> 2. Find the local maxima. and store it as ending index. If we reach the end, set the end as ending index. <br> 3. Update the solution (Increment count of buy sell pairs) <br> 4. Repeat the above steps if end is not reached.
+combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., <br>same number can be repeated<br>	backtracking (or DP)
+Container With Most Water	two pointers, from start and end, <br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
+Graph: Bridges in a Graph	Naive: remove edge, see if graph is still connected: O(E (V + E)). Better algorithm based on DFS O(V + E) exists.
+Graph: Complexity of BFS and DFS for a Graph	O(V + E) if adjacency list<br> O(V^2) if adjacency matrix/O(V)
+Graph: Minimum Spanning tree Kruskal: algorithm and complexity	sort edges by weight, <br>(take min edge, check if it introduces a cycle in the partial tree, discard or add). <br>Cycle detection with union-find<br><br>O(E log V) = O(E log E)
+Graph: Minimum Spanning tree Prim: algorithm and complexity	greedy vertices: add new vertex of minimum distance to partial tree. <br>O(V^2), <br>can be reduced with binary heap.
+Graph: Topological sort of DAG (2)	 1. DFS: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br>2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
+LinkedList: Detect beginning of a cycle	method1: count cycle length, count first segment length. <br><br>method2: smarter, TODO. O(n)
+LinkedList: insertion in linked list tip	use dummy first node
+Longest Palindromic Substring	for each position, find longest even and odd length substring with this center O(n^2)|O(1)<br>DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1)<br><br>O(n) difficult Manacher.
+Max number of intersecting intervals	sort events: enter and exist of intervals. O(n log n)|O(n) aux
+Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
+MergeSort: space complexity	O(n) auxiliary
+Minimum difference partition	DP CanMakeSum[i][T], <br>T <= S/2<br>O(n S)
+QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
+Quicksort: pivot choosing methods? (3)	first, <br>random, <br>median of random 3
+Stack: implement stack with O(1) min	push (x, min) when pushing x, <br><br>or use second stack
+String: Longest Substring Without Repeating Characters	Window. left and right pointers, hash set for characters in the substring, move either left or right O(n)|O(n) // traverse left to right, maintaining longest valid substring ending at this position, use map<char,position> to know where current character appeared last O(n)|O(n)
+String: Reverse words in a sentence	1. Word by word from the end. 2. reverse whole string char-by-char, reverse within each word
+String: substring search	naive O(n*m) <br><br> robin-karp rolling hash O(n + m) <br><br> advanced O(n)
+Subset sum: a subset of array sums to T	DP CanMakeSum[i][T]<br>O(n S)
+Sudoku Solver	Backtracking. <br><br>Only check if one value is already in a row/col/square.
+Tree: Bottom view of binary tree	BFS with (ordered) map: <br>M[x-coordinate] = value<br><br>O(n)/O(n)
+Tree: Check if a binary tree is subtree of another binary tree	Naive O(n^2), <br><br>O(n): inorder and preorder of subtree must be substrings of big tree
+Tree: Maximum path sum in a binary tree	recursive, only left, only right, both<br>O(n)
+Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of x to root of y. <br>Union by rank: attach smaller tree to larger. <br>Path compression<br><br>Amortized O(1) in time |O(n) space.
