@@ -112,3 +112,63 @@ public:
         rec(board);
     }
 };
+
+
+class Solution {
+public:
+    bool s(vector<vector<char>>& board) {
+        int row = -1, col = -1;
+        for (int i = 0; i < 9 && row == -1; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] == '.') {
+                    row = i;
+                    col = j;
+                    break;
+                }
+            }
+        }
+        
+        if (row == -1) {
+            return true;
+        }
+        
+        for (char v = '1'; v <= '9'; v++) {
+            bool ok = true;
+            for (int col2 = 0; col2 < 9; col2++) {
+                if (board[row][col2] == v) {
+                    ok = false;
+                }
+            }
+            for (int row2 = 0; row2 < 9; row2++) {
+                if (board[row2][col] == v) {
+                    ok = false;
+                }
+            }
+            
+            int rowb = 3 * (row / 3);
+            int colb = 3 * (col / 3);
+            for (int r = rowb; r < rowb + 3; r++) {
+                for (int c = colb; c < colb + 3; c++) {
+                    if (board[r][c] == v) {
+                        ok = false;
+                    }
+                }
+            }
+            
+            if (!ok) {
+                continue;
+            }
+            
+            board[row][col] = v;
+            if (s(board)) {
+                return true;
+            }
+            board[row][col]= '.';
+        }
+        return false;
+    }
+    
+    void solveSudoku(vector<vector<char>>& board) {
+        s(board);
+    }
+};
