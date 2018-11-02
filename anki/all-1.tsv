@@ -15,8 +15,6 @@ Heapify: algorithm and complexity	heapify from the lower levels to the upper lev
 LinkedList: cycle length of a linked list	2 pointers 
 LinkedList: find where 2 linked list merge	2 pointers 
 LinkedList: is a linked list a palindrome?	reverse second half, check (and restore)
-LinkedList: last-M-th element of a linked list	2 pointers, one M ahead
-LinkedList: middle of a linked list	2 pointers
 LinkedList: reverse a linked list	iterative
 LinkedList: Select random node from linked list	method1: naive count nodes in first pass. <br><br>method2:reservoir sampling O(n) one pass.
 LinkedList: Sort a linked list	use merge sort
@@ -31,7 +29,6 @@ Selection and Insertion sort: best and worst case	- Selection: no difference, <b
 Sort: bubble sort	swap pairs to put max at i=end of array<br>i--
 Sort: insertion sort<br>selection sort	insertion: insert A[i] in sorted A[0]...A[i-1]<br><br>select min put it at A[i=0], i++
 Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
-Sort: name of sort which preserves original order for same key values	stable sort
 Sort: sort when element are nearly sorted (2 ways)	heapsort<br>insertion sort
 Sort: sort when limited range of keys	counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
 Stack: sort a stack	using a second stack,<br><br> or recursively
