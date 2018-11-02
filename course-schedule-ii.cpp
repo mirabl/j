@@ -111,3 +111,46 @@ public:
         return res;
     }
 };
+
+//
+
+class Solution {
+public:
+    vector<vector<int>> G;
+    int N;
+    vector<int> sol;
+    vector<int> state;
+    
+    bool dfs(int root) {
+        if (state[root] == 1) {
+            return false;
+        }
+        if (state[root] == 2) {
+            return true;
+        }
+        state[root] = 1;
+        for (int n: G[root]) {
+            if (!dfs(n)) {
+                return false;
+            }
+        }
+        state[root] = 2;
+        sol.insert(sol.begin(), root);
+        return true;
+    }
+    
+    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
+        N = numCourses;
+        G = vector<vector<int>>(N);
+        for (auto e: prerequisites) {
+            G[e.second].push_back(e.first);
+        }
+        state = vector<int>(N, 0);
+        for (int i = 0; i < N; i++) {
+            if (!dfs(i)) {
+                return {};
+            }
+        }
+        return sol;
+    }
+};
