@@ -154,3 +154,45 @@ public:
         return sol;
     }
 };
+
+//
+
+class Solution {
+public:
+    vector<set<int>> G;
+    int N;
+    vector<int> sol;
+    
+    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
+        N = numCourses;
+        G = vector<set<int>>(N);
+        vector<int> inDeg(N, 0);
+
+        for (auto e: prerequisites) {
+            G[e.second].insert(e.first);
+            inDeg[e.first]++;
+        }
+        
+        while (sol.size() != N) { 
+            int mv = 0;
+            for (int v = 0; v < N; v++) {
+                if (inDeg[v] < inDeg[mv]) {
+                    mv = v;
+                }
+            }
+
+            if (inDeg[mv] > 0) { 
+                return {};
+            }
+
+            sol.push_back(mv);
+
+            for (auto n: G[mv]) {
+                inDeg[n]--;
+            }
+            inDeg[mv] = 1e8;
+        }
+            
+        return sol;
+    }
+};
