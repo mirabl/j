@@ -17,7 +17,7 @@ combination sum: Given a set of candidate numbers (C) (without duplicates) and a
 Container With Most Water	two pointers, from start and end, <br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
 Graph: Bridges in a Graph	Naive: remove edge, see if graph is still connected: O(E (V + E)). Better algorithm based on DFS O(V + E) exists.
 Graph: Complexity of BFS and DFS for a Graph	O(V + E) if adjacency list<br> O(V^2) if adjacency matrix/O(V)
-Graph: Minimum Spanning tree Kruskal: algorithm and complexity	sort edges by weight, <br>(take min edge, check if it introduces a cycle in the partial tree, discard or add). <br>Cycle detection with union-find<br><br>O(E log V) = O(E log E)
+Graph: Minimum Spanning tree Kruskal: algorithm and complexity	sort edges by weight, <br>(take min edge, check if it introduces a cycle in the partial tree, discard or add). <br>Cycle detection with union-find<br><br>O(E log E)
 Graph: Minimum Spanning tree Prim: algorithm and complexity	greedy vertices: add new vertex of minimum distance to partial tree. <br>O(V^2), <br>can be reduced with binary heap.
 Graph: Topological sort of DAG (2)	 1. DFS: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br>2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
 LinkedList: Detect beginning of a cycle	method1: count cycle length, count first segment length. <br><br>method2: smarter, TODO. O(n)

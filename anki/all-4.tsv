@@ -10,7 +10,7 @@ Graph: clique definition	complete subgraph
 Graph: max flow problem edge with capacities	 maximum flow from a source vertex to a destination
 Graph: maximum clique algorithm	difficult, there are heuristics
 Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	BFS from start word
-Graph: 3 shortests path algs with weighted graph	- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
+Graph: 4 shortests path algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
 Graph: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and _distance to target_
 Lang: pure virtual function	has to be implemented by a class that is not abstract
 Misc: NP-complete problems	SAT, knapsack, traveling salesman
@@ -34,7 +34,7 @@ SD: types of replication	asynchronous: MySQL default, <br>synchronous: two phase
 SD: how many queries per second for a MySQL DB server	no answer, <br>depends on query/HW. 1K QPS
 SD: how many YT videos watched every day	5B
 SD: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second
-Tree: 3 types of balanced BST	AVL<br>Red-black<br>B-tree
+Tree: balanced BST: complexity, 3 examples	Search/insert/delete O(log n)<br><br>AVL<br>Red-black<br>B-tree
 Tree: find lowest common ancestor of two nodes in a binary tree (not BST)	1. find path to x to y find last common element. O(n) 2 traversals. <br><br>2. rec: LCA has one node on each side. O(n) 1 traversal.
 Tree: k-d tree	split in 1 dimension at each node (median of coordinate to get balance)
 Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capacity reached.

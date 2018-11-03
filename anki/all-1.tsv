@@ -8,7 +8,6 @@ DS: extract minimum with streaming data	use heap
 DS: implement a queue using two stacks	empty first stack into second stack
 DS: merge k sorted arrays	use a heap
 Graph: shortest path when edges have no weight	BFS
-Graph: what is a bipartite graph?	vertices are split in to sets, no edges within a set
 Heap: complexity and algo of insert/extract-min	use last element, bubble up or down<br><br>O(log n)
 Heap: search a key in a heap	difficult O(n)
 Heapify: algorithm and complexity	heapify from the lower levels to the upper levels, "sinkdown" roots of subtrees<br><br>O(n)
@@ -38,3 +37,4 @@ String: Find the smallest window in a string containing all characters of anothe
 Tree: Check if binary tree is full (not complete)	recursive O(n)
 Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
 Tree: iterative in-order traversal of binary tree	stack and curnode pointer
+Fenwick Tree	type of segment tree<br>used for prefix sums
