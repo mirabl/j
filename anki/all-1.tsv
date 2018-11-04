@@ -1,38 +1,28 @@
 2D Array: Boggle (Find all possible words in a board of characters)	DFS from every start cell, mark visited cells.<br><br>Complexity?<br> Better solution with Tree.
-Array: is subsequence	iterate greedy, not need for dp
 Array: rotate image by 90 degrees	ring by ring, <br><br>or reverse up to down (r2l) and transpose
 Bit: test if a number is a power of two	(n & (n-1)) == 0
 Coin Game: coins in a row, pick one	windowed DP<br><br>DP F(from i-th coin to j-th coin) = max(. + min(), . + min())<br>O(n^2)
 Combinatorics: compute<br>subsets of a set<br>permutations of a set	subsets: recursive, or iterative<br><br>permutations: recursive
-DS: extract minimum with streaming data	use heap
+DS: example use of a heap	extract minimum with streaming data<br>merge k sorted arrays
 DS: implement a queue using two stacks	empty first stack into second stack
-DS: merge k sorted arrays	use a heap
 Graph: shortest path when edges have no weight	BFS
-Heap: complexity and algo of insert/extract-min	use last element, bubble up or down<br><br>O(log n)
-Heap: search a key in a heap	difficult O(n)
+Heap: complexity and algo of insert, extract-min, search	use last element, bubble up or down<br>O(log n)<br><br>search: difficult O(n)
 Heapify: algorithm and complexity	heapify from the lower levels to the upper levels, "sinkdown" roots of subtrees<br><br>O(n)
-LinkedList: cycle length of a linked list	2 pointers 
-LinkedList: find where 2 linked list merge	2 pointers 
 LinkedList: is a linked list a palindrome?	reverse second half, check (and restore)
-LinkedList: reverse a linked list	iterative
 LinkedList: Select random node from linked list	method1: naive count nodes in first pass. <br><br>method2:reservoir sampling O(n) one pass.
 LinkedList: Sort a linked list	use merge sort
 Math: number of trailing zeroes in a factorial	powers of 2, 5
-MergeSort: best and worst case	always O(n log n)/O(n) aux
+MergeSort: best and worst case<br>memory	always O(n log n)<br>memory: O(n) aux
 print valid n-parentheses	try a character, recurse if allowed
-QuickSort: best and worst case of QuickSort	best: pivot splits array in half each time O(n log n)/O(log n)<br>worst: pivot is min (or max), O(n^2)/O(log n)
-QuickSort: space complexity of quicksort	O(log n) with in-place partitioning
+QuickSort: best and worst case of QuickSort<br><br>Memory complexity:	best: pivot splits array in half each time O(n log n)/O(log n)<br>worst: pivot is min (or max), O(n^2)/O(log n)<br><br>Memory: O(log n) with in-place partitioning
 Search: find element in a sorted rotated array	double BS: <br><br>find the frontier, <br>BS on left or right part
-Search: find element in row-and-column-sorted matrix	start from NE corner
 Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
 Sort: bubble sort	swap pairs to put max at i=end of array<br>i--
 Sort: insertion sort<br>selection sort	insertion: insert A[i] in sorted A[0]...A[i-1]<br><br>select min put it at A[i=0], i++
 Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
 Sort: sort when element are nearly sorted (2 ways)	heapsort<br>insertion sort
 Sort: sort when limited range of keys	counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
-Stack: sort a stack	using a second stack,<br><br> or recursively
 String: determine if a string has only unique characters (with and without memory)	use a set, <br><br>or sort the string
-String: Edit Distance	DP O(mn)
 String: Find the smallest window in a string containing all characters of another string	sliding window O(n)|O(n)
 Tree: Check if binary tree is full (not complete)	recursive O(n)
 Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive

@@ -6,19 +6,15 @@ DS: external merge sort	sort chunck & write to disk, load chunk of chuck and mer
 DS: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
 DS: range minimum or range sum	Segment Tree
 DS: total storage for YT/FB	500 PB
-Graph: clique definition	complete subgraph
 Graph: max flow problem edge with capacities	 maximum flow from a source vertex to a destination
 Graph: maximum clique algorithm	difficult, there are heuristics
 Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	BFS from start word
 Graph: 4 shortests path algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
-Graph: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and _distance to target_
 Lang: pure virtual function	has to be implemented by a class that is not abstract
 Misc: NP-complete problems	SAT, knapsack, traveling salesman
-Misc: websocket	persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
 SD: 2 types of consistency	strong consistency<br><br>eventual consistency
 SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
 SD: ACID	atomicity, consistency, isolation, durability
-SD: CAP theorem	Consistency, Availability, Network Partition Tolerance
 SD: consistency problems in DB	read-after-write
 SD: drawback of DNS load balancing	results are cached by intermediate servers, so not responsive when change
 SD: Geo load-balancing with DNS	some DNS servers have IP range tables and can have different responses for different ranges
