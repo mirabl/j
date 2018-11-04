@@ -17,10 +17,8 @@ LinkedList: insertion in linked list tip	use dummy first node
 Longest Palindromic Substring	for each position, find longest even and odd length substring with this center O(n^2)|O(1)<br>DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1)<br><br>O(n) difficult Manacher.
 Max number of intersecting intervals	sort events: enter and exist of intervals. O(n log n)|O(n) aux
 Minimum difference partition	DP CanMakeSum[i][T], <br>T <= S/2<br>O(n S)
-QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
 String: Longest Substring Without Repeating Characters	Window. left and right pointers, hash set for characters in the substring, move either left or right O(n)|O(n) // traverse left to right, maintaining longest valid substring ending at this position, use map<char,position> to know where current character appeared last O(n)|O(n)
 String: substring search	naive O(n*m) <br><br> robin-karp rolling hash O(n + m) <br><br> advanced O(n)
 Subset sum: a subset of array sums to T	DP CanMakeSum[i][T]<br>O(n S)
 Tree: Check if a binary tree is subtree of another binary tree	Naive O(n^2), <br><br>O(n): inorder and preorder of subtree must be substrings of big tree
 Tree: Maximum path sum in a binary tree	recursive, only left, only right, both<br>O(n)
-SD: NoSQL	 is a collection of data items represented in a key-value store, document-store, wide column store, or a graph database. <br>Data is denormalized, and joins are generally done in the application code.

@@ -32,3 +32,18 @@ SGraph: clique definition	complete subgraph
 SD: CAP theorem	Consistency, Availability, Network Partition Tolerance
 Graph: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and _distance to target_
 Misc: websocket	persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
+Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
+Sort: bubble sort	swap pairs to put max at i=end of array<br>i--
+Bit: test if a number is a power of two	(n & (n-1)) == 0
+SD: 2 types of consistency	strong consistency<br><br>eventual consistency
+SD: shared nothing	each node is independent, no SPOF (eg. centrally stored state info or DB)
+SD: replication lag for MySQL	time between read/write to master and replication to all slaves
+SD: topics to adress	HA, scaling, sizing, discovery, latency, build whole system with client
+Tree: find lowest common ancestor of two nodes in a binary tree (not BST)	1. find path to x to y find last common element. O(n) 2 traversals. <br><br>2. rec: LCA has one node on each side. O(n) 1 traversal.
+SD: consistency problems in DB	read-after-write
+DS: check if item is in known set	Bloom filter if no space for hash table
+SD: Geo load-balancing with DNS	some DNS servers have IP range tables and can have different responses for different ranges
+SD: hashing for sharding	consistent hashing: circle with many pseudo-random points per node. Rendezvous hashing
+Graph: max flow problem edge with capacities	 maximum flow from a source vertex to a destination
+SD: NoSQL	 is a collection of data items represented in a key-value store, document-store, wide column store, or a graph database. <br>Data is denormalized, and joins are generally done in the application code.
+QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition

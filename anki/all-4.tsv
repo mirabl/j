@@ -1,36 +1,26 @@
 Array: largest rectangle under histogram	O(n) left to right with stack
 Array: Print matrix in spiral	four variables top bottom left right. Reduce
 DS: B-Tree	self balancing tree, <br>not binary, <br>good for r/w to external memory (DB FS)
-DS: check if item is in known set	Bloom filter if no space for hash table
 DS: external merge sort	sort chunck & write to disk, load chunk of chuck and merge-write
 DS: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
 DS: range minimum or range sum	Segment Tree
 DS: total storage for YT/FB	500 PB
-Graph: max flow problem edge with capacities	 maximum flow from a source vertex to a destination
 Graph: maximum clique algorithm	difficult, there are heuristics
 Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	BFS from start word
 Graph: 4 shortests path algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
 Lang: pure virtual function	has to be implemented by a class that is not abstract
 Misc: NP-complete problems	SAT, knapsack, traveling salesman
-SD: 2 types of consistency	strong consistency<br><br>eventual consistency
 SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
 SD: ACID	atomicity, consistency, isolation, durability
-SD: consistency problems in DB	read-after-write
 SD: drawback of DNS load balancing	results are cached by intermediate servers, so not responsive when change
-SD: Geo load-balancing with DNS	some DNS servers have IP range tables and can have different responses for different ranges
-SD: hashing for sharding	consistent hashing: circle with many pseudo-random points per node. Rendezvous hashing
 SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
 SD: mechanism for asynchronicity	queues
 SD: MySQL index based on which data structure in general	B-tree (or B+ ?)
-SD: replication lag for MySQL	time between read/write to master and replication to all slaves
-SD: shared nothing	each node is independent, no SPOF (eg. centrally stored state info or DB)
-SD: topics to adress	HA, scaling, sizing, discovery, latency, build whole system with client
 SD: tunable consistency	from "writes never fail" to <br><br>"block for all replicas to be readable" with quorum levels
 SD: types of replication	asynchronous: MySQL default, <br>synchronous: two phase commit MySQL-cluster default
 SD: how many queries per second for a MySQL DB server	no answer, <br>depends on query/HW. 1K QPS
 SD: how many YT videos watched every day	5B
 SD: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second
 Tree: balanced BST: complexity, 3 examples	Search/insert/delete O(log n)<br><br>AVL<br>Red-black<br>B-tree
-Tree: find lowest common ancestor of two nodes in a binary tree (not BST)	1. find path to x to y find last common element. O(n) 2 traversals. <br><br>2. rec: LCA has one node on each side. O(n) 1 traversal.
 Tree: k-d tree	split in 1 dimension at each node (median of coordinate to get balance)
 Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capacity reached.

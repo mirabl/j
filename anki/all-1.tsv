@@ -1,9 +1,8 @@
 2D Array: Boggle (Find all possible words in a board of characters)	DFS from every start cell, mark visited cells.<br><br>Complexity?<br> Better solution with Tree.
 Array: rotate image by 90 degrees	ring by ring, <br><br>or reverse up to down (r2l) and transpose
-Bit: test if a number is a power of two	(n & (n-1)) == 0
 Coin Game: coins in a row, pick one	windowed DP<br><br>DP F(from i-th coin to j-th coin) = max(. + min(), . + min())<br>O(n^2)
 Combinatorics: compute<br>subsets of a set<br>permutations of a set	subsets: recursive, or iterative<br><br>permutations: recursive
-DS: example use of a heap	extract minimum with streaming data<br>merge k sorted arrays
+DS: 2 example use of a heap	extract minimum with streaming data<br>merge k sorted arrays
 DS: implement a queue using two stacks	empty first stack into second stack
 Graph: shortest path when edges have no weight	BFS
 Heap: complexity and algo of insert, extract-min, search	use last element, bubble up or down<br>O(log n)<br><br>search: difficult O(n)
@@ -17,9 +16,7 @@ print valid n-parentheses	try a character, recurse if allowed
 QuickSort: best and worst case of QuickSort<br><br>Memory complexity:	best: pivot splits array in half each time O(n log n)/O(log n)<br>worst: pivot is min (or max), O(n^2)/O(log n)<br><br>Memory: O(log n) with in-place partitioning
 Search: find element in a sorted rotated array	double BS: <br><br>find the frontier, <br>BS on left or right part
 Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
-Sort: bubble sort	swap pairs to put max at i=end of array<br>i--
 Sort: insertion sort<br>selection sort	insertion: insert A[i] in sorted A[0]...A[i-1]<br><br>select min put it at A[i=0], i++
-Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
 Sort: sort when element are nearly sorted (2 ways)	heapsort<br>insertion sort
 Sort: sort when limited range of keys	counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
 String: determine if a string has only unique characters (with and without memory)	use a set, <br><br>or sort the string
