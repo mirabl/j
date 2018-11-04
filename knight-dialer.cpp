@@ -1,4 +1,3 @@
-// Wrong
 class Solution {
 public:
     int knightDialer(int N) {
@@ -10,7 +9,7 @@ public:
             {0, 3, 9}, // 4
             {}, // 5
             {0, 7, 1}, // 6
-            {3, 6}, // 7
+            {2, 6}, // 7
             {1, 3}, // 8
             {4, 2}}; // 9
         
@@ -33,6 +32,6 @@ public:
             res = (res + dp[i]) % mod;
         }
             
-        return N >= 4 ? res - (N - 3) : res;
+        return res;
     }
 };
