@@ -24,3 +24,8 @@ SD: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millio
 Tree: balanced BST: complexity, 3 examples	Search/insert/delete O(log n)<br><br>AVL<br>Red-black<br>B-tree
 Tree: k-d tree	split in 1 dimension at each node (median of coordinate to get balance)
 Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capacity reached.
+SD: CAP theorem.<br>2 possible combinations	Consistency: every read gets most recent write or error<br>Availability: every request gets response but no guaranties<br>Network Partition Tolerance: continues even if network failure<br><br>CP or AP
+SD: consistency patterns<br>weak: best effort<br>eventual: asynchronous replication<br>strong: after a write, reads will see it. RDBMS.
+SD: techniques to scale RDBMS	master-slave replication, master-master replication, federation, sharding, denormalization, and SQL tuning.
+SD: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
+SD: 4 cache strategies<br>cache aside: app does everything<br>write-through: cache interacts with DB<br>write-behind/back: app writes to cache and async write to DB<br>refresh ahead: auto refresh by cache

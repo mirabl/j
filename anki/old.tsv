@@ -29,7 +29,6 @@ SD: Denormalization	attempts to improve read perf at the expense of write perf. 
 SD: Sharding	distributes data across different databases such that each database can only manage a subset of the data.
 SD: vertical/horizontal scaling 	vertical: add more power to a machine<br><br>horizontal: add more machines
 SGraph: clique definition	complete subgraph
-SD: CAP theorem	Consistency, Availability, Network Partition Tolerance
 Graph: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and _distance to target_
 Misc: websocket	persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
 Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
@@ -47,3 +46,5 @@ SD: hashing for sharding	consistent hashing: circle with many pseudo-random poin
 Graph: max flow problem edge with capacities	 maximum flow from a source vertex to a destination
 SD: NoSQL	 is a collection of data items represented in a key-value store, document-store, wide column store, or a graph database. <br>Data is denormalized, and joins are generally done in the application code.
 QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
+Math: number of trailing zeroes in a factorial	powers of 2, 5
+print valid n-parentheses	try a character, recurse if allowed
