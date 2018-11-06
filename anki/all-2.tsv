@@ -1,24 +1,29 @@
-0-1 Knapsack: max weight, items with values and weights, maximize value	DP Best[i][w]<br>O(n W)
-Array: Convert array into Zig-Zag fashion: distinct element or not cases	distinct O(n)|O(1) aux bubble sort-like swap <br> not distinct QuickSelect to find median, partition O(n)
-Array: find subarray with maximum sum	one pass, at each position either extend or start new subarray O(n)|O(1)
-Array: find the majority element	Boyer-Moore voting algorithm O(n)
-Array: find the median of non-sorted array	QuickSelect O(n)
-Array: Longest Increasing Subsequence	DP O(n^2). <br><br>also possible in O(n log n)<br> with active lists and binary search
-Array: Next Greater element in an array	using a stack<br>O(n)/O(n)
-Array: Smallest subarray with sum greater than a given value	Sliding window: keep adding array elements while current sum is smaller than x <br> If current sum becomes greater than x, update min length, remove starting elements
-Array: Stock Buy Sell to Maximize Profit (buy & sell multiple times)	1. Find the local minima and store it as starting index. If not exists, return. <br> 2. Find the local maxima. and store it as ending index. If we reach the end, set the end as ending index. <br> 3. Update the solution (Increment count of buy sell pairs) <br> 4. Repeat the above steps if end is not reached.
-combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., <br>same number can be repeated<br>	backtracking (or DP)
-Container With Most Water	two pointers, from start and end, <br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
-Graph: Bridges in a Graph	Naive: remove edge, see if graph is still connected: O(E (V + E)). Better algorithm based on DFS O(V + E) exists.
-Graph: Minimum Spanning tree Kruskal: algorithm and complexity	sort edges by weight, <br>(take min edge, check if it introduces a cycle in the partial tree, discard or add). <br>Cycle detection with union-find<br><br>O(E log E)
-Graph: Minimum Spanning tree Prim: algorithm and complexity	greedy vertices: add new vertex of minimum distance to partial tree. <br>O(V^2), <br>can be reduced with binary heap.
-Graph: Topological sort of DAG (2)	 1. DFS: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br>2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
-LinkedList: insertion in linked list tip	use dummy first node
-Longest Palindromic Substring	for each position, find longest even and odd length substring with this center O(n^2)|O(1)<br>DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1)<br><br>O(n) difficult Manacher.
-Max number of intersecting intervals	sort events: enter and exist of intervals. O(n log n)|O(n) aux
-Minimum difference partition	DP CanMakeSum[i][T], <br>T <= S/2<br>O(n S)
-String: Longest Substring Without Repeating Characters	Window. left and right pointers, hash set for characters in the substring, move either left or right O(n)|O(n) // traverse left to right, maintaining longest valid substring ending at this position, use map<char,position> to know where current character appeared last O(n)|O(n)
-String: substring search	naive O(n*m) <br><br> robin-karp rolling hash O(n + m) <br><br> advanced O(n)
-Subset sum: a subset of array sums to T	DP CanMakeSum[i][T]<br>O(n S)
-Tree: Check if a binary tree is subtree of another binary tree	Naive O(n^2), <br><br>O(n): inorder and preorder of subtree must be substrings of big tree
-Tree: Maximum path sum in a binary tree	recursive, only left, only right, both<br>O(n)
+Array: largest rectangle under histogram	O(n) left to right with stack
+DS: B-Tree	self balancing tree, <br>not binary, <br>good for r/w to external memory (DB FS)
+DS: external merge sort	sort chunck & write to disk, load chunk of chuck and merge-write
+DS: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
+DS: range minimum or range sum	Segment Tree
+DS: total storage for YT/FB	500 PB
+Graph: maximum clique algorithm	difficult, there are heuristics
+Graph: 4 shortests path algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
+Lang: pure virtual function	has to be implemented by a class that is not abstract
+Misc: NP-complete problems	SAT, knapsack, traveling salesman
+SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
+SD: ACID	atomicity, consistency, isolation, durability
+SD: drawback of DNS load balancing	results are cached by intermediate servers, so not responsive when change
+SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
+SD: mechanism for asynchronicity	queues
+SD: MySQL index based on which data structure in general	B-tree (or B+ ?)
+SD: tunable consistency	from "writes never fail" to <br><br>"block for all replicas to be readable" with quorum levels
+SD: types of replication	asynchronous: MySQL default, <br>synchronous: two phase commit MySQL-cluster default
+SD: how many queries per second for a MySQL DB server	no answer, <br>depends on query/HW. 1K QPS
+SD: how many YT videos watched every day	5B
+SD: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second
+Tree: balanced BST: complexity, 4 examples	Search/insert/delete O(log n)<br><br>AVL<br>Red-black<br>B-tree<br>2-3 tree
+Tree: k-d tree	split in 1 dimension at each node (median of coordinate to get balance)
+Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capacity reached.
+SD: CAP theorem.<br>2 possible combinations	Consistency: every read gets most recent write or error<br>Availability: every request gets response but no guaranties<br>Network Partition Tolerance: continues even if network failure<br><br>CP or AP
+SD: consistency patterns	weak: best effort<br>eventual: asynchronous replication<br>strong: after a write, reads will see it. RDBMS.
+SD: techniques to scale RDBMS	master-slave replication, master-master replication, federation, sharding, denormalization, and SQL tuning.
+SD: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
+SD: 4 cache strategies	cache aside: app does everything<br>write-through: cache interacts with DB<br>write-behind/back: app writes to cache and async write to DB<br>refresh ahead: auto refresh by cache

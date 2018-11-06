@@ -1,27 +1,33 @@
-2D Array: Boggle (Find all possible words in a board of characters)	DFS from every start cell, mark visited cells.<br><br>Complexity?<br> Better solution with Tree.
-Array: rotate image by 90 degrees	ring by ring, <br><br>or reverse up to down (r2l) and transpose
-Coin Game: coins in a row, pick one	windowed DP<br><br>DP F(from i-th coin to j-th coin) = max(. + min(), . + min())<br>O(n^2)
-Combinatorics: compute<br>subsets of a set<br>permutations of a set	subsets: recursive, or iterative<br><br>permutations: recursive
 DS: 2 example use of a heap	extract minimum with streaming data<br>merge k sorted arrays
-DS: implement a queue using two stacks	empty first stack into second stack
-Graph: shortest path when edges have no weight	BFS
-Heap: complexity and algo of insert, extract-min, search	use last element, bubble up or down<br>O(log n)<br><br>search: difficult O(n)
 Heapify: algorithm and complexity	heapify from the lower levels to the upper levels, "sinkdown" roots of subtrees<br><br>O(n)
-LinkedList: is a linked list a palindrome?	reverse second half, check (and restore)
-LinkedList: Select random node from linked list	method1: naive count nodes in first pass. <br><br>method2:reservoir sampling O(n) one pass.
 LinkedList: Sort a linked list	use merge sort
 MergeSort: best and worst case<br>memory	always O(n log n)<br>memory: O(n) aux
 QuickSort: best and worst case of QuickSort<br><br>Memory complexity:	best: pivot splits array in half each time O(n log n)/O(log n)<br>worst: pivot is min (or max), O(n^2)/O(log n)<br><br>Memory: O(log n) with in-place partitioning
-Search: find element in a sorted rotated array	double BS: <br><br>find the frontier, <br>BS on left or right part
-Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
-Sort: insertion sort<br>selection sort	insertion: insert A[i] in sorted A[0]...A[i-1]<br><br>select min put it at A[i=0], i++
 Sort: sort when element are nearly sorted (2 ways)	heapsort<br>insertion sort
 Sort: sort when limited range of keys	counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
-String: determine if a string has only unique characters (with and without memory)	use a set, <br><br>or sort the string
-String: Find the smallest window in a string containing all characters of another string	sliding window O(n)|O(n)
 Tree: Check if binary tree is full (not complete)	recursive O(n)
 Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
 Tree: iterative in-order traversal of binary tree	stack and curnode pointer
 Fenwick Tree	type of segment tree<br>used for prefix sums
 Binary heap definition	complete binary<br>with heap property (children are smaller)
 Priority queues: 2 implementations	heaps<br>self balancing BST
+Array: Find maximum in sliding window	1. use self-balanced BST O(n log n). <br><br>2. Use dequeue keeping only useful elements O(n)
+Graph: Detect cycle in a graph	Colorized DFS look for back-edge O(V + E).<br><br> Also possible with Union-Find: loop on edges, union-find on vertices O(E)?
+Graph: Find connected components of a graph	BFS/DFS O(V + E), <br>or just Union-Find with no graph traversal<br><br>If dynamic changes, keep track of components with Union-Find.
+SD: Federation	(or functional partitioning) splits up databases by function. <br>For example, forums, users, and products
+SD: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
+SD: NoSQL 4 types of stores	key-value: Redis, memcached<br><br>document store: MongoDB, CouchDB, ElasticSearch<br><br>wide-column store: BigTable, HBase, Cassandra<br><br>graph DB: neo4j, flockdb
+SD: RAM SSD HDD latency	RAM 100 ns<br>SSD 0.1 ms    (x1000)<br>HDD 10 ms    (x100)
+SD: RAM SSD HDD R/W speed	RAM 10 GB/s<br>SSD 500 MB/s    (/20)<br> HDD 100 MB/s    (/5)
+SD: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
+SD: Read 4K randomly from SSD	150 us
+SD: Send 1K bytes over 1 Gbps network	10 us
+SD: how many FB users	2B Montly active users
+SD: how many tweets per second, per day	per second: 6000<br><br>per day: 500 million
+SD: most followers on twitter	1B
+Graph: types of graphs	Tree, DAG, bipartite, complete (all clique), intersection, planar
+Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>Kosaraju DFS O(V + E)
+Adv/Disadvantage of BST vs. HashTable	BST can enumerate in key order<br>HashTable simpler when key repeats<br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
+Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at end, resize heap O(log n)
+3 big sorts on large data	quicksort<br>merge sort: stable, parallelizable, works on lists, contiguous access<br>heap sort: 
+Radix sort: description, complexity	MSB or LSB<br>O(wn) 
