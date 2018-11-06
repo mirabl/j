@@ -23,3 +23,5 @@ Tree: Check if binary tree is full (not complete)	recursive O(n)
 Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
 Tree: iterative in-order traversal of binary tree	stack and curnode pointer
 Fenwick Tree	type of segment tree<br>used for prefix sums
+Binary heap definition	complete binary<br>with heap property (children are smaller)
+Priority queues: 2 implementations	heaps<br>self balancing BST
