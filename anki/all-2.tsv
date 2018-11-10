@@ -1,7 +1,7 @@
 Array: largest rectangle under histogram	O(n) left to right with stack
-DS: B-Tree	self balancing tree, <br>not binary, <br>good for r/w to external memory (DB FS)
+DS: B-Tree	self balancing tree, <br>not binary, generalization of BST<br>good for r/w to external memory (DB FS)
 DS: external merge sort	sort chunck & write to disk, load chunk of chuck and merge-write
-DS: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
+DS: good sort for a linked list	good: merge- sort<br><br>possible but more difficult?: quick sort
 DS: range minimum or range sum	Segment Tree
 DS: total storage for YT/FB	500 PB
 Graph: maximum clique algorithm	difficult, there are heuristics
@@ -27,3 +27,8 @@ SD: consistency patterns	weak: best effort<br>eventual: asynchronous replication
 SD: techniques to scale RDBMS	master-slave replication, master-master replication, federation, sharding, denormalization, and SQL tuning.
 SD: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
 SD: 4 cache strategies	cache aside: app does everything<br>write-through: cache interacts with DB<br>write-behind/back: app writes to cache and async write to DB<br>refresh ahead: auto refresh by cache
+SD: advantage of columnar storage	if usage pattern is to read whole table<br>but only some columns<br>don't read unused columns
+SD: WAL	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
+SD: most popular MySQL storage engine	InnoDB
+SD: replication modes of MySQL	statement-based ("insert ...") = logical<br>row-based: result of the statement = physical<br><br>or a mix
+SD: use cases of UDP	best effort delivery for voice/video streaming, games

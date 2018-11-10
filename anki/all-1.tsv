@@ -30,4 +30,5 @@ Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs 
 Adv/Disadvantage of BST vs. HashTable	BST can enumerate in key order<br>HashTable simpler when key repeats<br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
 Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at end, resize heap O(log n)
 3 big sorts on large data	quicksort<br>merge sort: stable, parallelizable, works on lists, contiguous access<br>heap sort: 
-Radix sort: description, complexity	MSB or LSB<br>O(wn) 
+Radix sort: description, complexity	MSB or LSB<br>O(wn)
+SD: consensus algorithm	Paxos
