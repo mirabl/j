@@ -23,3 +23,22 @@ vector<int> productExceptSelf(vector<int>& nums) {
 }
 
 };
+
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int N = nums.size();
+        vector<int> res(N);
+        for (int i = 0; i < N; i++) {
+            res[i] = i > 0 ? res[i - 1] * nums[i - 1] : 1;
+        }
+        
+        int acc = 1;
+        for (int i = N - 1; i >= 0; i--) {
+            res[i] = res[i] * acc;
+            acc *= nums[i];
+        }
+        
+        return res;
+    }
+};
