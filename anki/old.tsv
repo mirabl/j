@@ -104,3 +104,4 @@ Tree: Serialize/Deserialize	Special case? BST, complete, full?. <br>Inorder arra
 Array: Given infinite coins of value (V1, V2, … ,VN), find the minimum number of coins with sum S	DP(n, S)
 Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	BFS from start word
 Array: Print matrix in spiral	four variables top bottom left right. Reduce
+Product of array except self	two steps with prefix product<br><br>no need of additional array
