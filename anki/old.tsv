@@ -104,4 +104,34 @@ Tree: Serialize/Deserialize	Special case? BST, complete, full?. <br>Inorder arra
 Array: Given infinite coins of value (V1, V2, … ,VN), find the minimum number of coins with sum S	DP(n, S)
 Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	BFS from start word
 Array: Print matrix in spiral	four variables top bottom left right. Reduce
-Product of array except self	two steps with prefix product<br><br>no need of additional array
+Product of array except self	two steps with left right prefix product<br><br>no need of additional array
+MergeSort: best and worst case<br>memory	always O(n log n)<br>memory: O(n) aux
+DS: 2 example use of a heap	extract minimum with streaming data<br>merge k sorted arrays
+Heapify: algorithm and complexity	heapify from the lower levels to the upper levels, "sinkdown" roots of subtrees<br><br>O(n)
+LinkedList: Sort a linked list	use merge sort
+QuickSort: best and worst case of QuickSort<br><br>Memory complexity:	best: pivot splits array in half each time O(n log n)/O(log n)<br>worst: pivot is min (or max), O(n^2)/O(log n)<br><br>Memory: O(log n) with in-place partitioning
+Sort: sort when element are nearly sorted (2 ways)	heapsort<br>insertion sort
+Sort: sort when limited range of keys	counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
+Tree: Check if binary tree is full (not complete)	recursive O(n)
+Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
+Tree: iterative in-order traversal of binary tree	stack and curnode pointer
+Array: Find maximum in sliding window	1. use self-balanced BST O(n log n). <br><br>2. Use dequeue keeping only useful elements O(n)
+Graph: Detect cycle in a graph	Colorized DFS look for back-edge O(V + E).<br><br> Also possible with Union-Find: loop on edges, union-find on vertices O(E)?
+Graph: Find connected components of a graph	BFS/DFS O(V + E), <br>or just Union-Find with no graph traversal<br><br>If dynamic changes, keep track of components with Union-Find.
+SD: how many FB users	2B Montly active users
+SD: most followers on twitter	1B
+SD: how many tweets per second, per day	per second: 6000<br><br>per day: 500 million
+SD: MySQL index based on which data structure in general	B-tree (or B+ ?)
+SD: ACID	atomicity, consistency, isolation, durability
+SD: mechanism for asynchronicity	queues
+SD: tunable consistency	from "writes never fail" to <br><br>"block for all replicas to be readable" with quorum levels
+SD: types of replication	asynchronous: MySQL default, <br>synchronous: two phase commit MySQL-cluster default
+SD: how many queries per second for a MySQL DB server	no answer, <br>depends on query/HW. 1K QPS
+SD: how many YT videos watched every day	5B
+Misc: NP-complete problems	SAT, knapsack, traveling salesman
+Tree: k-d tree	split in 1 dimension at each node (median of coordinate to get balance)
+Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capacity reached.
+Lang: pure virtual function	has to be implemented by a class that is not abstract
+DS: B-Tree	self balancing tree, <br>not binary, generalization of BST<br>good for r/w to external memory (DB FS)
+DS: external merge sort	sort chunk & write to disk, load chunk of chuck and merge-write
+DS: total storage for YT/FB	500 PB

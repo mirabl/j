@@ -29,6 +29,5 @@ suffix tree	TODO
 suffix array	TODO
 HDD IOPS	200 IOPS/s
 rewrite SD number in terms of latency and throughput	.
-SD: Back pressure	.
 SD: TCP guarantees	.
 SD: linearizability	.
