@@ -19,3 +19,14 @@ SD: consensus algorithm	Paxos
 SD: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
 Tree: reconstruct tree from inorder and preprod	find root, left inorder, right inorder etc.<br>recurse
 SD: how many seconds in a day	90K
+Prob. solving:<br>optimize parameter (find min) when difficult directly	binary search + checkValue(mid)
+SD: how many round trips for a consensus	1-4
+SD: 3 consensus algos and their CAP status	Paxos, majority quorums with minority in partition: CP<br><br>2 phase commit, full strict quorum protocols: CA<br><br>Gossip, Dynamo, conflict resolution: AP
+SD: why impossible to availability and strong consistency during network partition	can not prevent divergence if partitioned nodes continue to work
+SD: 2PC	two phase commit protocol<br>atomic commitment protocol<br><br>consensus on whether to commit or abort a transaction
+SD: how many Kafka messages per day at Uber	trillions
+DS: specialized heaps	when limited set of keys, or monotonic input
+Graph: shortest paths in DAG	topological sort + greedy, O(V + E)
+Graph: Kosaraju	find SCC<br>first DFS topological sort<br>second DFS collect SCC
+Graph: Tarjan	SCC in only one DFS pass
+Set cover problem	universe<br>find minimum number of subsets which union to universe<br><br>maybe weights

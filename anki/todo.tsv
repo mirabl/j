@@ -31,3 +31,4 @@ HDD IOPS	200 IOPS/s
 rewrite SD number in terms of latency and throughput	.
 SD: TCP guarantees	.
 SD: linearizability	.
+at most once, at least once, exaclty once	.
