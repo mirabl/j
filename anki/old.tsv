@@ -135,3 +135,26 @@ Lang: pure virtual function	has to be implemented by a class that is not abstrac
 DS: B-Tree	self balancing tree, <br>not binary, generalization of BST<br>good for r/w to external memory (DB FS)
 DS: external merge sort	sort chunk & write to disk, load chunk of chuck and merge-write
 DS: total storage for YT/FB	500 PB
+Fenwick Tree	type of segment tree<br>used for prefix sums
+Binary heap definition	complete binary<br>with heap property (children are smaller)
+Priority queues: 2 implementations	heaps<br>self balancing BST
+SD: Federation	(or functional partitioning) splits up databases by function. <br>For example, forums, users, and products
+SD: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
+SD: NoSQL 4 types of stores	key-value: Redis, memcached<br><br>document store: MongoDB, CouchDB, ElasticSearch<br><br>wide-column store: BigTable, HBase, Cassandra<br><br>graph DB: neo4j, flockdb
+SD: RAM SSD HDD latency	RAM 100 ns<br>SSD 0.1 ms    (x1000)<br>HDD 10 ms    (x100)
+SD: RAM SSD HDD R/W speed	RAM 10 GB/s<br>SSD 500 MB/s    (/20)<br> HDD 100 MB/s    (/5)
+SD: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
+SD: Read 4K randomly from SSD	150 us
+SD: Send 1K bytes over 1 Gbps network	10 us
+Graph: types of graphs	connected,Tree, DAG, bipartite, complete (all clique), intersection, planar
+Array: largest rectangle under histogram	O(n) left to right with stack
+DS: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
+DS: range minimum or range sum	Segment Tree
+Graph: maximum clique algorithm	difficult, there are heuristics
+Graph: 4 shortests path algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
+SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
+SD: drawback of DNS load balancing	results are cached by intermediate servers, so not responsive when change
+SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
+SD: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second
+Tree: balanced BST: complexity, 4 examples	Search/insert/delete O(log n)<br><br>AVL<br>Red-black<br>B-tree<br>2-3 tree
+S

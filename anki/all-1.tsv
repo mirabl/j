@@ -1,32 +1,26 @@
-Fenwick Tree	type of segment tree<br>used for prefix sums
-Binary heap definition	complete binary<br>with heap property (children are smaller)
-Priority queues: 2 implementations	heaps<br>self balancing BST
-SD: Federation	(or functional partitioning) splits up databases by function. <br>For example, forums, users, and products
-SD: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
-SD: NoSQL 4 types of stores	key-value: Redis, memcached<br><br>document store: MongoDB, CouchDB, ElasticSearch<br><br>wide-column store: BigTable, HBase, Cassandra<br><br>graph DB: neo4j, flockdb
-SD: RAM SSD HDD latency	RAM 100 ns<br>SSD 0.1 ms    (x1000)<br>HDD 10 ms    (x100)
-SD: RAM SSD HDD R/W speed	RAM 10 GB/s<br>SSD 500 MB/s    (/20)<br> HDD 100 MB/s    (/5)
-SD: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
-SD: Read 4K randomly from SSD	150 us
-SD: Send 1K bytes over 1 Gbps network	10 us
-Graph: types of graphs	Tree, DAG, bipartite, complete (all clique), intersection, planar
-Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>Kosaraju DFS O(V + E)
-Adv/Disadvantage of BST vs. HashTable	BST can enumerate in key order<br>HashTable simpler when key repeats<br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
-Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at end, resize heap O(log n)
-3 big sorts on large data<br>+ advantages	quicksort<br>merge sort: stable, parallelizable, works on lists, contiguous access<br>heap sort: 
-Radix sort: description, complexity	MSB or LSB<br>O(wn)
-SD: consensus algorithm	Paxos
-SD: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
 Tree: reconstruct tree from inorder and preprod	find root, left inorder, right inorder etc.<br>recurse
 SD: how many seconds in a day	90K
 Prob. solving:<br>optimize parameter (find min) when difficult directly	binary search + checkValue(mid)
+DS: specialized heaps	when limited set of keys, or monotonic input
 SD: how many round trips for a consensus	1-4
 SD: 3 consensus algos and their CAP status	Paxos, majority quorums with minority in partition: CP<br><br>2 phase commit, full strict quorum protocols: CA<br><br>Gossip, Dynamo, conflict resolution: AP
 SD: why impossible to availability and strong consistency during network partition	can not prevent divergence if partitioned nodes continue to work
 SD: 2PC	two phase commit protocol<br>atomic commitment protocol<br><br>consensus on whether to commit or abort a transaction
-SD: how many Kafka messages per day at Uber	trillions
-DS: specialized heaps	when limited set of keys, or monotonic input
-Graph: shortest paths in DAG	topological sort + greedy, O(V + E)
-Graph: Kosaraju	find SCC<br>first DFS topological sort<br>second DFS collect SCC
-Graph: Tarjan	SCC in only one DFS pass
-Set cover problem	universe<br>find minimum number of subsets which union to universe<br><br>maybe weights
+SD: how many Kafka messages per second at Uber	billions
+SD: 3 implementations of strong consistency	Primary/backup<br>2PC<br>Paxos
+SD: primary/backup replication	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous: ensure that write are done one backups before returning to the client
+SD: 2PC	unanimous vote: commit or abort<br>static master<br>fails if coordinator and a node fail when commit<br>not partition tolerant, tail latency sensitives
+SD: Paxos	majority vote<br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency
+SD: CA systems	more common, not partition aware,<br>often 2PC<br>traditional RDBMS
+SD: CP systems	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
+SD: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
+SD: spit brain	failover to backup due to temporary network issue<br>primary and backup are active at the same time
+SD: 2PC	decent balance between perf and fault tolerance<br>so popular in RDBMS<br>but not resiliant to network partitions and bad with latency
+SD: partition tolerant consensus	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
+SD: Paxos used by	Chubby, BigTable/Megastore, GFS, Spanner
+SD: Chubby	distributed lock service<br>lock information in small files<br>stored in replicated DB<br>DB implemented on top of fault-tolerant log layer based on Paxos
+SD: Zookeeper	basically open source version of Chubby
+SD: strong consistency models	linearizable consistency: real world ordering respected<br>sequential consistency: can be reordered as long as consistent on each node
+SD: weak consistency models	client-centric: ex. client will never see older value<br>causal (strongest): <br>eventual: after some time all replicas agree
+SD: how a Lamport clock works	when a process does work, increment<br>when send a message, include counter<br>when message received, take the max counter of self and message
+SD: replace global clock by	vector clock<br>used by Riak, Voldemort<br>(t1, ..., tN)<br>extend Lamport clock

@@ -1,13 +1,3 @@
-Array: largest rectangle under histogram	O(n) left to right with stack
-DS: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
-DS: range minimum or range sum	Segment Tree
-Graph: maximum clique algorithm	difficult, there are heuristics
-Graph: 4 shortests path algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
-SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
-SD: drawback of DNS load balancing	results are cached by intermediate servers, so not responsive when change
-SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
-SD: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second
-Tree: balanced BST: complexity, 4 examples	Search/insert/delete O(log n)<br><br>AVL<br>Red-black<br>B-tree<br>2-3 tree
 SD: CAP theorem.<br>2 possible combinations	Consistency: every read gets most recent write or error<br>Availability: every request gets response but no guaranties<br>Network Partition Tolerance: continues even if network failure<br><br>CP or AP
 SD: consistency patterns	weak: best effort<br>eventual: asynchronous replication<br>strong: after a write, reads will see it. RDBMS.
 SD: techniques to scale RDBMS	master-slave replication<br>master-master replication<br>federation<br>shardin<br>denormalization<br>and SQL tuning
@@ -19,3 +9,16 @@ SD: MySQL storage engine	InnoDB: row locking so better concurrency<br><br>MyISAM
 SD: replication modes of MySQL	statement-based ("insert ...") = logical<br>row-based: result of the statement = physical<br><br>or a mix
 SD: use cases of UDP	best effort delivery for voice/video streaming, games
 SD: memcached perf	on machine with good network, 200k/s easily<br>latency: 1ms
+Graph: shortest paths in DAG	topological sort + greedy, O(V + E)
+Graph: Kosaraju	find SCC<br>first DFS topological sort<br>second DFS collect SCC
+Graph: Tarjan	SCC in only one DFS pass
+Set cover problem	universe<br>find minimum number of subsets which union to universe<br><br>maybe weights
+Graph: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard
+Graph: matching, perfect matching	set of edges without common vertices<br>perfect: all vertices are matched, like minimum size edge cover
+Graph: edge cover	set of edges such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
+Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>Kosaraju DFS O(V + E)
+Adv/Disadvantage of BST vs. HashTable	BST can enumerate in key order<br>HashTable simpler when key repeats<br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
+Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at end, resize heap O(log n)
+3 big sorts on large data<br>+ advantages	quicksort<br>merge sort: stable, parallelizable, works on lists, contiguous access<br>heap sort: 
+Radix sort: description, complexity	MSB or LSB<br>O(wn)
+SD: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
