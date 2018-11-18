@@ -16,3 +16,4 @@ Graph: matching, perfect matching	set of edges without common vertices<br>perfec
 Graph: edge cover	set of edges such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
 Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>Kosaraju DFS O(V + E)
 SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
+Alg: DP types	1-D<br>2-D<br>interval/window<br>tree<br>subset (TSP)
