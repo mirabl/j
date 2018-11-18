@@ -28,16 +28,15 @@ String: Is a string with (), {}, [] balanced	stack with active items O(n)
 SD: Denormalization	attempts to improve read perf at the expense of write perf. <br>Redundant copies of the data are written in multiple tables to avoid expensive joins. 
 SD: Sharding	distributes data across different databases such that each database can only manage a subset of the data.
 SD: vertical/horizontal scaling 	vertical: add more power to a machine<br><br>horizontal: add more machines
-SGraph: clique definition	complete subgraph
+Graph: clique definition	complete subgraph
 Graph: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and _distance to target_
 Misc: websocket	persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
 Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
 Sort: bubble sort	swap pairs to put max at i=end of array<br>i--
 Bit: test if a number is a power of two	(n & (n-1)) == 0
-SD: 2 types of consistency	strong consistency<br><br>eventual consistency
 SD: shared nothing	each node is independent, no SPOF (eg. centrally stored state info or DB)
 SD: replication lag for MySQL	time between read/write to master and replication to all slaves
-SD: topics to adress	HA, scaling, sizing, discovery, latency, build whole system with client
+SD: topics to address	HA, scaling, sizing, discovery, latency, build whole system with client
 Tree: find lowest common ancestor of two nodes in a binary tree (not BST)	1. find path to x to y find last common element. O(n) 2 traversals. <br><br>2. rec: LCA has one node on each side. O(n) 1 traversal.
 SD: consistency problems in DB	read-after-write
 DS: check if item is in known set	Bloom filter if no space for hash table
@@ -94,8 +93,8 @@ String: Regex matching	Recursive, DP. With offset going from left to right.
 Tree: Inorder sucessor in BST without parent pointer	Search from root O(h). <br>Instead of traveling up with parent pointers: Travel down the tree, if a node’s data is greater than root’s data then go right side, otherwise go to left side.
 Tree: Inorder sucessor in BT with parent pointer	If right subtree of node is not NULL, successor in minimum of right subtree. <br>Else then succ is one of the ancestors. <br>Travel up using the parent pointer until you see a node which is left child of it’s parent. <br>The parent of such a node is the succ. O(h)
 Array: Given an array of integers, every element appears twice except for one. Find that single one	XOR O(n)
-SD: how many round trips per second world-wide/within a data center	world-wide: 6-7<br><br>datacenter: 2000
-D: Master-master replication	Both masters serve reads and writes and coordinate with each other on writes. <br>If either master goes down, the system can continue to operate with both reads and writes.
+SD low-level: how many round trips per second world-wide/within a data center	world-wide: 6-7<br><br>datacenter: 2000
+SD: Master-master replication	Both masters serve reads and writes and coordinate with each other on writes. <br>If either master goes down, the system can continue to operate with both reads and writes.
 SD: Master-slave replication	The master serves reads and writes, replicating writes to one or more slaves, which serve only reads. <br>Slaves can also replicate to additional slaves in a tree-like fashion. <br>If the master goes offline, the system can continue to operate in read-only mode until a slave is promoted to a master or a new master is provisioned.
 Tree: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if in-order traversal is sorted O(n)
 Tree: k-th highest element of BST	reverse inorder traversal of BST. O(h + k)
@@ -119,14 +118,13 @@ Array: Find maximum in sliding window	1. use self-balanced BST O(n log n). <br><
 Graph: Detect cycle in a graph	Colorized DFS look for back-edge O(V + E).<br><br> Also possible with Union-Find: loop on edges, union-find on vertices O(E)?
 Graph: Find connected components of a graph	BFS/DFS O(V + E), <br>or just Union-Find with no graph traversal<br><br>If dynamic changes, keep track of components with Union-Find.
 SD: how many FB users	2B Montly active users
-SD: most followers on twitter	1B
-SD: how many tweets per second, per day	per second: 6000<br><br>per day: 500 million
-SD: MySQL index based on which data structure in general	B-tree (or B+ ?)
-SD: ACID	atomicity, consistency, isolation, durability
-SD: mechanism for asynchronicity	queues
+SD apps: most followers on twitter	1B
+SD apps: how many tweets per second, per day	per second: 6000<br><br>per day: 500 million
+SD components: MySQL index based on which data structure in general	B-tree (or B+ ?)
+SD primitives: ACID	atomicity, consistency, isolation, durability
+SD apps: mechanism for asynchronicity	queues
 SD: tunable consistency	from "writes never fail" to <br><br>"block for all replicas to be readable" with quorum levels
-SD: types of replication	asynchronous: MySQL default, <br>synchronous: two phase commit MySQL-cluster default
-SD: how many queries per second for a MySQL DB server	no answer, <br>depends on query/HW. 1K QPS
+SD components: how many queries per second for a MySQL DB server	no answer, <br>depends on query/HW. 1K QPS
 SD: how many YT videos watched every day	5B
 Misc: NP-complete problems	SAT, knapsack, traveling salesman
 Tree: k-d tree	split in 1 dimension at each node (median of coordinate to get balance)
@@ -134,18 +132,17 @@ Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capac
 Lang: pure virtual function	has to be implemented by a class that is not abstract
 DS: B-Tree	self balancing tree, <br>not binary, generalization of BST<br>good for r/w to external memory (DB FS)
 DS: external merge sort	sort chunk & write to disk, load chunk of chuck and merge-write
-DS: total storage for YT/FB	500 PB
 Fenwick Tree	type of segment tree<br>used for prefix sums
 Binary heap definition	complete binary<br>with heap property (children are smaller)
 Priority queues: 2 implementations	heaps<br>self balancing BST
 SD: Federation	(or functional partitioning) splits up databases by function. <br>For example, forums, users, and products
-SD: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
-SD: NoSQL 4 types of stores	key-value: Redis, memcached<br><br>document store: MongoDB, CouchDB, ElasticSearch<br><br>wide-column store: BigTable, HBase, Cassandra<br><br>graph DB: neo4j, flockdb
-SD: RAM SSD HDD latency	RAM 100 ns<br>SSD 0.1 ms    (x1000)<br>HDD 10 ms    (x100)
-SD: RAM SSD HDD R/W speed	RAM 10 GB/s<br>SSD 500 MB/s    (/20)<br> HDD 100 MB/s    (/5)
-SD: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
-SD: Read 4K randomly from SSD	150 us
-SD: Send 1K bytes over 1 Gbps network	10 us
+SD low-level: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
+SD components: NoSQL 4 types of stores	key-value: Redis, memcached<br><br>document store: MongoDB, CouchDB, ElasticSearch<br><br>wide-column store: BigTable, HBase, Cassandra<br><br>graph DB: neo4j, flockdb
+SD low-level: RAM SSD HDD latency	RAM 100 ns<br>SSD 0.1 ms    (x1000)<br>HDD 10 ms    (x100)
+SD low-level: RAM SSD HDD R/W speed	RAM 10 GB/s<br>SSD 500 MB/s    (/20)<br> HDD 100 MB/s    (/5)
+SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
+SD low-level: Read 4K randomly from SSD	150 us
+SD low-level: Send 1K bytes over 1 Gbps network	10 us
 Graph: types of graphs	connected,Tree, DAG, bipartite, complete (all clique), intersection, planar
 Array: largest rectangle under histogram	O(n) left to right with stack
 DS: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
@@ -155,6 +152,11 @@ Graph: 4 shortests path algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Gree
 SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
 SD: drawback of DNS load balancing	results are cached by intermediate servers, so not responsive when change
 SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
-SD: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second
+SD components: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second
 Tree: balanced BST: complexity, 4 examples	Search/insert/delete O(log n)<br><br>AVL<br>Red-black<br>B-tree<br>2-3 tree
-S
+Tree: reconstruct tree from inorder and preprod	find root, left inorder, right inorder etc.<br>recurse
+DS: specialized heaps	when limited set of keys, or monotonic input
+Adv/Disadvantage of BST vs. HashTable	BST can enumerate in key order<br>HashTable simpler when key repeats<br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
+Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at end, resize heap O(log n)
+3 big sorts on large data<br>+ advantages	quicksort<br>merge sort: stable, parallelizable, works on lists, contiguous access<br>heap sort: 
+Radix sort: description, complexity	MSB or LSB<br>O(wn)
