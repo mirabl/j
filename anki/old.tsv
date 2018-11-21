@@ -160,3 +160,4 @@ Adv/Disadvantage of BST vs. HashTable	BST can enumerate in key order<br>HashTabl
 Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at end, resize heap O(log n)
 3 big sorts on large data<br>+ advantages	quicksort<br>merge sort: stable, parallelizable, works on lists, contiguous access<br>heap sort: 
 Radix sort: description, complexity	MSB or LSB<br>O(wn)
+SD components: techniques to scale RDBMS	master-slave replication<br>master-master replication<br>federation<br>sharding<br>denormalization<br>SQL tuning

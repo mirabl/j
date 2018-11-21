@@ -1,11 +1,10 @@
 SD primitives: CAP theorem.<br>2 possible combinations	Consistency: every read gets most recent write or error<br>Availability: every request gets response but no guaranties<br>Network Partition Tolerance: continues even if network failure<br><br>CP or AP
-SD components: techniques to scale RDBMS	master-slave replication<br>master-master replication<br>federation<br>sharding<br>denormalization<br>SQL tuning
 SD primitives: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
 SD components: 4 cache strategies	cache aside: app does everything<br><br>write-through: cache interacts with DB<br><br>write-behind/back: app writes to cache and async write to DB<br><br>refresh ahead: auto refresh by cache
 SD components: advantage of columnar storage	if usage pattern is to read whole table<br>but only some columns<br>don't read unused columns
 SD primitives: WAL	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
 SD components: MySQL storage engine	InnoDB: row locking so better concurrency<br><br>MyISAM: old, maybe table locking better when lots of reads
-SD components: replication modes of MySQL	statement-based ("insert ...") = logical<br>row-based: result of the statement = physical<br><br>or a mix
+SD components: replication modes of MySQL<br>(what is in the WAL)	statement-based ("insert ...") = logical<br>row-based: result of the statement = physical<br><br>or a mix
 SD low-level: use cases of UDP	best effort delivery for voice/video streaming, games
 SD components: memcached perf	on machine with good network, 200k/s easily<br>latency: 1ms
 Graph: shortest paths in DAG	topological sort + greedy, O(V + E)

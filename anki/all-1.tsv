@@ -14,7 +14,7 @@ SD primitives: CA systems	more common, not partition aware,<br>often 2PC<br>trad
 SD primitives: CP systems	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
 SD primitives: split brain	failover to backup due to temporary network issue<br>primary and backup are active at the same time
 SD components: Chubby	distributed lock service<br>lock information in small files<br>stored in replicated DB<br>DB implemented on top of fault-tolerant log layer based on Paxos<br>open source: Zookeeper
-SD primitives: strong consistency models	linearizable consistency: real world ordering respected<br>sequential consistency: can be reordered as long as consistent on each node
+SD primitives: strong consistency models	linearizable consistency: real world ordering respected<br><br>sequential consistency: can be reordered as long as consistent on each node
 SD primitives: weak consistency models	client-centric: ex. client will never see older value<br><br>causal (strongest): <br><br>eventual: after some time all replicas agree
 SD primitives: how a Lamport clock works	when a process does work, increment<br>when send a message, include counter<br>when message received, take the max counter of self and message
 SD primitives: replace global clock by	vector clock<br><br><br>(t1, ..., tN)<br>extend Lamport clock<br><br>used by Riak, Voldemort
