@@ -58,3 +58,57 @@ public:
 };
 
 // better with prefix tree?
+
+class Solution {
+public:
+    vector<vector<char>> B;
+    set<string> W;
+    set<string> resS;
+    int nrows, ncols;
+    set<string> prefixes;
+    
+    void dfs(int row, int col, string& cur) {
+        if (B[row][col] == 'X' || prefixes.count(cur) == 0) {
+            return;
+        }
+        
+        int tmp = B[row][col];
+        cur += B[row][col];
+        B[row][col] = 'X';
+        if (W.count(cur) == 1) {
+            resS.insert(cur);
+        }  
+        
+        for (int i = 0; i < 4; i++) {
+            int rn = row + vector<int>{1, -1, 0, 0}[i];
+            int cn = col + vector<int>{0, 0, 1, -1}[i];
+            if (rn >= 0 && rn < nrows && cn >= 0 && cn < ncols) {
+                dfs(rn, cn, cur);
+            }
+        }
+        B[row][col] = tmp;
+        cur.pop_back();
+    }
+    
+    vector<string> findWords(vector<vector<char>>& board_, vector<string>& words) {
+        B = board_;
+        for (auto w: words) {
+            W.insert(w);
+            for (int i = 0; i <= w.size(); i++) {
+                prefixes.insert(w.substr(0, i));
+            }
+        }
+        
+        nrows = B.size();
+        ncols = B[0].size();
+        
+        for (int row = 0; row < nrows; row++) {
+            for (int col = 0; col < ncols; col++) {
+                string cur;
+                dfs(row, col, cur);
+            }
+        }
+        return vector<string>(resS.begin(), resS.end());
+    }
+};
+

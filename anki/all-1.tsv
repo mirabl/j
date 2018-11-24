@@ -1,5 +1,3 @@
-SD primitives: 3 consensus algos and their CAP status	2 phase commit, full strict quorum protocols: CA<br><br>Paxos, majority quorums with minority in partition: CP<br><br>Gossip, Dynamo, conflict resolution: AP
-SD primitives: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
 SD primitives: primary/backup replication<br>master, works how, network, failover	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous variant: ensure that write are done one backups before returning to the client
 SD primitives: 2PC	unanimous vote: commit or abort<br>static master<br>fails if coordinator and a node fail when commit<br>not partition tolerant, tail latency sensitives
 SD primitives: partition tolerant consensus<br>examples, how they work	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
