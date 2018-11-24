@@ -155,3 +155,63 @@ int main() {
     cout << w << endl;
     return 0;
 }
+
+
+
+
+// prim
+#include <iostream>
+#include <vector>
+#include <set>
+
+using namespace std;
+
+int N, M;
+vector<vector<pair<int, int>>> G;
+int INFTY = 11111111;
+
+int prim() {
+    int tw = 0;
+    set<int> S;
+    vector<int> d(N, INFTY);
+    S.insert(0);
+    d[0] = 0;
+    for (auto p: G[0]) {
+        d[p.first] = p.second;
+    }
+
+    while (S.size() != N) {
+        int nextJ = -1;
+        for (int j = 0; j < N; j++) {
+            if (S.count(j) == 1) {
+                continue;
+            }
+            if (nextJ == -1 || d[j] < d[nextJ]) {
+                nextJ = j;
+            }
+        }
+        tw += d[nextJ];
+        S.insert(nextJ);
+        for (auto p: G[nextJ]) {            
+            d[p.first] = min(d[p.first], p.second);
+        }
+    }
+    return tw;
+}
+
+int main() {
+    cin >> N >> M;
+    G.resize(N);
+    for (int m = 0; m < M; m++) {
+        int i, j, k;
+        cin >> i >> j >> k;
+        i--;
+        j--;
+        G[i].push_back({j, k});
+        G[j].push_back({i, k});
+    }
+
+    int res = prim();
+
+    cout << res << endl;
+}
