@@ -112,3 +112,89 @@ public:
     }
 };
 
+class Solution {
+public:
+    set<string> W;
+    int nrows, ncols;
+    char end = 0;
+    vector<bool> found;
+    struct TrieNode {
+        TrieNode* children[26];
+        int word;
+        TrieNode() {
+            for (int i = 0; i < 26; i++) {
+                children[i] = NULL;
+            }
+            word = -1;
+        }
+    };
+    TrieNode *root;
+    
+    void dfs(vector<vector<char>>& B, vector<string>& words, int row, int col, TrieNode *n) {
+        int tmp = B[row][col];
+        n = n->children[tmp - 'a'];
+        if (!n) {
+            return;
+        }
+        if (n->word != -1) {
+            found[n->word] = true;
+        }
+        
+        B[row][col] = 'X';
+        for (int i = 0; i < 4; i++) {
+            int rn = row + vector<int>{1, -1, 0, 0}[i];
+            int cn = col + vector<int>{0, 0, 1, -1}[i];
+            if (rn >= 0 && rn < nrows && cn >= 0 && cn < ncols && B[rn][cn] != 'X' && n->children[B[rn][cn] - 'a'] != NULL) {
+                dfs(B, words, rn, cn, n);
+            }
+        }
+        B[row][col] = tmp;
+    }
+       
+    bool hasPrefix2(string& s) {
+        TrieNode *n = root;
+        for (char c: s) {
+            if (n->children[c - 'a'] == NULL) {
+                return false;
+            }
+            n = n->children[c - 'a'];
+        }
+        return true;
+    }
+    
+   void insertWord(int i, string s) {
+        TrieNode *n = root;
+        for (char c: s) {
+            if (n->children[c - 'a'] == NULL) {
+                n->children[c - 'a'] = new TrieNode();
+            }
+            n = n->children[c - 'a'];
+        }
+       n->word = i;
+    }
+        
+    vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
+        root = new TrieNode();
+        found = vector<bool>(words.size(), false);
+        for (int i = 0; i < words.size(); i++) {
+            insertWord(i, words[i]);
+        }
+        
+        nrows = board.size();
+        ncols = board[0].size();
+        
+        for (int row = 0; row < nrows; row++) {
+            for (int col = 0; col < ncols; col++) {
+                dfs(board, words, row, col, root);
+            }
+        }
+        vector<string> res;
+        
+        for (int i = 0; i < words.size(); i++) {
+            if (found[i]) {
+                res.push_back(words[i]);
+            }
+        }
+        return res;
+    }
+};
