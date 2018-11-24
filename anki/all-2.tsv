@@ -19,7 +19,8 @@ Alg: DP types	1-D<br>2-D<br>interval/window<br>tree<br>subset (TSP, Hamilton, as
 Alg: median of medians	find approximate median<br><br>split in groups of 5<br>find median of each group<br>recurse
 DS: range tree	alternative to kd-tree<br><br>recursive multi-level best
 DS: segment tree	same name but different for Fenwick Trees (prefix sums)<br>store info on intervals or segments<br><br>find segments containing a query point<br>O(log Intervals + MatchingIntervals)
-Algo: closest pair	find the pair that is closest<br>O(n log n) with sweep line
+Algo: closest pair	find the pair that is closest<br>sweep line: O(n log n)<br>divide and conquer: O(n log^2 n)
 Algo: pseudo-polynomial time	running time polynomial in the numeric value of input<br>but exponential in the length of the input
 Graph: articulation point	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
 Graph: bridge	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
+Algo: problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams

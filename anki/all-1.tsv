@@ -22,3 +22,4 @@ SD apps: two difficulties of streaming systems	order<br>exactly once delivery
 SD primitives: two classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
 SD primitives: replication algorithms that maintain single-copy consistency	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
 SD components: default replication of MySQL	async primary/backup
+DS: LFU cache	3 hash maps, one with linked list as values

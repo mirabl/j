@@ -32,3 +32,4 @@ rewrite SD number in terms of latency and throughput	.
 SD: TCP guarantees	.
 SD: linearizability	.
 at most once, at least once, exaclty once	.
+DS: interval tree	add, remove, find intervals containing point<br>all O(log n)<br><br>BST with ([lo, hi], maxHiSubTree)
