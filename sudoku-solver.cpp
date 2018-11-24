@@ -172,3 +172,63 @@ public:
         s(board);
     }
 };
+
+
+//
+class Solution {
+public:
+    bool checkFree(vector<vector<char>>& b, int r, int c, char v) {
+        for (int cc = 0; cc < 9; cc++) {
+            if (b[r][cc] == v) {
+                return false;
+            }
+        }
+        for (int rr = 0; rr < 9; rr++) {
+            if (b[rr][c] == v) {
+                return false;
+            }
+        }
+        int rc = 3 * (r / 3);
+        int cc = 3 * (c / 3);
+        for (int ri = 0; ri < 3; ri++) {
+            for (int ci = 0; ci < 3; ci++) {
+                if (b[rc + ri][cc + ci] == v) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    bool s(vector<vector<char>>& b) {
+        int r, c;
+        for (r = 0; r < 9; r++) {
+            for (c = 0; c < 9; c++) {
+                if (b[r][c] == '.') {
+                    break;
+                }
+            }
+            if (b[r][c] == '.') {
+                break;
+            }
+        }
+        if (r >= 9) {
+            return true;
+        }
+        
+        for (char v = '1'; v <= '9'; v++) {
+            if (checkFree(b, r, c, v)) {
+                b[r][c] = v;
+                if (s(b)) {
+                    return true;
+                }
+            }
+        }
+        b[r][c] = '.';
+        return false;
+    }
+    
+    void solveSudoku(vector<vector<char>>& board) {
+        s(board);
+    }
+};
