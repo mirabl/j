@@ -161,3 +161,15 @@ Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at en
 3 big sorts on large data<br>+ advantages	quicksort<br>merge sort: stable, parallelizable, works on lists, contiguous access<br>heap sort: 
 Radix sort: description, complexity	MSB or LSB<br>O(wn)
 SD components: techniques to scale RDBMS	master-slave replication<br>master-master replication<br>federation<br>sharding<br>denormalization<br>SQL tuning
+SD components: 4 cache strategies	cache aside: app does everything<br><br>write-through: cache interacts with DB<br><br>write-behind/back: app writes to cache and async write to DB<br><br>refresh ahead: auto refresh by cache
+SD components: advantage of columnar storage	if usage pattern is to read whole table<br>but only some columns<br>don't read unused columns
+Graph: Kosaraju, Tarjan	find SCC<br>K: first DFS topological sort<br>second DFS in inverse graph collect SCC<br><br>T: only one pass
+SD primitives: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
+SD primitives: WAL	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
+SD: how many seconds in a day	90K
+SD primitives: split brain	failover to backup due to temporary network issue<br>primary and backup are active at the same time
+SD primitives: how a Lamport clock works	when a process does work, increment<br>when send a message, include counter<br>when message received, take the max counter of self and message
+SD primitives: replace global clock by	vector clock<br><br><br>(t1, ..., tN)<br>extend Lamport clock<br><br>used by Riak, Voldemort
+Prob. solving:<br>optimize parameter (find min) when difficult directly	binary search + checkValue(mid)
+SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
+SD primitives: why impossible to availability and strong consistency during network partition	can not prevent divergence if partitioned nodes continue to work

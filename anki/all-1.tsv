@@ -1,25 +1,17 @@
-SD: how many seconds in a day	90K
-Prob. solving:<br>optimize parameter (find min) when difficult directly	binary search + checkValue(mid)
 SD primitives: 3 consensus algos and their CAP status	2 phase commit, full strict quorum protocols: CA<br><br>Paxos, majority quorums with minority in partition: CP<br><br>Gossip, Dynamo, conflict resolution: AP
-SD primitives: why impossible to availability and strong consistency during network partition	can not prevent divergence if partitioned nodes continue to work
-SD apps: how many Kafka messages per second at Uber<br><br>how much storage at FB/YT	billions<br><br>500+ PB
 SD primitives: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
-SD primitives: primary/backup replication	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous variant: ensure that write are done one backups before returning to the client
-SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
-SD primitives: 2PC	two phase commit protocol<br>atomic commitment protocol<br><br>consensus on whether to commit or abort a transaction
+SD primitives: primary/backup replication<br>master, works how, network, failover	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous variant: ensure that write are done one backups before returning to the client
 SD primitives: 2PC	unanimous vote: commit or abort<br>static master<br>fails if coordinator and a node fail when commit<br>not partition tolerant, tail latency sensitives
-SD primitives: partition tolerant consensus	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
+SD primitives: partition tolerant consensus<br>examples, how they work	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
 SD primitives: Paxos	majority vote<br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br>used in Chubby, BigTable/Megastore, GFS, Spanner
-SD primitives: CA systems	more common, not partition aware,<br>often 2PC<br>traditional RDBMS
-SD primitives: CP systems	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
-SD primitives: split brain	failover to backup due to temporary network issue<br>primary and backup are active at the same time
-SD components: Chubby	distributed lock service<br>lock information in small files<br>stored in replicated DB<br>DB implemented on top of fault-tolerant log layer based on Paxos<br>open source: Zookeeper
+SD primitives: CA systems, based on, used by	more common, not partition aware,<br>often 2PC<br>traditional RDBMS
+SD primitives: CP systems, work how, implementations	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
+SD components: Chubby: internals, open-source version	distributed lock service<br>lock information in small files<br>stored in replicated DB<br>DB implemented on top of fault-tolerant log layer based on Paxos<br>open source: Zookeeper
 SD primitives: strong consistency models	linearizable consistency: real world ordering respected<br><br>sequential consistency: can be reordered as long as consistent on each node
 SD primitives: weak consistency models	client-centric: ex. client will never see older value<br><br>causal (strongest): <br><br>eventual: after some time all replicas agree
-SD primitives: how a Lamport clock works	when a process does work, increment<br>when send a message, include counter<br>when message received, take the max counter of self and message
-SD primitives: replace global clock by	vector clock<br><br><br>(t1, ..., tN)<br>extend Lamport clock<br><br>used by Riak, Voldemort
-SD apps: two difficulties of streaming systems	order<br>exactly once delivery
 SD primitives: two classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
 SD primitives: replication algorithms that maintain single-copy consistency	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
 SD components: default replication of MySQL	async primary/backup
 DS: LFU cache	3 hash maps, one with linked list as values
+SD apps: two difficulties of streaming systems	order<br>exactly once delivery
+SD apps: how many Kafka messages per second at Uber<br><br>how much storage at FB/YT	billions<br><br>500+ PB

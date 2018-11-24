@@ -1,21 +1,15 @@
-SD primitives: CAP theorem.<br>2 possible combinations	Consistency: every read gets most recent write or error<br>Availability: every request gets response but no guaranties<br>Network Partition Tolerance: continues even if network failure<br><br>CP or AP
-SD primitives: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
-SD components: 4 cache strategies	cache aside: app does everything<br><br>write-through: cache interacts with DB<br><br>write-behind/back: app writes to cache and async write to DB<br><br>refresh ahead: auto refresh by cache
-SD components: advantage of columnar storage	if usage pattern is to read whole table<br>but only some columns<br>don't read unused columns
-SD primitives: WAL	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
 SD components: MySQL storage engine	InnoDB: row locking so better concurrency<br><br>MyISAM: old, maybe table locking better when lots of reads
 SD components: replication modes of MySQL<br>(what is in the WAL)	statement-based ("insert ...") = logical<br>row-based: result of the statement = physical<br><br>or a mix
 SD low-level: use cases of UDP	best effort delivery for voice/video streaming, games
 SD components: memcached perf	on machine with good network, 200k/s easily<br>latency: 1ms
 Graph: shortest paths in DAG	topological sort + greedy, O(V + E)
-Graph: Kosaraju, Tarjan	find SCC<br>K: first DFS topological sort<br>second DFS in inverse graph collect SCC<br><br>T: only one pass
 DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
 Graph: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard
 Graph: matching, perfect matching	set of edges without common vertices<br>perfect: all vertices are matched, like minimum size edge cover
 Graph: edge cover	set of edges such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
 Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>Kosaraju DFS O(V + E)
 SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
-Alg: DP types	1-D<br>2-D<br>interval/window<br>tree<br>subset (TSP, Hamilton, assignment)
+Alg: DP types	1-D<br>2-D<br>interval/window<br>tree<br>subset (TSP, Hamilton, assignment: n! to n^x 2^n)
 Alg: median of medians	find approximate median<br><br>split in groups of 5<br>find median of each group<br>recurse
 DS: range tree	alternative to kd-tree<br><br>recursive multi-level best
 DS: segment tree	same name but different for Fenwick Trees (prefix sums)<br>store info on intervals or segments<br><br>find segments containing a query point<br>O(log Intervals + MatchingIntervals)
