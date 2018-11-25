@@ -33,3 +33,5 @@ SD: TCP guarantees	.
 SD: linearizability	.
 at most once, at least once, exaclty once	.
 DS: interval tree	add, remove, find intervals containing point<br>all O(log n)<br><br>BST with ([lo, hi], maxHiSubTree)
+SD: Dynamo	eventually consistent, highly available key-value store<br>basis for Cassandra, Riak<br>may diverge when writes<br>when a key is read, there is a read reconciliation
+DS: range tree	alternative to kd-tree<br><br>recursive multi-level best

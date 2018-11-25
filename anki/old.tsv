@@ -143,7 +143,7 @@ SD low-level: RAM SSD HDD R/W speed	RAM 10 GB/s<br>SSD 500 MB/s    (/20)<br> HDD
 SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
 SD low-level: Read 4K randomly from SSD	150 us
 SD low-level: Send 1K bytes over 1 Gbps network	10 us
-Graph: types of graphs	connected,Tree, DAG, bipartite, complete (all clique), intersection, planar
+Graph: types of graphs	connected, directed, weighted, Tree, DAG, bipartite, complete (all clique), intersection, planar, sparse, with cycles
 Array: largest rectangle under histogram	O(n) left to right with stack
 DS: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
 DS: range minimum or range sum	Segment Tree
@@ -162,7 +162,6 @@ Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at en
 Radix sort: description, complexity	MSB or LSB<br>O(wn)
 SD components: techniques to scale RDBMS	master-slave replication<br>master-master replication<br>federation<br>sharding<br>denormalization<br>SQL tuning
 SD components: 4 cache strategies	cache aside: app does everything<br><br>write-through: cache interacts with DB<br><br>write-behind/back: app writes to cache and async write to DB<br><br>refresh ahead: auto refresh by cache
-SD components: advantage of columnar storage	if usage pattern is to read whole table<br>but only some columns<br>don't read unused columns
 Graph: Kosaraju, Tarjan	find SCC<br>K: first DFS topological sort<br>second DFS in inverse graph collect SCC<br><br>T: only one pass
 SD primitives: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
 SD primitives: WAL	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
@@ -173,3 +172,5 @@ SD primitives: replace global clock by	vector clock<br><br><br>(t1, ..., tN)<br>
 Prob. solving:<br>optimize parameter (find min) when difficult directly	binary search + checkValue(mid)
 SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
 SD primitives: why impossible to availability and strong consistency during network partition	can not prevent divergence if partitioned nodes continue to work
+SD primitives: 3 consensus algos and their CAP status	2 phase commit, full strict quorum protocols: CA<br><br>Paxos, majority quorums with minority in partition: CP<br><br>Gossip, Dynamo, conflict resolution: AP
+SD primitives: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)

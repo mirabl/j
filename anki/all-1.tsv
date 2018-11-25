@@ -13,3 +13,15 @@ SD components: default replication of MySQL	async primary/backup
 DS: LFU cache	3 hash maps, one with linked list as values
 SD apps: two difficulties of streaming systems	order<br>exactly once delivery
 SD apps: how many Kafka messages per second at Uber<br><br>how much storage at FB/YT	billions<br><br>500+ PB
+SD primities: N, R, W, usual recommendation	N replicas,<br>need R/W votes for read/write<br>R + W > N
+SD primitives: how are conflicts resolved	look at causal history with metadata<br>last writer, timestamps, version numbers, vector clocks
+Gossip	probabilistic technique for synchronizing replicas<br>nodes have some probability p of attempting to synchronize with each other<br>efficient thanks to Merkle trees
+SD components: Dynamo<br>sharding, quorums, conflict, replica sync	consistent hashing<br>partial quorums for reading and writing<br>conflict detection and read repair via vector clocks<br>gossip for replica synchronization
+DS: suffix tree	trie of suffixes<br>naive O(n^2) construction time, O(n^2) space<br>compressed: O(n) space<br>smart construction in O(n)
+DS: suffix array	same use as suffix tree but with 4 times less memory<br>sorted array of suffixes
+Sort: questions on data	how many keys, duplicates, partially sorted, long to compare, small range, disk access possible
+Algo: Gray code construction	recursive, G_{n-1}, G_{n-1} reversed with top bit set
+SD components: Kafka guarantees	at-least-one<br>in order within a partition only
+SD app: how to handle errors in a streaming processing system	rewrite to errorTopic1 and retry, then 2, ...<br>then to dead letter topic
+SD components: OLTP, OLAP	online transaction/analytical processing<br>RDBMS vs. datawarehouse<br>low vs high latency
+SD components: ETL	extract data from multiple sources<br>clean, join, aggregate, transform into format<br>load in warehouse
