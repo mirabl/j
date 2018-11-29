@@ -1,20 +1,27 @@
-SD components: MySQL storage engine	InnoDB: row locking so better concurrency<br><br>MyISAM: old, maybe table locking better when lots of reads
-SD components: replication modes of MySQL<br>(what is in the WAL)	statement-based ("insert ...") = logical<br>row-based: result of the statement = physical<br><br>or a mix
-SD low-level: use cases of UDP	best effort delivery for voice/video streaming, games
-SD components: memcached perf	on machine with good network, 200k/s easily<br>latency: 1ms
-Graph: shortest paths in DAG	topological sort + greedy, O(V + E)
-DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
 Graph: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard
 Graph: matching, perfect matching	set of edges without common vertices<br>perfect: all vertices are matched, like minimum size edge cover
 Graph: edge cover	set of edges such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
 Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>Kosaraju DFS O(V + E)
-SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
-Alg: DP types	1-D<br>2-D<br>interval/window<br>tree<br>subset (TSP, Hamilton, assignment: n! to n^x 2^n)
+Alg: 5 DP types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
 Alg: median of medians	find approximate median<br><br>split in groups of 5<br>find median of each group<br>recurse
-DS: segment tree	same name but different for Fenwick Trees (prefix sums)<br>store info on intervals or segments<br><br>find segments containing a query point<br>O(log Intervals + MatchingIntervals)
-Algo: closest pair	find the pair that is closest<br>sweep line: O(n log n)<br>divide and conquer: O(n log^2 n)
+DS: segment tree<br>for which operation with complexity	same name but different for Fenwick Trees (prefix sums)<br>store info on intervals or segments<br><br>find segments containing a query point<br>O(log Intervals + MatchingIntervals)
+Algo: closest pair<br>2 algs	find the pair that is closest<br>sweep line: O(n log n)<br>divide and conquer: O(n log^2 n)
 Algo: pseudo-polynomial time	running time polynomial in the numeric value of input<br>but exponential in the length of the input
-Graph: articulation point	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
-Graph: bridge	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
-Algo: problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
-SD components: advantage of columnar storage, example	if usage pattern is to read whole table<br>but only some columns<br>don't read unused columns<br>Parquet
+Graph: articulation point<br>def, algo	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
+Graph: bridge<br>def, algo	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
+Algo: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
+SD components: advantage/disadvantage of columnar storage, 3 examples	if usage pattern is to read whole table like OLAP/BI<br>but only some columns<br>don't read unused columns<br>can use compression to reduce size on disk<br>disadv: difficult to update<br>Parquet, Redshift, Dremel/BigQuery
+SD components:<br>2 data warehouses products for an analytical processing OLAP	Redshift, BigQuery/Dremel
+DS: sort when nearly sorted (k position away at most)	heap
+SD components: when to use BigQuery/Dremel<br>when to use MapReduce	BigQuery: any query, SQL-like, no latency, small output (stats)<br><br>MapReduce: can do any processing, more latency, have to implement all jobs
+SD components: how does BigQuery/Dremel distribute queries	Tree Architecture<br>dispatching queries and aggregating results<br>thousands of machines in a few seconds
+SD components: BigQuery/Dremel perf for 1T read	with 10K disks and 5K cpus<br>1 second to read 1TB
+SD primitives: 2 rate limiters	leaky bucket, token bucket
+SD components: BigQuery/Dremel scale	thousands of machines
+Alg: P, NP definition	solvable in polynomial time<br>a solution can be verified in polynomial time
+Alg: NP-complete, NP-hard	in NP, and any NP problem can be transformed in a NP-complete<br><br>NP-hard: same but not in NP necessarily
+SD components: tablet	horizontal partition/shard of a table (Google)
+SD components: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second<br>billions of rows<br>thousands of columns
+SD components: BigTable data model	row (row key), column: column families + column qualifier within family, + timestamp<br>sparse: no room taken for empty cells
+Graph: output of DFS	node: entry/exit time, edge: tree edge or back edge
+Prob: skyline<br>how to solve	O(n log n) with divide and conquer<br>similar to merge sort

@@ -152,7 +152,6 @@ Graph: 4 shortests path algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Gree
 SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
 SD: drawback of DNS load balancing	results are cached by intermediate servers, so not responsive when change
 SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
-SD components: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second
 Tree: balanced BST: complexity, 4 examples	Search/insert/delete O(log n)<br><br>AVL<br>Red-black<br>B-tree<br>2-3 tree
 Tree: reconstruct tree from inorder and preprod	find root, left inorder, right inorder etc.<br>recurse
 DS: specialized heaps	when limited set of keys, or monotonic input
@@ -174,3 +173,11 @@ SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>s
 SD primitives: why impossible to availability and strong consistency during network partition	can not prevent divergence if partitioned nodes continue to work
 SD primitives: 3 consensus algos and their CAP status	2 phase commit, full strict quorum protocols: CA<br><br>Paxos, majority quorums with minority in partition: CP<br><br>Gossip, Dynamo, conflict resolution: AP
 SD primitives: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
+SD components: MySQL storage engine	InnoDB: row locking so better concurrency<br><br>MyISAM: old, maybe table locking better when lots of reads
+SD components: replication modes of MySQL<br>(what is in the WAL)	statement-based ("insert ...") = logical<br>row-based: result of the statement = physical<br><br>or a mix
+SD low-level: use cases of UDP	best effort delivery for voice/video streaming, games
+SD components: memcached perf	on machine with good network, 200k/s easily<br>latency: 1ms
+Graph: shortest paths in DAG	topological sort + greedy, O(V + E)
+SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
+DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
+SD components: default replication of MySQL	async primary/backup
