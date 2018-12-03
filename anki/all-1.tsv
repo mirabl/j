@@ -1,26 +1,11 @@
-SD primitives: primary/backup replication<br>master, works how, network, failover	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous variant: ensure that write are done one backups before returning to the client
-SD primitives: 2PC	unanimous vote: commit or abort<br>static master<br>fails if coordinator and a node fail when commit<br>not partition tolerant, tail latency sensitives
-SD primitives: partition tolerant consensus<br>examples, how they work	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
-SD primitives: Paxos	majority vote<br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br>used in Chubby, BigTable/Megastore, GFS, Spanner
-SD primitives: CA systems, based on, used by	more common, not partition aware,<br>often 2PC<br>traditional RDBMS
-SD primitives: CP systems, work how, implementations	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
-SD primitives: strong consistency models	linearizable consistency: real world ordering respected<br><br>sequential consistency: can be reordered as long as consistent on each node
-SD primitives: weak consistency models	client-centric: ex. client will never see older value<br><br>causal (strongest): <br><br>eventual: after some time all replicas agree
-SD primitives: two classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
-SD primitives: replication algorithms that maintain single-copy consistency	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
 DS: LFU cache<br>implementation	3 hash maps, one with linked list as values
-SD apps: 2 difficulties of streaming systems	order<br>exactly once delivery
 SD apps: how many Kafka messages per second at Uber<br><br>how much storage at FB/YT	billions<br><br>500+ PB
-SD primitives: N, R, W, usual recommendation	N replicas,<br>need R/W votes for read/write<br>R + W > N
-SD primitives: how are conflicts resolved	look at causal history with metadata<br>last writer, timestamps, version numbers, vector clocks
-SD primitives: Gossip	probabilistic technique for synchronizing replicas<br>nodes have some probability p of attempting to synchronize with each other<br>efficient thanks to Merkle trees
-SD components: Dynamo<br>sharding, quorums, conflict, replica sync	consistent hashing<br>partial quorums for reading and writing<br>conflict detection and read repair via vector clocks<br>gossip for replica synchronization
-DS: suffix tree	compressed trie of suffixes<br>naive O(n^2) construction time, O(n^2) space<br>compressed: O(n) space<br>smart construction in O(n)
-DS: suffix array	same use as suffix tree but with 4 times less memory<br>sorted array of suffixes
-Sort: 6 questions on data	how many keys, duplicates, partially sorted, long to compare, small range, disk access possible
-Algo: Gray code construction	recursive, G_{n-1}, G_{n-1} reversed with top bit set<br><br>gray(n) = n ^ (n >> 1)
-SD components: 2 Kafka guarantees	at-least-one<br>in order within a partition only
-SD app: how to handle errors in a streaming processing system	rewrite to errorTopic1 and retry, then 2, ...<br>then to dead letter topic<br><br>(Uber)
-SD components: OLTP, OLAP	online transaction/analytical processing<br>RDBMS vs. datawarehouse<br>low vs high latency
-SD components: ETL	extract data from multiple sources<br><br>clean, join, aggregate, transform into format<br><br>load in warehouse
 Alg: solve recurrences<br>T(n) = T(n / 2) + O(1)<br>T(n) = 2 T(n / 2) + O(1)<br>T(n) = 2T (n / 2) + O(log n)<br>T(n) = 2 T(n / 2) + O(n)<br>T(n) = T(n / 2) + O(n)	O(log n) binary search<br>O(n)<br>O(n)<br>O(n log n) mergesort<br>O(n) quickselect
+Graph: 4 colors theorem	a planar graph can be vertex colored using at most 4 distinct colors
+Geo: convex-hull algorithm	Graham scan O(n log n)<br>start from left, sort by angle<br>add 2nd point<br>for every other point:<br>if angle >180 add<br>else remove intermediate
+Geo: nearest neighbour	k-d tree<br>2D: Voronoi
+Geo: range query	given set of points<br>query: for a query region Q, which points are in Q?<br><br>k-d tree<br>Delaunay triangulation if dynamic
+Prob: first missing positive	swap pairs to put at its place<br>O(n) time<br>O(1) memory
+Prob: swim in rising water	BS on answer + DFS check<br>O(n^2 log n)<br><br>BFS with priority queue<br>O(n^2 log n)
+Prob: find K-th smallest pair distance<br>from integer array	Sort array<br>Binary search on answer<br>Two pointer to validate
+Prob: split array in m continous subarrays<br>minimize largest subarry sum	Binary search on answer<br><br>Greedy packing to check if valid

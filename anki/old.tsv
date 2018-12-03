@@ -181,3 +181,39 @@ Graph: shortest paths in DAG	topological sort + greedy, O(V + E)
 SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
 DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
 SD components: default replication of MySQL	async primary/backup
+SD primitives: primary/backup replication<br>master, works how, network, failover	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous variant: ensure that write are done one backups before returning to the client
+SD primitives: 2PC	unanimous vote: commit or abort<br>static master<br>fails if coordinator and a node fail when commit<br>not partition tolerant, tail latency sensitives
+SD primitives: partition tolerant consensus<br>examples, how they work	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
+SD primitives: Paxos	majority vote<br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br>used in Chubby, BigTable/Megastore, GFS, Spanner
+SD primitives: CA systems, based on, used by	more common, not partition aware,<br>often 2PC<br>traditional RDBMS
+SD primitives: CP systems, work how, implementations	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
+SD primitives: strong consistency models	linearizable consistency: real world ordering respected<br><br>sequential consistency: can be reordered as long as consistent on each node
+SD primitives: weak consistency models	client-centric: ex. client will never see older value<br><br>causal (strongest): <br><br>eventual: after some time all replicas agree
+SD primitives: two classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
+SD primitives: replication algorithms that maintain single-copy consistency	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
+SD primitives: how are conflicts resolved	look at causal history with metadata<br>last writer, timestamps, version numbers, vector clocks
+SD primitives: Gossip	probabilistic technique for synchronizing replicas<br>nodes have some probability p of attempting to synchronize with each other<br>efficient thanks to Merkle trees
+SD components: Dynamo<br>sharding, quorums, conflict, replica sync	consistent hashing<br>partial quorums for reading and writing<br>conflict detection and read repair via vector clocks<br>gossip for replica synchronization
+DS: suffix tree	compressed trie of suffixes<br>naive O(n^2) construction time, O(n^2) space<br>compressed: O(n) space<br>smart construction in O(n)
+DS: suffix array	same use as suffix tree but with 4 times less memory<br>sorted array of suffixes
+Sort: 6 questions on data	how many keys, duplicates, partially sorted, long to compare, small range, disk access possible
+Algo: Gray code construction	recursive, G_{n-1}, G_{n-1} reversed with top bit set<br><br>gray(n) = n ^ (n >> 1)
+SD components: 2 Kafka guarantees	at-least-one<br>in order within a partition only
+SD app: how to handle errors in a streaming processing system	rewrite to errorTopic1 and retry, then 2, ...<br>then to dead letter topic<br><br>(Uber)
+SD components: OLTP, OLAP	online transaction/analytical processing<br>RDBMS vs. datawarehouse<br>low vs high latency
+SD components: ETL	extract data from multiple sources<br><br>clean, join, aggregate, transform into format<br><br>load in warehouse
+Graph: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard
+Graph: matching, perfect matching	set of edges without common vertices<br>perfect: all vertices are matched, like minimum size edge cover
+Graph: edge cover	set of edges such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
+Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>Kosaraju DFS O(V + E)
+Alg: 5 DP types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
+Algo: pseudo-polynomial time	running time polynomial in the numeric value of input<br>but exponential in the length of the input
+Graph: articulation point<br>def, algo	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
+Graph: bridge<br>def, algo	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
+SD components: advantage/disadvantage of columnar storage, 3 examples	if usage pattern is to read whole table like OLAP/BI<br>but only some columns<br>don't read unused columns<br>can use compression to reduce size on disk<br>disadv: difficult to update<br>Parquet, Redshift, Dremel/BigQuery
+SD components:<br>2 data warehouses products for an analytical processing OLAP	Redshift, BigQuery/Dremel
+DS: sort when nearly sorted (k position away at most)	heap
+SD components: when to use BigQuery/Dremel<br>when to use MapReduce	BigQuery: any query, SQL-like, no latency, small output (stats)<br><br>MapReduce: can do any processing, more latency, have to implement all jobs
+SD components: how does BigQuery/Dremel distribute queries	Tree Architecture<br>dispatching queries and aggregating results<br>thousands of machines in a few seconds
+SD primitives: N, R, W, usual recommendation	N replicas,<br>need R/W votes for read/write<br>R + W > N
+SD apps: 2 difficulties of streaming systems	order<br>exactly once delivery
