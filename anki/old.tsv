@@ -217,3 +217,4 @@ SD components: when to use BigQuery/Dremel<br>when to use MapReduce	BigQuery: an
 SD components: how does BigQuery/Dremel distribute queries	Tree Architecture<br>dispatching queries and aggregating results<br>thousands of machines in a few seconds
 SD primitives: N, R, W, usual recommendation	N replicas,<br>need R/W votes for read/write<br>R + W > N
 SD apps: 2 difficulties of streaming systems	order<br>exactly once delivery
+SD apps: how many Kafka messages per second at Uber<br><br>how much storage at FB/YT	billions<br><br>500+ PB

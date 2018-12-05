@@ -1,5 +1,4 @@
 DS: LFU cache<br>implementation	3 hash maps, one with linked list as values
-SD apps: how many Kafka messages per second at Uber<br><br>how much storage at FB/YT	billions<br><br>500+ PB
 Alg: solve recurrences<br>T(n) = T(n / 2) + O(1)<br>T(n) = 2 T(n / 2) + O(1)<br>T(n) = 2T (n / 2) + O(log n)<br>T(n) = 2 T(n / 2) + O(n)<br>T(n) = T(n / 2) + O(n)	O(log n) binary search<br>O(n)<br>O(n)<br>O(n log n) mergesort<br>O(n) quickselect
 Graph: 4 colors theorem	a planar graph can be vertex colored using at most 4 distinct colors
 Geo: convex-hull algorithm	Graham scan O(n log n)<br>start from left, sort by angle<br>add 2nd point<br>for every other point:<br>if angle >180 add<br>else remove intermediate
@@ -9,3 +8,18 @@ Prob: first missing positive	swap pairs to put at its place<br>O(n) time<br>O(1)
 Prob: swim in rising water	BS on answer + DFS check<br>O(n^2 log n)<br><br>BFS with priority queue<br>O(n^2 log n)
 Prob: find K-th smallest pair distance<br>from integer array	Sort array<br>Binary search on answer<br>Two pointer to validate
 Prob: split array in m continous subarrays<br>minimize largest subarry sum	Binary search on answer<br><br>Greedy packing to check if valid
+Prob: median of two sorted arrays	Binary search<br>O(log(m + n))
+Prob: k-th smallest number in multiplication table	Binary search O(m log(mn))
+Alg: median of medians<br>what it does<br>how	find approximate median<br><br>split in groups of 5<br>find median of each group<br>recurse
+DS: segment tree<br>for which operation with complexity	same name but different for Fenwick Trees (prefix sums)<br>store info on intervals or segments<br><br>find segments containing a query point<br>O(log Intervals + MatchingIntervals)
+Algo: closest pair<br>2 algs	find the pair that is closest<br>sweep line: O(n log n)<br>divide and conquer: O(n log^2 n)
+Algo: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
+SD components: BigQuery/Dremel perf for 1T read	with 10K disks and 5K cpus<br>1 second to read 1TB
+SD primitives: 2 rate limiters	leaky bucket, token bucket
+Alg: P, NP definition	solvable in polynomial time<br>a solution can be verified in polynomial time
+Alg: NP-complete/NP-hard definition	in NP, and any NP problem can be transformed in a NP-complete<br><br>NP-hard: same but not in NP necessarily
+SD components: tablet definition	horizontal partition/shard of a table (Google)
+SD components: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second<br>billions of rows<br>thousands of columns
+SD components: BigTable data model	row (row key), column: column families + column qualifier within family, + timestamp<br>sparse: no room taken for empty cells
+Graph: output of DFS	vertex: entry/exit time,<br> edge: tree edge or back edge
+Prob: skyline<br>how to solve	O(n log n) with divide and conquer<br>similar to merge sort
