@@ -1,0 +1,49 @@
+D: Master-slave replication	The master serves reads and writes, replicating writes to one or more slaves, which serve only reads. <br>Slaves can also replicate to additional slaves in a tree-like fashion. <br>If the master goes offline, the system can continue to operate in read-only mode until a slave is promoted to a master or a new master is provisioned.
+Tree: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if in-order traversal is sorted O(n)
+Tree: k-th highest element of BST	reverse inorder traversal of BST. O(h + k)
+Tree: Lowest Common Ancestor in a Binary Search Tree	recursive O(n)
+Tree: Serialize/Deserialize	Special case? BST, complete, full?. <br>Inorder array with null marker
+Array: Given infinite coins of value (V1, V2, … ,VN), find the minimum number of coins with sum S	DP(n, S)
+Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	BFS from start word
+Array: Print matrix in spiral	four variables top bottom left right. Reduce
+Product of array except self	two steps with left right prefix product<br><br>no need of additional array
+MergeSort: best and worst case<br>memory	always O(n log n)<br>memory: O(n) aux
+DS: 2 example use of a heap	extract minimum with streaming data<br>merge k sorted arrays
+Heapify: algorithm and complexity	heapify from the lower levels to the upper levels, "sinkdown" roots of subtrees<br><br>O(n)
+LinkedList: Sort a linked list	use merge sort
+QuickSort: best and worst case of QuickSort<br><br>Memory complexity:	best: pivot splits array in half each time O(n log n)/O(log n)<br>worst: pivot is min (or max), O(n^2)/O(log n)<br><br>Memory: O(log n) with in-place partitioning
+Sort: sort when element are nearly sorted (2 ways)	heapsort<br>insertion sort
+Sort: sort when limited range of keys	counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
+Tree: Check if binary tree is full (not complete)	recursive O(n)
+Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
+Tree: iterative in-order traversal of binary tree	stack and curnode pointer
+Array: Find maximum in sliding window	1. use self-balanced BST O(n log n). <br><br>2. Use dequeue keeping only useful elements O(n)
+Graph: Detect cycle in a graph	Colorized DFS look for back-edge O(V + E).<br><br> Also possible with Union-Find: loop on edges, union-find on vertices O(E)?
+Graph: Find connected components of a graph	BFS/DFS O(V + E), <br>or just Union-Find with no graph traversal<br><br>If dynamic changes, keep track of components with Union-Find.
+SD: how many FB users	2B Montly active users
+SD apps: most followers on twitter	1B
+SD apps: how many tweets per second, per day	per second: 6000<br><br>per day: 500 million
+SD components: MySQL index based on which data structure in general	B-tree (or B+ ?)
+SD primitives: ACID	atomicity, consistency, isolation, durability
+SD apps: mechanism for asynchronicity	queues
+SD: tunable consistency	from "writes never fail" to <br><br>"block for all replicas to be readable" with quorum levels
+SD components: how many queries per second for a MySQL DB server	no answer, <br>depends on query/HW. 1K QPS
+SD: how many YT videos watched every day	5B
+Misc: NP-complete problems	SAT, knapsack, traveling salesman
+Tree: k-d tree	split in 1 dimension at each node (median of coordinate to get balance)
+Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capacity reached.
+Lang: pure virtual function	has to be implemented by a class that is not abstract
+DS: B-Tree	self balancing tree, <br>not binary, generalization of BST<br>good for r/w to external memory (DB FS)
+DS: external merge sort	sort chunk & write to disk, load chunk of chuck and merge-write
+Fenwick Tree	type of segment tree<br>used for prefix sums
+Binary heap definition	complete binary<br>with heap property (children are smaller)
+Priority queues: 2 implementations	heaps<br>self balancing BST
+SD: Federation	(or functional partitioning) splits up databases by function. <br>For example, forums, users, and products
+SD low-level: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
+SD components: NoSQL 4 types of stores	key-value: Redis, memcached<br><br>document store: MongoDB, CouchDB, ElasticSearch<br><br>wide-column store: BigTable, HBase, Cassandra<br><br>graph DB: neo4j, flockdb
+SD low-level: RAM SSD HDD latency	RAM 100 ns<br>SSD 0.1 ms    (x1000)<br>HDD 10 ms    (x100)
+SD low-level: RAM SSD HDD R/W speed	RAM 10 GB/s<br>SSD 500 MB/s    (/20)<br> HDD 100 MB/s    (/5)
+SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
+SD low-level: Read 4K randomly from SSD	150 us
+SD low-level: Send 1K bytes over 1 Gbps network	10 us
+Graph: types of graphs	connected, directed, weighted, Tree, DAG, bipartite, complete (all clique), intersection, planar, sparse, with cycles
