@@ -1,49 +1,48 @@
-LinkedList: middle of a linked list	2 pointers
-LinkedList: last-M-th element of a linked list	2 pointers, one M ahead
-Sort: name of sort which preserves original order for same key values	stable sort
-Array: is subsequence	iterate greedy, not need for dp
-LinkedList: Detect beginning of a cycle	method1: count cycle length, count first segment length. <br><br>method2: smarter, TODO. O(n)
-Search: find element in row-and-column-sorted matrix	start from NE corner
-String: Edit Distance	DP O(mn)
-Stack: sort a stack	using a second stack,<br><br> or recursively
-LinkedList: find where 2 linked list merge	2 pointers 
-LinkedList: reverse a linked list	iterative
-Array: 2sum: Given an array of integers, return indices of the two numbers such that they add up to a specific target.	same element twice?<br> Use hash table O(n)|O(n), <br>sort+two pointers O(n log n)|O(1), <br>sort+BS O(n log n)|O(1)
-Array: Longest Common Subsequence	DP O(nm)
-Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
-Quicksort: pivot choosing methods? (3)	first, <br>random, <br>median of random 3
-Sudoku Solver	Backtracking. <br><br>Only check if one value is already in a row/col/square.
-Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of x to root of y. <br>Union by rank: attach smaller tree to larger. <br>Path compression<br><br>Amortized O(1) in time |O(n) space.
-Tree: Print tree perimeter (border)	print left boundary without leaf,<br> print leaves, <br>print right in reverse (recursive)
-Stack: implement stack with O(1) min	push (x, min) when pushing x, <br><br>or use second stack
-Array: Count triplets with sum smaller than a given value in O(n^2)	sort, loop for first element, use two-pointer-sum <br> O(n^2)|O(1) aux
-Array: 3Sum  Find all unique triplets in the array which gives the sum of zero	sort, loop for first element and then 2sum sweep, <br>avoid duplicates by avoiding duplicate first element <br>O(n^2)|O(1)
-Array: Rotate an array	1. With a temp array of size K. <br><br>or 2. With cycles (compute gcd)
-Array: Reverse an array without affecting special characters	O(n) one pass, in-place: two pointers at start and end <br> swap or skip and meet in the middle <br> O(n)|O(1) aux
-String: Reverse words in a sentence	1. Word by word from the end. 2. reverse whole string char-by-char, reverse within each word
-Tree: Bottom view of binary tree	BFS with (ordered) map: <br>M[x-coordinate] = value<br><br>O(n)/O(n)
-Graph: Complexity of BFS and DFS for a Graph	O(V + E) if adjacency list<br> O(V^2) if adjacency matrix/O(V)
-DS: implement LRU cache	Queue + hash: <br>Queue: doubly linked list (size: cache size). most recently used at front.<br><br>Hash: address of the corresponding queue node as value.
-String: Is a string with (), {}, [] balanced	stack with active items O(n)
-SD: Denormalization	attempts to improve read perf at the expense of write perf. <br>Redundant copies of the data are written in multiple tables to avoid expensive joins. 
-SD: Sharding	distributes data across different databases such that each database can only manage a subset of the data.
-SD: vertical/horizontal scaling 	vertical: add more power to a machine<br><br>horizontal: add more machines
-Graph: clique definition	complete subgraph
-Graph: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and _distance to target_
-Misc: websocket	persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
-Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
-Sort: bubble sort	swap pairs to put max at i=end of array<br>i--
-Bit: test if a number is a power of two	(n & (n-1)) == 0
-SD: shared nothing	each node is independent, no SPOF (eg. centrally stored state info or DB)
-SD: replication lag for MySQL	time between read/write to master and replication to all slaves
-SD: topics to address	HA, scaling, sizing, discovery, latency, build whole system with client
-Tree: find lowest common ancestor of two nodes in a binary tree (not BST)	1. find path to x to y find last common element. O(n) 2 traversals. <br><br>2. rec: LCA has one node on each side. O(n) 1 traversal.
-SD: consistency problems in DB	read-after-write
-DS: check if item is in known set	Bloom filter if no space for hash table
-SD: Geo load-balancing with DNS	some DNS servers have IP range tables and can have different responses for different ranges
-SD: hashing for sharding	consistent hashing: circle with many pseudo-random points per node. Rendezvous hashing
-Graph: max flow problem edge with capacities	 maximum flow from a source vertex to a destination
-SD: NoSQL	 is a collection of data items represented in a key-value store, document-store, wide column store, or a graph database. <br>Data is denormalized, and joins are generally done in the application code.
+Array: Longest Increasing Subsequence	DP O(n^2). <br><br>also possible in O(n log n)<br> with active lists and binary search
+SD components: OLTP, OLAP	online transaction/analytical processing<br>RDBMS vs. datawarehouse<br>low vs high latency
+Array: rotate image by 90 degrees<br>2 ways	ring by ring, <br><br>or reverse up to down (r2l) and transpose
+SD primitives: Gossip	probabilistic technique for synchronizing replicas<br>nodes have some probability p of attempting to synchronize with each other<br>efficient thanks to Merkle trees
+Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at end, resize heap O(log n)
 QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
-Math: number of trailing zeroes in a factorial	powers of 2, 5
-print valid n-parentheses	try a character, recurse if allowed
+SD primitives: N, R, W, usual recommendation	N replicas,<br>need R/W votes for read/write<br>R + W > N
+Search: find element in row-and-column-sorted matrix	start from NE corner
+Sort: bubble sort	swap pairs to put max at i=end of array<br>i--
+SD primitives: partition tolerant consensus<br>examples, how they work	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
+Graph: 4 colors theorem	a planar graph can be vertex colored using at most 4 distinct colors
+LinkedList: reverse a linked list	iterative
+combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., <br>same number can be repeated<br>	backtracking (or DP)
+Prob: split array in m continous subarrays<br>minimize largest subarry sum	Binary search on answer<br><br>Greedy packing to check if valid
+SD components: MySQL storage engine	InnoDB: row locking so better concurrency<br><br>MyISAM: old, maybe table locking better when lots of reads
+Tree: Inorder sucessor in BST without parent pointer	Search from root O(h). <br>Instead of traveling up with parent pointers: Travel down the tree, if a node’s data is greater than root’s data then go right side, otherwise go to left side.
+Array: find subarray with maximum sum	one pass, at each position either extend or start new subarray O(n)|O(1)
+Graph: 11 types of graphs	connected, directed, weighted, Tree, DAG, bipartite, complete (all clique), intersection, planar, sparse, with cycles
+SD components: memcached perf	on machine with good network, 200k/s easily<br>latency: 1ms
+SD: Federation	(or functional partitioning) splits up databases by function. <br>For example, forums, users, and products
+Alg: solve recurrences<br>T(n) = T(n / 2) + O(1)<br>T(n) = 2 T(n / 2) + O(1)<br>T(n) = 2T (n / 2) + O(log n)<br>T(n) = 2 T(n / 2) + O(n)<br>T(n) = T(n / 2) + O(n)	O(log n) binary search<br>O(n)<br>O(n)<br>O(n log n) mergesort<br>O(n) quickselect
+Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>Kosaraju DFS O(V + E)
+DS: LFU cache<br>implementation	3 hash maps, one with linked list as values
+Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
+Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
+Container With Most Water<br>n vertical lines	two pointers, from start and end, <br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
+Misc: 4 NP-complete problems	SAT, knapsack, traveling salesman, set cover
+SD components: ETL	extract data from multiple sources<br><br>clean, join, aggregate, transform into format<br><br>load in warehouse
+Array: 3Sum  Find all unique triplets in the array which gives the sum of zero	sort, loop for first element and then 2sum sweep, <br>avoid duplicates by avoiding duplicate first element <br>O(n^2)|O(1)
+Tree: k-d tree	split in 1 dimension at each node (median of coordinate to get balance)
+SD primitives: replace global clock by	vector clock<br><br><br>(t1, ..., tN)<br>extend Lamport clock<br><br>used by Riak, Voldemort
+Prob. solving:<br>optimize parameter (find min) when difficult directly	binary search + checkValue(mid)
+SD: consistency problems in DB	read-after-write
+SD: Sharding	distributes data across different databases such that each database can only manage a subset of the data.
+Tree: Check if binary tree is full (not complete)	recursive O(n)
+Tree: Check if binary tree is full (not complete)	recursive O(n)
+SD primitives: CA systems, based on, used by	more common, not partition aware,<br>often 2PC<br>traditional RDBMS
+Sort: insertion sort<br>selection sort	insertion: insert A[i] in sorted A[0]...A[i-1]<br><br>select min put it at A[i=0], i++
+Array: Longest Common Subsequence	DP O(nm)
+String: substring search	naive O(n*m) <br><br> robin-karp rolling hash O(n + m) <br><br> advanced O(n)
+Array: Reverse an array without affecting special characters	O(n) one pass, in-place: two pointers at start and end <br> swap or skip and meet in the middle <br> O(n)|O(1) aux
+DS: range minimum or range sum	Segment Tree
+Graph: shortest paths in DAG	topological sort + greedy, O(V + E)
+SD primitives: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
+DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
+Stack: implement stack with O(1) min	push (x, min) when pushing x, <br><br>or use second stack
+Tree: Maximum path sum in a binary tree	recursive, only left, only right, both<br>O(n)
+Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	BFS from start word

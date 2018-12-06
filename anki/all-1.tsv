@@ -1,49 +1,48 @@
-Array: largest rectangle under histogram	O(n) left to right with stack
-DS: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
-DS: range minimum or range sum	Segment Tree
-Graph: maximum clique algorithm	difficult, there are heuristics
-Graph: 4 shortests path algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
-SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
-SD: drawback of DNS load balancing	results are cached by intermediate servers, so not responsive when change
-SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
-Tree: balanced BST: complexity, 4 examples	Search/insert/delete O(log n)<br><br>AVL<br>Red-black<br>B-tree<br>2-3 tree
-Tree: reconstruct tree from inorder and preprod	find root, left inorder, right inorder etc.<br>recurse
-DS: specialized heaps	when limited set of keys, or monotonic input
-Adv/Disadvantage of BST vs. HashTable	BST can enumerate in key order<br>HashTable simpler when key repeats<br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
-Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at end, resize heap O(log n)
-3 big sorts on large data<br>+ advantages	quicksort<br>merge sort: stable, parallelizable, works on lists, contiguous access<br>heap sort: 
-Radix sort: description, complexity	MSB or LSB<br>O(wn)
-SD components: techniques to scale RDBMS	master-slave replication<br>master-master replication<br>federation<br>sharding<br>denormalization<br>SQL tuning
-SD components: 4 cache strategies	cache aside: app does everything<br><br>write-through: cache interacts with DB<br><br>write-behind/back: app writes to cache and async write to DB<br><br>refresh ahead: auto refresh by cache
-Graph: Kosaraju, Tarjan	find SCC<br>K: first DFS topological sort<br>second DFS in inverse graph collect SCC<br><br>T: only one pass
-SD primitives: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
-SD primitives: WAL	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
-SD: how many seconds in a day	90K
-SD primitives: split brain	failover to backup due to temporary network issue<br>primary and backup are active at the same time
-SD primitives: how a Lamport clock works	when a process does work, increment<br>when send a message, include counter<br>when message received, take the max counter of self and message
-SD primitives: replace global clock by	vector clock<br><br><br>(t1, ..., tN)<br>extend Lamport clock<br><br>used by Riak, Voldemort
-Prob. solving:<br>optimize parameter (find min) when difficult directly	binary search + checkValue(mid)
-SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
-SD primitives: why impossible to availability and strong consistency during network partition	can not prevent divergence if partitioned nodes continue to work
-SD primitives: 3 consensus algos and their CAP status	2 phase commit, full strict quorum protocols: CA<br><br>Paxos, majority quorums with minority in partition: CP<br><br>Gossip, Dynamo, conflict resolution: AP
-SD primitives: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
-SD components: MySQL storage engine	InnoDB: row locking so better concurrency<br><br>MyISAM: old, maybe table locking better when lots of reads
-SD components: replication modes of MySQL<br>(what is in the WAL)	statement-based ("insert ...") = logical<br>row-based: result of the statement = physical<br><br>or a mix
-SD low-level: use cases of UDP	best effort delivery for voice/video streaming, games
-SD components: memcached perf	on machine with good network, 200k/s easily<br>latency: 1ms
-Graph: shortest paths in DAG	topological sort + greedy, O(V + E)
-SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
-DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
-SD components: default replication of MySQL	async primary/backup
-SD primitives: primary/backup replication<br>master, works how, network, failover	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous variant: ensure that write are done one backups before returning to the client
 SD primitives: 2PC	unanimous vote: commit or abort<br>static master<br>fails if coordinator and a node fail when commit<br>not partition tolerant, tail latency sensitives
-SD primitives: partition tolerant consensus<br>examples, how they work	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
-SD primitives: Paxos	majority vote<br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br>used in Chubby, BigTable/Megastore, GFS, Spanner
-SD primitives: CA systems, based on, used by	more common, not partition aware,<br>often 2PC<br>traditional RDBMS
-SD primitives: CP systems, work how, implementations	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
-SD primitives: strong consistency models	linearizable consistency: real world ordering respected<br><br>sequential consistency: can be reordered as long as consistent on each node
-SD primitives: weak consistency models	client-centric: ex. client will never see older value<br><br>causal (strongest): <br><br>eventual: after some time all replicas agree
-SD primitives: two classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
-SD primitives: replication algorithms that maintain single-copy consistency	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
+Prob: k-th smallest number in multiplication table	Binary search O(m log(mn))
+Graph: Kosaraju, Tarjan	find SCC<br>K: first DFS topological sort<br>second DFS in inverse graph collect SCC<br><br>T: only one pass
+SD app: how to handle errors in a streaming processing system	rewrite to errorTopic1 and retry, then 2, ...<br>then to dead letter topic<br><br>(Uber)
 SD primitives: how are conflicts resolved	look at causal history with metadata<br>last writer, timestamps, version numbers, vector clocks
-SD primitives: Gossip	probabilistic technique for synchronizing replicas<br>nodes have some probability p of attempting to synchronize with each other<br>efficient thanks to Merkle trees
+SD primitives: WAL	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
+LinkedList: find where 2 linked list merge	2 pointers 
+Graph: output of DFS	vertex: entry/exit time,<br> edge: tree edge or back edge
+SD components: techniques to scale RDBMS	master-slave replication<br>master-master replication<br>federation<br>sharding<br>denormalization<br>SQL tuning
+Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capacity reached.
+Algo: pseudo-polynomial time	running time polynomial in the numeric value of input<br>but exponential in the length of the input
+Graph: edge cover	set of edges such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
+SD primitives: 3 consensus algos and their CAP status	2 phase commit, full strict quorum protocols: CA<br><br>Paxos, majority quorums with minority in partition: CP<br><br>Gossip, Dynamo, conflict resolution: AP
+SD primitives: ACID	atomicity, consistency, isolation, durability
+Coin Game: coins in a row, pick one	windowed DP<br><br>DP F(from i-th coin to j-th coin) = max(. + min(), . + min())<br>O(n^2)
+Max number of intersecting intervals	sort events: enter and exist of intervals. O(n log n)|O(n) aux
+SD primitives: how a Lamport clock works	when a process does work, increment<br>when send a message, include counter<br>when message received, take the max counter of self and message
+SD low-level: use cases of UDP	best effort delivery for voice/video streaming, games
+DS: suffix array	same use as suffix tree but with 4 times less memory<br>sorted array of suffixes
+String: Longest Substring Without Repeating Characters	Window. left and right pointers, hash set for characters in the substring, move either left or right O(n)|O(n) // traverse left to right, maintaining longest valid substring ending at this position, use map<char,position> to know where current character appeared last O(n)|O(n)
+print valid n-parentheses	try a character, recurse if allowed
+SD apps: mechanism for asynchronicity	queues
+Geo: convex-hull algorithm	Graham scan O(n log n)<br>start from left, sort by angle<br>add 2nd point<br>for every other point:<br>if angle >180 add<br>else remove intermediate
+Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
+Stack: sort a stack	using a second stack,<br><br> or recursively
+String: Regex matching	Recursive, DP. With offset going from left to right.
+SD primitives: two classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
+String: Reverse words in a sentence	1. Word by word from the end. 2. reverse whole string char-by-char, reverse within each word
+DS: specialized heaps	when limited set of keys, or monotonic input
+Alg: 5 DP types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
+Graph: clique definition	complete subgraph
+MergeSort: best and worst case<br>memory	always O(n log n)<br>memory: O(n) aux
+SD apps: how many tweets per second, per day	per second: 6000<br><br>per day: 500 million
+Graph: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and _distance to target_
+Product of array except self	two steps with left right prefix product<br><br>no need of additional array
+Graph: Minimum Spanning tree Kruskal: algorithm and complexity	sort edges by weight, <br>(take min edge, check if it introduces a cycle in the partial tree, discard or add). <br>Cycle detection with union-find<br><br>O(E log E)
+Heapify: algorithm and complexity	heapify from the lower levels to the upper levels, "sinkdown" roots of subtrees<br><br>O(n)
+Tree: Bottom view of binary tree	BFS with (ordered) map: <br>M[x-coordinate] = value<br><br>O(n)/O(n)
+Tree: Print tree perimeter (border)	print left boundary without leaf,<br> print leaves, <br>print right in reverse (recursive)
+Graph: Find connected components of a graph	BFS/DFS O(V + E), <br>or just Union-Find with no graph traversal<br><br>If dynamic changes, keep track of components with Union-Find.
+Graph: matching, perfect matching	set of edges without common vertices<br>perfect: all vertices are matched, like minimum size edge cover
+DS: external merge sort	sort chunk & write to disk, load chunk of chuck and merge-write
+Priority queues: 2 implementations	heaps<br>self balancing BST
+String: determine if a string has only unique characters (with and without memory)	use a set, <br><br>or sort the string
+SD primitives: primary/backup replication<br>master, works how, network, failover	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous variant: ensure that write are done one backups before returning to the client
+DS: sort when nearly sorted (k position away at most)	heap
+Alg: P, NP definition	solvable in polynomial time<br>a solution can be verified in polynomial time
+SD primitives: split brain	failover to backup due to temporary network issue<br>primary and backup are active at the same time

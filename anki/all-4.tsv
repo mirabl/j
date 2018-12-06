@@ -1,49 +1,49 @@
-D: Master-slave replication	The master serves reads and writes, replicating writes to one or more slaves, which serve only reads. <br>Slaves can also replicate to additional slaves in a tree-like fashion. <br>If the master goes offline, the system can continue to operate in read-only mode until a slave is promoted to a master or a new master is provisioned.
-Tree: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if in-order traversal is sorted O(n)
-Tree: k-th highest element of BST	reverse inorder traversal of BST. O(h + k)
-Tree: Lowest Common Ancestor in a Binary Search Tree	recursive O(n)
-Tree: Serialize/Deserialize	Special case? BST, complete, full?. <br>Inorder array with null marker
-Array: Given infinite coins of value (V1, V2, … ,VN), find the minimum number of coins with sum S	DP(n, S)
-Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	BFS from start word
+Subset sum: a subset of array sums to T	DP CanMakeSum[i][T]<br>O(n S)
+SD components: 4 cache strategies	cache aside: app does everything<br><br>write-through: cache interacts with DB<br><br>write-behind/back: app writes to cache and async write to DB<br><br>refresh ahead: auto refresh by cache
 Array: Print matrix in spiral	four variables top bottom left right. Reduce
-Product of array except self	two steps with left right prefix product<br><br>no need of additional array
-MergeSort: best and worst case<br>memory	always O(n log n)<br>memory: O(n) aux
-DS: 2 example use of a heap	extract minimum with streaming data<br>merge k sorted arrays
-Heapify: algorithm and complexity	heapify from the lower levels to the upper levels, "sinkdown" roots of subtrees<br><br>O(n)
-LinkedList: Sort a linked list	use merge sort
-QuickSort: best and worst case of QuickSort<br><br>Memory complexity:	best: pivot splits array in half each time O(n log n)/O(log n)<br>worst: pivot is min (or max), O(n^2)/O(log n)<br><br>Memory: O(log n) with in-place partitioning
-Sort: sort when element are nearly sorted (2 ways)	heapsort<br>insertion sort
-Sort: sort when limited range of keys	counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
-Tree: Check if binary tree is full (not complete)	recursive O(n)
-Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
-Tree: iterative in-order traversal of binary tree	stack and curnode pointer
-Array: Find maximum in sliding window	1. use self-balanced BST O(n log n). <br><br>2. Use dequeue keeping only useful elements O(n)
-Graph: Detect cycle in a graph	Colorized DFS look for back-edge O(V + E).<br><br> Also possible with Union-Find: loop on edges, union-find on vertices O(E)?
-Graph: Find connected components of a graph	BFS/DFS O(V + E), <br>or just Union-Find with no graph traversal<br><br>If dynamic changes, keep track of components with Union-Find.
-SD: how many FB users	2B Montly active users
-SD apps: most followers on twitter	1B
-SD apps: how many tweets per second, per day	per second: 6000<br><br>per day: 500 million
-SD components: MySQL index based on which data structure in general	B-tree (or B+ ?)
-SD primitives: ACID	atomicity, consistency, isolation, durability
-SD apps: mechanism for asynchronicity	queues
-SD: tunable consistency	from "writes never fail" to <br><br>"block for all replicas to be readable" with quorum levels
-SD components: how many queries per second for a MySQL DB server	no answer, <br>depends on query/HW. 1K QPS
-SD: how many YT videos watched every day	5B
-Misc: NP-complete problems	SAT, knapsack, traveling salesman
-Tree: k-d tree	split in 1 dimension at each node (median of coordinate to get balance)
-Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capacity reached.
-Lang: pure virtual function	has to be implemented by a class that is not abstract
-DS: B-Tree	self balancing tree, <br>not binary, generalization of BST<br>good for r/w to external memory (DB FS)
-DS: external merge sort	sort chunk & write to disk, load chunk of chuck and merge-write
-Fenwick Tree	type of segment tree<br>used for prefix sums
+SD components: replication modes of MySQL<br>(what is in the WAL)	statement-based ("insert ...") = logical<br>row-based: result of the statement = physical<br><br>or a mix
+Tree: Serialize/Deserialize	Special case? BST, complete, full?. <br>Inorder array with null marker
+Search: find element in a sorted rotated array	double BS: <br><br>find the frontier, <br>BS on left or right part
+Adv/Disadvantage of BST vs. HashTable	BST can enumerate in key order<br>HashTable simpler when key repeats<br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
+2D Array: Boggle (Find all possible words in a board of characters)	DFS from every start cell, mark visited cells.<br><br>Complexity?<br> Better solution with Tree.
+Misc: websocket	persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
+Array: Smallest subarray with sum greater than a given value	Sliding window: keep adding array elements while current sum is smaller than x <br> If current sum becomes greater than x, update min length, remove starting elements
+SD components:<br>2 data warehouses products for an analytical processing OLAP	Redshift, BigQuery/Dremel
+Sudoku Solver	Backtracking. <br><br>Only check if one value is already in a row/col/square.
+Algo: closest pair<br>2 algs	find the pair that is closest<br>sweep line: O(n log n)<br>divide and conquer: O(n log^2 n)
 Binary heap definition	complete binary<br>with heap property (children are smaller)
-Priority queues: 2 implementations	heaps<br>self balancing BST
-SD: Federation	(or functional partitioning) splits up databases by function. <br>For example, forums, users, and products
-SD low-level: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
+Graph: Complexity of BFS and DFS for a Graph	O(V + E) if adjacency list<br> O(V^2) if adjacency matrix/O(V)
+Array: Given an array of integers, every element appears twice except for one. Find that single one	XOR O(n)
+Longest Palindromic Substring	for each position, find longest even and odd length substring with this center O(n^2)|O(1)<br>DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1)<br><br>O(n) difficult Manacher.
+Tree: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if in-order traversal is sorted O(n)
+DS: segment tree<br>for which operation with complexity	same name but different for Fenwick Trees (prefix sums)<br>store info on intervals or segments<br><br>find segments containing a query point<br>O(log Intervals + MatchingIntervals)
+DS: 2 example use of a heap	extract minimum with streaming data<br>merge k sorted arrays
+Fenwick Tree	type of segment tree<br>used for prefix sums
+Array: is subsequence	iterate greedy, not need for dp
+Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
+Array: Continuous median	maintain 2 big balanced heaps
+SD components: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second<br>billions of rows<br>thousands of columns
+SD primitives: CP systems, work how, implementations	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
+Array: Find maximum in sliding window	1. use self-balanced BST O(n log n). <br><br>2. Use dequeue keeping only useful elements O(n)
 SD components: NoSQL 4 types of stores	key-value: Redis, memcached<br><br>document store: MongoDB, CouchDB, ElasticSearch<br><br>wide-column store: BigTable, HBase, Cassandra<br><br>graph DB: neo4j, flockdb
-SD low-level: RAM SSD HDD latency	RAM 100 ns<br>SSD 0.1 ms    (x1000)<br>HDD 10 ms    (x100)
-SD low-level: RAM SSD HDD R/W speed	RAM 10 GB/s<br>SSD 500 MB/s    (/20)<br> HDD 100 MB/s    (/5)
-SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
+Prob: skyline<br>how to solve	O(n log n) with divide and conquer<br>similar to merge sort
+SD: NoSQL	 is a collection of data items represented in a key-value store, document-store, wide column store, or a graph database. <br>Data is denormalized, and joins are generally done in the application code.
+Minimum difference partition	DP CanMakeSum[i][T], <br>T <= S/2<br>O(n S)
+0-1 Knapsack: max weight, items with values and weights, maximize value	DP Best[i][w]<br>O(n W)
+Graph: articulation point<br>def, algo	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
+Array: find the median of non-sorted array<br>+ approximate	QuickSelect O(n)<br><br>median of medians: approximate<br>split in groups of 5<br>find median of each group, recurse
 SD low-level: Read 4K randomly from SSD	150 us
-SD low-level: Send 1K bytes over 1 Gbps network	10 us
-Graph: types of graphs	connected, directed, weighted, Tree, DAG, bipartite, complete (all clique), intersection, planar, sparse, with cycles
+DS: implement a queue using two stacks	empty first stack into second stack
+Sort: sort when limited range of keys	counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
+LinkedList: is a linked list a palindrome?	reverse second half, check (and restore)
+Graph: maximum clique algorithm	difficult, there are heuristics
+SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
+SD primitives: why impossible to availability and strong consistency during network partition	can not prevent divergence if partitioned nodes continue to work
+LinkedList: Sort a linked list	use merge sort
+SD components: how many queries per second for a MySQL DB server	no answer, <br>depends on query/HW. 1K QPS
+Array: Next Greater element in an array	using a stack<br>O(n)/O(n)
+SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
+Graph: Topological sort of DAG (2)	 1. DFS: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br>2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
+SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
+LinkedList: last-M-th element of a linked list	2 pointers, one M ahead
+SD components: when to use BigQuery/Dremel<br>when to use MapReduce	BigQuery: any query, SQL-like, no latency, small output (stats)<br><br>MapReduce: can do any processing, more latency, have to implement all jobs
