@@ -1,10 +1,10 @@
-SD primitives: 2PC	unanimous vote: commit or abort<br>static master<br>fails if coordinator and a node fail when commit<br>not partition tolerant, tail latency sensitives
+SD primitives: 2PC<br>vote, master, failure, partition, network	unanimous vote: commit or abort<br>static master<br>fails if coordinator and a node fail when commit<br>not partition tolerant, tail latency sensitives
 Prob: k-th smallest number in multiplication table	Binary search O(m log(mn))
-Graph: Kosaraju, Tarjan	find SCC<br>K: first DFS topological sort<br>second DFS in inverse graph collect SCC<br><br>T: only one pass
+Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>K: first DFS topological sort<br>second DFS in inverse graph collect SCC<br><br>T: only one pass
 SD app: how to handle errors in a streaming processing system	rewrite to errorTopic1 and retry, then 2, ...<br>then to dead letter topic<br><br>(Uber)
 SD primitives: how are conflicts resolved	look at causal history with metadata<br>last writer, timestamps, version numbers, vector clocks
 SD primitives: WAL	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
-LinkedList: find where 2 linked list merge	2 pointers 
+LinkedList: 3 problems solved with 2 pointers<br>(apart from cycle)	find where 2 linked list merge<br><br>middle of a linked list<br><br>last-M-th element of a linked list
 Graph: output of DFS	vertex: entry/exit time,<br> edge: tree edge or back edge
 SD components: techniques to scale RDBMS	master-slave replication<br>master-master replication<br>federation<br>sharding<br>denormalization<br>SQL tuning
 Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capacity reached.
@@ -25,7 +25,7 @@ Selection and Insertion sort: best and worst case	- Selection: no difference, <b
 Stack: sort a stack	using a second stack,<br><br> or recursively
 String: Regex matching	Recursive, DP. With offset going from left to right.
 SD primitives: two classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
-String: Reverse words in a sentence	1. Word by word from the end. 2. reverse whole string char-by-char, reverse within each word
+String: Reverse words in a sentence<br>(2 ways)	1. Word by word from the end. 2. reverse whole string char-by-char, reverse within each word
 DS: specialized heaps	when limited set of keys, or monotonic input
 Alg: 5 DP types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
 Graph: clique definition	complete subgraph

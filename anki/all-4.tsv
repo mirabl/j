@@ -5,19 +5,19 @@ SD components: replication modes of MySQL<br>(what is in the WAL)	statement-base
 Tree: Serialize/Deserialize	Special case? BST, complete, full?. <br>Inorder array with null marker
 Search: find element in a sorted rotated array	double BS: <br><br>find the frontier, <br>BS on left or right part
 Adv/Disadvantage of BST vs. HashTable	BST can enumerate in key order<br>HashTable simpler when key repeats<br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
-2D Array: Boggle (Find all possible words in a board of characters)	DFS from every start cell, mark visited cells.<br><br>Complexity?<br> Better solution with Tree.
+2D Array: Boggle (Find all possible words in a board of characters)	DFS from every start cell, mark visited cells.<br><br>Complexity?<br> Better solution with Trie.
 Misc: websocket	persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
 Array: Smallest subarray with sum greater than a given value	Sliding window: keep adding array elements while current sum is smaller than x <br> If current sum becomes greater than x, update min length, remove starting elements
 SD components:<br>2 data warehouses products for an analytical processing OLAP	Redshift, BigQuery/Dremel
 Sudoku Solver	Backtracking. <br><br>Only check if one value is already in a row/col/square.
 Algo: closest pair<br>2 algs	find the pair that is closest<br>sweep line: O(n log n)<br>divide and conquer: O(n log^2 n)
 Binary heap definition	complete binary<br>with heap property (children are smaller)
-Graph: Complexity of BFS and DFS for a Graph	O(V + E) if adjacency list<br> O(V^2) if adjacency matrix/O(V)
+Graph: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br> O(V^2) if adjacency matrix/O(V)
 Array: Given an array of integers, every element appears twice except for one. Find that single one	XOR O(n)
 Longest Palindromic Substring	for each position, find longest even and odd length substring with this center O(n^2)|O(1)<br>DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1)<br><br>O(n) difficult Manacher.
 Tree: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if in-order traversal is sorted O(n)
 DS: segment tree<br>for which operation with complexity	same name but different for Fenwick Trees (prefix sums)<br>store info on intervals or segments<br><br>find segments containing a query point<br>O(log Intervals + MatchingIntervals)
-DS: 2 example use of a heap	extract minimum with streaming data<br>merge k sorted arrays
+DS: 3 example use of a heap	extract minimum with streaming data<br><br>merge k sorted arrays<br><br>priority queue
 Fenwick Tree	type of segment tree<br>used for prefix sums
 Array: is subsequence	iterate greedy, not need for dp
 Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
@@ -45,5 +45,4 @@ Array: Next Greater element in an array	using a stack<br>O(n)/O(n)
 SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
 Graph: Topological sort of DAG (2)	 1. DFS: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br>2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
 SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
-LinkedList: last-M-th element of a linked list	2 pointers, one M ahead
 SD components: when to use BigQuery/Dremel<br>when to use MapReduce	BigQuery: any query, SQL-like, no latency, small output (stats)<br><br>MapReduce: can do any processing, more latency, have to implement all jobs

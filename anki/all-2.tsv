@@ -1,8 +1,8 @@
-Array: Longest Increasing Subsequence	DP O(n^2). <br><br>also possible in O(n log n)<br> with active lists and binary search
+Array: Longest Increasing Subsequence<br>(2 ways)	DP O(n^2). <br><br>also possible in O(n log n)<br> with active lists and binary search
 SD components: OLTP, OLAP	online transaction/analytical processing<br>RDBMS vs. datawarehouse<br>low vs high latency
 Array: rotate image by 90 degrees<br>2 ways	ring by ring, <br><br>or reverse up to down (r2l) and transpose
 SD primitives: Gossip	probabilistic technique for synchronizing replicas<br>nodes have some probability p of attempting to synchronize with each other<br>efficient thanks to Merkle trees
-Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at end, resize heap O(log n)
+Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at end, resize heap O(log n)<br><br>total: O(n log n)
 QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
 SD primitives: N, R, W, usual recommendation	N replicas,<br>need R/W votes for read/write<br>R + W > N
 Search: find element in row-and-column-sorted matrix	start from NE corner
@@ -17,9 +17,8 @@ Tree: Inorder sucessor in BST without parent pointer	Search from root O(h). <br>
 Array: find subarray with maximum sum	one pass, at each position either extend or start new subarray O(n)|O(1)
 Graph: 11 types of graphs	connected, directed, weighted, Tree, DAG, bipartite, complete (all clique), intersection, planar, sparse, with cycles
 SD components: memcached perf	on machine with good network, 200k/s easily<br>latency: 1ms
-SD: Federation	(or functional partitioning) splits up databases by function. <br>For example, forums, users, and products
+SD: Federation	= functional partitioning<br><br>splits up databases by function. <br><br>For example, forums, users, and products
 Alg: solve recurrences<br>T(n) = T(n / 2) + O(1)<br>T(n) = 2 T(n / 2) + O(1)<br>T(n) = 2T (n / 2) + O(log n)<br>T(n) = 2 T(n / 2) + O(n)<br>T(n) = T(n / 2) + O(n)	O(log n) binary search<br>O(n)<br>O(n)<br>O(n log n) mergesort<br>O(n) quickselect
-Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>Kosaraju DFS O(V + E)
 DS: LFU cache<br>implementation	3 hash maps, one with linked list as values
 Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
 Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
@@ -31,9 +30,6 @@ Tree: k-d tree	split in 1 dimension at each node (median of coordinate to get ba
 SD primitives: replace global clock by	vector clock<br><br><br>(t1, ..., tN)<br>extend Lamport clock<br><br>used by Riak, Voldemort
 Prob. solving:<br>optimize parameter (find min) when difficult directly	binary search + checkValue(mid)
 SD: consistency problems in DB	read-after-write
-SD: Sharding	distributes data across different databases such that each database can only manage a subset of the data.
-Tree: Check if binary tree is full (not complete)	recursive O(n)
-Tree: Check if binary tree is full (not complete)	recursive O(n)
 SD primitives: CA systems, based on, used by	more common, not partition aware,<br>often 2PC<br>traditional RDBMS
 Sort: insertion sort<br>selection sort	insertion: insert A[i] in sorted A[0]...A[i-1]<br><br>select min put it at A[i=0], i++
 Array: Longest Common Subsequence	DP O(nm)
@@ -43,6 +39,6 @@ DS: range minimum or range sum	Segment Tree
 Graph: shortest paths in DAG	topological sort + greedy, O(V + E)
 SD primitives: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
 DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
-Stack: implement stack with O(1) min	push (x, min) when pushing x, <br><br>or use second stack
+Stack: implement stack with O(1) min<br>(2 ways)	push (x, min) when pushing x, <br><br>or use second stack
 Tree: Maximum path sum in a binary tree	recursive, only left, only right, both<br>O(n)
 Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	BFS from start word
