@@ -14,7 +14,7 @@ Algo: closest pair<br>2 algs	find the pair that is closest<br>sweep line: O(n lo
 Binary heap definition	complete binary<br>with heap property (children are smaller)
 Graph: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br> O(V^2) if adjacency matrix/O(V)
 Array: Given an array of integers, every element appears twice except for one. Find that single one	XOR O(n)
-Longest Palindromic Substring	for each position, find longest even and odd length substring with this center O(n^2)|O(1)<br>DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1)<br><br>O(n) difficult Manacher.
+Longest Palindromic Substring (3)	for each position, find longest even and odd length substring with this center O(n^2)|O(1)<br><br>DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1)<br><br>O(n) difficult Manacher.
 Tree: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if in-order traversal is sorted O(n)
 DS: segment tree<br>for which operation with complexity	same name but different for Fenwick Trees (prefix sums)<br>store info on intervals or segments<br><br>find segments containing a query point<br>O(log Intervals + MatchingIntervals)
 DS: 3 example use of a heap	extract minimum with streaming data<br><br>merge k sorted arrays<br><br>priority queue
@@ -24,25 +24,24 @@ Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
 Array: Continuous median	maintain 2 big balanced heaps
 SD components: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second<br>billions of rows<br>thousands of columns
 SD primitives: CP systems, work how, implementations	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
-Array: Find maximum in sliding window	1. use self-balanced BST O(n log n). <br><br>2. Use dequeue keeping only useful elements O(n)
+Array: Find maximum in sliding window (2)	1. use self-balanced BST O(n log n). <br><br>2. Use dequeue keeping only useful elements O(n)
 SD components: NoSQL 4 types of stores	key-value: Redis, memcached<br><br>document store: MongoDB, CouchDB, ElasticSearch<br><br>wide-column store: BigTable, HBase, Cassandra<br><br>graph DB: neo4j, flockdb
 Prob: skyline<br>how to solve	O(n log n) with divide and conquer<br>similar to merge sort
 SD: NoSQL	 is a collection of data items represented in a key-value store, document-store, wide column store, or a graph database. <br>Data is denormalized, and joins are generally done in the application code.
 Minimum difference partition	DP CanMakeSum[i][T], <br>T <= S/2<br>O(n S)
-0-1 Knapsack: max weight, items with values and weights, maximize value	DP Best[i][w]<br>O(n W)
+0-1 Knapsack: description, solution, problem class	max weight, items with values and weights, maximize value<br><br>DP Best[i][w]<br>O(n W)<br>NP-complete
 Graph: articulation point<br>def, algo	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
 Array: find the median of non-sorted array<br>+ approximate	QuickSelect O(n)<br><br>median of medians: approximate<br>split in groups of 5<br>find median of each group, recurse
 SD low-level: Read 4K randomly from SSD	150 us
 DS: implement a queue using two stacks	empty first stack into second stack
 Sort: sort when limited range of keys	counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
 LinkedList: is a linked list a palindrome?	reverse second half, check (and restore)
-Graph: maximum clique algorithm	difficult, there are heuristics
 SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
 SD primitives: why impossible to availability and strong consistency during network partition	can not prevent divergence if partitioned nodes continue to work
 LinkedList: Sort a linked list	use merge sort
 SD components: how many queries per second for a MySQL DB server	no answer, <br>depends on query/HW. 1K QPS
 Array: Next Greater element in an array	using a stack<br>O(n)/O(n)
 SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
-Graph: Topological sort of DAG (2)	 1. DFS: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br>2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
+Graph: Topological sort of DAG (2)	 1. DFS: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br><br>2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
 SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
 SD components: when to use BigQuery/Dremel<br>when to use MapReduce	BigQuery: any query, SQL-like, no latency, small output (stats)<br><br>MapReduce: can do any processing, more latency, have to implement all jobs

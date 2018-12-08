@@ -9,7 +9,7 @@ Graph: output of DFS	vertex: entry/exit time,<br> edge: tree edge or back edge
 SD components: techniques to scale RDBMS	master-slave replication<br>master-master replication<br>federation<br>sharding<br>denormalization<br>SQL tuning
 Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capacity reached.
 Algo: pseudo-polynomial time	running time polynomial in the numeric value of input<br>but exponential in the length of the input
-Graph: edge cover	set of edges such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
+Graph: edge cover<br>desc, problem and solution	set of edges such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
 SD primitives: 3 consensus algos and their CAP status	2 phase commit, full strict quorum protocols: CA<br><br>Paxos, majority quorums with minority in partition: CP<br><br>Gossip, Dynamo, conflict resolution: AP
 SD primitives: ACID	atomicity, consistency, isolation, durability
 Coin Game: coins in a row, pick one	windowed DP<br><br>DP F(from i-th coin to j-th coin) = max(. + min(), . + min())<br>O(n^2)
@@ -20,7 +20,7 @@ DS: suffix array	same use as suffix tree but with 4 times less memory<br>sorted 
 String: Longest Substring Without Repeating Characters	Window. left and right pointers, hash set for characters in the substring, move either left or right O(n)|O(n) // traverse left to right, maintaining longest valid substring ending at this position, use map<char,position> to know where current character appeared last O(n)|O(n)
 print valid n-parentheses	try a character, recurse if allowed
 SD apps: mechanism for asynchronicity	queues
-Geo: convex-hull algorithm	Graham scan O(n log n)<br>start from left, sort by angle<br>add 2nd point<br>for every other point:<br>if angle >180 add<br>else remove intermediate
+Geo: convex-hull algorithm (3)	wrapping<br><br>sweep line<br>divide and conquer
 Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
 Stack: sort a stack	using a second stack,<br><br> or recursively
 String: Regex matching	Recursive, DP. With offset going from left to right.
@@ -28,7 +28,8 @@ SD primitives: two classifications of replication techniques	-synchronous<br>-as
 String: Reverse words in a sentence<br>(2 ways)	1. Word by word from the end. 2. reverse whole string char-by-char, reverse within each word
 DS: specialized heaps	when limited set of keys, or monotonic input
 Alg: 5 DP types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
-Graph: clique definition	complete subgraph
+Graph: clique<br>definition, 2 problems and solutions	complete subgraph<br>maximum clique: largest in the graph (difficult in general, heuristics)<br><br>maximal: can not be extended (greedy)
+Graph: maximum clique algorithm	difficult, there are heuristics
 MergeSort: best and worst case<br>memory	always O(n log n)<br>memory: O(n) aux
 SD apps: how many tweets per second, per day	per second: 6000<br><br>per day: 500 million
 Graph: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and _distance to target_

@@ -1,7 +1,7 @@
 SD: replication lag for MySQL	time between read/write to master and replication to all slaves
 SD components: how does BigQuery/Dremel distribute queries	Tree Architecture<br>dispatching queries and aggregating results<br>thousands of machines in a few seconds
 SD: hashing for sharding	consistent hashing: circle with many pseudo-random points per node. Rendezvous hashing
-Tree: balanced BST: complexity, 4 examples	Search/insert/delete O(log n)<br><br>AVL<br>Red-black<br>B-tree<br>2-3 tree
+Tree: balanced ST: complexity, 5 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>2-3 tree<br>B-tree<br>B+ tree
 Array: Given infinite coins of value (V1, V2, .. ,VN), find the minimum number of coins with sum S	DP(n, S)
 DS: implement LRU cache	Queue + hash: <br>Queue: doubly linked list (size: cache size). most recently used at front.<br><br>Hash: address of the corresponding queue node as value.
 SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
@@ -12,14 +12,14 @@ Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of x to r
 Heap: complexity and algo of insert, extract-min, search	use last element, bubble up or down<br>O(log n)<br><br>search: difficult O(n)
 Prob: median of two sorted arrays	Binary search<br>O(log(m + n))<br><br>tricky cases due to parity
 SD: Denormalization	attempts to improve read perf at the expense of write perf. <br>Redundant copies of the data are written in multiple tables to avoid expensive joins. 
-Graph: Minimum Spanning tree Prim: algorithm and complexity	greedy vertices: add new vertex of minimum distance to partial tree. <br>O(V^2), <br>can be reduced with binary heap.
+Graph: Minimum Spanning tree Prim: algorithm and complexity	Dijkstra-like<br>greedy vertices: add new vertex of minimum distance to partial tree.<br><br>O(V^2), or less with binary heap
 LinkedList: Detect beginning of a cycle	method1: count cycle length, count first segment length. <br><br>method2: smarter, TODO. O(n)
 DS: check if item is in known set	Bloom filter if no space for hash table
 SD: Master-master replication	Both masters serve reads and writes and coordinate with each other on writes. <br>If either master goes down, the system can continue to operate with both reads and writes.
 SD apps: 2 difficulties of streaming systems	order<br>exactly once delivery
 Prob: first missing positive	swap pairs to put at its place<br>O(n) time<br>O(1) memory
 SD primitives: strong consistency models	linearizable consistency: real world ordering respected<br><br>sequential consistency: can be reordered as long as consistent on each node
-Array: 2sum: Given an array of integers, return indices of the two numbers such that they add up to a specific target.<br>(3 ways)	same element twice?<br> Use hash table O(n)|O(n), <br>sort+two pointers O(n log n)|O(1), <br>sort+BS O(n log n)|O(1)
+Array: 2sum (3 ways)	same element twice?<br> Use hash table O(n)|O(n), <br>sort+two pointers O(n log n)|O(1), <br>sort+BS O(n log n)|O(1)
 Tree: Lowest Common Ancestor in a Binary Search Tree	recursive O(n)
 SD low-level: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
 SD: drawback of DNS load balancing	results are cached by intermediate servers, so not responsive when change
@@ -27,7 +27,7 @@ Array: Convert array into Zig-Zag fashion: distinct element or not cases	distinc
 Radix sort: description, complexity	MSB or LSB<br>O(wn)
 Array: Rotate an array<br>(3 ways)	1. With a temp array of size K. <br><br>or 2. With cycles (compute gcd)
 SD apps: most followers on twitter	1B
-Graph: max flow problem edge with capacities	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
+Graph: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
 Array: largest rectangle under histogram	O(n) left to right with stack
 Graph: shortest path when edges have no weight	BFS
 SD components: tablet definition	horizontal partition/shard of a table (Google)
