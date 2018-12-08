@@ -5,43 +5,40 @@ SD app: how to handle errors in a streaming processing system	rewrite to errorTo
 SD primitives: how are conflicts resolved	look at causal history with metadata<br>last writer, timestamps, version numbers, vector clocks
 SD primitives: WAL	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
 LinkedList: 3 problems solved with 2 pointers<br>(apart from cycle)	find where 2 linked list merge<br><br>middle of a linked list<br><br>last-M-th element of a linked list
-Graph: output of DFS	vertex: entry/exit time,<br> edge: tree edge or back edge
-SD components: techniques to scale RDBMS	master-slave replication<br>master-master replication<br>federation<br>sharding<br>denormalization<br>SQL tuning
+Graph: output of DFS	vertex: entry/exit time,<br><br>edge: tree edge or back edge
+SD components: 6 techniques to scale RDBMS	master-slave replication<br>master-master replication<br>federation<br>sharding<br>denormalization<br>SQL tuning
 Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capacity reached.
 Algo: pseudo-polynomial time	running time polynomial in the numeric value of input<br>but exponential in the length of the input
 Graph: edge cover<br>desc, problem and solution	set of edges such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
 SD primitives: 3 consensus algos and their CAP status	2 phase commit, full strict quorum protocols: CA<br><br>Paxos, majority quorums with minority in partition: CP<br><br>Gossip, Dynamo, conflict resolution: AP
 SD primitives: ACID	atomicity, consistency, isolation, durability
-Coin Game: coins in a row, pick one	windowed DP<br><br>DP F(from i-th coin to j-th coin) = max(. + min(), . + min())<br>O(n^2)
-Max number of intersecting intervals	sort events: enter and exist of intervals. O(n log n)|O(n) aux
+Prob:<br>Coin Game: coins in a row, pick one	windowed DP<br><br>DP F(from i-th coin to j-th coin) = max(. + min(), . + min())<br>O(n^2)
+Prob:<br>Max number of intersecting intervals	sort events: enter and exist of intervals. O(n log n)|O(n) aux
 SD primitives: how a Lamport clock works	when a process does work, increment<br>when send a message, include counter<br>when message received, take the max counter of self and message
 SD low-level: use cases of UDP	best effort delivery for voice/video streaming, games
 DS: suffix array	same use as suffix tree but with 4 times less memory<br>sorted array of suffixes
-String: Longest Substring Without Repeating Characters	Window. left and right pointers, hash set for characters in the substring, move either left or right O(n)|O(n) // traverse left to right, maintaining longest valid substring ending at this position, use map<char,position> to know where current character appeared last O(n)|O(n)
-print valid n-parentheses	try a character, recurse if allowed
+String:<br>print valid n-parentheses	try a character, recurse if allowed
 SD apps: mechanism for asynchronicity	queues
 Geo: convex-hull algorithm (3)	wrapping<br><br>sweep line<br>divide and conquer
-Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
+Sort:<br>Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
 Stack: sort a stack	using a second stack,<br><br> or recursively
-String: Regex matching	Recursive, DP. With offset going from left to right.
+String: Regex matching (2)	1. Recursive<br>2. DP. <br><br>With offset going from left to right.
 SD primitives: two classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
-String: Reverse words in a sentence<br>(2 ways)	1. Word by word from the end. 2. reverse whole string char-by-char, reverse within each word
+String: Reverse words in a sentence<br>(2 ways)	1. Word by word from the end.<br><br> 2. reverse whole string char-by-char, reverse within each word
 DS: specialized heaps	when limited set of keys, or monotonic input
 Alg: 5 DP types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
 Graph: clique<br>definition, 2 problems and solutions	complete subgraph<br>maximum clique: largest in the graph (difficult in general, heuristics)<br><br>maximal: can not be extended (greedy)
-Graph: maximum clique algorithm	difficult, there are heuristics
-MergeSort: best and worst case<br>memory	always O(n log n)<br>memory: O(n) aux
-SD apps: how many tweets per second, per day	per second: 6000<br><br>per day: 500 million
+MergeSort:<br>- time: best and worst case<br>- memory	time: always O(n log n)<br><br>memory: O(n) aux
+SD apps: how many tweets <br>- per second<br>- per day	per second: 6000<br><br>per day: 500 million
 Graph: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and _distance to target_
-Product of array except self	two steps with left right prefix product<br><br>no need of additional array
-Graph: Minimum Spanning tree Kruskal: algorithm and complexity	sort edges by weight, <br>(take min edge, check if it introduces a cycle in the partial tree, discard or add). <br>Cycle detection with union-find<br><br>O(E log E)
-Heapify: algorithm and complexity	heapify from the lower levels to the upper levels, "sinkdown" roots of subtrees<br><br>O(n)
+Prob:<br>Product of array except self	two steps with left right prefix product<br><br>no need of additional array
+Graph: Minimum Spanning tree Kruskal: algorithm and complexity	sort, process edges from low weight, <br>(take min edge, check if it adds cycle in partial tree). <br>Cycle detection with union-find<br><br>O(E log E)
+Heapify: algorithm and complexity	heapify from the lower levels first, "sinkdown" roots of subtrees<br><br>O(n)
 Tree: Bottom view of binary tree	BFS with (ordered) map: <br>M[x-coordinate] = value<br><br>O(n)/O(n)
-Tree: Print tree perimeter (border)	print left boundary without leaf,<br> print leaves, <br>print right in reverse (recursive)
 Graph: Find connected components of a graph	BFS/DFS O(V + E), <br>or just Union-Find with no graph traversal<br><br>If dynamic changes, keep track of components with Union-Find.
-Graph: matching, perfect matching	set of edges without common vertices<br>perfect: all vertices are matched, like minimum size edge cover
+Graph: matching, perfect matching	set of edges without common vertices<br><br>perfect: all vertices are matched,<br>like minimum size edge cover
 DS: external merge sort	sort chunk & write to disk, load chunk of chuck and merge-write
-Priority queues: 2 implementations	heaps<br>self balancing BST
+DS:<br>Priority queues: 2 implementations	heaps<br>self balancing BST
 String: determine if a string has only unique characters (with and without memory)	use a set, <br><br>or sort the string
 SD primitives: primary/backup replication<br>master, works how, network, failover	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous variant: ensure that write are done one backups before returning to the client
 DS: sort when nearly sorted (k position away at most)	heap

@@ -6,7 +6,6 @@ LinkedList: insertion in linked list tip	use dummy first node
 SD primitives: replication algorithms that maintain single-copy consistency	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
 SD primitives: 2 rate limiters	leaky bucket, token bucket
 SD low-level: RAM SSD HDD latency	RAM 100 ns<br>SSD 0.1 ms    (x1000)<br>HDD 10 ms    (x100)
-SD: how many FB users	2B Montly active users
 Sort: sort when element are nearly sorted (2 ways)	heapsort<br>insertion sort
 String: Edit Distance	DP O(mn)
 Bit: test if a number is a power of two	(n & (n-1)) == 0
@@ -17,7 +16,6 @@ Alg: NP-complete/NP-hard definition	in NP, and any NP problem can be transformed
 Sort: 6 questions on data	how many keys, duplicates, partially sorted, long to compare, small range, disk access possible
 SD primitives: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
 Tree: iterative in-order traversal of binary tree	stack and curnode pointer
-Tree: iterative in-order traversal of binary tree	stack and curnode pointer
 Prob: find K-th smallest pair distance<br>from integer array	Sort array<br>Binary search on answer<br>Two pointer to validate
 SD primitives: weak consistency models	client-centric: ex. client will never see older value<br><br>causal (strongest): <br><br>eventual: after some time all replicas agree
 SD low-level: RAM SSD HDD R/W speed	RAM 10 GB/s<br>SSD 500 MB/s    (/20)<br> HDD 100 MB/s    (/5)
@@ -26,8 +24,8 @@ Graph: bridge<br>def, algo, complexity	remove this edge and there is no path lef
 Algo: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
 Graph: Detect cycle in a graph<br>(2 ways, complexity)	Colorized DFS look for back-edge O(V + E).<br><br> Also possible with Union-Find: loop on edges, union-find on vertices O(E)?
 SD: topics to address	HA, scaling, sizing, discovery, latency, build whole system with client
-3 big sorts on large data<br>+ advantages	quicksort: fast, not stable unless storage<br><br>merge sort: stable, parallelizable, works on lists, contiguous access<br><br>heap sort: in-place, slower than quicksort
-Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
+Sort:<br>3 big sorts on large data<br>+ advantages	quicksort: fast, not stable unless storage<br><br>merge sort: stable, parallelizable, works on lists, contiguous access<br><br>heap sort: in-place, slower than quicksort
+Prob:<br>Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
 SD: vertical/horizontal scaling 	vertical: add more power to a machine<br><br>horizontal: add more machines
 SD components: advantage/disadvantage of columnar storage, 3 examples	if usage pattern is to read whole table like OLAP/BI<br>but only some columns<br>don't read unused columns<br>can use compression to reduce size on disk<br>disadv: difficult to update<br>Parquet, Redshift, Dremel/BigQuery
 Graph: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard
@@ -36,9 +34,9 @@ Tree: reconstruct tree from inorder and preorder	find root, left inorder, right 
 Geo: range query	given set of points<br>query: for a query region Q, which points are in Q?<br><br>k-d tree<br>Delaunay triangulation if dynamic
 SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
 Tree: k-th highest element of BST	reverse inorder traversal of BST. O(h + k)
-SD: how many YT videos watched every day	5B
+SD:<br>- how many FB users<br><br>- how many YT videos watched every day	2B Montly active users<br><br>5B
 Prob: swim in rising water	BS on answer + DFS check<br>O(n^2 log n)<br><br>BFS with priority queue<br>O(n^2 log n)
-Array: find the majority element	Boyer-Moore voting algorithm O(n)
+Array: find the majority element	Boyer-Moore voting algorithm<br><br>O(n)
 LinkedList: Select random node from linked list	method1: naive count nodes in first pass. <br><br>method2:reservoir sampling O(n) one pass.
 SD components: BigTable data model	1. row (row key)<br>2. column: column families + column qualifier within family<br>3. timestamp<br><br>sparse: no room taken for empty cells
 Math: number of trailing zeroes in a factorial	powers of 2, 5

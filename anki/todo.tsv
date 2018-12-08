@@ -35,3 +35,4 @@ SD components: Chubby: def, internals, open-source version	distributed lock serv
 Bigtable	Asynchronous, eventually-consistent replication
 Spanner	Planet-scale structured storage<br>Next generation of Bigtable stack<br>Distributed cross-group transactions<br>Synchronous replication groups (Paxos)
 Algo: bin packing	n items with weights<br>m bins with capacity<br>store all with min bins<br><br>only geo? diff with knapsack? NP-complete
+Precise def of 	ACID, CAP
