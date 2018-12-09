@@ -1,6 +1,6 @@
 SD: replication lag for MySQL	time between read/write to master and replication to all slaves
 SD components: how does BigQuery/Dremel distribute queries	Tree Architecture<br>dispatching queries and aggregating results<br>thousands of machines in a few seconds
-SD: hashing for sharding	consistent hashing: circle with many pseudo-random points per node. Rendezvous hashing
+SD: hashing for sharding	consistent hashing: circle with many pseudo-random points per node<br><br>Rendezvous hashing
 Tree: balanced ST: complexity, 5 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>2-3 tree<br>B-tree<br>B+ tree
 Array: Given infinite coins of value (V1, V2, .. ,VN), find the minimum number of coins with sum S	DP(n, S)
 DS: implement LRU cache	= DLL Queue + HashTable: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
@@ -25,7 +25,7 @@ SD low-level: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>m
 SD: drawback of DNS load balancing	results are cached by intermediate servers, so not responsive when change
 Array: Convert array into Zig-Zag fashion: distinct element or not cases	distinct O(n)|O(1) aux bubble sort-like swap <br> not distinct QuickSelect to find median, partition O(n)
 Sort:<br>Radix sort: description, complexity	MSB or LSB<br>O(wn)
-Array: Rotate an array<br>(3 ways)	1. With a temp array of size K. <br><br>or 2. With cycles (compute gcd)
+Array: Rotate an array<br>(3 ways)	1. naive, step by step<br><br>2. With a temp array of size K. <br><br>3. With cycles (compute gcd)
 SD apps: most followers on twitter	1B
 Graph: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
 Array: largest rectangle under histogram	O(n) left to right with stack

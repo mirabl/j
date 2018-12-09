@@ -1,16 +1,16 @@
 SD components: OLTP, OLAP	online transaction/analytical processing<br>RDBMS vs. datawarehouse<br>low vs high latency
 Array: rotate image by 90 degrees<br>2 ways	ring by ring, <br><br>or reverse up to down (r2l) and transpose
-SD primitives: Gossip	probabilistic technique for synchronizing replicas<br>nodes have some probability p of attempting to synchronize with each other<br>efficient thanks to Merkle trees
+SD primitives: Gossip	probabilistic technique for synchronizing replicas<br><br>nodes have some probability p of attempting to synchronize with each other<br><br>efficient thanks to Merkle trees
 Sort:<br>Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at end, resize heap O(log n)<br><br>total: O(n log n)
 Sort:<br>QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
 SD primitives: N, R, W, usual recommendation	N replicas,<br>need R/W votes for read/write<br>R + W > N
 Prob:<br>Search: find element in row-and-column-sorted matrix	start from NE corner
 Sort: bubble sort	swap pairs to put max at i=end of array<br>i--
-SD primitives: partition tolerant consensus<br>examples, how they work	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
+SD primitives: partition tolerant consensus<br>examples, how they work<br>what happens when partition	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
 Graph: 4 colors theorem	a planar graph can be vertex colored using at most 4 distinct colors
 LinkedList: reverse a linked list	iterative
 Prob:<br>combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., <br>same number can be repeated<br>	backtracking (or DP)
-Prob:<br>split array in m continous subarrays<br>minimize largest subarry sum	Binary search on answer<br><br>Greedy packing to check if valid
+Prob:<br>split array in m continous subarrays<br>minimize largest subarray sum	Binary search on answer<br><br>Greedy packing to check if valid
 SD components: MySQL storage engine	InnoDB: row locking so better concurrency<br><br>MyISAM: old, maybe table locking better when lots of reads
 Array: find subarray with maximum sum	one pass, at each position either extend or start new subarray O(n)|O(1)
 Graph: 11 types of graphs	connected, directed, weighted, Tree, with cycles, DAG, bipartite, complete (all clique), intersection, planar, sparse

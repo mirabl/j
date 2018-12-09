@@ -28,7 +28,7 @@ Prob: skyline<br>how to solve	O(n log n) with divide and conquer<br>similar to m
 SD: NoSQL	 is a collection of data items represented in a key-value store, document-store, wide column store, or a graph database. <br>Data is denormalized, and joins are generally done in the application code.
 Array: Minimum difference partition	DP CanMakeSum[i][T], <br>T <= S/2<br>O(n S)
 Prob:<br>0-1 Knapsack: description, solution, problem class	max weight, items with values and weights, maximize value<br><br>DP Best[i][w]<br>O(n W)<br>NP-complete
-Graph: articulation point<br>def, algo	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
+Graph: articulation point<br>def, algo, complex	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
 Array: find the median of non-sorted array<br>+ approximate	QuickSelect O(n)<br><br>median of medians: approximate<br>split in groups of 5<br>find median of each group, recurse
 SD low-level: Read 4K randomly from SSD	150 us
 Sort: sort when limited range of keys	counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
