@@ -23,7 +23,6 @@ DS: suffix tree	compressed trie of suffixes<br>naive O(n^2) construction time, O
 Graph: bridge<br>def, algo, complexity	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
 Algo: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
 Graph: Detect cycle in a graph<br>(2 ways, complexity)	Colorized DFS look for back-edge O(V + E).<br><br> Also possible with Union-Find: loop on edges, union-find on vertices O(E)?
-SD: topics to address	HA, scaling, sizing, discovery, latency, build whole system with client
 Sort:<br>3 big sorts on large data<br>+ advantages	quicksort: fast, not stable unless storage<br><br>merge sort: stable, parallelizable, works on lists, contiguous access<br><br>heap sort: in-place, slower than quicksort
 Prob:<br>Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
 SD: vertical/horizontal scaling 	vertical: add more power to a machine<br><br>horizontal: add more machines

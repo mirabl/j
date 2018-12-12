@@ -1,0 +1,5 @@
+SD: How many simulataneous connections on a whatsapp server	2 million
+SD: why Kafka performance (2)	zero-copy<br>batching
+SD meth: system design methodology	1. Scope (and non-scope)<br>2. Usage<br>3. SLA (latency, avail)<br>4. API?
+SD components: 6 techniques to scale RDBMS<br>general/read/writes	general:<br>- federation<br>scale reads:<br>- master-slave replication<br>scale writes:<br>- sharding<br><br>denormalization<br>SQL tuning
+SD meth: system design methodology for storage	1. data model<br>2. size<br>3. Usage r/w<br>4. SLA<br>5. Bias (popular, geo)

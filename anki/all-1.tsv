@@ -6,7 +6,6 @@ SD primitives: how are conflicts resolved	look at causal history with metadata<b
 SD primitives: WAL	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
 LinkedList: 3 problems solved with 2 pointers<br>(apart from cycle)	find where 2 linked list merge<br><br>middle of a linked list<br><br>last-M-th element of a linked list
 Graph: output of DFS	vertex: entry/exit time,<br><br>edge: tree edge or back edge
-SD components: 6 techniques to scale RDBMS	master-slave replication<br>master-master replication<br>federation<br>sharding<br>denormalization<br>SQL tuning
 Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capacity reached.
 Algo: pseudo-polynomial time	running time polynomial in the numeric value of input<br>but exponential in the length of the input
 Graph: edge cover<br>desc, problem and solution	set of edges such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily

@@ -2,7 +2,7 @@ Array:<br>Subset sum: a subset of array sums to T	DP CanMakeSum[i][T]<br>O(n S)
 SD components: 4 cache strategies	cache aside: app does everything<br><br>write-through: cache interacts with DB<br><br>write-behind/back: app writes to cache and async write to DB<br><br>refresh ahead: auto refresh by cache
 Array: Print matrix in spiral	four variables top bottom left right. Reduce
 SD components: replication modes of MySQL<br>(what is in the WAL)	statement-based ("insert ...") = logical<br>row-based: result of the statement = physical<br><br>or a mix
-Tree: Serialize/Deserialize	Special case? BST, complete, full?. <br>Inorder array with null marker
+Tree: Serialize/Deserialize	Special case?<br>BST: pre or postorder<br>Complete: level order<br>Full: preorder with boolean for leaves<br>General: pre AND inorder<br>better: preorder and NULL marker
 Search: find element in a sorted rotated array	double BS: <br><br>find the frontier, <br>BS on left or right part
 DS:<br>Adv/Disadvantage of BST vs. HashTable	BST can enumerate in key order<br>HashTable simpler when duplicate keys<br><br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
 2D Array: Boggle (Find all possible words in a board of characters)	DFS from every start cell, mark visited cells.<br><br>Complexity?<br> Better solution with Trie.
