@@ -5,7 +5,11 @@ SD components: 6 techniques to scale RDBMS<br>general/read/writes	general:<br>- 
 SD meth: system design methodology for storage	1. data model<br>2. size<br>3. Usage r/w<br>4. SLA<br>5. Bias (popular, geo)
 Sort: 4 sort properties	- stable<br>- in place<br>- comparison or not<br>- external
 SD: skip list<br>- definition<br>- complexities<br>- used in	linked list for binary search<br>layers of sorted linked lists (express lanes)<br>p = 1/2 or 1/4, proba for element to be also in layer below<br><br>O(log n) average for search/insert/delete, O(n) average space<br>used in LevelDB MemTable
-SD: consistency in CAP theorem	all nodes see the same data all the time
-SD: availability in CAP theorem	every request receives a response about its success
+SD: consistency in CAP theorem	all nodes see the same data all the time<br><br>equivalent to single-copy of the data
+SD: availability in CAP theorem	every request receives a response about its success<br><br>or any reachable replica is available for reads and writes
 SD: partition tolerance in CAP theorem	system continues to operate despite message loss or failure of part of the system
 SD components: BigTable: data model, API, 2 open source equivalents	1. row (row key)<br>2. column: column families + column qualifier within family<br>3. timestamp<br><br>sparse: no room taken for empty cells<br><br>- lookup by row key, range query<br>- HBase, Cassandra
+SD: A in ACID	Atomicity<br><br>All or nothing for a transaction:<br>indivisible<br>done or not done
+SD: C in ACID	Consistency<br><br>a transaction moves the DB from a valid state to other valid state (e.g. preserve unique keys)<br><br>Not the same as C in CAP
+SD: I in ACID	concurrent execution of transactions leaves the DB in same state than if the they were executed sequentially
+SD: D in ACID	when a transaction is committed, it will remain committed even in the case of a system failure (power, crash)
