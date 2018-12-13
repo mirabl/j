@@ -2,7 +2,7 @@ SD primitives: 2PC<br>vote, master, failure, partition, network	unanimous vote: 
 Prob: k-th smallest number in multiplication table	Binary search O(m log(mn))
 Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>K: first DFS topological sort<br>second DFS in inverse graph collect SCC<br><br>T: only one pass
 SD app: how to handle errors in a streaming processing system	rewrite to errorTopic1 and retry, then 2, ...<br>then to dead letter topic<br><br>(Uber)
-SD primitives: how are conflicts resolved	look at causal history with metadata<br>last writer, timestamps, version numbers, vector clocks
+SD primitives: how are conflicts resolved (2)	look at causal history with metadata<br>last writer, timestamps, version numbers, vector clocks
 SD primitives: WAL	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
 LinkedList: 3 problems solved with 2 pointers<br>(apart from cycle)	find where 2 linked list merge<br><br>middle of a linked list<br><br>last-M-th element of a linked list
 Graph: output of DFS	vertex: entry/exit time,<br><br>edge: tree edge or back edge
@@ -20,7 +20,7 @@ String:<br>print valid n-parentheses	try a character, recurse if allowed
 SD apps: mechanism for asynchronicity	queues
 Geo: convex-hull algorithm (3)	wrapping<br><br>sweep line<br>divide and conquer
 Sort:<br>Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
-Stack: sort a stack	using a second stack,<br><br> or recursively
+Stack: sort a stack (2)	using a second stack,<br><br> or recursively
 String: Regex matching (2)	1. Recursive<br>2. DP. <br><br>With offset going from left to right.
 SD primitives: two classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
 String: Reverse words in a sentence<br>(2 ways)	1. Word by word from the end.<br><br> 2. reverse whole string char-by-char, reverse within each word
