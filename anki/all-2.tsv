@@ -23,7 +23,7 @@ Prob:<br>Container With Most Water<br>n vertical lines	two pointers, from start 
 Misc: 4 NP-complete problems	SAT<br>knapsack<br>traveling salesman<br>set cover
 SD components: ETL	extract data from multiple sources<br><br>clean, join, aggregate, transform into format<br><br>load in warehouse
 Array: 3Sum  Find all unique triplets in the array which gives the sum of zero	sort, loop for first element and then 2sum sweep, <br>avoid duplicates by avoiding duplicate first element <br>O(n^2)|O(1)
-Tree: k-d tree	split in 1 dimension at each node (median of coordinate to get balance)
+Tree: k-d tree<br>definition<br>4 complexities	split in 1 dimension at each node (median of coordinate to get balance)<br><br>search/insert/delete O(log n) average<br>Space: O(n)
 SD primitives: replace global clock by?<br>based on?	vector clock<br><br><br>(t1, ..., tN)<br>based on Lamport clock
 Prob. solving:<br>optimize parameter (find min) when difficult directly	binary search + checkValue(mid)
 SD: classic consistency problem in DB	read-after-write

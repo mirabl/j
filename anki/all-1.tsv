@@ -34,7 +34,7 @@ Prob:<br>Product of array except self	two steps with left right prefix product<b
 Graph: Minimum Spanning tree Kruskal: algorithm and complexity	sort, process edges from low weight, <br>(take min edge, check if it adds cycle in partial tree). <br>Cycle detection with union-find<br><br>O(E log E)
 Heapify: algorithm and complexity	heapify from the lower levels first, "sinkdown" roots of subtrees<br><br>O(n)
 Tree: Bottom view of binary tree	BFS with (ordered) map: <br>M[x-coordinate] = value<br><br>O(n)/O(n)
-Graph: Find connected components of a graph	BFS/DFS O(V + E), <br>or just Union-Find with no graph traversal<br><br>If dynamic changes, keep track of components with Union-Find.
+Graph: Find connected components of a graph (2)	BFS/DFS O(V + E), <br><br>- or process edges, Union-Find on vertices<br><br>If dynamic changes, keep track of components with Union-Find.
 Graph: matching, perfect matching	set of edges without common vertices<br><br>perfect: all vertices are matched,<br>like minimum size edge cover
 DS: external merge sort	sort chunk & write to disk, load chunk of chuck and merge-write
 DS:<br>Priority queues: 2 implementations	heaps<br>self balancing BST

@@ -2,3 +2,4 @@ String: Longest Substring Without Repeating Characters	Window. left and right po
 Tree: Print tree perimeter (border)	print left boundary without leaf,<br> print leaves, <br>print right in reverse (recursive)
 Tree: Inorder sucessor in BST without parent pointer	Search from root O(h). <br>Instead of traveling up with parent pointers: Travel down the tree, if a node’s data is greater than root’s data then go right side, otherwise go to left side.
 DS: implement a queue using two stacks	empty first stack into second stack
+SD: vertical/horizontal scaling 	vertical: add more power to a machine<br><br>horizontal: add more machines
