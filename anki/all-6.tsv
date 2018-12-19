@@ -13,3 +13,28 @@ SD: A in ACID	Atomicity<br><br>All or nothing for a transaction:<br>indivisible<
 SD: C in ACID	Consistency<br><br>a transaction moves the DB from a valid state to other valid state (e.g. preserve unique keys)<br><br>Not the same as C in CAP
 SD: I in ACID	concurrent execution of transactions leaves the DB in same state than if the they were executed sequentially
 SD: D in ACID	when a transaction is committed, it will remain committed even in the case of a system failure (power, crash)
+SD: OSI and TCP/IP models	OSI: PDNTSPA<br><br>TCP/IP: NITA
+SD: DMA definition, 3 steps	a device controls processor's memory directly<br>can transfer data to/from memory without processor<br><br>CPU initiates transfer<br>does other things<br>receives interrupt from device when done
+SD: TCP definition, uses what to be reliable, limitations	reliable, connection-oriented ordered stream of bytes on IP network<br>congestion control<br>seqno and acknowledgments<br><br>no preservation of message boundaries
+SD: content of TCP segment (5)	ports, seq no, flags, checksum, payload
+SD: UDP	connectionless, message oriented (datagrams)<br>can be out-of-order or lost<br>can broadcast<br>no congestion control
+OO: abstract class	one or more of methods have no implementation<br><br>serves as base class for others
+OO: 3 characteristics of OO	inheritance<br>encapsulation<br>polymorphism
+OO: virtual method	can be overriden in derived class
+OO: 2 aspects of polymorphism	1. at run time, object of derived class can be treated as base class<br><br>2. virtual methods of base class can be overriden
+OO: static class, static member	class: can not be instantiated<br><br>member: one copy exists
+OO: member overloading	same name but different signature
+OO: generics	class/method that defer specification of type until declared and instantiated in client code
+SD: circuit breaker<br>def, how it works	proxy for operations that might fail<br><br>states: closed / half-open / open<br>change state by looking at error rate
+SD: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency prefered
+SD: load balancer used for (3), implemented with (2)	- don't send to bad servers<br>- don't overload<br>- eliminate SPOF<br><br>- hard or soft (HAProxy)
+SD: load balancer multi setup (2)	active-passive or active-active
+SD: load balancer routes traffic based on (6)	- random<br>- least load<br>- session/cookies<br>- (weighted) round robin<br>- layer 4<br>- layer 7
+SD: layer 4 vs. layer 7	4:<br>- look at transport layer: IP address, port<br>- do NAT<br>- often hardware<br><br>7:<br> look at application layer, like URL for HTTP, cookies<br>terminates network traffic, remove TLS<br>called reverse-proxy server
+SD: event-sourcing pattern	use append-only store of actions/events
+SD: CQRS	command query responsibility separation<br>separate read and write of data
+SD: SSTable	persistent ordered immutable<br>Index and Data blocks<br>Index: PK (ex. B-Tree) and offsets in Data<br>Data: key-value pairs<br>optimised for reads, written sequentially<br>no in-place changes
+SD: Kafka perf: factors<br>produce, consume, latency	depends on: message size, replication (number and sync/async)<br><br>producer: 700K msg/s<br>consumer: 1M msg/s<br>end-to-end latency: ~3ms 99p
+SD: SLA for S3	2 9s availability (TODO: check "nines")<br>10 9s durability
+SD: 99.9 availability	9 hours of downtime per year
+SD: MemTable and SSTable	MemTable in memory, SSTable on disk<br>writes go to MemTable<br>reads go to MemTable first<br>MemTable flushed to disk SSTable periodically<br>SSTable collapsed together periodically
