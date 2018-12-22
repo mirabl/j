@@ -232,3 +232,66 @@ public:
         s(board);
     }
 };
+
+
+class Solution {
+public:
+    bool possible(vector<vector<char>>& b, int r, int c, char v) {
+        for (int col = 0; col < 9; col++) {
+            if (b[r][col] == v) {
+                return false;
+            }
+        }
+        for (int row = 0; row < 9; row++) {
+            if (b[row][c] == v) {
+                return false;
+            }
+        }
+        
+        int rt = r - (r % 3);
+        int ct = c - (c % 3);
+        for (int row = rt; row < rt + 3; row++) {
+            for (int col = ct; col < ct + 3; col++) {
+                if (b[row][col] == v) {
+                    return false;
+                }
+            }
+        }
+        
+        return true;
+    }
+    
+    bool rec(vector<vector<char>>& b) {
+        int r = -1, c = -1;
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                if (b[row][col] == '.') {
+                    r = row;
+                    c = col;
+                }
+             }
+        }
+        
+        if (r == -1) {
+            return true;
+        }
+        
+        for (char v = '1'; v <= '9'; v++) {
+            if (possible(b, r, c, v)) {
+                b[r][c] = v;
+                if (rec(b)) {
+                    return true;
+                }
+                b[r][c] = '.';
+            }
+        }
+        
+        return false;
+    }
+    
+    void solveSudoku(vector<vector<char>>& board) {
+        rec(board);
+    }
+};
+
+
