@@ -36,9 +36,10 @@ LinkedList: is a linked list a palindrome?	reverse second half, check (and resto
 SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
 SD primitives: why impossible to availability and strong consistency during network partition	diverge<br><br>can not prevent divergence if partitioned nodes continue to work
 LinkedList: Sort a linked list	use merge sort
-SD components: how many queries per second for a MySQL DB server	no answer, <br>depends on query/HW. 1K QPS
+SD components: one instance RDBMS perf	no answer, depends on query/HW, if fits in RAM<br><br>1 TB total size<br>billions of rows<br>1K r/w QPS<br><br>latency: SSD 1ms, HD: 20ms
 Array: Next Greater element in an array	using a stack<br>O(n)/O(n)
 SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
 Graph: Topological sort of DAG (2)	 1. DFS: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br><br>2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
 SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
 SD components: when to use BigQuery/Dremel<br>when to use MapReduce	BigQuery: any query, SQL-like, no latency, small output (stats)<br><br>MapReduce: can do any processing, more latency, have to implement all jobs
+LinkedList: beginning of cycle	1. find point in cycle: tortoise/hare<br><br>2. Move one pointer to start, both go to speed 1<br>meeting point is start of cycle

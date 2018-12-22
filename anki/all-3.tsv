@@ -13,7 +13,6 @@ Heap: complexity and algo of insert, extract-min, search	use last element, bubbl
 Prob: median of two sorted arrays	Binary search<br>O(log(m + n))<br><br>tricky cases due to parity
 SD: Denormalization	attempts to improve read perf at the expense of write perf. <br>Redundant copies of the data are written in multiple tables to avoid expensive joins. 
 Graph: Minimum Spanning tree Prim: algorithm and complexity	Dijkstra-like<br>greedy vertices: add new vertex of minimum distance to partial tree.<br><br>O(V^2), or less with binary heap
-LinkedList: Detect beginning of a cycle	method1: count cycle length, count first segment length. <br><br>method2: smarter, TODO. O(n)
 DS: check if item is in known set	Bloom filter if no space for hash table
 SD: Master-master replication	Both masters serve reads and writes and coordinate with each other on writes. <br>If either master goes down, the system can continue to operate with both reads and writes.
 SD apps: 2 difficulties of streaming systems	order<br>exactly once delivery
