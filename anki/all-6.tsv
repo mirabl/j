@@ -40,11 +40,11 @@ SD components: in-memory K/V store perf	on machine with good network<br><br>read
 SD: SLO types per system type (3)	always: correctness<br><br>user-facing requests: availability, latency, throughput<br><br>storage: latency, availability, durability<br><br>pipeline: throughput, end-to-end latency
 SD methodology: 3 questions to task on iteration	possible to scale?<br>can do better?<br>resilient?
 SD: latency of operation with Paxos between DCs	25ms
-SD: chat	end-to-end encryption? multi device? history on server? ack?<br><br>message delivery queue for offline clients<br>balanced read-write<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
-SD: URL shorten	lookup/create<br>read-heavy, load-latency read, metadata store, independent entries, mostly immutable<br>lookup by key<br>data bias+, memory cache<br>key generation for shortened URLs?
-SD: youtube	view/upload<br>read heavy but long tail of uploads<br>metadata and blob stores<br>data bias++
-SD: instagram	metadata+blob store<br>read heavy, bias++, immutable<br>image compression pipeline<br>memory cache<br>e.g. FB Haystack for blob store<br>news feed
-SD: docs	metadata+documents<br>can compress text<br>handle conflicts<br>handle offline
-SD: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
-SD: search	online queries vs. offline batch crawleringest<br>low latency lookup<br>data size challenge<br>handle complex queries<br>bias++
-SD: C numbers	BR 1M/s<br>NoSQL cache/persisted: 200To, 1k memcache, 1k couchbase, 1ms 99p, 60M QPS peak<br><br>HDFS: 300 PB, 3k nodes
+SD apps: chat	end-to-end encryption? multi device? history on server? ack?<br><br>message delivery queue for offline clients<br>balanced read-write<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
+SD apps: URL shorten	lookup/create<br>read-heavy, load-latency read, metadata store, independent entries, mostly immutable<br>lookup by key<br>data bias+, memory cache<br>key generation for shortened URLs?
+SD apps: youtube	view/upload<br>read heavy but long tail of uploads<br>metadata and blob stores<br>data bias++
+SD apps: instagram	metadata+blob store<br>read heavy, bias++, immutable<br>image compression pipeline<br>memory cache<br>e.g. FB Haystack for blob store<br>news feed
+SD apps: docs	metadata+documents<br>can compress text<br>handle conflicts<br>handle offline
+SD apps: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
+SD apps: search	online queries vs. offline batch crawleringest<br>low latency lookup<br>data size challenge<br>handle complex queries<br>bias++
+SD apps: C numbers	BR 1M/s<br>NoSQL cache/persisted: 200To, 1k memcache, 1k couchbase, 1ms 99p, 60M QPS peak<br><br>HDFS: 300 PB, 3k nodes

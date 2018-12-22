@@ -4,7 +4,7 @@ Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs 
 SD app: how to handle errors in a streaming processing system	rewrite to errorTopic1 and retry, then 2, ...<br>then to dead letter topic<br><br>(Uber)
 SD primitives: how are conflicts resolved (2)	look at causal history with metadata<br>last writer, timestamps, version numbers, vector clocks
 SD primitives: WAL	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
-LinkedList: 3 problems solved with 2 pointers<br>(apart from cycle)	find where 2 linked list merge<br><br>middle of a linked list<br><br>last-M-th element of a linked list
+LinkedList: 4 problems solved with 2 pointers	find where 2 linked list merge<br><br>middle of a linked list<br><br>last-M-th element of a linked list<br><br>cycle: detect/find beginning
 Graph: output of DFS	vertex: entry/exit time,<br><br>edge: tree edge or back edge
 Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capacity reached.
 Algo: pseudo-polynomial time	running time polynomial in the numeric value of input<br>but exponential in the length of the input
