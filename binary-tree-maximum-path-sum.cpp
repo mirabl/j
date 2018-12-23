@@ -30,3 +30,34 @@ public:
     }
 };
 
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int infty = 1e9;
+    pair<int, int> r(TreeNode *root) {
+        if (!root) {
+            return {- infty, -infty};
+        }
+        auto pr = r(root->right);
+        auto pl = r(root->left);
+        
+        int incomplete = root->val + max(max(pr.first, pl.first), 0);
+        int complete = max(max(pr.second, pl.second), root->val + max(pr.first, 0) + max(pl.first, 0));
+        return {incomplete, complete};
+    }
+    
+    int maxPathSum(TreeNode* root) {
+        auto p = r(root);
+        return max(p.first, p.second);
+    }
+};
+

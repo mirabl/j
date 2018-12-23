@@ -48,3 +48,37 @@ public:
         return nroot;
     }
 
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* rr(vector<int>& preorder, int plo, int phi, vector<int>& inorder, int ilo, int ihi) {
+        if (phi < plo) {
+            return NULL;
+        }
+        int v = preorder[plo];
+        TreeNode *root = new TreeNode(v);
+        int j;
+        for (j = ilo; inorder[j] != v; j++) 
+            ;
+        int numLeft = j - ilo;
+        int numRight = phi - plo - numLeft;
+        root->left = rr(preorder, plo + 1, plo + numLeft, inorder, ilo, j - 1);
+        root->right = rr(preorder, plo + numLeft + 1, phi, inorder, j + 1, ihi);
+        return root;
+    }
+    
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        int n = int(preorder.size()) - 1;
+        return rr(preorder, 0, n, inorder, 0, n);
+    }
+};
