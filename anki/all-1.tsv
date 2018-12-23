@@ -6,7 +6,7 @@ SD primitives: how are conflicts resolved (2)	look at causal history with metada
 SD primitives: WAL	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
 LinkedList: 4 problems solved with 2 pointers	find where 2 linked list merge<br><br>middle of a linked list<br><br>last-M-th element of a linked list<br><br>cycle: detect/find beginning
 Graph: output of DFS	vertex: entry/exit time,<br><br>edge: tree edge or back edge
-Tree: quad-tree 2D partition	 each node has 4 children.<br> Split when max capacity reached.
+Tree: quad-tree 2D partition	 each node has 4 children<br>split when max capacity reached.
 Algo: pseudo-polynomial time	running time polynomial in the numeric value of input<br>but exponential in the length of the input
 Graph: edge cover<br>desc, problem and solution	set of edges such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
 SD primitives: 3 consensus algos and their CAP status	2 phase commit, full strict quorum protocols: CA<br><br>Paxos, majority quorums with minority in partition: CP<br><br>Gossip, Dynamo, conflict resolution: AP
@@ -21,7 +21,6 @@ SD apps: mechanism for asynchronicity	queues
 Geo: convex-hull algorithm (3)	wrapping<br><br>sweep line<br>divide and conquer
 Sort:<br>Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
 Stack: sort a stack (2)	using a second stack,<br><br> or recursively
-String: Regex matching (2)	1. Recursive<br>2. DP. <br><br>With offset going from left to right.
 SD primitives: two classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
 String: Reverse words in a sentence<br>(2 ways)	1. Word by word from the end.<br><br> 2. reverse whole string char-by-char, reverse within each word
 DS: specialized heaps	when limited set of keys, or monotonic input

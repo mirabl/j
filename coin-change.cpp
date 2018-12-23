@@ -91,3 +91,18 @@ public:
     }
 };
 
+class Solution {
+public:
+    int infty = 1e9;
+    int coinChange(vector<int>& coins, int amount) {
+        vector<int> r(amount + 1, infty);
+        r[0] = 0;
+        for (int i = 0; i < coins.size(); i++) {
+            for (int a = coins[i]; a < amount + 1; a++) {
+                r[a] = min(r[a], 1 + r[a - coins[i]]);
+            }
+        }
+        return r[amount] == infty ? -1 : r[amount];
+    }
+};
+

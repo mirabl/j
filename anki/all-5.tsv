@@ -37,3 +37,5 @@ LinkedList: Select random node from linked list (2)	method1: naive count nodes i
 Math: number of trailing zeroes in a factorial	powers of 2, 5
 SD components: BigTable: data model, API, 2 open source equivalents	1. row (row key)<br>2. column: column families + column qualifier within family<br>3. timestamp<br><br>sparse: no room taken for empty cells<br><br>- lookup by row key, range query<br>- HBase, Cassandra
 SD: why Kafka performance (2)	zero-copy<br>batching
+OO: abstract class	one or more of methods have no implementation<br><br>serves as base class for others
+OO: static class, static member	class: can not be instantiated<br><br>member: one copy exists

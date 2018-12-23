@@ -11,8 +11,8 @@ SD components: in-memory K/V store perf	on machine with good network<br><br>read
 SD methodology: SLO types per system type (3)	always: correctness<br><br>user-facing requests: availability, latency, throughput<br><br>storage: latency, availability, durability<br><br>pipeline: throughput, end-to-end latency
 SD methodology: 3 questions to task on iteration	possible to scale?<br>can do better?<br>resilient?
 SD primitives: latency of operation with Paxos between DCs	25ms
-SD apps: chat	end-to-end encryption? multi device? history on server? ack?<br><br>message delivery queue for offline clients<br>balanced read-write<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
-SD apps: URL shortener	lookup/create<br>read-heavy, load-latency read, metadata store, independent entries, mostly immutable<br>lookup by key<br>data bias+, memory cache<br>key generation for shortened URLs?
+SD apps: chat	end-to-end encryption? multi device? history on server? ack?<br>websocket<br>message delivery queue for offline clients<br>balanced read-write<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
+SD apps: URL shortener	lookup/create<br>read-heavy, load-latency read, metadata store, independent entries, mostly immutable<br>lookup by key<br>data bias+, memory cache<br>key generation service for shortened URLs? maybe offline
 SD apps: youtube	view/upload<br>read heavy but long tail of uploads<br>metadata and blob stores<br>data bias++
 SD apps: instagram	metadata+blob store<br>read heavy, bias++, immutable<br>image compression pipeline<br>memory cache<br>e.g. FB Haystack for blob store<br>news feed
 SD apps: docs	metadata+documents<br>can compress text<br>handle conflicts<br>handle offline
@@ -24,3 +24,9 @@ Prob: matrix chain multiplication order	windowed DP<br>fill with increasing wind
 Prob: word break<br>longstringwithoutspaces + dict	DP: canBreak[offset]
 Prob: box stacking<br>highest stack with smaller on top of bigger<br>can reuse	careful rotations<br><br>DP similar to LIS<br><br>O(n^2)
 Prob: n eggs / k floors<br>find minimum nb of trials in worst case to find the highest safe floor (2)	1. DP O(n k^2) dp[egg][floor]<br><br>2. other solution with binary search and binomial coef
+Prob: weighted job scheduling (2)	1. sort jobs by finish time<br>DP weightWithJobsUntil[i]<br>include or exclude current job<br>O(n^2) / or O(n log n) with BS to find previous nonconflicting job<br><br>2. sort by start time, then DP like LIS
+Prob: number of paths from src to dest with k edges (2)	1. DP numPaths[src][dest][edges]<br>O(k V^3)<br><br>2. Divide and Conquer matrix power G^k<br>O(log k) matrix power<br>total: O(V^3 log k)
+Prob: minimum insertions to make string a palindrome (2)	1. windowed DP minIns[i][j] for substring(i, j)<br>O(n^2)<br><br>2. With LCS<br>find LCS of string and its reverse<br>answer: len(s) - lcs<br>O(n^2)
+Prob: longest palindromic subsequence (2)	1. DP<br><br>2. LCS with reverse string<br>O(n^2)
+String: Regex matching (2)	1. Recursive<br>2. DP. match[offsetStr][offsetPat]<br>O(mn)<br><br>With offset going from left to right.
+Prob: set matrix zeroes	set cell in first row/column to zero if element in 0<br><br>use 2 variables for first row/column<br><br>set all zeroes by looking at first row/column<br>O(mn)

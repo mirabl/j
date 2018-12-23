@@ -2,7 +2,7 @@ SD: How many simulataneous connections on a whatsapp server	2 million
 SD meth: system design methodology (6)	1. Scope<br>2. Non-scope<br>3. Usage and existing<br>4. SLO (latency, avail, dura)<br>5. First design<br>6. storage
 SD components: 5 techniques to scale RDBMS<br>general/read/writes	general:<br>- federation<br>- denormalization<br>- SQL tuning<br><br>scale reads:<br>- master-slave replication<br><br>scale writes:<br>- sharding
 SD meth: system design methodology for storage (5)	1. data model<br>2. size<br>3. Usage r/w<br>4. SLO<br>5. Bias (popular, geo)
-Sort: 6 sort properties	- stable<br>- in place<br>- comparison or not<br>- external<br>- good with pre-sorted<br>method: partition, merge, select, insert, exchange
+Sort: 6 sort properties	- stable<br>- in place<br>- comparison or not<br>- external<br>- good with pre-sorted<br>- method: partition, merge, select, insert, exchange
 SD: skip list<br>- definition<br>- complexities<br>- used in	linked list for binary search<br>layers of sorted linked lists (express lanes)<br>p = 1/2 or 1/4, proba for element to be also in layer below<br><br>O(log n) average for search/insert/delete, O(n) average space<br>used in LevelDB MemTable
 SD: Consistency in CAP theorem	all nodes see the same data all the time<br><br>equivalent to single-copy of the data
 SD: Availability in CAP theorem (2)	every request receives a response about its success<br><br>or any reachable replica is available for reads and writes
@@ -16,11 +16,9 @@ SD low-level: DMA definition, 3 steps	a device controls processor's memory direc
 SD low-level: TCP definition, uses what to be reliable, limitations	reliable, connection-oriented ordered stream of bytes on IP network<br>congestion control<br>seqno and acknowledgments<br><br>no preservation of message boundaries
 SD low-level: content of TCP segment (6)	ports, seq no, ackno, flags, checksum, payload
 SD low-level: UDP, def, can do/can not do	connectionless, message oriented (datagrams)<br>can broadcast<br><br>can be out-of-order or lost<br>no congestion control
-OO: abstract class	one or more of methods have no implementation<br><br>serves as base class for others
 OO: 3 characteristics of OO	inheritance<br>encapsulation<br>polymorphism
 OO: virtual method	can be overriden in derived class
-OO: 2 aspects of polymorphism	1. at run time, object of derived class can be treated as base class<br><br>2. virtual methods of base class can be overriden
-OO: static class, static member	class: can not be instantiated<br><br>member: one copy exists
+OO: 2 aspects of polymorphism	code or operations or objects behave differently in different contexts<br><br>1. object of derived class can be treated as base class<br><br>2. virtual methods of base class can be overriden
 OO: member overloading	same name but different signature
 OO: generics	class/method that defer specification of type until declared and instantiated in client code
 SD: circuit breaker<br>def, how it works	proxy for operations that might fail<br><br>states: closed / half-open / open<br>change state by looking at error rate
