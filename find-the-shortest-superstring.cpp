@@ -83,3 +83,81 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    int N;
+    
+    int ov(string& s, string& t) {
+        int n = s.size();
+        int m = t.size();
+        for (int o = min(n, m); o > 0; o--) {
+            string td = t.substr(0, o);
+            string sd = s.substr(n - 1 - o + 1);
+            if (td == sd) {
+                return o;
+            }
+        }
+        return 0;
+    }
+    
+    string shortestSuperstring(vector<string>& A) {
+        N = A.size();
+        int infty = 1e9;
+        
+        vector<vector<int>> overlap(N, vector<int>(N));
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (i == j) {
+                    continue;
+                }
+                overlap[i][j] = ov(A[i], A[j]);
+            }
+        }
+        
+        int m = 1 << N;
+        vector<vector<int>> dp(m, vector<int>(N, infty));
+        vector<vector<int>> prev(m, vector<int>(N, 0));
+
+        for (int i = 0; i < N; i++) {
+            dp[1 << i][i] = A[i].size();
+            prev[1 << i][i] = -1;
+        }
+        for (int mask = 0; mask < m; mask++) {
+            for (int i = 0; i < N; i++) {
+                if ((mask >> i) & 1 == 1) {
+                    continue;
+                }
+                for (int j = 0; j < N; j++) {
+                    int u = dp[mask][j] + int(A[i].size()) - overlap[j][i];
+                    int newMask = mask | (1 << i);
+                    if (u < dp[newMask][i]) {
+                        dp[newMask][i] = u;
+                        prev[newMask][i] = j;
+                    }
+
+                }
+            }
+        }
+        int mask = (1 << N) - 1;
+        string res;
+        int bestI = 0;
+        for (int i = 0; i < N; i++) {
+            if (dp[mask][i] < dp[mask][bestI]) {
+                bestI = i;
+            }
+        }
+        res = re(A, overlap, dp, prev, mask, bestI) + A[bestI];
+        
+        return res;
+    }
+    
+    string re(vector<string>& A, vector<vector<int>>& overlap, vector<vector<int>>& dp, vector<vector<int>>& prev, int mask, int i) {
+       int ni = prev[mask][i];
+        if (ni == -1) {
+            return "";
+        }
+        string s = A[ni].substr(0, A[ni].size() - 1 - overlap[ni][i] + 1);
+        return re(A, overlap, dp, prev, mask ^ (1 << i), ni) + s;
+    }
+};
