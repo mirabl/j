@@ -94,3 +94,59 @@ public:
         }
     }
 };
+
+
+class Solution {
+public:
+    int fm(vector<int>& A) {
+        int n = A.size();
+        if (A[0] <= A[n - 1]) {
+            return 0;
+        }
+        int lo = 1;
+        int hi = n - 1;
+        while (true) {
+            int mid = lo + (hi - lo) / 2;
+            if (A[mid - 1] > A[mid]) {
+                return mid;
+            }
+            if (A[mid] > A[0]) {
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+        return -1; // NR
+    }
+    
+    int bs(vector<int>& A, int y, int lo, int hi) {
+        if (hi < lo) {
+            return -1;
+        }
+        int mid = lo + (hi - lo) / 2;
+        if (A[mid] == y) {
+            return mid;
+        }
+        if (A[mid] < y) {
+            return bs(A, y, mid + 1, hi);
+        } else {
+            return bs(A, y, lo, mid - 1);
+        }
+    }
+    
+    int search(vector<int>& nums, int target) {
+        if (nums.empty()) {
+            return -1;
+        }
+        int imin = fm(nums);
+        if (imin == 0) {
+            return bs(nums, target, 0, int(nums.size()) - 1);
+        } 
+        
+        if (target >= nums[0]) {
+            return bs(nums, target, 0, imin - 1);
+        } else {
+            return bs(nums, target, imin, int(nums.size()) - 1);
+        }
+    }
+};

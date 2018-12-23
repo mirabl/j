@@ -9,7 +9,7 @@ DS:<br>Adv/Disadvantage of BST vs. HashTable	BST can enumerate in key order<br>H
 Misc: websocket	persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
 Array: Smallest subarray with sum greater than a given value	Sliding window: keep adding array elements while current sum is smaller than x <br> If current sum becomes greater than x, update min length, remove starting elements
 SD components:<br>2 data warehouses products for an analytical processing OLAP	Redshift, BigQuery/Dremel
-Prob: Sudoku Solver	Backtracking. <br><br>Only check if one value is already in a row/col/square.
+Prob: Sudoku Solver	Backtracking<br><br>check if one value is already in a row/col/square, recurse
 Algo: closest pair<br>2 algs	find the pair that is closest<br>sweep line: O(n log n)<br>divide and conquer: O(n log^2 n)
 DS: <br>Binary heap definition	complete binary<br>with heap property (children are smaller)
 Graph: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br> O(V^2) if adjacency matrix/O(V)
@@ -42,4 +42,3 @@ SD apps: Back pressure	feedback mechanism used by producers to let know consumer
 Graph: Topological sort of DAG (2)	 1. DFS: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br><br>2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
 SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
 SD components: when to use BigQuery/Dremel<br>when to use MapReduce	BigQuery: any query, SQL-like, no latency, small output (stats)<br><br>MapReduce: can do any processing, more latency, have to implement all jobs
-LinkedList: beginning of cycle	1. find point in cycle: tortoise/hare<br><br>2. Move one pointer to start, both go to speed 1<br>meeting point is start of cycle
