@@ -9,7 +9,7 @@ SD: three and four nines availability per year	99.9: 9 hours of downtime/year<br
 SD DS: MemTable and SSTable<br>stored where, read/writes, maintenance	MemTable in memory, SSTable on disk mostly<br>writes go to MemTable<br>reads go to MemTable first<br>periodically:<br>- MemTable flushed to disk SSTable <br>- SSTable collapsed together
 SD components: in-memory K/V store perf	on machine with good network<br><br>read/write: 200k/s easily<br><br>latency: 1ms<br><br>no bound on size with sharding but $
 SD methodology: SLO types per system type (3)	always: correctness<br><br>user-facing requests: availability, latency, throughput<br><br>storage: latency, availability, durability<br><br>pipeline: throughput, end-to-end latency
-SD methodology: 3 questions to task on iteration	possible to scale?<br>can do better?<br>resilient?
+SD methodology: 3 questions to ask on iteration	possible to scale?<br>can do better?<br>resilient?
 SD primitives: latency of operation with Paxos between DCs	25ms
 SD apps: chat	end-to-end encryption? multi device? history on server? ack?<br>websocket<br>message delivery queue for offline clients<br>balanced read-write<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
 SD apps: URL shortener	lookup/create<br>read-heavy, load-latency read, metadata store, independent entries, mostly immutable<br>lookup by key<br>data bias+, memory cache<br>key generation service for shortened URLs? maybe offline
