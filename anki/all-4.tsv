@@ -42,3 +42,8 @@ SD apps: Back pressure	feedback mechanism used by producers to let know consumer
 Graph: Topological sort of DAG (2)	 1. DFS: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br><br>2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
 SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
 SD components: when to use BigQuery/Dremel<br>when to use MapReduce	BigQuery: any query, SQL-like, no latency, small output (stats)<br><br>MapReduce: can do any processing, more latency, have to implement all jobs
+SD: A in ACID	Atomicity<br><br>All or nothing for a transaction:<br>indivisible<br>done or not done
+SD: C in ACID	Consistency<br><br>a transaction moves the DB from a valid state to other valid state (e.g. preserve unique keys)<br><br>Not the same as C in CAP
+SD: D in ACID	when a transaction is committed, it will remain committed even in the case of a system failure (power, crash)
+SD components: in-memory K/V store perf	on machine with good network<br><br>read/write: 200k/s easily<br><br>latency: 1ms<br><br>no bound on size with sharding but $
+SD: CQRS	command query responsibility separation<br>separate read and write of data

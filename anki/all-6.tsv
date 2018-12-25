@@ -1,21 +1,9 @@
-SD: How many simulataneous connections on a whatsapp server	2 million
-SD meth: system design methodology (6)	1. Scope<br>2. Non-scope<br>3. Usage and existing<br>4. SLO (latency, avail, dura)<br>5. First design<br>6. storage
-SD components: 5 techniques to scale RDBMS<br>general/read/writes	general:<br>- federation<br>- denormalization<br>- SQL tuning<br><br>scale reads:<br>- master-slave replication<br><br>scale writes:<br>- sharding
-SD meth: system design methodology for storage (5)	1. data model<br>2. size<br>3. Usage r/w<br>4. SLO<br>5. Bias (popular, geo)
 Sort: 6 sort properties	- stable<br>- in place<br>- comparison or not<br>- external<br>- good with pre-sorted<br>- method: partition, merge, select, insert, exchange
-SD: skip list<br>- definition<br>- complexities<br>- used in	linked list for binary search<br>layers of sorted linked lists (express lanes)<br>p = 1/2 or 1/4, proba for element to be also in layer below<br><br>O(log n) average for search/insert/delete, O(n) average space<br>used in LevelDB MemTable
 SD: Consistency in CAP theorem	all nodes see the same data all the time<br><br>equivalent to single-copy of the data
 SD: Availability in CAP theorem (2)	every request receives a response about its success<br><br>or any reachable replica is available for reads and writes
 SD: Partition tolerance in CAP theorem	system continues to operate despite message loss or failure of part of the system
-SD: A in ACID	Atomicity<br><br>All or nothing for a transaction:<br>indivisible<br>done or not done
-SD: C in ACID	Consistency<br><br>a transaction moves the DB from a valid state to other valid state (e.g. preserve unique keys)<br><br>Not the same as C in CAP
 SD: I in ACID	concurrent execution of transactions leaves the DB in same state than if the they were executed sequentially
-SD: D in ACID	when a transaction is committed, it will remain committed even in the case of a system failure (power, crash)
 SD low-level: OSI and TCP/IP models	OSI: PDNTSPA<br><br>TCP/IP: NITA
-SD low-level: DMA definition, 3 steps	a device controls processor's memory directly<br>can transfer data to/from memory without processor<br><br>1. CPU initiates transfer<br>2. does other things<br>3. receives interrupt from device when done
-SD low-level: TCP definition, uses what to be reliable, limitations	reliable, connection-oriented ordered stream of bytes on IP network<br>congestion control<br>seqno and acknowledgments<br><br>no preservation of message boundaries
-SD low-level: content of TCP segment (6)	ports, seq no, ackno, flags, checksum, payload
-SD low-level: UDP, def, can do/can not do	connectionless, message oriented (datagrams)<br>can broadcast<br><br>can be out-of-order or lost<br>no congestion control
 OO: 3 characteristics of OO	inheritance<br>encapsulation<br>polymorphism
 OO: virtual method	can be overriden in derived class
 OO: 2 aspects of polymorphism	code or operations or objects behave differently in different contexts<br><br>1. object of derived class can be treated as base class<br><br>2. virtual methods of base class can be overriden
@@ -26,3 +14,18 @@ SD: retry pattern	depending on error from service, client can have 3 strategies<
 SD components: load balancer used for (3), implemented with (2)	- don't send to bad servers<br>- don't overload<br>- eliminate SPOF<br><br>- hard or soft (HAProxy)
 SD components: load balancer multi setup (2)	active-passive or active-active
 LinkedList: beginning of cycle	1. find point in cycle: tortoise/hare<br><br>2. Move one pointer to start, both go to speed 1<br>meeting point is start of cycle
+Prob: find a mother vertex in directed graph<br>(all vertices can be reached from)	1. find last completely processed vertex in DFS (like toposort)<br><br>2. check if it is a mother vertex<br><br><br>topo sort doesn't exist on cyclic graphs
+Prob: transitive closure of directed graph (2)	= reachable[s][t] matrix<br><br>1. modified Floyd-Warshall O(V^3)<br><br>2. DFS on each vertex to fill reachable[src][*]
+Prob: print number of paths with no cycle between two nodes in a directed graph	backtracking<br><br>set/unset visited nodes
+Prob: from undirected graph which is a tree, find a root of a tree which gives minimum height	BFS from the leaves to the inside<br><br>one or two remaining nodes<br><br>O(n)
+Prob: check if two nodes are on same path in a tree<br>in O(1) per query	preprocessing: DFS record enter/exit times<br><br>check times for (u, v) to see if same subtree
+Prob: weighted job scheduling (2)	1. sort jobs by finish time<br>DP weightWithJobsUntil[i]<br>include or exclude current job<br>O(n^2) / or O(n log n) with BS to find previous nonconflicting job<br><br>2. sort by start time, then DP like LIS
+Prob: number of paths from src to dest with k edges (2)	1. DP numPaths[src][dest][edges]<br>O(k V^3)<br><br>2. Divide and Conquer matrix power G^k<br>O(log k) matrix power<br>total: O(V^3 log k)
+Prob: minimum insertions to make string a palindrome (2)	1. windowed DP minIns[i][j] for substring(i, j)<br>O(n^2)<br><br>2. With LCS<br>find LCS of string and its reverse<br>answer: len(s) - lcs<br>O(n^2)
+Prob: longest palindromic subsequence (2)	1. DP<br><br>2. LCS with reverse string<br>O(n^2)
+SD methodology: SLO types per system type (3)	always: correctness<br><br>user-facing requests: availability, latency, throughput<br><br>storage: latency, availability, durability<br><br>pipeline: throughput, end-to-end latency
+SD methodology: 3 questions to ask on iteration	possible to scale?<br>can do better?<br>resilient?
+SD primitives: latency of operation with Paxos between DCs	25ms
+SD apps: chat, protocol	end-to-end encryption? multi device? history on server? ack?<br>websocket<br>message delivery queue for offline clients<br>balanced read-write<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
+SD apps: URL shortener	lookup/create<br>read-heavy, load-latency read, metadata store, independent entries, mostly immutable<br>lookup by key<br>data bias+, memory cache<br>key generation service for shortened URLs? maybe offline
+SD apps: youtube	view/upload<br>read heavy but long tail of uploads<br>metadata and blob stores<br>data bias++

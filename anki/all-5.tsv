@@ -39,3 +39,12 @@ SD components: BigTable: data model, API, 2 open source equivalents	1. row (row 
 SD: why Kafka performance (2)	zero-copy<br>batching
 OO: abstract class	one or more of methods have no implementation<br><br>serves as base class for others
 OO: static class, static member	class: can not be instantiated<br><br>member: one copy exists
+SD components: 5 techniques to scale RDBMS<br>general/read/writes	general:<br>- federation<br>- denormalization<br>- SQL tuning<br><br>scale reads:<br>- master-slave replication<br><br>scale writes:<br>- sharding
+SD: skip list<br>- definition<br>- complexities<br>- used in	linked list for binary search<br>layers of sorted linked lists (express lanes)<br>p = 1/2 or 1/4, proba for element to be also in layer below<br><br>O(log n) average for search/insert/delete, O(n) average space<br>used in LevelDB MemTable
+SD low-level: DMA definition, 3 steps	a device controls processor's memory directly<br>can transfer data to/from memory without processor<br><br>1. CPU initiates transfer<br>2. does other things<br>3. receives interrupt from device when done
+SD: How many simultaneous connections on a whatsapp server	2 million
+SD low-level: TCP definition, uses what to be reliable, limitations	reliable, connection-oriented ordered stream of bytes on IP network<br>congestion control<br>seqno and acknowledgments<br><br>no preservation of message boundaries
+SD low-level: content of TCP segment (6)	ports, seq no, ackno, flags, checksum, payload
+SD low-level: UDP, def, can do/can not do	connectionless, message oriented (datagrams)<br>can broadcast<br><br>can be out-of-order or lost<br>no congestion control
+SD meth: system design methodology (6)	1. Scope<br>2. Non-scope<br>3. Usage and existing<br>4. SLO (latency, avail, dura)<br>5. First design<br>6. storage
+SD meth: system design methodology for storage (5)	1. data model<br>2. size<br>3. Usage r/w<br>4. SLO<br>5. Bias (popular, geo)

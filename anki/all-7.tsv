@@ -1,20 +1,12 @@
 SD components: load balancer routes traffic based on (6)	- random<br>- least load<br>- session/cookies<br>- (weighted) round robin<br>- layer 4<br>- layer 7
 SD components: load-balancer layer 4 vs. layer 7	4:<br>- look at transport layer: IP address, port<br>- do NAT<br>- often hardware<br><br>7:<br> look at application layer, like URL for HTTP, cookies<br>terminates network traffic, remove TLS<br>called reverse-proxy server
 SD: event-sourcing pattern	use append-only store of actions/events
-SD: CQRS	command query responsibility separation<br>separate read and write of data
 SD DS: SSTable<br>def, internals, read, write	persistent ordered immutable on disk<br>Index and Data blocks<br>Index (in-memory): PK (ex. B-Tree) and offsets in Data<br>Data 64KB block: key-value pairs<br>optimised for reads, written sequentially<br>no in-place changes
 SD components: Kafka perf: factors<br>produce, consume, latency	depends on: message size, replication (number and sync/async)<br><br>producer: 700K msg/s<br>consumer: 1M msg/s<br>end-to-end latency: ~3ms 99p
 SD: SLO for S3 (2)	99.99 (4) availability<br><br>99.99999999 (10) durability
 SD: three and four nines availability per year	99.9: 9 hours of downtime/year<br><br>99.99: 1 hour downtime/year
-SD DS: MemTable and SSTable<br>stored where, read/writes, maintenance	MemTable in memory, SSTable on disk mostly<br>writes go to MemTable<br>reads go to MemTable first<br>periodically:<br>- MemTable flushed to disk SSTable <br>- SSTable collapsed together
-SD components: in-memory K/V store perf	on machine with good network<br><br>read/write: 200k/s easily<br><br>latency: 1ms<br><br>no bound on size with sharding but $
-SD methodology: SLO types per system type (3)	always: correctness<br><br>user-facing requests: availability, latency, throughput<br><br>storage: latency, availability, durability<br><br>pipeline: throughput, end-to-end latency
-SD methodology: 3 questions to ask on iteration	possible to scale?<br>can do better?<br>resilient?
-SD primitives: latency of operation with Paxos between DCs	25ms
-SD apps: chat	end-to-end encryption? multi device? history on server? ack?<br>websocket<br>message delivery queue for offline clients<br>balanced read-write<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
-SD apps: URL shortener	lookup/create<br>read-heavy, load-latency read, metadata store, independent entries, mostly immutable<br>lookup by key<br>data bias+, memory cache<br>key generation service for shortened URLs? maybe offline
-SD apps: youtube	view/upload<br>read heavy but long tail of uploads<br>metadata and blob stores<br>data bias++
-SD apps: instagram	metadata+blob store<br>read heavy, bias++, immutable<br>image compression pipeline<br>memory cache<br>e.g. FB Haystack for blob store<br>news feed
+SD DS: MemTable and SSTable<br>stored where, read/writes, maintenance	MemTable in memory, SSTable on disk mostly<br>writes go to MemTable<br>reads go to MemTable first<br>periodically:<br>- MemTable flushed to disk SSTable<br>- SSTables merged
+SD apps: instagram	features: feed, by user list, upload<br>metadata+blob store<br>read heavy, bias++, immutable<br>image compression pipeline<br>memory cache<br>e.g. FB Haystack for blob store
 SD apps: docs	metadata+documents<br>can compress text<br>handle conflicts<br>handle offline
 SD apps: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
 SD apps: search	online queries vs. offline batch crawleringest<br>low latency lookup<br>data size challenge<br>handle complex queries<br>bias++
@@ -24,12 +16,15 @@ Prob: matrix chain multiplication order	windowed DP<br>fill with increasing wind
 Prob: word break<br>longstringwithoutspaces + dict	DP: canBreak[offset]
 Prob: box stacking<br>highest stack with smaller on top of bigger<br>can reuse	careful rotations<br><br>DP similar to LIS<br><br>O(n^2)
 Prob: n eggs / k floors<br>find minimum nb of trials in worst case to find the highest safe floor (2)	1. DP O(n k^2) dp[egg][floor]<br><br>2. other solution with binary search and binomial coef
-Prob: weighted job scheduling (2)	1. sort jobs by finish time<br>DP weightWithJobsUntil[i]<br>include or exclude current job<br>O(n^2) / or O(n log n) with BS to find previous nonconflicting job<br><br>2. sort by start time, then DP like LIS
-Prob: number of paths from src to dest with k edges (2)	1. DP numPaths[src][dest][edges]<br>O(k V^3)<br><br>2. Divide and Conquer matrix power G^k<br>O(log k) matrix power<br>total: O(V^3 log k)
-Prob: minimum insertions to make string a palindrome (2)	1. windowed DP minIns[i][j] for substring(i, j)<br>O(n^2)<br><br>2. With LCS<br>find LCS of string and its reverse<br>answer: len(s) - lcs<br>O(n^2)
-Prob: longest palindromic subsequence (2)	1. DP<br><br>2. LCS with reverse string<br>O(n^2)
 String: Regex matching (2)	1. Recursive<br>2. DP. match[offsetStr][offsetPat]<br>O(mn)<br><br>With offset going from left to right.
 Prob: set matrix zeroes	set cell in first row/column to zero if element in 0<br><br>use 2 variables for first row/column<br><br>set all zeroes by looking at first row/column<br>O(mn)
 Array: Coin change:<br>Given infinite coins of value (V1, V2, .. ,VN), find the minimum number of coins with sum S	DP<br><br>dp[amount]<br>loop on coin<br>loop on x to update dp[x]<br><br>O(N S)
 Prob: shortest superstring	bitmask DP<br>dp[mask][lastUsedString]<br><br>O(2^n n^2)
 Tree: Maximum path sum in a binary tree	recursive<br><br>rec functions return {maxCompletePath, maxIncompletePath}<br><br>O(n)
+Prob: longest path from vertex in weighted graph	NP-hard for general graph<br><br>linear for DAG: toposort, then loop<br>O(V + E)
+Prob: find Hamiltonian cycle (def, alg)	visit each vertex once<br><br>DFS backtrack with path as parameter<br>O(V!)
+Prob: color graph with k colors, algo/complex	backtracking<br><br>O(k^V)?
+Prob: shortest path with exactly k edges in a directed and weighted graph (2)	naive: recursive on k, O(V^k)<br><br>DP dist[s][t][k]<br>fill with k increasing<br><br>O(V^3 k)
+Prob: Eulerian cycle: def, check/find algos	visit each edge<br><br>linear time O(E)<br>vs. Hamiltonian is NP-hard<br><br>check if exists: look at conditions on degree<br><br>find: O(E) exists (Fleury)
+SD: types of data store (9)	RDBMS<br>k/v<br>document<br>column-family<br>graph<br>analytics<br>blog<br>search engine DB<br>time series DB
+Misc: how to send updates from server to client (3)	short-polling (client pull)<br><br>long-polling (client pull): server doesn't answer request until new data<br><br>websocket (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
