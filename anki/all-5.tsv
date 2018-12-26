@@ -3,7 +3,7 @@ Geo: nearest neighbour<br>- definition<br>- solved with	k-d tree<br>2D: Voronoi
 Tree: find lowest common ancestor of two nodes in a binary tree (not BST)	1. find path to x to y find last common element. O(n) 2 traversals. <br><br>2. rec: LCA has one node on each side. O(n) 1 traversal.
 String: Find the smallest window in a string containing all characters of another string	sliding window O(n)|O(n)
 LinkedList: insertion in linked list tip	use dummy first node
-SD primitives: replication algorithms that maintain single-copy consistency	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
+SD primitives: replication algs with single-copy consistency (+ nb of msg)	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
 SD primitives: 2 rate limiters	leaky bucket, token bucket
 Sort: sort when element are nearly sorted (2 ways)	insertion sort<br>heapsort
 String: Edit Distance algo, complex	DP O(mn)

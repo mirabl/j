@@ -1,6 +1,6 @@
 SD: replication lag for MySQL	time between read/write to master and replication to all slaves
 SD components: how does BigQuery/Dremel distribute queries	Tree Architecture<br>dispatching queries and aggregating results<br>thousands of machines in a few seconds
-SD: hashing for sharding	consistent hashing: circle with many pseudo-random points per node<br><br>Rendezvous hashing
+SD: hashing for sharding (2)	consistent hashing: circle with many pseudo-random points per node<br><br>Rendezvous hashing
 Tree: balanced ST: complexity, 5 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>2-3 tree<br>B-tree<br>B+ tree
 DS: implement LRU cache	= DLL Queue + HashTable: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
 SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master

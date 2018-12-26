@@ -3,10 +3,10 @@ Prob: k-th smallest number in multiplication table	Binary search O(m log(mn))
 Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>K: first DFS topological sort<br>second DFS in inverse graph collect SCC<br><br>T: only one pass
 SD app: how to handle errors in a streaming processing system	rewrite to errorTopic1 and retry, then 2, ...<br>then to dead letter topic<br><br>(Uber)
 SD primitives: how are conflicts resolved (2)	look at causal history with metadata<br>last writer, timestamps, version numbers, vector clocks
-SD primitives: WAL	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
+SD primitives: WAL<br>def, goal	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
 LinkedList: 4 problems solved with 2 pointers	find where 2 linked list merge<br><br>middle of a linked list<br><br>last-M-th element of a linked list<br><br>cycle: detect/find beginning
-Graph: output of DFS	vertex: entry/exit time,<br><br>edge: tree edge or back edge
-Tree: quad-tree 2D partition	 each node has 4 children<br>split when max capacity reached.
+Graph: output of DFS (2)	vertex: entry/exit time,<br><br>edge: tree edge or back edge
+Tree: quad-tree	2D hierarchical partition in quadrants<br><br>4 children by node<br>split when max capacity reached.
 Algo: pseudo-polynomial time	running time polynomial in the numeric value of input<br>but exponential in the length of the input
 Graph: edge cover<br>desc, problem and solution	set of edges such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
 SD primitives: 3 consensus algos and their CAP status	2 phase commit, full strict quorum protocols: CA<br><br>Paxos, majority quorums with minority in partition: CP<br><br>Gossip, Dynamo, conflict resolution: AP
@@ -18,12 +18,12 @@ SD low-level: use cases of UDP	best effort delivery for voice/video streaming, g
 DS: suffix array	same use as suffix tree but with 4 times less memory<br>sorted array of suffixes
 String:<br>print valid n-parentheses	try a character, recurse if allowed
 SD apps: mechanism for asynchronicity	queues
-Geo: convex-hull algorithm (3)	wrapping<br><br>sweep line<br>divide and conquer
+Geo: convex-hull algorithm (3)	wrapping<br><br>sweep line<br><br>divide and conquer
 Sort:<br>Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
-Stack: sort a stack (2)	using a second stack,<br><br> or recursively
-SD primitives: two classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
+Stack: sort a stack (2)	using a second stack<br><br> or recursively
+SD primitives: 2 classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
 String: Reverse words in a sentence<br>(2 ways)	1. Word by word from the end.<br><br> 2. reverse whole string char-by-char, reverse within each word
-DS: specialized heaps	when limited set of keys, or monotonic input
+DS: specialized heaps (2)	when limited set of keys, or monotonic input
 Alg: 5 DP types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
 Graph: clique<br>definition, 2 problems and solutions	complete subgraph<br>maximum clique: largest in the graph (difficult in general, heuristics)<br><br>maximal: can not be extended (greedy)
 MergeSort:<br>- time: best and worst case<br>- memory	time: always O(n log n)<br><br>memory: O(n) aux
