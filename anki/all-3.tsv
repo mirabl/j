@@ -43,3 +43,7 @@ SD components: Dynamo<br>sharding, quorums, conflict, replica sync	consistent ha
 SD components: MySQL index based on which data structure in general	B-tree (or B+ ?)
 Algo: Gray code construction	recursive, G_{n-1}, G_{n-1} reversed with top bit set<br><br>gray(n) = n ^ (n >> 1)
 SD low-level: how many round trips per second<br>- world-wide<br>- within a data center	world-wide: 6-7<br><br>datacenter: 2000
+OO: virtual method	can be overriden in derived class
+OO: generics	class/method that defer specification of type until declared and instantiated in client code
+SD: circuit breaker<br>def, how it works	proxy for operations that might fail<br><br>states: closed / half-open / open<br>change state by looking at error rate
+SD: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency prefered

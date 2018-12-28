@@ -19,7 +19,7 @@ Alg: solve recurrences + examples<br>T(n) = T(n / 2) + O(1)<br>T(n) = 2 T(n / 2)
 DS: LFU cache<br>implementation	3 hash maps, one with linked list as values
 Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
 Prob:<br>Container With Most Water<br>n vertical lines	two pointers, from start and end, <br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
-Misc: 4 NP-complete problems	SAT<br>knapsack<br>traveling salesman<br>set cover
+Misc: 5 NP-complete problems	SAT<br>knapsack<br>traveling salesman<br>set cover<br>Hamiltonian cycle
 SD components: ETL	extract data from multiple sources<br><br>clean, join, aggregate, transform into format<br><br>load in warehouse
 Array: 3Sum  Find all unique triplets in the array which gives the sum of zero	sort, loop for first element and then 2sum sweep, <br>avoid duplicates by avoiding duplicate first element <br>O(n^2)|O(1)
 Tree: k-d tree<br>definition<br>4 complexities	split in 1 dimension at each node (median of coordinate to get balance)<br><br>search/insert/delete O(log n) average<br>Space: O(n)
@@ -36,3 +36,9 @@ DS: set cover problem	find minimum number of subsets which union to universe<br>
 Stack: implement stack with O(1) min<br>(2 ways)	push (x, min) when pushing x, <br><br>or use second stack
 Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	BFS from start word
 Array: 3 subsequence problems/solutions/cplx	1. Is Subsequence: iterate greedy O(n), no DP<br><br>2. Longest Common Subsequence: DP O(nm)<br><br>3. Longest Increase Subsequence<br>- DP O(n^2)<br>- O(n log n): active lists and binary search
+SD: SLO for S3 (2)	99.99 (4) availability<br><br>99.99999999 (10) durability
+SD components: Kafka perf: factors<br>produce, consume, latency	depends on: message size, replication (number and sync/async)<br><br>producer: 700K msg/s<br>consumer: 1M msg/s<br>end-to-end latency: ~3ms 99p
+SD: event-sourcing pattern	use append-only store of actions/events
+SD components: load balancer routes traffic based on (6)	- random<br>- least load<br>- session/cookies<br>- (weighted) round robin<br>- layer 4<br>- layer 7
+SD apps: C numbers	BR 1M/s<br><br>NoSQL cache/persisted: 200To, 1k memcache, 1k couchbase, 1ms 99p, 60M QPS peak<br><br>HDFS: 300 PB, 3k nodes
+SD components: load-balancer layer 4 vs. layer 7	4:<br>- look at transport layer: IP address, port<br>- do NAT<br>- often hardware<br><br>7:<br> look at application layer, like URL for HTTP, cookies<br>terminates network traffic, remove TLS<br>called reverse-proxy server

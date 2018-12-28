@@ -46,3 +46,4 @@ SD: C in ACID	Consistency<br><br>a transaction moves the DB from a valid state t
 SD: D in ACID	when a transaction is committed, it will remain committed even in the case of a system failure (power, crash)
 SD components: in-memory K/V store perf	on machine with good network<br><br>read/write: 200k/s easily<br><br>latency: 1ms<br><br>no bound on size with sharding but $
 SD: CQRS	command query responsibility separation<br>separate read and write of data
+SD: three and four nines availability per year	99.9: 9 hours of downtime/year<br><br>99.99: 1 hour downtime/year

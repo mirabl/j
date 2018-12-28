@@ -5,17 +5,13 @@ SD: Partition tolerance in CAP theorem	system continues to operate despite messa
 SD: I in ACID	concurrent execution of transactions leaves the DB in same state than if the they were executed sequentially
 SD low-level: OSI and TCP/IP models	OSI: PDNTSPA<br><br>TCP/IP: NITA
 OO: 3 characteristics of OO	inheritance<br>encapsulation<br>polymorphism
-OO: virtual method	can be overriden in derived class
 OO: 2 aspects of polymorphism	code or operations or objects behave differently in different contexts<br><br>1. object of derived class can be treated as base class<br><br>2. virtual methods of base class can be overriden
 OO: member overloading	same name but different signature
-OO: generics	class/method that defer specification of type until declared and instantiated in client code
-SD: circuit breaker<br>def, how it works	proxy for operations that might fail<br><br>states: closed / half-open / open<br>change state by looking at error rate
-SD: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency prefered
 SD components: load balancer used for (3), implemented with (2)	- don't send to bad servers<br>- don't overload<br>- eliminate SPOF<br><br>- hard or soft (HAProxy)
 SD components: load balancer multi setup (2)	active-passive or active-active
 LinkedList: beginning of cycle	1. find point in cycle: tortoise/hare<br><br>2. Move one pointer to start, both go to speed 1<br>meeting point is start of cycle
 Prob: find a mother vertex in directed graph<br>(all vertices can be reached from)	1. find last completely processed vertex in DFS (like toposort)<br><br>2. check if it is a mother vertex<br><br><br>topo sort doesn't exist on cyclic graphs
-Prob: transitive closure of directed graph (2)	= reachable[s][t] matrix<br><br>1. modified Floyd-Warshall O(V^3)<br><br>2. DFS on each vertex to fill reachable[src][*]
+Prob: transitive closure of directed graph, def, algo	= reachable[s][t] matrix<br><br>DFS on each vertex to fill reachable[src][*]<br><br>O(V (V + E))
 Prob: print number of paths with no cycle between two nodes in a directed graph	backtracking<br><br>set/unset visited nodes
 Prob: from undirected graph which is a tree, find a root of a tree which gives minimum height	BFS from the leaves to the inside<br><br>one or two remaining nodes<br><br>O(n)
 Prob: check if two nodes are on same path in a tree<br>in O(1) per query	preprocessing: DFS record enter/exit times<br><br>check times for (u, v) to see if same subtree
@@ -23,9 +19,9 @@ Prob: weighted job scheduling (2)	1. sort jobs by finish time<br>DP weightWithJo
 Prob: number of paths from src to dest with k edges (2)	1. DP numPaths[src][dest][edges]<br>O(k V^3)<br><br>2. Divide and Conquer matrix power G^k<br>O(log k) matrix power<br>total: O(V^3 log k)
 Prob: minimum insertions to make string a palindrome (2)	1. windowed DP minIns[i][j] for substring(i, j)<br>O(n^2)<br><br>2. With LCS<br>find LCS of string and its reverse<br>answer: len(s) - lcs<br>O(n^2)
 Prob: longest palindromic subsequence (2)	1. DP<br><br>2. LCS with reverse string<br>O(n^2)
-SD methodology: SLO types per system type (3)	always: correctness<br><br>user-facing requests: availability, latency, throughput<br><br>storage: latency, availability, durability<br><br>pipeline: throughput, end-to-end latency
+SD methodology: types of SLO (5)	correctness<br>availability<br>latency<br>throughput<br>durability
 SD methodology: 3 questions to ask on iteration	possible to scale?<br>can do better?<br>resilient?
 SD primitives: latency of operation with Paxos between DCs	25ms
-SD apps: chat, protocol	end-to-end encryption? multi device? history on server? ack?<br>websocket<br>message delivery queue for offline clients<br>balanced read-write<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
+SD apps: chat, +protocol	end-to-end encryption? multi device? history on server? ack?<br>push updates: websocket?<br>message delivery queue for offline clients<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
 SD apps: URL shortener	lookup/create<br>read-heavy, load-latency read, metadata store, independent entries, mostly immutable<br>lookup by key<br>data bias+, memory cache<br>key generation service for shortened URLs? maybe offline
-SD apps: youtube	view/upload<br>read heavy but long tail of uploads<br>metadata and blob stores<br>data bias++
+SD apps: youtube	view/upload<br>read heavy but long tail of uploads<br>metadata and blob stores<br>data bias++<br>video processing pipeline
