@@ -21,5 +21,7 @@ Prob: shortest path with exactly k edges in a directed and weighted graph (2)	na
 Prob: Eulerian cycle: def, check/find algos	visit each edge<br><br>linear time O(E)<br>vs. Hamiltonian is NP-hard<br><br>check if exists: look at conditions on degree<br><br>find: O(E) exists (Fleury)
 SD: types of data store (9)	RDBMS<br>k/v<br>document<br>column-family<br>graph<br>analytics<br>blob<br>search engine DB<br>time series DB
 Misc: how to send updates from server to client (3)	short-polling (client pull)<br><br>long-polling (client pull): server doesn't answer request until new data<br><br>websocket (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
-Prob: count distinct subsequences	c(n) = 2 * c(n - 1) - c(index of last occ of cur char)
+Prob: count distinct subsequences	c(n) = 2 * c(n - 1) - c(index of last occ of cur char)<br><br>use table for c[]<br><br>O(n)
 Prob: Count distinct occurrences as a subsequence	dp[offsetS][offsetT]<br><br>O(nm)
+DS: B-Tree (def, parameter, idea, use case)	self balancing search tree<br><br>non-binary, smaller heights than BST<br>branching factor: ~nb children/node<br><br>read whole disk block to minimize nb seeks in search<br><br>used in indexes for DBs
+DS: B+ Tree (def, 2 adv/1 disadv with B-Tree)	in B-Tree, internal nodes can have data<br><br>In B+ Tree, only leaves have data<br>internal nodes are just used for searching<br><br>Also: a leaf have a pointer to next leaf (for full scan)<br><br>B+ good: maximize branching factor, full scan<br>B+ bad: always need to go to leaf level for lookup

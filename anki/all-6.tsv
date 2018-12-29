@@ -1,4 +1,4 @@
-Sort: 6 sort properties	- stable<br>- in place<br>- comparison or not<br>- external<br>- good with pre-sorted<br>- method: partition, merge, select, insert, exchange
+Sort: 6 sort properties	- stable<br>- in place<br>- comparison or not<br>- external<br>- good with pre-sorted<br>- method: partition, merge, select, insert, exchange   Sort
 SD: Consistency in CAP theorem	all nodes see the same data all the time<br><br>equivalent to single-copy of the data
 SD: Availability in CAP theorem (2)	every request receives a response about its success<br><br>or any reachable replica is available for reads and writes
 SD: Partition tolerance in CAP theorem	system continues to operate despite message loss or failure of part of the system

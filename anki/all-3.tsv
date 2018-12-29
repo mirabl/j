@@ -5,7 +5,6 @@ Tree: balanced ST: complexity, 5 examples	Search/insert/delete O(log n)<br><br>A
 DS: implement LRU cache	= DLL Queue + HashTable: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
 SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
 Tree: Check if a binary tree is subtree of another binary tree	Naive O(n^2), <br><br>O(n): inorder and preorder of subtree must be substrings of big tree
-DS: B-Tree	self balancing tree, <br>not binary, generalization of BST<br>good for r/w to external memory (DB FS)
 SD primitives: Paxos<br>principle, master, failures, network, use where	majority vote<br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br>used in Chubby, BigTable/Megastore, GFS, Spanner
 DS:<br>Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of x to root of y. <br>Union by rank: attach smaller tree to larger. <br>Path compression<br><br>Amortized O(1) in time |O(n) space.
 Heap: complexity and algo of insert, extract-min, search	use last element, bubble up or down<br>O(log n)<br><br>search: difficult O(n)
@@ -40,7 +39,6 @@ SD: tunable consistency	from "writes never fail" to <br><br>"block for all repli
 Graph: 4 shortests path algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
 Array: Count triplets with sum smaller than a given value in O(n^2)	sort, loop for first element, use two-pointer-sum <br> O(n^2)|O(1) aux
 SD components: Dynamo<br>sharding, quorums, conflict, replica sync	consistent hashing<br>partial quorums for reading and writing<br>conflict detection and read repair via vector clocks<br>gossip for replica synchronization
-SD components: MySQL index based on which data structure in general	B-tree (or B+ ?)
 Algo: Gray code construction	recursive, G_{n-1}, G_{n-1} reversed with top bit set<br><br>gray(n) = n ^ (n >> 1)
 SD low-level: how many round trips per second<br>- world-wide<br>- within a data center	world-wide: 6-7<br><br>datacenter: 2000
 OO: virtual method	can be overriden in derived class
