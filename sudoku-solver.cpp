@@ -295,3 +295,65 @@ public:
 };
 
 
+
+
+class Solution {
+public:
+    bool checkChar(vector<vector<char>>& b, int row, int col, char v) {
+        for (int c = 0; c < 9; c++) {
+            if (b[row][c] == v) {
+                return false;
+            }
+        }
+        for (int r = 0; r < 9; r++) {
+            if (b[r][col] == v) {
+                return false;
+            }
+        }
+        int rr = row - (row % 3);
+        int cc = col - (col % 3);
+        for (int r = rr; r < rr + 3; r++) {
+            for (int c = cc; c < cc + 3; c++) {
+                if (b[r][c] == v) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    bool r(vector<vector<char>>& b) {
+        int row = -1;
+        int col = -1;
+        for (int r = 0; r < 9; r++) {
+            for (int c = 0; c < 9; c++) {
+                if (b[r][c] == '.') {
+                    row = r;
+                    col = c;
+                }
+            }
+        }
+        
+        if (row == -1) {
+            return true;
+        }
+        
+        for (char v = '1'; v <= '9'; v++) {
+            if (!checkChar(b, row, col, v)) {
+                continue;
+            }
+            
+            b[row][col] = v;
+            if (r(b)) {
+                return true;
+            }
+            b[row][col] = '.';
+        }
+        
+        return false;
+    }
+    
+    void solveSudoku(vector<vector<char>>& board) {
+        r(board);
+    }
+};
