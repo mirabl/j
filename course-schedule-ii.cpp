@@ -196,3 +196,50 @@ public:
         return sol;
     }
 };
+
+
+class Solution {
+public:
+    vector<int> o;
+    vector<int> state;
+    int NOT_VISITED = 0;
+    int VISITING = 1;
+    int DONE = 2;
+    map<int, vector<int>> G;
+    
+    bool dfs(int r) {
+        if (state[r] == DONE) {
+            return true;
+        } else if (state[r] == VISITING) {
+            return false;
+        }
+        state[r] = VISITING;
+        
+        for (auto s: G[r]) {
+            if (!dfs(s)) {
+                return false;
+            }
+        }
+        o.push_back(r);
+        state[r] = DONE;
+        return true;
+    }
+    
+    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
+        for (auto p: prerequisites) {
+            G[p.second].push_back(p.first);
+        }
+        state = vector<int>(numCourses, NOT_VISITED);
+        for (int s = 0; s < numCourses; s++) {
+            if (!dfs(s)) {
+                return {};
+            }
+        }
+        
+        vector<int> res;
+        for (int i = numCourses - 1; i >= 0; i--) {
+            res.push_back(o[i]);
+        }
+        return res;
+    }
+};
