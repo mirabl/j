@@ -215,3 +215,61 @@ int main() {
 
     cout << res << endl;
 }
+
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int parent[10000 + 1];
+
+int do_find(int u) {
+    if (parent[u] != u) {
+        parent[u] = do_find(parent[u]);
+    }
+    return parent[u];
+}
+
+void do_union(int u, int v) {
+    parent[do_find(u)] = do_find(v);
+}
+
+int main() {
+	
+	int N, M;
+	cin >> N;
+	cin >> M;
+
+    vector<pair<int, pair<int, int>>> edges;
+    for (int i = 0; i < M; i++) {
+        int u, v, w;
+        cin >> u >> v >> w;
+        u--;
+        v--;
+        edges.push_back({w, {u, v}});
+    }
+
+    for (int i = 0; i < N; i++) {
+        parent[i] = i;
+    }
+
+    sort(edges.begin(), edges.end());
+
+    int totalw = 0;
+    for (auto edge: edges) {
+        int w = edge.first;
+        int u = edge.second.first;
+        int v = edge.second.second;
+
+        if (do_find(u) == do_find(v)) {
+            continue;
+        }
+        do_union(u, v);
+        totalw += w;
+    }
+    cout << totalw << endl;
+	return totalw;
+}
