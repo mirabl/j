@@ -179,3 +179,28 @@ public:
         return mx < infty ? mx : -1;
     }
 };
+
+
+// BF
+class Solution {
+public:
+    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
+        int infty = 1e8;
+        vector<int> dist(N, infty);
+        dist[K - 1] = 0;
+        for (int i = 0; i < N; i++) {
+            for (auto time: times) {
+                int u = time[0] - 1;
+                int v = time[1] - 1;
+                int w = time[2];
+                dist[v] = min(dist[v], dist[u] + w);
+            }
+        }
+        
+        int r = 0;
+        for (int i = 0; i < N; i++) {
+            r = max(r, dist[i]);
+        }
+        return r < infty ? r : -1;
+    }
+};
