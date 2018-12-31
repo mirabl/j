@@ -175,6 +175,7 @@ public:
         
         while (sol.size() != N) { 
             int mv = 0;
+	    // not necessary, can keep track of degree 0 vertices
             for (int v = 0; v < N; v++) {
                 if (inDeg[v] < inDeg[mv]) {
                     mv = v;
@@ -240,6 +241,46 @@ public:
         for (int i = numCourses - 1; i >= 0; i--) {
             res.push_back(o[i]);
         }
+        return res;
+    }
+};
+
+
+class Solution {
+public:
+    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
+        int N = numCourses;
+        set<int> done;
+        vector<int> deg(N);
+        vector<vector<int>> G(N);
+        for (auto p: prerequisites) {
+            G[p.second].push_back(p.first);
+            deg[p.first]++;
+        }
+        
+        queue<int> q;
+        for (int i = 0; i < N; i++) {
+            if (deg[i] == 0) {
+                q.push(i);
+            }
+        }
+        vector<int> res;
+        while (res.size() != N) {
+            if (q.empty()) {
+                return {};
+            }
+            int u = q.front();
+            q.pop();
+            res.push_back(u);
+            
+            for (int v: G[u]) {
+                deg[v]--;
+                if (deg[v] == 0) {
+                    q.push(v);
+                }
+            }
+        }
+        
         return res;
     }
 };
