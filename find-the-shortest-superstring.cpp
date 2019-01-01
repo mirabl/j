@@ -161,3 +161,84 @@ public:
         return re(A, overlap, dp, prev, mask ^ (1 << i), ni) + s;
     }
 };
+
+
+class Solution {
+public:
+    int infty = 1e8;
+    
+    int cov(string& s, string& t) {
+        int n = min(s.size(), t.size());
+        for (int l = n; l >= 1; l--) {
+            string s2 = s.substr(s.size() - l);
+            string t2 = t.substr(0, l);
+            if (s2 == t2) {
+                return l;
+            }
+        }
+        
+        return 0;
+    }
+    
+    string shortestSuperstring(vector<string>& A) {
+        int N = A.size();
+        vector<vector<int>> ov(N, vector<int>(N, 0));
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (i == j) {
+                    continue;
+                }
+                ov[i][j] = cov(A[i], A[j]);
+            }
+        }
+        
+        int M = 1 << N;
+        vector<vector<int>> dp(M, vector<int>(N, infty));
+        vector<vector<int>> prev(M, vector<int>(N, -1));
+        for (int i = 0; i < N; i++) {
+            dp[1 << i][i] = A[i].size();
+        }
+        
+        for (int m = 0; m < M; m++) {
+            for (int i = 0; i < N; i++) {
+                if ((m >> i) & 1 == 0) {
+                    continue;
+                }
+                for (int j = 0; j < N; j++) {
+                    if ((m >> j) & 1 == 1) {
+                        continue;
+                    }
+                    int m2 = m | (1 << j);
+                    int v = dp[m][i] + A[j].size() - ov[i][j];
+                    if (v < dp[m2][j]) {
+                        dp[m2][j] = v;
+                        prev[m2][j] = i;
+                    }
+                }
+            }
+        }
+        
+        vector<int> res;
+        int j = 0;
+        int m = M - 1;
+        for (int i = 0; i < N; i++) {
+            if (dp[m][i] < dp[m][j]) {
+                j = i;
+            }
+        }
+        while (j != -1) {
+            res.insert(res.begin(), j);
+            int m2 = m ^ (1 << j);
+            j = prev[m][j];  
+            m = m2;
+        }
+        
+        string r = A[res[0]];
+        for (int i = 1; i < N; i++) {
+            r += A[res[i]].substr(ov[res[i - 1]][res[i]]);
+        }
+        
+        
+        return r;
+    }
+};
