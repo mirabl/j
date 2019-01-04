@@ -1,5 +1,5 @@
-SD DS: SSTable<br>def, internals, read, write	persistent ordered immutable on disk<br>Index and Data blocks<br>Index (in-memory): PK (ex. B-Tree) + offsets in Data<br>Data 64KB block: key-value pairs<br>optimised for reads<br>written sequentially<br>no in-place changes
-SD DS: MemTable and SSTable<br>stored where, read/writes, maintenance	MemTable in memory, SSTable on disk mostly<br>writes go to MemTable<br>reads go to MemTable first<br>periodically:<br>- MemTable flushed to disk SSTable<br>- SSTables merged
+SD DS: SSTable<br>def, internals, read, write	sorted immutable on disk<br>- Index (in-memory): PK (ex. B-Tree)<br>- Data 64KB block: k/v pairs<br>optimised for reads<br>written once, no in-place changes
+SD DS: MemTable and SSTable<br>stored where, read/writes, maintenance	MemTable in memory<br>SSTable on disk (except idx)<br>writes go to MemTable<br>reads go to MemTable first<br><br>periodically:<br>- MemTable flushed to SSTable<br>- SSTables merged
 SD apps: instagram	features: feed, by user list, upload<br>metadata+blob store<br>read heavy, bias++, immutable<br>image compression pipeline<br>memory cache<br>e.g. FB Haystack for blob store
 SD apps: docs	metadata+documents<br>can compress text<br>handle conflicts<br>handle offline
 SD apps: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
@@ -9,7 +9,7 @@ Prob: matrix chain multiplication order	windowed DP<br><br>dp[i][j]: cost for Mi
 Prob: word break<br>longstringwithoutspaces + dict	DP: canBreak[offset]
 Prob: box stacking<br>highest stack with smaller on top of bigger<br>can reuse	careful rotations<br><br>DP similar to LIS<br><br>O(n^2)
 Prob: n eggs / k floors<br>find minimum nb of trials in worst case to find the highest safe floor (2)	1. DP O(n k^2) dp[numEggs][floor]<br><br>2. other solution with binary search and binomial coef
-String: Regex matching (2)	1. Recursive<br>2. DP. match[offsetStr][offsetPat]<br>O(mn)<br><br>With offset going from left to right.
+String: Regex matching	DP. match[offsetStr][offsetPat]<br>O(mn)<br><br>With offset going from left to right.
 Prob: set matrix zeroes	set cell in first row/column to zero if element in 0<br><br>use 2 variables for first row/column<br><br>set all zeroes by looking at first row/column<br>O(mn)
 Array: Coin change:<br>Given infinite coins of value V1..VN, find the minimum number of coins with sum S	DP<br><br>dp[amount]<br>loop on coin<br>loop on x to update dp[x]<br><br>O(N S)
 Prob: shortest superstring	bitmask DP<br>dp[mask][endingWithString]<br><br>O(2^n n^2)
@@ -17,11 +17,17 @@ Tree: Maximum path sum in a binary tree	recursive<br><br>rec functions return {m
 Prob: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive DFS O(V(V + E))<br><br>linear for DAG: toposort, then loop<br>O(V + E)
 Prob: find Hamiltonian cycle (def, alg, class)	visit each vertex once<br><br>DFS backtrack with path as parameter<br>O(V!)<br>NP-complete
 Prob: color graph with k colors, algo/complex	backtracking<br><br>O(k^V)?
-Prob: shortest path with exactly k edges in a directed and weighted graph (2)	naive: recursive on k, O(V^k)<br><br>DP dist[s][t][k]<br>fill with k increasing<br><br>O(V^3 k)
+Prob: shortest path with exactly k edges in a directed and weighted graph	DP dist[s][t][k]<br>fill with k increasing<br><br>O(V^3 k)
 Prob: Eulerian cycle: def, check/find algos	visit each edge<br><br>linear time O(E)<br>vs. Hamiltonian is NP-hard<br><br>check if exists: look at conditions on degree<br><br>find: O(E) exists (Fleury)
 SD: types of data store (9)	RDBMS<br>k/v<br>document<br>column-family<br>graph<br>analytics<br>blob<br>search engine DB<br>time series DB
 Misc: how to send updates from server to client (3)	short-polling (client pull)<br><br>long-polling (client pull): server doesn't answer request until new data<br><br>websocket (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
 Prob: count distinct subsequences	c(n) = 2 * c(n - 1) - c(index of last occ of cur char)<br><br>use table for c[]<br><br>O(n)
-Prob: Count distinct occurrences as a subsequence	dp[offsetS][offsetT]<br><br>O(nm)
+Prob: Count distinct occurrences of t as a subsequence of s	dp[offsetS][offsetT]<br><br>O(nm)
 DS: B-Tree (def, parameter, idea, use case)	self balancing search tree<br><br>non-binary, smaller heights than BST<br>branching factor: ~nb children/node<br><br>read whole disk block to minimize nb seeks in search<br><br>used in indexes for DBs
 DS: B+ Tree (def, 2 adv/1 disadv with B-Tree)	in B-Tree, internal nodes can have data<br><br>In B+ Tree, only leaves have data<br>internal nodes are just used for searching<br><br>Also: a leaf have a pointer to next leaf (for full scan)<br><br>B+ good: maximize branching factor, full scan<br>B+ bad: always need to go to leaf level for lookup
+SD: Deadlock	task waits indefinitely for conditions that can never be satisfied<br><br>tasks wait for other tasks<br><br>ex: 2 tasks with 2 resources
+SD: livelock	two or more processes continuously change their states in response to changes in the other process(es) without doing any useful work
+SD: Starvation	runnable process is overlooked indefinitely by the scheduler<br><br>although it is able to proceed, it is never chosen
+SD: mutex	one thread in critical section at a time
+SD: semaphore	record how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
+SD: process vs thread	thread:<br> run in shared memory space<br>share resources<br>context switch faster<br>

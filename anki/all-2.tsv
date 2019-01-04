@@ -12,7 +12,7 @@ LinkedList: reverse a linked list	iterative, 3 pointers<br>"new head"
 Prob:<br>combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., <br>same number can be repeated<br>	backtracking (or DP)
 Prob:<br>split array in m continous subarrays<br>minimize largest subarray sum	Binary search on answer<br><br>Greedy packing to check if valid
 SD components: MySQL storage engine (2)	InnoDB: row locking so better concurrency<br><br>MyISAM: old, maybe table locking better when lots of reads
-Array: find subarray with maximum sum	one pass, at each position either extend or start new subarray O(n)|O(1)
+Array: find subarray with maximum sum	one pass, accumulate (Kadane)<br><br>at each position either extend or start new subarray O(n)|O(1)
 Graph: 11 types of graphs	connected, directed, weighted, Tree, with cycles, DAG, bipartite, complete (all clique), intersection, planar, sparse
 SD: Federation	= functional partitioning<br><br>splits up databases by function. <br><br>For example, forums, users, and products
 Alg: solve recurrences + examples<br>T(n) = T(n / 2) + O(1)<br>T(n) = 2 T(n / 2) + O(1)<br>T(n) = 2T (n / 2) + O(log n)<br>T(n) = 2 T(n / 2) + O(n)<br>T(n) = T(n / 2) + O(n)	O(log n) binary search<br>O(n)<br>O(n)<br>O(n log n) mergesort<br>O(n) quickselect

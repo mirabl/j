@@ -10,15 +10,15 @@ OO: member overloading	same name but different signature
 SD components: load balancer used for (3), implemented with (2)	- don't send to bad servers<br>- don't overload<br>- eliminate SPOF<br><br>- hard or soft (HAProxy)
 SD components: load balancer multi setup (2)	active-passive or active-active
 LinkedList: beginning of cycle	1. find point in cycle: tortoise/hare<br><br>2. Move one pointer to start, both go to speed 1<br>meeting point is start of cycle
-Prob: find a mother vertex in directed graph<br>(all vertices can be reached from)	1. find last completely processed vertex in DFS (like toposort)<br><br>2. check if it is a mother vertex<br><br><br>topo sort doesn't exist on cyclic graphs
+Prob: find a mother vertex in directed graph<br>(all vertices can be reached from)	1. find last completely processed vertex in DFS (pseudo toposort)<br><br>2. check if it is a mother vertex<br><br><br>topo sort doesn't exist on cyclic graphs
 Prob: transitive closure of directed graph, def, algo	= reachable[s][t] matrix<br><br>DFS on each vertex to fill reachable[src][*]<br><br>O(V (V + E))
 Prob: print number of paths with no cycle between two nodes in a directed graph	backtracking<br><br>set/unset visited nodes
 Prob: from undirected graph which is a tree, find a root of a tree which gives minimum height	BFS from the leaves to the inside<br><br>one or two remaining nodes<br><br>O(n)
 Prob: check if two nodes are on same path in a tree<br>in O(1) per query	preprocessing: DFS record enter/exit times<br><br>check times for (u, v) to see if same subtree
-Prob: weighted job scheduling (2)	1. sort jobs by finish time<br>DP weightWithJobsUntil[i]<br>include or exclude current job<br>O(n^2) / or O(n log n) with BS to find previous nonconflicting job<br><br>2. sort by start time, then DP like LIS
+Prob: weighted job scheduling (2)	1. sort jobs by finish time<br>DP weightWithJobsUntil[i]<br>include or exclude current job<br><br>O(n^2) / or O(n log n) with BS to find previous nonconflicting job<br><br>2. sort by start time, then DP like LIS
 Prob: number of paths from src to dest with k edges (2)	1. DP numPaths[src][dest][edges]<br>O(k V^3)<br><br>2. Divide and Conquer matrix power G^k<br>O(log k) matrix power<br>total: O(V^3 log k)
 Prob: minimum insertions to make string a palindrome (2)	1. windowed DP minIns[i][j] for substring(i, j)<br>O(n^2)<br><br>2. With LCS<br>find LCS of string and its reverse<br>answer: len(s) - lcs<br>O(n^2)
-Prob: longest palindromic subsequence (2)	1. DP<br><br>2. LCS with reverse string<br>O(n^2)
+Prob: longest palindromic subsequence (2)	1. windowed DP<br>dp[i][j]: s[i..j], O(n^2)<br><br>2. LCS with reverse string<br>O(n^2)
 SD methodology: types of SLO (5)	correctness<br>availability<br>latency<br>throughput<br>durability
 SD methodology: 3 questions to ask on iteration	possible to scale?<br>can do better?<br>resilient?
 SD primitives: latency of operation with Paxos between DCs	25ms

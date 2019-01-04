@@ -37,3 +37,10 @@ Spanner	Planet-scale structured storage<br>Next generation of Bigtable stack<br>
 Algo: bin packing	n items with weights<br>m bins with capacity<br>store all with min bins<br><br>only geo? diff with knapsack? NP-complete
 Precise def of 	ACID, CAP
 catalan numbers and trees	total number of BST and BT
+SD: difference between process and thread, resources they need	.
+SD: types of concurrency issues	.
+SD: difference between lock, mutex, semaphore	.
+SD: deadlock, livelock, how to avoid	.
+SD: how context switching works	.
+SD: how scheduling works	.
+SD: fundamentals of "modern" concurrency constructs	.
