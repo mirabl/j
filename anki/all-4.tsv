@@ -8,7 +8,6 @@ DS:<br>Adv/Disadvantage of BST vs. HashTable	BST can enumerate in key order<br>H
 2D Array: Boggle (Find all possible words in a board of characters)	DFS from every start cell, mark visited cells.<br><br>Complexity?<br> Better solution with Trie.
 Array: Smallest subarray with sum greater than a given value	Sliding window: keep adding array elements while current sum is smaller than x <br> If current sum becomes greater than x, update min length, remove starting elements
 SD components:<br>2 data warehouses products for an analytical processing OLAP	Redshift, BigQuery/Dremel
-Prob: Sudoku Solver	Backtracking<br><br>check if one value is already in a row/col/square, recurse
 Algo: closest pair<br>2 algs	find the pair that is closest<br>sweep line: O(n log n)<br>divide and conquer: O(n log^2 n)
 DS: <br>Binary heap definition	complete binary<br>with heap property (children are smaller)
 Graph: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br> O(V^2) if adjacency matrix/O(V)
@@ -16,7 +15,7 @@ Array: Given an array of integers, every element appears twice except for one. F
 String:<br>Longest Palindromic Substring (3)	for each position, find longest even and odd length substring with this center O(n^2)|O(1)<br><br>DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1)<br><br>O(n) difficult Manacher.
 Tree: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if in-order traversal is sorted O(n)
 DS: segment tree<br>for which operation with complexity	same name but different for Fenwick Trees (prefix sums)<br>store info on intervals or segments<br><br>find segments containing a query point<br>O(log Intervals + MatchingIntervals)
-DS: 4 example use of a heap	priority queue<br>extract minimum with streaming data<br>k-way merge: merge k sorted arrays<br>continous median
+DS: 5 example use of a heap	priority queue<br>extract minimum with streaming data<br>k-way merge: merge k sorted arrays<br>continous median<br>sort when only k indices away
 DS: Fenwick Tree	type of segment tree<br>used for prefix sums
 Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
 SD components: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second<br>billions of rows<br>thousands of columns
@@ -34,10 +33,8 @@ Sort: sort when limited range of keys	counting sort O(n + k)/O(n + k)<br><br>buc
 LinkedList: is a linked list a palindrome?	reverse second half, check (and restore)
 SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
 SD primitives: why impossible to availability and strong consistency during network partition	diverge<br><br>can not prevent divergence if partitioned nodes continue to work
-LinkedList: Sort a linked list	use merge sort
 SD components: one instance RDBMS perf	no answer, depends on query/HW, if fits in RAM<br><br>1 TB total size<br>billions of rows<br>1K r/w QPS<br><br>latency: SSD 1ms, HD: 20ms
 Array: Next Greater element in an array	using a stack<br>O(n)/O(n)
-SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
 Graph: Topological sort of DAG (2)	 1. DFS: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br><br>2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
 SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
 SD components: when to use BigQuery/Dremel<br>when to use MapReduce	BigQuery: any query, SQL-like, no latency, small output (stats)<br><br>MapReduce: can do any processing, more latency, have to implement all jobs

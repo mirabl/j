@@ -4,36 +4,29 @@ SD primitives: Gossip	probabilistic technique for synchronizing replicas<br><br>
 Sort:<br>Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at end, resize heap O(log n)<br><br>total: O(n log n)
 Sort:<br>QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
 SD primitives: N, R, W, usual recommendation	N replicas,<br>need R/W votes for read/write<br>R + W > N
-Prob:<br>Search: find element in row-and-column-sorted matrix	start from NE corner
-Sort: bubble sort	swap pairs to put max at i=end of array<br>i--
 SD primitives: partition tolerant consensus<br>examples, how they work<br>what happens when partition	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
 Graph: 4 colors theorem	a planar graph can be vertex-colored with most 4 distinct colors
 LinkedList: reverse a linked list	iterative, 3 pointers<br>"new head"
 Prob:<br>combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., <br>same number can be repeated<br>	backtracking (or DP)
 Prob:<br>split array in m continous subarrays<br>minimize largest subarray sum	Binary search on answer<br><br>Greedy packing to check if valid
 SD components: MySQL storage engine (2)	InnoDB: row locking so better concurrency<br><br>MyISAM: old, maybe table locking better when lots of reads
-Array: find subarray with maximum sum	one pass, accumulate (Kadane)<br><br>at each position either extend or start new subarray O(n)|O(1)
 Graph: 11 types of graphs	connected, directed, weighted, Tree, with cycles, DAG, bipartite, complete (all clique), intersection, planar, sparse
-SD: Federation	= functional partitioning<br><br>splits up databases by function. <br><br>For example, forums, users, and products
 Alg: solve recurrences + examples<br>T(n) = T(n / 2) + O(1)<br>T(n) = 2 T(n / 2) + O(1)<br>T(n) = 2T (n / 2) + O(log n)<br>T(n) = 2 T(n / 2) + O(n)<br>T(n) = T(n / 2) + O(n)	O(log n) binary search<br>O(n)<br>O(n)<br>O(n log n) mergesort<br>O(n) quickselect
 DS: LFU cache<br>implementation	3 hash maps, one with linked list as values
 Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
 Prob:<br>Container With Most Water<br>n vertical lines	two pointers, from start and end, <br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
 Misc: 5 NP-complete problems	SAT<br>knapsack<br>traveling salesman<br>set cover<br>Hamiltonian cycle
 SD components: ETL	extract data from multiple sources<br><br>clean, join, aggregate, transform into format<br><br>load in warehouse
-Array: 3Sum  Find all unique triplets in the array which gives the sum of zero	sort, loop for first element and then 2sum sweep, <br>avoid duplicates by avoiding duplicate first element <br>O(n^2)|O(1)
 Tree: k-d tree<br>definition<br>4 complexities	split in 1 dimension at each node (median of coordinate to get balance)<br><br>search/insert/delete O(log n) average<br>Space: O(n)
 SD primitives: replace global clock by?<br>based on?	vector clock<br><br><br>(t1, ..., tN)<br>based on Lamport clock
 Prob. solving:<br>optimize parameter (find min) when difficult directly	binary search + checkValue(mid)
 SD: classic consistency problem in DB	read-after-write
 SD primitives: CA systems, based on, used by	more common, not partition aware,<br>often 2PC<br>traditional RDBMS
-Sort: insertion sort<br>selection sort	insertion: insert A[i] in sorted A[0]...A[i-1]<br><br>select min put it at A[i=0], i++
 String: substring search	naive O(n*m) <br><br> robin-karp rolling hash O(n + m) <br><br> advanced O(n)
 Array: Reverse an array without affecting special characters	O(n) one pass, in-place: two pointers at start and end <br> swap or skip and meet in the middle <br> O(n)|O(1) aux
 DS: range minimum or range sum	Segment Tree
 SD primitives: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
 DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
-Stack: implement stack with O(1) min<br>(2 ways)	push (x, min) when pushing x, <br><br>or use second stack
 Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	BFS from start word
 Array: 3 subsequence problems/solutions/cplx	1. Is Subsequence: iterate greedy O(n), no DP<br><br>2. Longest Common Subsequence: DP O(nm)<br><br>3. Longest Increase Subsequence<br>- DP O(n^2)<br>- O(n log n): active lists and binary search
 SD: SLO for S3 (2)	99.99 (4) availability<br><br>99.99999999 (10) durability

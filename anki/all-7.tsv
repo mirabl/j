@@ -31,3 +31,4 @@ SD: Starvation	runnable process is overlooked indefinitely by the scheduler<br><
 SD: mutex	one thread in critical section at a time
 SD: semaphore	record how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
 SD: process vs thread	thread:<br> run in shared memory space<br>share resources<br>context switch faster<br>
+SD: - default stack size<br>- size of empty stack	- <b>1 to 8 MB</b><br><br>= virtual<br>not allocated completely unless needed<br><br>- < 100 bytes 

@@ -17,10 +17,7 @@ SD primitives: how a Lamport clock works	when a process does work, increment<br>
 SD low-level: use cases of UDP	best effort delivery for voice/video streaming, games
 DS: suffix array	same use as suffix tree but with 4 times less memory<br>sorted array of suffixes
 String:<br>print valid n-parentheses	try a character, recurse if allowed
-SD apps: mechanism for asynchronicity	queues
 Geo: convex-hull algorithm (3)	wrapping<br><br>sweep line<br><br>divide and conquer
-Sort:<br>Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
-Stack: sort a stack (2)	using a second stack<br><br> or recursively
 SD primitives: 2 classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
 String: Reverse words in a sentence<br>(2 ways)	1. Word by word from the end.<br><br> 2. reverse whole string char-by-char, reverse within each word
 DS: specialized heaps (2)	when limited set of keys, or monotonic input
@@ -35,10 +32,8 @@ Heapify: algorithm and complexity	heapify from the lower levels first, "sinkdown
 Tree: Bottom view of binary tree	BFS with (ordered) map: <br>M[x-coordinate] = value<br><br>O(n)/O(n)
 Graph: Find connected components of a graph (2)	BFS/DFS O(V + E), <br><br>- or process edges, Union-Find on vertices<br><br>If dynamic changes, keep track of components with Union-Find.
 Graph: matching, perfect matching	set of edges without common vertices<br><br>perfect: all vertices are matched,<br>like minimum size edge cover
-DS: external merge sort	sort chunk & write to disk, load chunk of chuck and merge-write
 DS:<br>Priority queues: 2 implementations	heaps<br>self balancing BST
 String: determine if a string has only unique characters (with and without memory)	use a set, <br><br>or sort the string
 SD primitives: primary/backup replication<br>master, works how, network, failover	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous variant: ensure that write are done one backups before returning to the client
-DS: sort when nearly sorted (k position away at most)	heap
 Alg: P, NP definition	solvable in polynomial time<br>a solution can be verified in polynomial time
 SD primitives: split brain	failover to backup due to temporary network issue<br>primary and backup are active at the same time
