@@ -3,7 +3,7 @@ SD DS: MemTable and SSTable<br>stored where, read/writes, maintenance	MemTable i
 SD apps: instagram	features: feed, by user list, upload<br>metadata+blob store<br>read heavy, bias++, immutable<br>image compression pipeline<br>memory cache<br>e.g. FB Haystack for blob store
 SD apps: docs	metadata+documents<br>can compress text<br>handle conflicts<br>handle offline
 SD apps: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
-SD apps: search	online queries vs. offline batch crawler ingest<br>low latency lookup<br>data size challenge<br>bias++<br>index servers (random sharded on docs), doc servers (same)<br>1. read inverted index to build hit list for each word<br>2. compute relevance order<br>docserver: fetch doc from disk, get snippet for keyword
+SD apps: search	- <b>index servers</b> (random sharded on docs)<br>- <b>doc servers</b> (same)<br><br>scatter: build hit list<br>gather: compute relevance order<br><br>docserver: fetch doc from disk, get snippet for keyword
 Prob: Find the longest path in a matrix increasing by 1 at each cell	DP with memoization
 Prob: matrix chain multiplication order	windowed DP<br><br>dp[i][j]: cost for Mi...Mj<br><br>fill with increasing window length
 Prob: word break<br>longstringwithoutspaces + dict	DP: canBreak[offset]
@@ -15,7 +15,7 @@ Array: Coin change:<br>Given infinite coins of value V1..VN, find the minimum nu
 Prob: shortest superstring	bitmask DP<br>dp[mask][endingWithString]<br><br>O(2^n n^2)
 Tree: Maximum path sum in a binary tree	recursive<br><br>rec functions return {maxCompletePath, maxIncompletePath}<br><br>O(n)
 Prob: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive DFS O(V(V + E))<br><br>linear for DAG: toposort, then loop<br>O(V + E)
-Prob: find Hamiltonian cycle (def, alg, class)	visit each vertex once<br><br>DFS backtrack with path as parameter<br>O(V!)<br>NP-complete
+Prob: find Hamiltonian cycle (def, alg, class)	visit each vertex once<br><br>DFS backtrack with path as parameter<br>O(V!)<br>NP-complete<br>or <b>bitmask DP</b>
 Prob: color graph with k colors, algo/complex	backtracking<br><br>O(k^V)?
 Prob: shortest path with exactly k edges in a directed and weighted graph	DP dist[s][t][k]<br>fill with k increasing<br><br>O(V^3 k)
 Prob: Eulerian cycle: def, check/find algos	visit each edge<br><br>linear time O(E)<br>vs. Hamiltonian is NP-hard<br><br>check if exists: look at conditions on degree<br><br>find: O(E) exists (Fleury)

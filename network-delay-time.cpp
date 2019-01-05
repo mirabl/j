@@ -234,3 +234,34 @@ public:
         return res < infty ? res : -1;
     }
 };
+
+
+// FW
+class Solution {
+public:
+    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
+        int infty = 1e8;
+        vector<vector<int>> dist(N, vector<int>(N, infty));
+        K--;
+        for (int i = 0; i < N; i++) {
+            dist[i][i] = 0;
+        }
+        for (auto time: times) {
+            dist[time[0] - 1][time[1] - 1] = time[2];
+        }
+        
+        for (int k = 0; k < N; k++) {
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+                }
+            }
+        }
+        
+        int m = 0;
+        for (int i = 0; i < N; i++) {
+            m = max(m, dist[K][i]);
+        }
+        return m < infty ? m : -1;
+    }
+};
