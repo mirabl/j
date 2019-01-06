@@ -9,7 +9,7 @@ Prob: matrix chain multiplication order	windowed DP<br><br>dp[i][j]: cost for Mi
 Prob: word break<br>longstringwithoutspaces + dict	DP: canBreak[offset]
 Prob: box stacking<br>highest stack with smaller on top of bigger<br>can reuse	careful rotations<br><br>DP similar to LIS<br><br>O(n^2)
 Prob: n eggs / k floors<br>find minimum nb of trials in worst case to find the highest safe floor (2)	1. DP O(n k^2) dp[numEggs][floor]<br><br>2. other solution with binary search and binomial coef
-String: Regex matching	DP. match[offsetStr][offsetPat]<br>O(mn)<br><br>With offset going from left to right.
+String: Regex matching (2)	1. <b>recursive</b><br><br><b>DP</b> bool match[iStr][iPat]<br>O(mn)<br><br>offset from left to right<br>maybe store last char in table
 Prob: set matrix zeroes	set cell in first row/column to zero if element in 0<br><br>use 2 variables for first row/column<br><br>set all zeroes by looking at first row/column<br>O(mn)
 Array: Coin change:<br>Given infinite coins of value V1..VN, find the minimum number of coins with sum S	DP<br><br>dp[amount]<br>loop on coin<br>loop on x to update dp[x]<br><br>O(N S)
 Prob: shortest superstring	bitmask DP<br>dp[mask][endingWithString]<br><br>O(2^n n^2)
@@ -32,3 +32,4 @@ SD: mutex	one thread in critical section at a time
 SD: semaphore	record how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
 SD: process vs thread	thread:<br> run in shared memory space<br>share resources<br>context switch faster<br>
 SD: - default stack size<br>- size of empty stack	- <b>1 to 8 MB</b><br><br>= virtual<br>not allocated completely unless needed<br><br>- < 100 bytes 
+Prob: in string, replace a by dd, delete b<br>O(1) space	<b>two passes</b>:<br>1. <b>forward</b> delete b's in place<br>and count a's<br><br>2. <b>backward</b> replace a's 
