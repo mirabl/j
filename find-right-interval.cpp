@@ -133,3 +133,50 @@ public:
         return res;
     }
 };
+
+/**
+ * Definition for an interval.
+ * struct Interval {
+ *     int start;
+ *     int end;
+ *     Interval() : start(0), end(0) {}
+ *     Interval(int s, int e) : start(s), end(e) {}
+ * };
+ */
+class Solution {
+public:
+    int fm(int target, vector<pair<int, int>>& A) {
+        int lo = 0;
+        int hi = int(A.size()) - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (A[mid].first < target) {
+                lo = mid + 1;
+            } else if (mid == 0 || A[mid - 1].first < target) {
+                return A[mid].second;
+            } else {
+                hi = mid;
+            }
+        }
+        
+        return -1;
+    }
+    
+    
+    vector<int> findRightInterval(vector<Interval>& intervals) {
+        vector<int> res;
+        vector<pair<int, int>> starts;
+        int N = intervals.size();
+        for (int i = 0; i < N; i++) {
+            starts.push_back({intervals[i].start, i});
+        }
+        sort(starts.begin(), starts.end());
+        
+        for (int i = 0; i < N; i++) {
+            int f = fm(intervals[i].end, starts);
+            res.push_back(f);
+        }
+        
+        return res;
+    }
+};
