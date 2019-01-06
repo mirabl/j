@@ -122,3 +122,17 @@ public:
     }
 };
 
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        int infty = 1e8;
+        vector<int> dp(amount + 1, infty);
+        dp[0] = 0;
+        for (auto c: coins) {
+            for (int v = c; v <= amount; v++) {
+                dp[v] = min(dp[v - c] + 1, dp[v]);
+            }
+        }
+        return dp[amount] < infty ? dp[amount] : -1;
+    }
+};
