@@ -357,3 +357,63 @@ public:
         r(board);
     }
 };
+
+class Solution {
+public:
+    bool check(vector<vector<char>>& board, int row, int col, char v) {
+        for (int r = 0; r < 9; r++) {
+            if (board[r][col] == v) {
+                return false;
+            }
+        }
+        for (int c = 0; c < 9; c++) {
+            if (board[row][c] == v) {
+                return false;
+            }
+        }
+        int rr = row - (row % 3);
+        int cc = col - (col % 3);
+        for (int r = rr; r < rr + 3; r++) {
+            for (int c = cc; c < cc + 3; c++) 
+            if (board[r][c] == v) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    bool rec(vector<vector<char>>& board) {
+        int r = -1;
+        int c = -1;
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                if (board[row][col] == '.') {
+                    r = row;
+                    c = col;
+                }
+            }
+        }
+        if (r == -1) {
+            return true;
+        }
+        for (char v = '1'; v <= '9'; v++) {
+            if (!check(board, r, c, v)) {
+                continue;
+            }
+            
+            board[r][c] = v;
+            
+            if (rec(board)) {
+                return true;
+            }
+            board[r][c] = '.';
+        }
+        
+        return false;
+    }
+    
+    void solveSudoku(vector<vector<char>>& board) {
+        rec(board);
+    }
+};
+
