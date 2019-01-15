@@ -11,7 +11,6 @@ SD components: load balancer used for (3), implemented with (2)	- don't send to 
 SD components: load balancer multi setup (2)	active-passive or active-active
 LinkedList: beginning of cycle	1. find point in cycle: tortoise/hare<br><br>2. Move one pointer to start, both go to speed 1<br>meeting point is start of cycle
 Prob: find a mother vertex in directed graph<br>(all vertices can be reached from)	1. find last completely processed vertex in DFS (pseudo toposort)<br><br>2. check if it is a mother vertex<br><br><br>topo sort doesn't exist on cyclic graphs
-Prob: transitive closure of directed graph, def, algo	= reachable[s][t] matrix<br><br>DFS on each vertex to fill reachable[src][*]<br><br>O(V (V + E))
 Prob: print number of paths with no cycle between two nodes in a directed graph	backtracking<br><br>set/unset visited nodes
 Prob: from undirected graph which is a tree, find a root of a tree which gives minimum height	BFS from the leaves to the inside<br><br>one or two remaining nodes<br><br>O(n)
 Prob: check if two nodes are on same path in a tree<br>in O(1) per query	preprocessing: DFS record enter/exit times<br><br>check times for (u, v) to see if same subtree
@@ -25,3 +24,26 @@ SD primitives: latency of operation with Paxos between DCs	25ms
 SD apps: chat, +protocol	end-to-end encryption? multi device? history on server? ack?<br>push updates: websocket?<br>message delivery queue for offline clients<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
 SD apps: URL shortener	lookup/create<br>read-heavy, load-latency read, metadata store, independent entries, mostly immutable<br>lookup by key<br>data bias+, memory cache<br>key generation service for shortened URLs? maybe offline
 SD apps: youtube	view/upload<br>read heavy but long tail of uploads<br>metadata and blob stores<br>data bias++<br>video processing pipeline
+SD DS: SSTable<br>def, internals, read, write	sorted immutable on disk<br>- Index (in-memory): PK (ex. B-Tree)<br>- Data 64KB block: k/v pairs<br>optimised for reads<br>written once, no in-place changes
+SD DS: LSM: MemTable and SSTable<br>stored where, read/writes, maintenance	MemTable in memory<br>SSTable on disk (except idx)<br>writes go to MemTable<br>reads go to MemTable first<br><br>periodically:<br>- MemTable flushed to SSTable<br>- SSTables merged
+SD apps: instagram	features: feed, by user list, upload<br>metadata+blob store<br>read heavy, bias++, immutable<br>image compression pipeline<br>memory cache<br>e.g. FB Haystack for blob store
+SD apps: docs	metadata+documents<br>can compress text<br>handle conflicts<br>handle offline
+SD apps: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
+SD apps: search	- <b>index servers</b> (random sharded on docs)<br>- <b>doc servers</b> (same)<br><br>scatter: build hit list<br>gather: compute relevance order<br><br>docserver: fetch doc from disk, get snippet for keyword
+Prob: Find the longest path in a matrix increasing by 1 at each cell	DP with memoization
+Prob: matrix chain multiplication order	windowed DP<br><br>dp[i][j]: cost for Mi...Mj<br><br>fill with increasing window length
+Prob: word break<br>longstringwithoutspaces + dict	DP: canBreak[offset]
+Prob: box stacking<br>highest stack with smaller on top of bigger<br>can reuse	careful rotations<br><br>DP similar to LIS<br><br>O(n^2)
+Prob: n eggs / k floors<br>find minimum nb of trials in worst case to find the highest safe floor (2)	1. DP O(n k^2) dp[numEggs][floor]<br><br>2. other solution with binary search and binomial coef
+String: Regex matching (2)	1. <b>recursive</b><br><br><b>DP</b> bool match[iStr][iPat]<br>O(mn)<br><br>offset from left to right<br>maybe store last char in table
+Prob: set matrix zeroes	set cell in first row/column to zero if element in 0<br><br>use 2 variables for first row/column<br><br>set all zeroes by looking at first row/column<br>O(mn)
+Array: Coin change:<br>Given infinite coins of value V1..VN, find the minimum number of coins with sum S	DP<br><br>dp[amount]<br>loop on coin<br>loop on x to update dp[x]<br><br>O(N S)
+Prob: shortest superstring	bitmask DP<br>dp[mask][endingWithString]<br><br>O(2^n n^2)
+Tree: Maximum path sum in a binary tree	recursive<br><br>rec functions return {maxCompletePath, maxIncompletePath}<br><br>O(n)
+Prob: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive DFS O(V(V + E))<br><br>linear for DAG: toposort, then loop<br>O(V + E)
+Prob: find Hamiltonian cycle (def, alg, class)	visit each vertex once<br><br>DFS backtrack with path as parameter<br>O(V!)<br>NP-complete<br>or <b>bitmask DP</b>
+Prob: color graph with k colors, algo/complex	backtracking<br><br>O(k^V)?
+Prob: shortest path with exactly k edges in a directed and weighted graph	DP dist[s][t][k]<br>fill with k increasing<br><br>O(V^3 k)
+Prob: Eulerian cycle: def, check/find algos	visit each edge<br><br>linear time O(E)<br>vs. Hamiltonian is NP-hard<br><br>check if exists: look at conditions on degree<br><br>find: O(E) exists (Fleury)
+SD: types of data store (9)	RDBMS<br>k/v<br>document<br>column-family<br>graph<br>analytics<br>blob<br>search engine DB<br>time series DB
+Misc: how to send updates from server to client (3)	short-polling (client pull)<br><br>long-polling (client pull): server doesn't answer request until new data<br><br>websocket (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake

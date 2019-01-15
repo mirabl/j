@@ -17,8 +17,6 @@ SD primitives: 3 implementations of strong consistency	Primary/backup<br>2PC (CA
 Tree: iterative in-order traversal of binary tree	stack and curnode pointer
 Prob: find K-th smallest pair distance<br>from integer array	Sort array<br>Binary search on answer<br>Two pointer to validate
 SD primitives: 3 weak consistency models	causal (strongest)<br><br>client-centric/session: ex. client will never see older value, read-my-writes<br><br>eventual: after some time all replicas agree
-SD low-level: RAM SSD HDD latency and R/W speed	RAM 100 ns<br>SSD 0.1 ms    (x1000)<br>HDD 10 ms    (x100)<br><br>RAM 10 GB/s<br>SSD 500 MB/s    (/20)<br> HDD 100 MB/s    (/5)
-DS: suffix tree<br>- definition<br>- complexities	compressed trie of suffixes<br>naive O(n^2) construction time, O(n^2) space<br>compressed: O(n) space<br>smart construction in O(n)
 Graph: bridge<br>def, algo, complexity	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
 Algo: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
 Graph: Detect cycle in a graph<br>(2 ways, complexity)	Colorized DFS look for back-edge O(V + E).<br><br> Also possible with Union-Find: loop on edges, union-find on vertices O(E)?

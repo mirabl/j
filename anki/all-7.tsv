@@ -1,35 +1,32 @@
-SD DS: SSTable<br>def, internals, read, write	sorted immutable on disk<br>- Index (in-memory): PK (ex. B-Tree)<br>- Data 64KB block: k/v pairs<br>optimised for reads<br>written once, no in-place changes
-SD DS: MemTable and SSTable<br>stored where, read/writes, maintenance	MemTable in memory<br>SSTable on disk (except idx)<br>writes go to MemTable<br>reads go to MemTable first<br><br>periodically:<br>- MemTable flushed to SSTable<br>- SSTables merged
-SD apps: instagram	features: feed, by user list, upload<br>metadata+blob store<br>read heavy, bias++, immutable<br>image compression pipeline<br>memory cache<br>e.g. FB Haystack for blob store
-SD apps: docs	metadata+documents<br>can compress text<br>handle conflicts<br>handle offline
-SD apps: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
-SD apps: search	- <b>index servers</b> (random sharded on docs)<br>- <b>doc servers</b> (same)<br><br>scatter: build hit list<br>gather: compute relevance order<br><br>docserver: fetch doc from disk, get snippet for keyword
-Prob: Find the longest path in a matrix increasing by 1 at each cell	DP with memoization
-Prob: matrix chain multiplication order	windowed DP<br><br>dp[i][j]: cost for Mi...Mj<br><br>fill with increasing window length
-Prob: word break<br>longstringwithoutspaces + dict	DP: canBreak[offset]
-Prob: box stacking<br>highest stack with smaller on top of bigger<br>can reuse	careful rotations<br><br>DP similar to LIS<br><br>O(n^2)
-Prob: n eggs / k floors<br>find minimum nb of trials in worst case to find the highest safe floor (2)	1. DP O(n k^2) dp[numEggs][floor]<br><br>2. other solution with binary search and binomial coef
-String: Regex matching (2)	1. <b>recursive</b><br><br><b>DP</b> bool match[iStr][iPat]<br>O(mn)<br><br>offset from left to right<br>maybe store last char in table
-Prob: set matrix zeroes	set cell in first row/column to zero if element in 0<br><br>use 2 variables for first row/column<br><br>set all zeroes by looking at first row/column<br>O(mn)
-Array: Coin change:<br>Given infinite coins of value V1..VN, find the minimum number of coins with sum S	DP<br><br>dp[amount]<br>loop on coin<br>loop on x to update dp[x]<br><br>O(N S)
-Prob: shortest superstring	bitmask DP<br>dp[mask][endingWithString]<br><br>O(2^n n^2)
-Tree: Maximum path sum in a binary tree	recursive<br><br>rec functions return {maxCompletePath, maxIncompletePath}<br><br>O(n)
-Prob: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive DFS O(V(V + E))<br><br>linear for DAG: toposort, then loop<br>O(V + E)
-Prob: find Hamiltonian cycle (def, alg, class)	visit each vertex once<br><br>DFS backtrack with path as parameter<br>O(V!)<br>NP-complete<br>or <b>bitmask DP</b>
-Prob: color graph with k colors, algo/complex	backtracking<br><br>O(k^V)?
-Prob: shortest path with exactly k edges in a directed and weighted graph	DP dist[s][t][k]<br>fill with k increasing<br><br>O(V^3 k)
-Prob: Eulerian cycle: def, check/find algos	visit each edge<br><br>linear time O(E)<br>vs. Hamiltonian is NP-hard<br><br>check if exists: look at conditions on degree<br><br>find: O(E) exists (Fleury)
-SD: types of data store (9)	RDBMS<br>k/v<br>document<br>column-family<br>graph<br>analytics<br>blob<br>search engine DB<br>time series DB
-Misc: how to send updates from server to client (3)	short-polling (client pull)<br><br>long-polling (client pull): server doesn't answer request until new data<br><br>websocket (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
 Prob: count distinct subsequences	c(n) = 2 * c(n - 1) - c(index of last occ of cur char)<br><br>use table for c[]<br><br>O(n)
 Prob: Count distinct occurrences of t as a subsequence of s	dp[offsetS][offsetT]<br><br>O(nm)
-DS: B-Tree (def, parameter, idea, use case)	self balancing search tree<br><br>non-binary, smaller heights than BST<br>branching factor: ~nb children/node<br><br>read whole disk block to minimize nb seeks in search<br><br>used in indexes for DBs
+DS: B-Tree (def, parameter, idea, use case)	self balancing search tree<br><br>non-binary, smal height<br>branching factor: ~nb (children=keys+1) per node<br><br>read whole disk block to minimize nb seeks in search<br><br>used in indexes for DBs
 DS: B+ Tree (def, 2 adv/1 disadv with B-Tree)	in B-Tree, internal nodes can have data<br><br>In B+ Tree, only leaves have data<br>internal nodes are just used for searching<br><br>Also: a leaf have a pointer to next leaf (for full scan)<br><br>B+ good: maximize branching factor, full scan<br>B+ bad: always need to go to leaf level for lookup
-SD: Deadlock	task waits indefinitely for conditions that can never be satisfied<br><br>tasks wait for other tasks<br><br>ex: 2 tasks with 2 resources
-SD: livelock	two or more processes continuously change their states in response to changes in the other process(es) without doing any useful work
-SD: Starvation	runnable process is overlooked indefinitely by the scheduler<br><br>although it is able to proceed, it is never chosen
+SD: Deadlock (def, example)	task waits forever for conditions that can not be met<br><br>tasks wait for other tasks<br><br>ex: 2 tasks with 2 resources with each 1 lock
+SD: how to <b>avoid deadlock</b>	make locking order fixed when multiple locks
+SD: livelock	2+ processes change their states in response to changes in the other process(es), no useful work<br><br>ex. corridor
+SD: starvation	runnable process is overlooked indefinitely by the scheduler<br><br>although it is able to proceed, it is never chosen
 SD: mutex	one thread in critical section at a time
 SD: semaphore	record how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
-SD: process vs thread	thread:<br> run in shared memory space<br>share resources<br>context switch faster<br>
+SD: process vs thread	thread:<br>run in shared memory space<br>share resources<br>context switch faster<br><br>thread has own stack
 SD: - default stack size<br>- size of empty stack	- <b>1 to 8 MB</b><br><br>= virtual<br>not allocated completely unless needed<br><br>- < 100 bytes 
 Prob: in string, replace a by dd, delete b<br>O(1) space	<b>two passes</b>:<br>1. <b>forward</b> delete b's in place<br>and count a's<br><br>2. <b>backward</b> replace a's 
+SD: HDD and SSD IOPS	HDD: <b>~100</b> IOPS<br><br>SSD: <b>100K</b> IOPS
+SD low-level: RAM SSD HDD latency and R/W speed	RAM 100 ns<br>SSD 0.1 ms    (x1000)<br>HDD 10 ms    (x100)<br><br>RAM 10 GB/s<br>SSD 500MB/s - 1+GB/s  (/20)<br> HDD 100 MB/s    (/5)
+SD: specs of usual machines	24G RAM, 8 cores<br>1Gb ethernet<br><br>- 2x1TB SSD<br>or<br>2x2TB hard drives
+DS: hash table strategies (3)	<b>chaining</b>: linked lists<br><br><b>open adressing</b>: next position<br><br><b>double hashing</b>
+DS: suffix tree<br>- definition<br>- complexities<br>- 1 problem	compressed trie of suffixes<br>naive: construction time and space O(n^2)<br>smart: O(n) / O(n)<br><br>substring search in O(m)
+SD: usual value for <b>page size</b>	<b>4KB</b><br><br>can be more
+DS: <b>Interval tree</b>	red black tree<br>each node is interval<br><br>contains: 1. key, 2. max<br><br>key: start of interval<br>max: max of ends in the subtree
+SD: time for a <b>context switch</b>	<b>5μs</b>
+String: substring search	naive O(n*m) <br><br>robin-karp rolling hash O(n + m) <br><br>Boyer-Moore: O(n/m) to O(nm)
+String: Boyer-Moore	try to match from start of text but <b>from end of pattern</b><br>when <b>mismatch, skip chars</b> when possible<br><br>two prepro tables to skip chars:<br>- indexOfLastOccurence[char]<br>- other table more complicated<br>O(n/m) to O(nm)
+Prob: transitive closure def, algo	= reachable[s][t] matrix<br><b>(if undirected: = easy connected-co)<br>DFS on each vertex to fill reachable[src][*]<br>O(V (V + E))<br><br>or Floyd-Warshall-like O(n^3)
+SD: log structured merge trees (principle, good for, compare)	MemTable/SSTables<br>+ disk WAL<br>do only <b>sequential write on disk</b><br>thanks to in-memory buffer<br>better <b>write throughput</b> than B+<br>good for write-heavy
+SD: Pregel	distributed <b>graph processing</b><br><b>vertex can send a msg</b> to other<br><br>like a mapper can send to reducer in MR<br><br>iterations
+SD: N+2 principle	service can run if 2 largest instances are down<br><br>e.g. machine off or release
+Prob: subset of size n array which sums to 0 mod n	look at <b>prefix sums</b><br><br>either:<br>- one is <b>0</b><br><br>- <b>two are equal</b>, so difference is solution<br><br>O(n)
+Prob: longest increasing <b>subarray</b>	one pass O(n)<br><br>trick: if current max is L<br>skip L chars and check in reverse order first<br><br>improves best-case complexity<br>but not worst-case
+Prob: invert permutation with constant space	decompose in <b>cycles</b><br><br>invert each cycle<br><br>fix only one element at a time (min of cycle)
+Prob: next permutation	from the left, find position to increment<br>(except last position)<br><br>increment it<br><br>reset left to minimum
+Array: rotate image by 90 degrees (3)	- ring by ring, <br><br>- reverse up to down and transpose<br><br>- if n=2^k, recursive quadrants

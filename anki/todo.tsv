@@ -19,13 +19,10 @@ Lang: function overloading	TODO
 Lang: virtual function	TODO
 Lang: virtual destructor	TODO
 Lang: abstract class	TODO
-Interval tree	TODO
-HDD IOPS	200 IOPS/s
 rewrite SD number in terms of latency and throughput	.
 SD: TCP guarantees	.
 SD: linearizability	.
 at most once, at least once, exaclty once	.
-DS: interval tree	add, remove, find intervals containing point<br>all O(log n)<br><br>BST with ([lo, hi], maxHiSubTree)
 SD: Dynamo	eventually consistent, highly available key-value store<br>basis for Cassandra, Riak<br>may diverge when writes<br>when a key is read, there is a read reconciliation
 DS: range tree	alternative to kd-tree<br><br>recursive multi-level best
 DS: skip lists	.
@@ -37,8 +34,6 @@ Spanner	Planet-scale structured storage<br>Next generation of Bigtable stack<br>
 Algo: bin packing	n items with weights<br>m bins with capacity<br>store all with min bins<br><br>only geo? diff with knapsack? NP-complete
 Precise def of 	ACID, CAP
 catalan numbers and trees	total number of BST and BT
-SD: difference between process and thread, resources they need	.
-SD: types of concurrency issues	.
 SD: difference between lock, mutex, semaphore	.
 SD: deadlock, livelock, how to avoid	.
 SD: how context switching works	.

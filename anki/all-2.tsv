@@ -1,5 +1,4 @@
 SD components: OLTP, OLAP	online transaction/analytical processing<br>RDBMS vs. datawarehouse<br>low vs high latency
-Array: rotate image by 90 degrees (2)	- ring by ring, <br><br>- reverse up to down (r2l) and transpose
 SD primitives: Gossip	probabilistic technique for synchronizing replicas<br><br>nodes have some probability p of attempting to synchronize with each other<br><br>efficient thanks to Merkle trees
 Sort:<br>Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at end, resize heap O(log n)<br><br>total: O(n log n)
 Sort:<br>QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
@@ -22,7 +21,6 @@ SD primitives: replace global clock by?<br>based on?	vector clock<br><br><br>(t1
 Prob. solving:<br>optimize parameter (find min) when difficult directly	binary search + checkValue(mid)
 SD: classic consistency problem in DB	read-after-write
 SD primitives: CA systems, based on, used by	more common, not partition aware,<br>often 2PC<br>traditional RDBMS
-String: substring search	naive O(n*m) <br><br> robin-karp rolling hash O(n + m) <br><br> advanced O(n)
 Array: Reverse an array without affecting special characters	O(n) one pass, in-place: two pointers at start and end <br> swap or skip and meet in the middle <br> O(n)|O(1) aux
 DS: range minimum or range sum	Segment Tree
 SD primitives: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
