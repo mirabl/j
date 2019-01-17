@@ -1,28 +1,28 @@
 Prob: count distinct subsequences	c(n) = 2 * c(n - 1) - c(index of last occ of cur char)<br><br>use table for c[]<br><br>O(n)
 Prob: Count distinct occurrences of t as a subsequence of s	dp[offsetS][offsetT]<br><br>O(nm)
 DS: B-Tree (def, parameter, idea, use case)	self balancing search tree<br><br>non-binary, smal height<br>branching factor: ~nb (children=keys+1) per node<br><br>read whole disk block to minimize nb seeks in search<br><br>used in indexes for DBs
-DS: B+ Tree (def, 2 adv/1 disadv with B-Tree)	in B-Tree, internal nodes can have data<br><br>In B+ Tree, only leaves have data<br>internal nodes are just used for searching<br><br>Also: a leaf have a pointer to next leaf (for full scan)<br><br>B+ good: maximize branching factor, full scan<br>B+ bad: always need to go to leaf level for lookup
+DS: B+ Tree (def, 2 adv/1 disadv with B-Tree)	In B+ Tree, only leaves have data<br>internal nodes are just used for searching<br><br>Also: a leaf have a pointer to next leaf (for full scan)<br><br>B+ good: <b>maximize branching</b> factor, <b>full scan</b><br>B+ bad: always need to <b>go to leaf</b> level for lookup
 SD: Deadlock (def, example)	task waits forever for conditions that can not be met<br><br>tasks wait for other tasks<br><br>ex: 2 tasks with 2 resources with each 1 lock
-SD: how to <b>avoid deadlock</b>	make locking order fixed when multiple locks
+SD: how to <b>avoid deadlock</b>	make <b>locking order fixed</b> when multiple locks
 SD: livelock	2+ processes change their states in response to changes in the other process(es), no useful work<br><br>ex. corridor
 SD: starvation	runnable process is overlooked indefinitely by the scheduler<br><br>although it is able to proceed, it is never chosen
 SD: mutex	one thread in critical section at a time
-SD: semaphore	record how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
+SD: semaphore	count how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
 SD: process vs thread	thread:<br>run in shared memory space<br>share resources<br>context switch faster<br><br>thread has own stack
-SD: - default stack size<br>- size of empty stack	- <b>1 to 8 MB</b><br><br>= virtual<br>not allocated completely unless needed<br><br>- < 100 bytes 
-Prob: in string, replace a by dd, delete b<br>O(1) space	<b>two passes</b>:<br>1. <b>forward</b> delete b's in place<br>and count a's<br><br>2. <b>backward</b> replace a's 
+SD: - default stack size<br>- size of empty stack<br>- max nb recursive calls	- <b>1 to 8 MB</b><br><br>= virtual<br>not allocated completely unless needed<br><br>- <b>< 100 bytes frame</b><br><br><b>5K+ calls</b>
+Prob: in string, replace a by dd, delete b<br>O(1) space	<b>two passes</b>:<br><br>1. <b>forward</b> delete b's in place<br>and count a's<br><br>2. <b>backward</b> replace a's 
 SD: HDD and SSD IOPS	HDD: <b>~100</b> IOPS<br><br>SSD: <b>100K</b> IOPS
-SD low-level: RAM SSD HDD latency and R/W speed	RAM 100 ns<br>SSD 0.1 ms    (x1000)<br>HDD 10 ms    (x100)<br><br>RAM 10 GB/s<br>SSD 500MB/s - 1+GB/s  (/20)<br> HDD 100 MB/s    (/5)
+SD low-level: RAM SSD HDD latency and R/W speed	RAM 100 ns<br>SSD <b>0.1 ms or less</b>    (x1000)<br>HDD 10 ms    (x100)<br><br>RAM 10 GB/s<br>SSD 500MB/s - 1+GB/s  (/20)<br> HDD 100 MB/s    (/5)
 SD: specs of usual machines	24G RAM, 8 cores<br>1Gb ethernet<br><br>- 2x1TB SSD<br>or<br>2x2TB hard drives
 DS: hash table strategies (3)	<b>chaining</b>: linked lists<br><br><b>open adressing</b>: next position<br><br><b>double hashing</b>
 DS: suffix tree<br>- definition<br>- complexities<br>- 1 problem	compressed trie of suffixes<br>naive: construction time and space O(n^2)<br>smart: O(n) / O(n)<br><br>substring search in O(m)
 SD: usual value for <b>page size</b>	<b>4KB</b><br><br>can be more
 DS: <b>Interval tree</b>	red black tree<br>each node is interval<br><br>contains: 1. key, 2. max<br><br>key: start of interval<br>max: max of ends in the subtree
 SD: time for a <b>context switch</b>	<b>5μs</b>
-String: substring search	naive O(n*m) <br><br>robin-karp rolling hash O(n + m) <br><br>Boyer-Moore: O(n/m) to O(nm)
+String: substring search (3)	naive O(n*m) <br><br>robin-karp rolling hash O(n + m) <br><br>Boyer-Moore: O(n/m) to O(nm)
 String: Boyer-Moore	try to match from start of text but <b>from end of pattern</b><br>when <b>mismatch, skip chars</b> when possible<br><br>two prepro tables to skip chars:<br>- indexOfLastOccurence[char]<br>- other table more complicated<br>O(n/m) to O(nm)
-Prob: transitive closure def, algo	= reachable[s][t] matrix<br><b>(if undirected: = easy connected-co)<br>DFS on each vertex to fill reachable[src][*]<br>O(V (V + E))<br><br>or Floyd-Warshall-like O(n^3)
-SD: log structured merge trees (principle, good for, compare)	MemTable/SSTables<br>+ disk WAL<br>do only <b>sequential write on disk</b><br>thanks to in-memory buffer<br>better <b>write throughput</b> than B+<br>good for write-heavy
+Prob: transitive closure def, algo	= reachable[s][t] matrix<br><b>(if undirected: = easy connected-co)</b><br><br>DFS on each vertex to fill reachable[src][*]<br>O(V (V + E))<br><br>or <b>Floyd-Warshall-like</b> O(n^3)
+SD: log structured merge trees (principle, good for, compare)	MemTable/SSTables<br>+ disk WAL<br><br>do only <b>sequential write on disk</b><br>thanks to in-memory buffer<br><br>better <b>write throughput</b> than B+<br>good for write-heavy
 SD: Pregel	distributed <b>graph processing</b><br><b>vertex can send a msg</b> to other<br><br>like a mapper can send to reducer in MR<br><br>iterations
 SD: N+2 principle	service can run if 2 largest instances are down<br><br>e.g. machine off or release
 Prob: subset of size n array which sums to 0 mod n	look at <b>prefix sums</b><br><br>either:<br>- one is <b>0</b><br><br>- <b>two are equal</b>, so difference is solution<br><br>O(n)
@@ -30,3 +30,7 @@ Prob: longest increasing <b>subarray</b>	one pass O(n)<br><br>trick: if current 
 Prob: invert permutation with constant space	decompose in <b>cycles</b><br><br>invert each cycle<br><br>fix only one element at a time (min of cycle)
 Prob: next permutation	from the left, find position to increment<br>(except last position)<br><br>increment it<br><br>reset left to minimum
 Array: rotate image by 90 degrees (3)	- ring by ring, <br><br>- reverse up to down and transpose<br><br>- if n=2^k, recursive quadrants
+Prob: copy postings linked-list with no additional storage	<b>3 passes</b><br><br>modify next pointer of original list<br>then restore
+SD: page	smallest unit in virtual memory
+DS: how to implement stack	linked list<br><br>or array<br>(needs resizing, so amortized)
+Stack: sort a stack (2)	using a second stack<br><br>or recursively:<br>need to recursions:<br>sort, insert in sorted
