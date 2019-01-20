@@ -33,3 +33,10 @@ SD: event-sourcing pattern	use append-only store of actions/events
 SD components: load balancer routes traffic based on (6)	- random<br>- least load<br>- session/cookies<br>- (weighted) round robin<br>- layer 4<br>- layer 7
 SD apps: C numbers	BR 1M/s<br><br>NoSQL cache/persisted: 200To, 1k memcache, 1k couchbase, 1ms 99p, 60M QPS peak<br><br>HDFS: 300 PB, 3k nodes
 SD components: load-balancer layer 4 vs. layer 7	4:<br>- look at transport layer: IP address, port<br>- do NAT<br>- often hardware<br><br>7:<br> look at application layer, like URL for HTTP, cookies<br>terminates network traffic, remove TLS<br>called reverse-proxy server
+SD: how to <b>avoid deadlock</b>	make <b>locking order fixed</b> when multiple locks
+SD: livelock	2+ processes change their states in response to changes in the other process(es), no useful work<br><br>ex. corridor
+SD: starvation	runnable process is overlooked indefinitely by the scheduler<br><br>although it is able to proceed, it is never chosen
+SD: mutex	one thread in critical section at a time
+SD: semaphore	count how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
+SD: process vs thread	thread:<br>run in shared memory space<br>share resources<br>context switch faster<br><br>thread has own stack
+Prob: in string, replace a by dd, delete b<br>O(1) space	<b>two passes</b>:<br><br>1. <b>forward</b> delete b's in place<br>and count a's<br><br>2. <b>backward</b> replace a's 

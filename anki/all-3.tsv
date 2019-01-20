@@ -3,7 +3,6 @@ SD: hashing for sharding (2)	consistent hashing: circle with many pseudo-random 
 Tree: balanced ST: complexity, 5 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>2-3 tree<br>B-tree<br>B+ tree
 DS: implement LRU cache	= DLL Queue + HashTable: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
 SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
-Tree: Check if a binary tree is subtree of another binary tree	Naive O(n^2), <br><br>O(n): inorder and preorder of subtree must be substrings of big tree
 SD primitives: Paxos<br>principle, master, failures, network, use where	majority vote<br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br>used in Chubby, BigTable/Megastore, GFS, Spanner
 DS:<br>Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of x to root of y. <br>Union by rank: attach smaller tree to larger. <br>Path compression<br><br>Amortized O(1) in time |O(n) space.
 Heap: complexity and algo of insert, extract-min, search	use last element, bubble up or down<br>O(log n)<br><br>search: difficult O(n)
@@ -42,3 +41,8 @@ OO: virtual method	can be overriden in derived class
 OO: generics	class/method that defer specification of type until declared and instantiated in client code
 SD: circuit breaker<br>def, how it works	proxy for operations that might fail<br><br>states: closed / half-open / open<br>change state by looking at error rate
 SD: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency prefered
+Prob: count distinct subsequences	c(n) = 2 * c(n - 1) - c(index of last occ of cur char)<br><br>use table for c[]<br><br>O(n)
+Prob: Count distinct occurrences of t as a subsequence of s	dp[offsetS][offsetT]<br><br>O(nm)
+DS: B-Tree (def, parameter, idea, use case)	self balancing search tree<br><br>non-binary, smal height<br>branching factor: ~nb (children=keys+1) per node<br><br>read whole disk block to minimize nb seeks in search<br><br>used in indexes for DBs
+DS: B+ Tree (def, 2 adv/1 disadv with B-Tree)	In B+ Tree, only leaves have data<br>internal nodes are just used for searching<br><br>Also: a leaf have a pointer to next leaf (for full scan)<br><br>B+ good: <b>maximize branching</b> factor, <b>full scan</b><br>B+ bad: always need to <b>go to leaf</b> level for lookup
+SD: Deadlock (def, example)	task waits forever for conditions that can not be met<br><br>tasks wait for other tasks<br><br>ex: 2 tasks with 2 resources with each 1 lock

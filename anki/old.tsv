@@ -6,7 +6,6 @@ SD: vertical/horizontal scaling 	vertical: add more power to a machine<br><br>ho
 SD apps: mechanism for asynchronicity	queues
 DS: external merge sort	sort chunk & write to disk, load chunk of chuck and merge-write
 Sort:<br>Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
-Stack: sort a stack (2)	using a second stack<br><br> or recursively
 Sort: bubble sort	swap pairs to put max at i=end of array<br>i--
 SD: Federation	= functional partitioning<br><br>splits up databases by function. <br><br>For example, forums, users, and products
 Array: find subarray with maximum sum	one pass, accumulate (Kadane)<br><br>at each position either extend or start new subarray O(n)|O(1)

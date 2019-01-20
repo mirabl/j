@@ -14,12 +14,11 @@ SD components: 2 Kafka guarantees	at-least-one<br>in order within a partition on
 Alg: NP-complete/NP-hard definition	in NP, and any NP problem can be transformed in a NP-complete<br><br>NP-hard: same but not in NP necessarily
 Sort: 6 questions on data	how many keys, duplicates, partially sorted, long to compare, small range, disk access possible
 SD primitives: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
-Tree: iterative in-order traversal of binary tree	stack and curnode pointer
 Prob: find K-th smallest pair distance<br>from integer array	Sort array<br>Binary search on answer<br>Two pointer to validate
 SD primitives: 3 weak consistency models	causal (strongest)<br><br>client-centric/session: ex. client will never see older value, read-my-writes<br><br>eventual: after some time all replicas agree
 Graph: bridge<br>def, algo, complexity	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
 Algo: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
-Graph: Detect cycle in a graph<br>(2 ways, complexity)	Colorized DFS look for back-edge O(V + E).<br><br> Also possible with Union-Find: loop on edges, union-find on vertices O(E)?
+Graph: Detect cycle in a graph<br>(2 ways, complexity)	<b>Colorized DFS</b> look for <b>back-edge</b> O(V + E).<br><br> Also possible with <b>Union-Find</b>: <b>loop on edges</b>, union-find on vertices O(E)?
 Sort:<br>3 big sorts on large data<br>+ advantages	quicksort: fast, not stable unless storage<br><br>merge sort: stable, parallelizable, works on lists, contiguous access<br><br>heap sort: in-place, slower than quicksort
 Prob:<br>Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
 SD components: advantage/disadvantage of columnar storage, 3 examples	if usage pattern is to read whole table like OLAP/BI<br>but only some columns<br>don't read unused columns<br>can use compression to reduce size on disk<br>disadv: difficult to update<br>Parquet, Redshift, Dremel/BigQuery
