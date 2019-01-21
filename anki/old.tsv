@@ -20,3 +20,5 @@ Prob: Sudoku Solver	Backtracking<br><br>check if one value is already in a row/c
 LinkedList: Sort a linked list	use merge sort
 SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
 Math: number of trailing zeroes in a factorial	powers of 2, 5
+Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
+SD: NoSQL	 is a collection of data items represented in a key-value store, document-store, wide column store, or a graph database. <br>Data is denormalized, and joins are generally done in the application code.

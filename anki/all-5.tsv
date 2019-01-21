@@ -19,7 +19,6 @@ SD primitives: 3 weak consistency models	causal (strongest)<br><br>client-centri
 Graph: bridge<br>def, algo, complexity	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
 Algo: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
 Graph: Detect cycle in a graph<br>(2 ways, complexity)	<b>Colorized DFS</b> look for <b>back-edge</b> O(V + E).<br><br> Also possible with <b>Union-Find</b>: <b>loop on edges</b>, union-find on vertices O(E)?
-Sort:<br>3 big sorts on large data<br>+ advantages	quicksort: fast, not stable unless storage<br><br>merge sort: stable, parallelizable, works on lists, contiguous access<br><br>heap sort: in-place, slower than quicksort
 Prob:<br>Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
 SD components: advantage/disadvantage of columnar storage, 3 examples	if usage pattern is to read whole table like OLAP/BI<br>but only some columns<br>don't read unused columns<br>can use compression to reduce size on disk<br>disadv: difficult to update<br>Parquet, Redshift, Dremel/BigQuery
 Graph: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard

@@ -1,29 +1,28 @@
 Array:<br>Subset sum: a subset of array sums to T	DP CanMakeSum[i][T]<br>O(n S)
 SD components: 4 cache strategies	cache aside: app does everything<br><br>write-through: cache interacts with DB<br><br>write-behind/back: app writes to cache and async write to DB<br><br>refresh ahead: auto refresh by cache
 Array: Print matrix in spiral	four variables top bottom left right. Reduce
-SD components: replication modes of MySQL<br>(what is in the WAL)	statement-based ("insert ...") = logical<br>row-based: result of the statement = physical<br><br>or a mix
+SD components: replication modes of MySQL<br>(what is in the WAL)	statement-based ("insert ...") = logical<br><br><br>row-based: result of the statement = physical<br><br>or a mix
 Tree: Serialize/Deserialize	General: pre AND inorder<br>better: preorder and NULL marker<br><br>Special case?<br>BST: pre or postorder<br>Complete: level order<br>Full: preorder with boolean for leaves
-Search: find element in a sorted rotated array	double BS: <br><br>find the frontier, <br>BS on left or right part
-DS:<br>Adv/Disadvantage of BST vs. HashTable	BST can enumerate in key order<br>HashTable simpler when duplicate keys<br><br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
+Search: find element in a sorted rotated array	<b>double BS</b>: <br><br>find the frontier, <br>BS on left or right part
+DS:<br>Adv/Disadvantage of BST vs. HashTable	<b>BST</b> can enumerate in <b>key order</b><br><br>HashTable simpler when <b>duplicate keys</b><br><br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
 2D Array: Boggle (Find all possible words in a board of characters)	DFS from every start cell, mark visited cells.<br><br>Complexity?<br> Better solution with Trie.
 Array: Smallest subarray with sum greater than a given value	Sliding window: keep adding array elements while current sum is smaller than x <br> If current sum becomes greater than x, update min length, remove starting elements
 SD components:<br>2 data warehouses products for an analytical processing OLAP	Redshift, BigQuery/Dremel
-Algo: closest pair<br>2 algs	find the pair that is closest<br>sweep line: O(n log n)<br>divide and conquer: O(n log^2 n)
-DS: <br>Binary heap definition	complete binary<br>with heap property (children are smaller)
-Graph: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br> O(V^2) if adjacency matrix/O(V)
+Algo: closest pair<br>def, 2 algs	find the pair that is closest<br><br><b>sweep line</b>: O(n log n)<br><br><b>divide and conquer</b>: O(n log^2 n)
+DS: <br>Binary heap definition	complete binary<br><br>with heap property (children smaller than parent)
+Graph: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br><br><br>O(V^2) if adjacency matrix/O(V)
 Array: Given an array of integers, every element appears twice except for one. Find that single one	XOR O(n)
 String:<br>Longest Palindromic Substring (3)	for each position, find longest even and odd length substring with this center O(n^2)|O(1)<br><br>DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1)<br><br>O(n) difficult Manacher.
-Tree: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if in-order traversal is sorted O(n)
+Tree: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if <b>in-order traversal</b> is <b>sorted</b> O(n)
 DS: segment tree<br>for which operation with complexity	same name but different for Fenwick Trees (prefix sums)<br>store info on intervals or segments<br><br>find segments containing a query point<br>O(log Intervals + MatchingIntervals)
-DS: 5 example use of a heap	priority queue<br>extract minimum with streaming data<br>k-way merge: merge k sorted arrays<br>continous median<br>sort when only k indices away
+DS: 5 example use of a heap	- priority queue<br>- extract min with streaming data<br>- k-way merge: merge k sorted arrays<br>- continous median<br>- sort when only k indices away
 DS: Fenwick Tree	type of segment tree<br>used for prefix sums
 Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
 SD components: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second<br>billions of rows<br>thousands of columns
 SD primitives: CP systems, work how, implementations	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
-Array: Find maximum in sliding window (2)	1. use self-balanced BST O(n log n). <br><br>2. Use dequeue keeping only useful elements O(n)
+Array: Find maximum in sliding window (2)	1. use self-balanced BST O(n log n). <br><br>2. Use <b>sorted dequeue</b> O(n)
 SD components: NoSQL 4 types of stores	key-value: Redis, memcached<br><br>document store: MongoDB, CouchDB, ElasticSearch<br><br>wide-column store: BigTable, HBase, Cassandra<br><br>graph DB: neo4j, flockdb
-Prob: skyline<br>how to solve	O(n log n) with divide and conquer<br>similar to merge sort
-SD: NoSQL	 is a collection of data items represented in a key-value store, document-store, wide column store, or a graph database. <br>Data is denormalized, and joins are generally done in the application code.
+Prob: skyline<br>how to solve	 <b>divide and conquer</b><br>similar to merge sort<br><br>O(n log n)
 Array: Minimum difference partition	DP CanMakeSum[i][T] <br>T <= S/2<br>O(n S)
 Prob:<br>0-1 Knapsack: description, solution, problem class	max weight, items with values and weights, maximize value<br><br>DP Best[i][w]<br>O(n W)<br>NP-complete
 Graph: articulation point<br>def, algo, complex	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
@@ -34,13 +33,12 @@ LinkedList: is a linked list a palindrome?	reverse second half, check (and resto
 SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
 SD primitives: why impossible to availability and strong consistency during network partition	diverge<br><br>can not prevent divergence if partitioned nodes continue to work
 SD components: one instance RDBMS perf	no answer, depends on query/HW, if fits in RAM<br><br>1 TB total size<br>billions of rows<br>1K r/w QPS<br><br>latency: SSD 1ms, HD: 20ms
-Array: Next Greater element in an array	using a stack<br>O(n)/O(n)
-Graph: Topological sort of DAG (2)	 1. DFS: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br><br>2.  BFS-style algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
+Array: Next Greater element in an array	using a stack<br><br>O(n)/O(n)
+Graph: Topological sort of DAG (2)	 1. <b>DFS</b>: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br><br>2.  <b>BFS-style</b> algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
 SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
-SD components: when to use BigQuery/Dremel<br>when to use MapReduce	BigQuery: any query, SQL-like, no latency, small output (stats)<br><br>MapReduce: can do any processing, more latency, have to implement all jobs
-SD: A in ACID	Atomicity<br><br>All or nothing for a transaction:<br>indivisible<br>done or not done
-SD: C in ACID	Consistency<br><br>a transaction moves the DB from a valid state to other valid state (e.g. preserve unique keys)<br><br>Not the same as C in CAP
-SD: D in ACID	when a transaction is committed, it will remain committed even in the case of a system failure (power, crash)
+SD: A in ACID	Atomicity<br><br>All or nothing for a transaction:<br>indivisible<br><b>done or not done</b>
+SD: C in ACID	Consistency<br><br>a transaction moves the DB from a <b>valid state to other valid state</b> (e.g. preserve unique keys)<br><br>Not the same as C in CAP
+SD: D in ACID	when a transaction is committed, it will <b>remain committed</b> even in the case of a system failure (power, crash)
 SD components: in-memory K/V store perf	on machine with good network<br><br>read/write: 200k/s easily<br><br>latency: 1ms<br><br>no bound on size with sharding but $
-SD: CQRS	command query responsibility separation<br>separate read and write of data
-SD: three and four nines availability per year	99.9: 9 hours of downtime/year<br><br>99.99: 1 hour downtime/year
+SD: CQRS	command query responsibility separation<br><br>separate read and write of data
+SD: three and four nines availability per year	99.9: <b>9</b> hours of downtime/year<br><br>99.99: <b>1</b> hour downtime/year

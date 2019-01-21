@@ -2,7 +2,7 @@ SD: - default stack size<br>- size of empty stack<br>- max nb recursive calls	- 
 SD: HDD and SSD IOPS	HDD: <b>~100</b> IOPS<br><br>SSD: <b>100K</b> IOPS
 SD low-level: RAM SSD HDD latency and R/W speed	RAM 100 ns<br>SSD <b>0.1 ms or less</b>    (x1000)<br>HDD 10 ms    (x100)<br><br>RAM 10 GB/s<br>SSD 500MB/s - 1+GB/s  (/20)<br> HDD 100 MB/s    (/5)
 SD: specs of usual machines	24G RAM, 8 cores<br>1Gb ethernet<br><br>- 2x1TB SSD<br>or<br>2x2TB hard drives
-DS: hash table strategies (3)	<b>chaining</b>: linked lists<br><br><b>open adressing</b>: next position<br><br><b>double hashing</b>
+DS: hash table strategies (3)	chaining: <b>linked lists</b><br><br><b>open adressing</b>: next position<br><br><b>double hashing</b>
 DS: suffix tree<br>- definition<br>- complexities<br>- 1 problem	compressed trie of suffixes<br>naive: construction time and space O(n^2)<br>smart: O(n) / O(n)<br><br>substring search in O(m)
 SD: def, usual value for <b>page size</b>	smallest unit of virtual memory<br><br><b>4KB</b><br><br>can be more
 DS: <b>Interval tree</b>	red black tree<br>each node is interval<br><br>node contains:<br>1. start of interval=sort key<br>2. end of interval<br>3. maxEnd of intervals in subtree
@@ -35,3 +35,8 @@ Prob: find missing one from 1 billion of IP adresses<br>using 2 MB of RAM	<b>two
 Prob: array where all elements appear 3 times and one appears once, find it	<b>bit decomposition</b><br><br>for each <b>bit position</b>:<br><b>count modulo 3</b><br><br>at the end, count=0,1,3<br><br>missing element: counts=1
 Tree: compress binary trees to canonical form	use <b>hashing</b> on nodes/subtrees<br><br>recursive
 Tree: Check if a binary tree is <b>subtree</b> of another (2)	Naive O(n^2), <br><br>- O(n): <b>inorder and preorder</b> of subtree must be <b>substrings</b> of big tree<br><br>- O(n): <b>hashing</b> of subtrees
+Geo: line through most points	H[line] = list of points<br><br>for each pair, add entry in H<br><br>tricky hash because floats<br>use rationals
+Prob: find elements that appear more than k/n times	generalization of <b>voting</b><br><br><b>two passes</b><br>- keep <b>k</b> counters in <b>hash</b><br><br>purge hash table when needed<br><br>- second pass to check candidates
+Sort:<br>3 big sorts on large data<br>+ advantages	quicksort: <b>fast</b>, not stable unless storage, bad <b>worst case</b><br><br>mergesort: <b>stable</b>, <b>not in-place</b>, parallelizable, contiguous access<br><br>heapsort: <b>in-place, not stable</b>, <b>slower</b> than quicksort
+Sort: which sort for:<br>1. general large integer array<br>2. small array<br>3. almost sorted<br>4. small range array<br>4. many duplicates<br>5. stability required	1. quicksort<br>2. insertion sort<br>3. depends on def. heap, heapsort, insertion sort<br>4. counting sort in array or BST<br>5. merge sort or decorate-sort (key, index)
+Sort: sort without moving records (might be might)	indirect sort:<br>1. sort secondary <b>array of indices</b><br><br>2. apply sort to array (move records)

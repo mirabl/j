@@ -1,42 +1,41 @@
 SD components: OLTP, OLAP	online transaction/analytical processing<br>RDBMS vs. datawarehouse<br>low vs high latency
-SD primitives: Gossip	probabilistic technique for synchronizing replicas<br><br>nodes have some probability p of attempting to synchronize with each other<br><br>efficient thanks to Merkle trees
-Sort:<br>Heapsort: description, complexity	heapify in O(n)<br>n times: get max, put at end, resize heap O(log n)<br><br>total: O(n log n)
+SD primitives: Gossip	probabilistic technique for <b>synchronizing replicas</b><br><br>nodes have some probability p of attempting to synchronize with each other<br><br>efficient thanks to <b>Merkle trees</b>
+Sort:<br>Heapsort: description, complexity	<b>heapify in O(n)</b><br>n times: get max, put at end, resize heap O(log n)<br><br><b>total: O(n log n)</b>
 Sort:<br>QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
 SD primitives: N, R, W, usual recommendation	N replicas,<br>need R/W votes for read/write<br>R + W > N
 SD primitives: partition tolerant consensus<br>examples, how they work<br>what happens when partition	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
-Graph: 4 colors theorem	a planar graph can be vertex-colored with most 4 distinct colors
+Graph: graph color theorem	a planar graph can be vertex-colored with most 4 colors
 LinkedList: reverse a linked list	iterative, 3 pointers<br>"new head"
 Prob:<br>combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., <br>same number can be repeated<br>	backtracking (or DP)
-Prob:<br>split array in m continous subarrays<br>minimize largest subarray sum	Binary search on answer<br><br>Greedy packing to check if valid
-SD components: MySQL storage engine (2)	InnoDB: row locking so better concurrency<br><br>MyISAM: old, maybe table locking better when lots of reads
+Prob:<br>split array in m continous subarrays<br>minimize largest subarray sum	<b>Binary search</b> on answer<br><br>Greedy packing to check if valid
+SD components: MySQL storage engine (2)	<b>InnoDB</b>: row locking so better concurrency<br><br><b>MyISAM</b>: old, maybe table locking better when lots of reads
 Graph: 11 types of graphs	connected, directed, weighted, Tree, with cycles, DAG, bipartite, complete (all clique), intersection, planar, sparse
 Alg: solve recurrences + examples<br>T(n) = T(n / 2) + O(1)<br>T(n) = 2 T(n / 2) + O(1)<br>T(n) = 2T (n / 2) + O(log n)<br>T(n) = 2 T(n / 2) + O(n)<br>T(n) = T(n / 2) + O(n)	O(log n) binary search<br>O(n)<br>O(n)<br>O(n log n) mergesort<br>O(n) quickselect
-DS: LFU cache<br>implementation	3 hash maps, one with linked list as values
-Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
-Prob:<br>Container With Most Water<br>n vertical lines	two pointers, from start and end, <br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
+DS: LFU cache<br>implementation	<b>3 hash maps</b>, one with linked list as values
+Prob:<br>Container With Most Water<br>n vertical lines	<b>2 pointers, from start and end</b><br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
 Misc: 5 NP-complete problems	SAT<br>knapsack<br>traveling salesman<br>set cover<br>Hamiltonian cycle
 SD components: ETL	extract data from multiple sources<br><br>clean, join, aggregate, transform into format<br><br>load in warehouse
 Tree: k-d tree<br>definition<br>4 complexities	split in 1 dimension at each node (median of coordinate to get balance)<br><br>search/insert/delete O(log n) average<br>Space: O(n)
 SD primitives: replace global clock by?<br>based on?	vector clock<br><br><br>(t1, ..., tN)<br>based on Lamport clock
-Prob. solving:<br>optimize parameter (find min) when difficult directly	binary search + checkValue(mid)
+Prob. solving:<br>optimize parameter (find min) when difficult directly	<b>binary search</b> + checkValue(mid)
 SD: classic consistency problem in DB	read-after-write
-SD primitives: CA systems, based on, used by	more common, not partition aware,<br>often 2PC<br>traditional RDBMS
+SD primitives: CA systems, based on, main problem, used by	more common, <b>not partition aware</b>,<br>often 2PC<br>traditional <b>RDBMS</b>
 Array: Reverse an array without affecting special characters	O(n) one pass, in-place: two pointers at start and end <br> swap or skip and meet in the middle <br> O(n)|O(1) aux
 DS: range minimum or range sum	Segment Tree
 SD primitives: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
 DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
-Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	BFS from start word
-Array: 3 subsequence problems/solutions/cplx	1. Is Subsequence: iterate greedy O(n), no DP<br><br>2. Longest Common Subsequence: DP O(nm)<br><br>3. Longest Increase Subsequence<br>- DP O(n^2)<br>- O(n log n): active lists and binary search
+Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	<b>BFS from start word</b>
+Array: 3 subsequence problems/solutions/cplx	1. <b>Is Subsequence</b>: iterate greedy O(n), no DP<br><br>2. <b>Longest Common Subsequence</b>: DP O(nm)<br><br>3. <b>Longest Increase Subsequence</b><br>- DP O(n^2)<br>- O(n log n): active lists and binary search
 SD: SLO for S3 (2)	99.99 (4) availability<br><br>99.99999999 (10) durability
 SD components: Kafka perf: factors<br>produce, consume, latency	depends on: message size, replication (number and sync/async)<br><br>producer: 700K msg/s<br>consumer: 1M msg/s<br>end-to-end latency: ~3ms 99p
 SD: event-sourcing pattern	use append-only store of actions/events
 SD components: load balancer routes traffic based on (6)	- random<br>- least load<br>- session/cookies<br>- (weighted) round robin<br>- layer 4<br>- layer 7
 SD apps: C numbers	BR 1M/s<br><br>NoSQL cache/persisted: 200To, 1k memcache, 1k couchbase, 1ms 99p, 60M QPS peak<br><br>HDFS: 300 PB, 3k nodes
-SD components: load-balancer layer 4 vs. layer 7	4:<br>- look at transport layer: IP address, port<br>- do NAT<br>- often hardware<br><br>7:<br> look at application layer, like URL for HTTP, cookies<br>terminates network traffic, remove TLS<br>called reverse-proxy server
+SD components: load-balancer layer 4 vs. layer 7	4:<br>- look at transport layer: IP address, port<br>- do <b>NAT</b><br>- often hardware<br><br>7:<br> look at application layer, like URL for HTTP, cookies<br>terminates network traffic, remove TLS<br>called <b>reverse-proxy</b> server
 SD: how to <b>avoid deadlock</b>	make <b>locking order fixed</b> when multiple locks
 SD: livelock	2+ processes change their states in response to changes in the other process(es), no useful work<br><br>ex. corridor
 SD: starvation	runnable process is overlooked indefinitely by the scheduler<br><br>although it is able to proceed, it is never chosen
-SD: mutex	one thread in critical section at a time
-SD: semaphore	count how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
-SD: process vs thread	thread:<br>run in shared memory space<br>share resources<br>context switch faster<br><br>thread has own stack
+SD: mutex	one thread in <b>critical section</b> at a time
+SD: semaphore	<b>count</b> how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
+SD: process vs thread	thread:<br>run in <b>shared memory</b> space<br>share resources<br>context switch faster<br><br>thread has <b>own stack</b>
 Prob: in string, replace a by dd, delete b<br>O(1) space	<b>two passes</b>:<br><br>1. <b>forward</b> delete b's in place<br>and count a's<br><br>2. <b>backward</b> replace a's 

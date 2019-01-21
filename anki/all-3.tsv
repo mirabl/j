@@ -1,48 +1,47 @@
-SD components: how does BigQuery/Dremel distribute queries	Tree Architecture<br>dispatching queries and aggregating results<br>thousands of machines in a few seconds
-SD: hashing for sharding (2)	consistent hashing: circle with many pseudo-random points per node<br><br>Rendezvous hashing
+SD components: how does BigQuery/Dremel distribute queries	<b>Tree</b> Architecture<br>dispatching queries and aggregating results<br>thousands of machines in a few seconds
+SD: hashing for sharding (2)	<b>consistent hashing</b>: circle with many pseudo-random points per node<br><br><br><b>Rendezvous</b> hashing
 Tree: balanced ST: complexity, 5 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>2-3 tree<br>B-tree<br>B+ tree
-DS: implement LRU cache	= DLL Queue + HashTable: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
+DS: implement LRU cache	= <b>DLL Queue + HashTable</b>: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
 SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
-SD primitives: Paxos<br>principle, master, failures, network, use where	majority vote<br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br>used in Chubby, BigTable/Megastore, GFS, Spanner
+SD primitives: Paxos<br>principle, master, failures, network, use where	<b>majority vote</b><br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br>used in Chubby, BigTable/Megastore, GFS, Spanner
 DS:<br>Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of x to root of y. <br>Union by rank: attach smaller tree to larger. <br>Path compression<br><br>Amortized O(1) in time |O(n) space.
-Heap: complexity and algo of insert, extract-min, search	use last element, bubble up or down<br>O(log n)<br><br>search: difficult O(n)
-Prob: median of two sorted arrays	Binary search<br>O(log(m + n))<br><br>tricky cases due to parity
+Heap: complexity and algo of insert, extract-min, search	use <b>last element</b>, bubble up or down<br>O(log n)<br><br>search: difficult O(n)
+Prob: median of two sorted arrays	<b>Binary search</b><br><br>O(log(m + n))<br><br>tricky cases due to parity
 SD: Denormalization	improve read perf at the expense of write perf. <br>Redundant copies of the data are written in multiple tables to avoid expensive joins. 
 Graph: Minimum Spanning tree Prim: algorithm and complexity	Dijkstra-like<br>greedy vertices: add new vertex of minimum distance to partial tree.<br><br>O(V^2), or less with binary heap
-DS: check if item is in known set	Bloom filter if no space for hash table
+DS: check if item is in known set	<b>Bloom filter</b> if no space for hash table
 SD: Master-master replication	Both masters serve reads and writes and coordinate with each other on writes. <br>If either master goes down, the system can continue to operate with both reads and writes.
 SD apps: 2 difficulties of streaming systems	order<br>exactly once delivery
-Prob: first missing positive	swap pairs to put at its place<br>O(n) time<br>O(1) memory
-SD primitives: strong consistency models	linearizable consistency: real world ordering respected<br><br>sequential consistency: can be reordered as long as consistent on each node
-Tree: Lowest Common Ancestor in a Binary Search Tree	recursive O(n)
+Prob: first missing positive	<b>swap pairs</b> to put at its place<br>O(n) time<br>O(1) memory
+SD primitives: strong consistency models	<b>linearizable</b> consistency: real world ordering respected<br><br><b>sequential</b> consistency: can be reordered as long as consistent on each node
 SD low-level: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
 Array: Convert array into Zig-Zag fashion: distinct element or not cases	distinct O(n)|O(1) aux bubble sort-like swap <br> not distinct QuickSelect to find median, partition O(n)
 Sort:<br>Radix sort: description, complexity	MSB or LSB<br>O(wn)
 Array: Rotate an array<br>(3 ways)	1. naive, step by step<br><br>2. With a temp array of size K. <br><br>3. With cycles (compute gcd)
 SD apps: most followers on twitter	1B
 Graph: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
-Array: largest rectangle under histogram	O(n) left to right with stack
+Array: largest rectangle under histogram	left to right with <b>stack</b><br><br>O(n)
 Graph: shortest paths special cases (2)	1. not oriented, no weights: BFS O(V + E)<br><br>2. DAG: topological sort + greedy, O(V + E)
 SD components: tablet definition	horizontal partition/shard of a table (Google)
 Combinatorics: compute<br>subsets of a set<br>permutations of a set	subsets: recursive, or iterative<br><br>permutations: recursive
 SD: Geo load-balancing with DNS	some DNS servers have IP range tables and can have different responses for different ranges
 SD low-level: Send 1K bytes over 1 Gbps network	10 us
-SD components: BigQuery/Dremel perf for 1T read	with 10K disks and 5K cpus<br>1 second to read 1TB
+SD components: BigQuery/Dremel perf for 1T read	with 10K disks and 5K cpus<br><br><b>1 second to read 1TB</b>
 DS: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
-String: Is a string with (), {}, [] balanced	stack with active items O(n)
+String: Is a string with (), {}, [] balanced	<b>stack</b> with active items O(n)
 SD: how many seconds in a day	90K
 SD: tunable consistency	from "writes never fail" to <br><br>"block for all replicas to be readable" with quorum levels
 Graph: 4 shortests path algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
 Array: Count triplets with sum smaller than a given value in O(n^2)	sort, loop for first element, use two-pointer-sum <br> O(n^2)|O(1) aux
 SD components: Dynamo<br>sharding, quorums, conflict, replica sync	consistent hashing<br>partial quorums for reading and writing<br>conflict detection and read repair via vector clocks<br>gossip for replica synchronization
 Algo: Gray code construction	recursive, G_{n-1}, G_{n-1} reversed with top bit set<br><br>gray(n) = n ^ (n >> 1)
-SD low-level: how many round trips per second<br>- world-wide<br>- within a data center	world-wide: 6-7<br><br>datacenter: 2000
-OO: virtual method	can be overriden in derived class
+SD low-level: how many round trips per second<br>- world-wide<br>- within a data center	world-wide: <b>6-7</b><br><br>datacenter: <b>2000</b>
+OO: virtual method	can be <b>overriden</b> in derived class
 OO: generics	class/method that defer specification of type until declared and instantiated in client code
-SD: circuit breaker<br>def, how it works	proxy for operations that might fail<br><br>states: closed / half-open / open<br>change state by looking at error rate
+SD: circuit breaker<br>def, how it works	<b>~proxy</b> for operations that might fail<br><br><b>3 states</b>: closed / half-open / open<br>change state by looking at error rate
 SD: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency prefered
 Prob: count distinct subsequences	c(n) = 2 * c(n - 1) - c(index of last occ of cur char)<br><br>use table for c[]<br><br>O(n)
 Prob: Count distinct occurrences of t as a subsequence of s	dp[offsetS][offsetT]<br><br>O(nm)
-DS: B-Tree (def, parameter, idea, use case)	self balancing search tree<br><br>non-binary, smal height<br>branching factor: ~nb (children=keys+1) per node<br><br>read whole disk block to minimize nb seeks in search<br><br>used in indexes for DBs
-DS: B+ Tree (def, 2 adv/1 disadv with B-Tree)	In B+ Tree, only leaves have data<br>internal nodes are just used for searching<br><br>Also: a leaf have a pointer to next leaf (for full scan)<br><br>B+ good: <b>maximize branching</b> factor, <b>full scan</b><br>B+ bad: always need to <b>go to leaf</b> level for lookup
+DS: B-Tree (def, parameter, idea, use case)	self balancing search tree<br><br>non-binary, <b>small height</b><br>branching factor: ~nb (children=keys+1) per node<br><br>read <b>whole disk block</b> to minimize nb seeks in search<br><br>used in <b>indexes for DBs</b>
+DS: B+ Tree (def, 2 adv/1 disadv with B-Tree)	<b>only leaves have data</b><br>internal nodes are just used for searching<br><br>Also: a leaf have a <b>pointer to next leaf</b> (for full scan)<br><br>B+ good: <b>maximize branching</b> factor, <b>full scan</b><br>B+ bad: always need to <b>go to leaf</b> level for lookup
 SD: Deadlock (def, example)	task waits forever for conditions that can not be met<br><br>tasks wait for other tasks<br><br>ex: 2 tasks with 2 resources with each 1 lock

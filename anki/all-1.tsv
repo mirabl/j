@@ -1,39 +1,39 @@
 SD primitives: 2PC<br>vote, master, failure, partition, network	unanimous vote: commit or abort<br>static master<br>fails if coordinator and a node fail when commit<br>not partition tolerant, tail latency sensitives
-Prob: k-th smallest number in multiplication table	Binary search O(m log(mn))
+Prob: k-th smallest number in multiplication table	<b>Binary search</b><br><br>O(m log(mn))
 Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>K: first DFS topological sort<br>second DFS in inverse graph collect SCC<br><br>T: only one pass
-SD app: how to handle errors in a streaming processing system	rewrite to errorTopic1 and retry, then 2, ...<br>then to dead letter topic<br><br>(Uber)
-SD primitives: how are conflicts resolved (2)	look at causal history with metadata<br>last writer, timestamps, version numbers, vector clocks
-SD primitives: WAL<br>def, goal	write-ahead logging<br>first log actions to be done to permanent storage<br><br>then do the actions<br><br>gives durability and atomicity even if crash
-LinkedList: 4 problems solved with 2 pointers	find where 2 linked list merge<br><br>middle of a linked list<br><br>last-M-th element of a linked list<br><br>cycle: detect/find beginning
+SD app: how to handle errors in a streaming processing system	rewrite to <b>errorTopic1</b> and <b>retry</b>, then eT2, ...<br><br>then to <b>dead letter topic</b><br><br>(Uber)
+SD primitives: how are conflicts resolved (2)	look at causal history with <b>metadata</b><br>last writer, timestamps, version numbers, vector clocks
+SD primitives: WAL<br>def, goal	<b>write-ahead logging</b><br><b>first log</b> actions to be done to permanent storage<br><br><b>then do</b> the actions<br><br>gives <b>durability</b> and atomicity even if crash
+LinkedList: 4 problems solved with 2 pointers	find where 2 linked list <b>merge</b><br><br><b>middle</b> of a linked list<br><br><b>last-M-th</b> element of a linked list<br><br><b>cycle</b>: detect/find beginning
 Graph: output of DFS (2)	vertex: entry/exit time,<br><br>edge: tree edge or back edge
-Tree: quad-tree	2D hierarchical partition in quadrants<br><br>4 children by node<br>split when max capacity reached.
+Tree: quad-tree	2D hierarchical partition in quadrants<br><br><b>4</b> children by node<br>split when max capacity reached.
 Algo: pseudo-polynomial time	running time polynomial in the numeric value of input<br>but exponential in the length of the input
-Graph: edge cover<br>desc, problem and solution	set of edges such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
-SD primitives: 3 consensus algos and their CAP status	2 phase commit, full strict quorum protocols: CA<br><br>Paxos, majority quorums with minority in partition: CP<br><br>Gossip, Dynamo, conflict resolution: AP
+Graph: edge cover<br>desc, problem and solution	<b>set of edges</b> such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
+SD primitives: 3 consensus algos and their CAP status	<b>2PC</b>, full strict quorum protocols: CA<br><br><b>Paxos</b>, majority quorums with minority in partition: CP<br><br><b>Gossip</b>, Dynamo, conflict resolution: AP
 SD primitives: ACID	atomicity, consistency, isolation, durability
-Prob:<br>Coin Game: coins in a row, pick one	windowed DP<br><br>DP F(from i-th coin to j-th coin) = max(. + min(), . + min())<br>O(n^2)
-Prob:<br>Max number of intersecting intervals	sort events: enter and exist of intervals. O(n log n)|O(n) aux
-SD primitives: how a Lamport clock works	when a process does work, increment<br>when send a message, include counter<br>when message received, take the max counter of self and message
-SD low-level: use cases of UDP	best effort delivery for voice/video streaming, games
-DS: suffix array	same use as suffix tree but with 4 times less memory<br>sorted array of suffixes
-String:<br>print valid n-parentheses	try a character, recurse if allowed
+Prob:<br>Coin Game: coins in a row, pick one	<b>windowed DP</b><br><br>DP F(from i-th coin to j-th coin) = max(. + min(), . + min())<br>O(n^2)
+Prob:<br>Max number of intersecting intervals	<b>sort</b> events: <b>enter</b> and <b>exit</b> of intervals.<br><br>O(n log n)|O(n) aux
+SD primitives: how a Lamport clock works	when a process does work, increment<br>when send a message, include counter<br>when message received, take the <b>max</b> counter of self and message
+SD low-level: use cases of UDP	<b>best effort delivery</b> for voice/video streaming, games
+DS: suffix array	same use as suffix tree but with <b>4 times less memory</b><br><br>sorted array of suffixes
+String:<br>print valid n-parentheses	<b>try</b> a character, <b>recurse</b> if allowed
 Geo: convex-hull algorithm (3)	wrapping<br><br>sweep line<br><br>divide and conquer
 SD primitives: 2 classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
-String: Reverse words in a sentence<br>(2 ways)	1. Word by word from the end.<br><br> 2. reverse whole string char-by-char, reverse within each word
-DS: specialized heaps (2)	when limited set of keys, or monotonic input
+String: Reverse words in a sentence (2)	1. Word by word from the end.<br><br> 2. <b>reverse whole string</b> char-by-char, <b>reverse within</b> each word
+DS: specialized heaps (2)	when <b>limited set</b> of keys,<br><br>or <b>monotonic</b> input
 Alg: 5 DP types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
 Graph: clique<br>definition, 2 problems and solutions	complete subgraph<br>maximum clique: largest in the graph (difficult in general, heuristics)<br><br>maximal: can not be extended (greedy)
 MergeSort:<br>- time: best and worst case<br>- memory	time: always O(n log n)<br><br>memory: O(n) aux
 SD apps: how many tweets <br>- per second<br>- per day	per second: 6000<br><br>per day: 500 million
-Graph: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and _distance to target_
-Prob:<br>Product of array except self	two steps with left right prefix product<br><br>no need of additional array
-Graph: Minimum Spanning tree Kruskal: algorithm and complexity	sort, process edges from low weight, <br>(take min edge, check if it adds cycle in partial tree). <br>Cycle detection with union-find<br><br>O(E log E)
+Graph: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and <b>distance to target</b>
+Prob:<br>Product of array except self	two steps with <b>left+right prefix product</b><br><br>no need of additional array
+Graph: Minimum Spanning tree Kruskal: algorithm and complexity	<b>sort, process edges from low weight</b> <br>(take min edge, check if it <b>adds cycle</b> in partial tree). <br>Cycle detection with union-find<br><br>O(E log E)
 Heapify: algorithm and complexity	heapify from the lower levels first, "sinkdown" roots of subtrees<br><br>O(n)
 Tree: Bottom view of binary tree	BFS with (ordered) map: <br>M[x-coordinate] = value<br><br>O(n)/O(n)
 Graph: Find connected components of a graph (2)	BFS/DFS O(V + E), <br><br>- or process edges, Union-Find on vertices<br><br>If dynamic changes, keep track of components with Union-Find.
-Graph: matching, perfect matching	set of edges without common vertices<br><br>perfect: all vertices are matched,<br>like minimum size edge cover
-DS:<br>Priority queues: 2 implementations	heaps<br>self balancing BST
-String: determine if a string has only unique characters (with and without memory)	use a set, <br><br>or sort the string
+Graph: matching, perfect matching	<b>set of edges</b> without common vertices<br><br>perfect: all vertices are matched,<br>like minimum size edge cover
+DS:<br>Priority queues: 2 implementations	heaps<br><br><br>self balancing BST
+String: determine if a string has only unique characters (2)	use a set, <br><br>or <b>sort</b> the string
 SD primitives: primary/backup replication<br>master, works how, network, failover	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous variant: ensure that write are done one backups before returning to the client
 Alg: P, NP definition	solvable in polynomial time<br>a solution can be verified in polynomial time
 SD primitives: split brain	failover to backup due to temporary network issue<br>primary and backup are active at the same time
