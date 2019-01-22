@@ -1,5 +1,5 @@
 Sort: 6 sort properties	- stable<br>- in place<br>- comparison or not<br>- external<br>- good with pre-sorted<br>- method: partition, merge, select, insert, exchange   Sort
-SD: Consistency in CAP theorem	all nodes see the same data all the time<br><br>equivalent to single-copy of the data
+SD: Consistency in CAP theorem	all nodes see the same data all the time<br><br>equivalent to <b>single-copy</b> of the data
 SD: Availability in CAP theorem (2)	every request receives a response about its success<br><br>or any reachable replica is available for reads and writes
 SD: Partition tolerance in CAP theorem	system continues to operate despite message loss or failure of part of the system
 SD: I in ACID	concurrent execution of transactions leaves the DB in same state than if the they were executed sequentially
@@ -10,17 +10,17 @@ OO: member overloading	same name but different signature
 SD components: load balancer used for (3), implemented with (2)	- don't send to bad servers<br>- don't overload<br>- eliminate SPOF<br><br>- hard or soft (HAProxy)
 SD components: load balancer multi setup (2)	active-passive or active-active
 LinkedList: beginning of cycle	1. find point in cycle: tortoise/hare<br><br>2. Move one pointer to start, both go to speed 1<br>meeting point is start of cycle
-Prob: find a mother vertex in directed graph<br>(all vertices can be reached from)	1. find last completely processed vertex in DFS (pseudo toposort)<br><br>2. check if it is a mother vertex<br><br><br>topo sort doesn't exist on cyclic graphs
-Prob: print number of paths with no cycle between two nodes in a directed graph	backtracking<br><br>set/unset visited nodes
-Prob: from undirected graph which is a tree, find a root of a tree which gives minimum height	BFS from the leaves to the inside<br><br>one or two remaining nodes<br><br>O(n)
-Prob: check if two nodes are on same path in a tree<br>in O(1) per query	preprocessing: DFS record enter/exit times<br><br>check times for (u, v) to see if same subtree
-Prob: weighted job scheduling (2)	1. sort jobs by finish time<br>DP weightWithJobsUntil[i]<br>include or exclude current job<br><br>O(n^2) / or O(n log n) with BS to find previous nonconflicting job<br><br>2. sort by start time, then DP like LIS
+Prob: find a mother vertex in directed graph<br>(all vertices can be reached from)	1. find last completely processed vertex in DFS (<b>pseudo toposort</b>)<br><br>2. check if it is a mother vertex<br><br><br>topo sort doesn't exist on cyclic graphs
+Prob: print number of paths with no cycle between two nodes in a directed graph	<b>backtracking</b><br><br>set/unset visited nodes
+Prob: from undirected graph which is a tree, find a root of a tree which gives minimum height	<b>BFS from the leaves</b> to the inside<br><br>one or two remaining nodes<br><br>O(n)
+Prob: check if two nodes are on same path in a tree<br>in O(1) per query	preprocessing: DFS record <b>enter/exit times</b><br><br>check times for (u, v) to see if same subtree
+Prob: weighted job scheduling (2)	1. sort jobs by <b>finish time</b><br><b>DP</b> weightWithJobsUntil[i]<br>include or exclude current job<br><br>O(n^2) / or O(n log n) with BS to find previous nonconflicting job<br><br>2. sort by <b>start time</b>, then <b>DP like LIS</b>
 Prob: number of paths from src to dest with k edges (2)	1. DP numPaths[src][dest][edges]<br>O(k V^3)<br><br>2. Divide and Conquer matrix power G^k<br>O(log k) matrix power<br>total: O(V^3 log k)
-Prob: minimum insertions to make string a palindrome (2)	1. windowed DP minIns[i][j] for substring(i, j)<br>O(n^2)<br><br>2. With LCS<br>find LCS of string and its reverse<br>answer: len(s) - lcs<br>O(n^2)
-Prob: longest palindromic subsequence (2)	1. windowed DP<br>dp[i][j]: s[i..j], O(n^2)<br><br>2. LCS with reverse string<br>O(n^2)
+Prob: minimum insertions to make string a palindrome (2)	1. <b>windowed DP</b> minIns[i][j] for substring(i, j)<br>O(n^2)<br><br>2. <b>LCS</b> with <b>reverse</b> string<br>answer: len(s) - lcs<br>O(n^2)
+Prob: longest palindromic subsequence (2)	1. <b>windowed DP</b><br>dp[i][j]: s[i..j], O(n^2)<br><br>2. <b>LCS</b> with <b>reverse</b> string<br>O(n^2)
 SD methodology: types of SLO (5)	correctness<br>availability<br>latency<br>throughput<br>durability
 SD methodology: 3 questions to ask on iteration	possible to scale?<br>can do better?<br>resilient?
-SD primitives: latency of operation with Paxos between DCs	25ms
+SD primitives: latency of operation with Paxos between DCs	<b>25ms</b>
 SD apps: chat, +protocol	end-to-end encryption? multi device? history on server? ack?<br>push updates: websocket?<br>message delivery queue for offline clients<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
 SD apps: URL shortener	lookup/create<br>read-heavy, load-latency read, metadata store, independent entries, mostly immutable<br>lookup by key<br>data bias+, memory cache<br>key generation service for shortened URLs? maybe offline
 SD apps: youtube	view/upload<br>read heavy but long tail of uploads<br>metadata and blob stores<br>data bias++<br>video processing pipeline
@@ -30,20 +30,20 @@ SD apps: instagram	features: feed, by user list, upload<br>metadata+blob store<b
 SD apps: docs	metadata+documents<br>can compress text<br>handle conflicts<br>handle offline
 SD apps: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
 SD apps: search	- <b>index servers</b> (random sharded on docs)<br>- <b>doc servers</b> (same)<br><br>scatter: build hit list<br>gather: compute relevance order<br><br>docserver: fetch doc from disk, get snippet for keyword
-Prob: Find the longest path in a matrix increasing by 1 at each cell	DP with memoization
-Prob: matrix chain multiplication order	windowed DP<br><br>dp[i][j]: cost for Mi...Mj<br><br>fill with increasing window length
-Prob: word break<br>longstringwithoutspaces + dict	DP: canBreak[offset]
-Prob: box stacking<br>highest stack with smaller on top of bigger<br>can reuse	careful rotations<br><br>DP similar to LIS<br><br>O(n^2)
-Prob: n eggs / k floors<br>find minimum nb of trials in worst case to find the highest safe floor (2)	1. DP O(n k^2) dp[numEggs][floor]<br><br>2. other solution with binary search and binomial coef
+Prob: Find the longest path in a matrix increasing by 1 at each cell	<b>DP with memoization</b>
+Prob: matrix chain multiplication order	<b>windowed DP</b><br><br>dp[i][j]: cost for Mi...Mj<br><br>fill with increasing window length
+Prob: word break<br>longstringwithoutspaces + dict	<b>DP</b>: canBreak[offset]
+Prob: box stacking<br>highest stack with smaller on top of bigger<br>can reuse	careful rotations<br><br><b>DP</b> similar to <b>LIS</b><br><br>O(n^2)
+Prob: n eggs / k floors<br>find minimum nb of trials in worst case to find the highest safe floor (2)	1. <b>DP</b> O(n k^2) dp[numEggs][floor]<br><br>2. other solution with binary search and binomial coef
 String: Regex matching (2)	1. <b>recursive</b><br><br><b>DP</b> bool match[iStr][iPat]<br>O(mn)<br><br>offset from left to right<br>maybe store last char in table
-Prob: set matrix zeroes	set cell in first row/column to zero if element in 0<br><br>use 2 variables for first row/column<br><br>set all zeroes by looking at first row/column<br>O(mn)
-Array: Coin change:<br>Given infinite coins of value V1..VN, find the minimum number of coins with sum S	DP<br><br>dp[amount]<br>loop on coin<br>loop on x to update dp[x]<br><br>O(N S)
-Prob: shortest superstring	bitmask DP<br>dp[mask][endingWithString]<br><br>O(2^n n^2)
+Prob: set matrix zeroes	set cell in <b>first</b> row/column to zero if element in 0<br><br>use 2 variables for first row/column<br><br>set all zeroes by looking at first row/column<br>O(mn)
+Array: Coin change:<br>Given infinite coins of value V1..VN, find the minimum number of coins with sum S	DP<br><br><b>dp[amount]</b><br>loop on coin<br>loop on x to update dp[x]<br><br>O(N S)
+Prob: shortest superstring	<b>bitmask DP</b><br>dp[mask][endingWithString]<br><br>O(2^n n^2)
 Tree: Maximum path sum in a binary tree	recursive<br><br>rec functions return {maxCompletePath, maxIncompletePath}<br><br>O(n)
 Prob: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive DFS O(V(V + E))<br><br>linear for DAG: toposort, then loop<br>O(V + E)
-Prob: find Hamiltonian cycle (def, alg, class)	visit each vertex once<br><br>DFS backtrack with path as parameter<br>O(V!)<br>NP-complete<br>or <b>bitmask DP</b>
-Prob: color graph with k colors, algo/complex	backtracking<br><br>O(k^V)?
-Prob: shortest path with exactly k edges in a directed and weighted graph	DP dist[s][t][k]<br>fill with k increasing<br><br>O(V^3 k)
+Prob: find Hamiltonian cycle (def, alg, class)	visit each vertex once<br><br><b>DFS backtrack</b> with path as parameter<br>O(V!)<br>NP-complete<br>or <b>bitmask DP</b>
+Prob: color graph with k colors, algo/complex	<b>backtracking</b><br><br>O(k^V)?
+Prob: shortest path with exactly k edges in a directed and weighted graph	<b>DP dist[s][t][k]</b><br>fill with k increasing<br><br>O(V^3 k)
 Prob: Eulerian cycle: def, check/find algos	visit each edge<br><br>linear time O(E)<br>vs. Hamiltonian is NP-hard<br><br>check if exists: look at conditions on degree<br><br>find: O(E) exists (Fleury)
 SD: types of data store (9)	RDBMS<br>k/v<br>document<br>column-family<br>graph<br>analytics<br>blob<br>search engine DB<br>time series DB
-Misc: how to send updates from server to client (3)	short-polling (client pull)<br><br>long-polling (client pull): server doesn't answer request until new data<br><br>websocket (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
+Misc: how to send updates from server to client (3)	<b>short-polling</b> (client pull)<br><br><b>long-polling</b> (client pull): server doesn't answer request until new data<br><br><b>websocket</b> (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake

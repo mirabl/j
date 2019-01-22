@@ -22,3 +22,4 @@ SD apps: Back pressure	feedback mechanism used by producers to let know consumer
 Math: number of trailing zeroes in a factorial	powers of 2, 5
 Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
 SD: NoSQL	 is a collection of data items represented in a key-value store, document-store, wide column store, or a graph database. <br>Data is denormalized, and joins are generally done in the application code.
+SD components: when to use BigQuery/Dremel<br>when to use MapReduce	BigQuery: any query, SQL-like, no latency, small output (stats)<br><br>MapReduce: can do any processing, more latency, have to implement all jobs
