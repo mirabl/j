@@ -51,3 +51,4 @@ Prob:<br>Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
 Tree: k-th highest element of BST	reverse inorder traversal of BST. O(h + k)
 LinkedList: Select random node from linked list (2)	method1: naive count nodes in first pass. <br><br>method2: <b>reservoir</b> sampling O(n) one pass.
 OO: member overloading	same name but different signature
+String: substring search (3)	naive O(n*m) <br><br>robin-karp rolling hash O(n + m) <br><br>Boyer-Moore: O(n/m) to O(nm)

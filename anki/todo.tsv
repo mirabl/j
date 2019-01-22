@@ -1,5 +1,4 @@
 8 queens	x
-hanoi Towers	x
 Top view of binary tree	vertical traversal TODO
 Remove nodes on root to leaf paths of length < K	TODO
 Reverse alternate levels of a perfect binary tree	TODO
@@ -14,29 +13,19 @@ Millionth query to a set of servers gets a prize	TODO
 Implement a set DS with O(1) add; remove and getrandom 	TODO
 Implement a hash table on string	TODO
 Tree: Convert BT to doubly LL	TODO
-Lang: polymorphism	TODO
-Lang: function overloading	TODO
-Lang: virtual function	TODO
 Lang: virtual destructor	TODO
-Lang: abstract class	TODO
 rewrite SD number in terms of latency and throughput	.
-SD: TCP guarantees	.
 SD: linearizability	.
 at most once, at least once, exaclty once	.
 SD: Dynamo	eventually consistent, highly available key-value store<br>basis for Cassandra, Riak<br>may diverge when writes<br>when a key is read, there is a read reconciliation
 DS: range tree	alternative to kd-tree<br><br>recursive multi-level best
-DS: skip lists	.
 DS: treaps	.
 DS: fibonacci heaps	.
 SD components: Chubby: def, internals, open-source version	distributed lock service<br>lock information in small files<br>stored in replicated DB<br>DB implemented on top of fault-tolerant log layer based on Paxos<br>open source: Zookeeper
 Bigtable	Asynchronous, eventually-consistent replication
 Spanner	Planet-scale structured storage<br>Next generation of Bigtable stack<br>Distributed cross-group transactions<br>Synchronous replication groups (Paxos)
 Algo: bin packing	n items with weights<br>m bins with capacity<br>store all with min bins<br><br>only geo? diff with knapsack? NP-complete
-Precise def of 	ACID, CAP
 catalan numbers and trees	total number of BST and BT
-SD: difference between lock, mutex, semaphore	.
-SD: deadlock, livelock, how to avoid	.
 SD: how context switching works	.
 SD: how scheduling works	.
 SD: fundamentals of "modern" concurrency constructs	.
-Morris tree traversal	.
