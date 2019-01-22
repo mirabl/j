@@ -1,4 +1,3 @@
-SD components: OLTP, OLAP	online transaction/analytical processing<br>RDBMS vs. datawarehouse<br>low vs high latency
 SD primitives: Gossip	probabilistic technique for <b>synchronizing replicas</b><br><br>nodes have some probability p of attempting to synchronize with each other<br><br>efficient thanks to <b>Merkle trees</b>
 Sort:<br>Heapsort: description, complexity	<b>heapify in O(n)</b><br>n times: get max, put at end, resize heap O(log n)<br><br><b>total: O(n log n)</b>
 Sort:<br>QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition

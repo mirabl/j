@@ -23,7 +23,6 @@ String: Reverse words in a sentence (2)	1. Word by word from the end.<br><br> 2.
 DS: specialized heaps (2)	when <b>limited set</b> of keys,<br><br>or <b>monotonic</b> input
 Alg: 5 DP types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
 Graph: clique<br>definition, 2 problems and solutions	complete subgraph<br>maximum clique: largest in the graph (difficult in general, heuristics)<br><br>maximal: can not be extended (greedy)
-MergeSort:<br>- time: best and worst case<br>- memory	time: always O(n log n)<br><br>memory: O(n) aux
 SD apps: how many tweets <br>- per second<br>- per day	per second: 6000<br><br>per day: 500 million
 Graph: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and <b>distance to target</b>
 Prob:<br>Product of array except self	two steps with <b>left+right prefix product</b><br><br>no need of additional array
@@ -33,7 +32,5 @@ Tree: Bottom view of binary tree	BFS with (ordered) map: <br>M[x-coordinate] = v
 Graph: Find connected components of a graph (2)	BFS/DFS O(V + E), <br><br>- or process edges, Union-Find on vertices<br><br>If dynamic changes, keep track of components with Union-Find.
 Graph: matching, perfect matching	<b>set of edges</b> without common vertices<br><br>perfect: all vertices are matched,<br>like minimum size edge cover
 DS:<br>Priority queues: 2 implementations	heaps<br><br><br>self balancing BST
-String: determine if a string has only unique characters (2)	use a set, <br><br>or <b>sort</b> the string
 SD primitives: primary/backup replication<br>master, works how, network, failover	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous variant: ensure that write are done one backups before returning to the client
-Alg: P, NP definition	solvable in polynomial time<br>a solution can be verified in polynomial time
 SD primitives: split brain	failover to backup due to temporary network issue<br>primary and backup are active at the same time

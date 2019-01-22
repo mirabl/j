@@ -23,3 +23,31 @@ Math: number of trailing zeroes in a factorial	powers of 2, 5
 Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
 SD: NoSQL	 is a collection of data items represented in a key-value store, document-store, wide column store, or a graph database. <br>Data is denormalized, and joins are generally done in the application code.
 SD components: when to use BigQuery/Dremel<br>when to use MapReduce	BigQuery: any query, SQL-like, no latency, small output (stats)<br><br>MapReduce: can do any processing, more latency, have to implement all jobs
+MergeSort:<br>- time: best and worst case<br>- memory	time: always O(n log n)<br><br>memory: O(n) aux
+String: determine if a string has only unique characters (2)	use a set, <br><br>or <b>sort</b> the string
+Alg: P, NP definition	solvable in polynomial time<br>a solution can be verified in polynomial time
+SD components: OLTP, OLAP	online transaction/analytical processing<br>RDBMS vs. datawarehouse<br>low vs high latency
+DS: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
+SD: how many seconds in a day	90K
+Array: Rotate an array<br>(3 ways)	1. naive, step by step<br><br>2. With a temp array of size K. <br><br>3. With cycles (compute gcd)
+Array: Convert array into Zig-Zag fashion: distinct element or not cases	distinct O(n)|O(1) aux bubble sort-like swap <br> not distinct QuickSelect to find median, partition O(n)
+String: Is a string with (), {}, [] balanced	<b>stack</b> with active items O(n)
+Array: Count triplets with sum smaller than a given value in O(n^2)	sort, loop for first element, use two-pointer-sum <br> O(n^2)|O(1) aux
+Array: Print matrix in spiral	four variables top bottom left right. Reduce
+SD components: 4 cache strategies	cache aside: app does everything<br><br>write-through: cache interacts with DB<br><br>write-behind/back: app writes to cache and async write to DB<br><br>refresh ahead: auto refresh by cache
+SD components: replication modes of MySQL<br>(what is in the WAL)	statement-based ("insert ...") = logical<br><br><br>row-based: result of the statement = physical<br><br>or a mix
+Tree: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if <b>in-order traversal</b> is <b>sorted</b> O(n)
+Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
+Sort: sort when limited range of keys	counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
+LinkedList: is a linked list a palindrome?	reverse second half, check (and restore)
+SD: CQRS	command query responsibility separation<br><br>separate read and write of data
+LinkedList: insertion in linked list tip	use dummy first node
+Sort: sort when element are nearly sorted (2 ways)	insertion sort<br>heapsort
+String: Edit Distance algo, complex	DP O(mn)
+Bit: test if a number is a power of two	(n & (n-1)) == 0
+SD components: default replication of MySQL	async primary/backup
+QuickSort: best and worst case of QuickSort<br><br>memory complexity	best: pivot splits array in half each time O(n log n)/O(log n)<br>worst: pivot is min (or max), O(n^2)/O(log n)<br><br>Memory: O(log n) with in-place partitioning
+Prob:<br>Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
+Tree: k-th highest element of BST	reverse inorder traversal of BST. O(h + k)
+LinkedList: Select random node from linked list (2)	method1: naive count nodes in first pass. <br><br>method2: <b>reservoir</b> sampling O(n) one pass.
+OO: member overloading	same name but different signature

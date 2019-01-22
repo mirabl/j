@@ -15,9 +15,7 @@ SD apps: 2 difficulties of streaming systems	order<br>exactly once delivery
 Prob: first missing positive	<b>swap pairs</b> to put at its place<br>O(n) time<br>O(1) memory
 SD primitives: strong consistency models	<b>linearizable</b> consistency: real world ordering respected<br><br><b>sequential</b> consistency: can be reordered as long as consistent on each node
 SD low-level: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
-Array: Convert array into Zig-Zag fashion: distinct element or not cases	distinct O(n)|O(1) aux bubble sort-like swap <br> not distinct QuickSelect to find median, partition O(n)
 Sort:<br>Radix sort: description, complexity	MSB or LSB<br>O(wn)
-Array: Rotate an array<br>(3 ways)	1. naive, step by step<br><br>2. With a temp array of size K. <br><br>3. With cycles (compute gcd)
 SD apps: most followers on twitter	1B
 Graph: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
 Array: largest rectangle under histogram	left to right with <b>stack</b><br><br>O(n)
@@ -27,12 +25,8 @@ Combinatorics: compute<br>subsets of a set<br>permutations of a set	subsets: rec
 SD: Geo load-balancing with DNS	some DNS servers have IP range tables and can have different responses for different ranges
 SD low-level: Send 1K bytes over 1 Gbps network	10 us
 SD components: BigQuery/Dremel perf for 1T read	with 10K disks and 5K cpus<br><br><b>1 second to read 1TB</b>
-DS: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
-String: Is a string with (), {}, [] balanced	<b>stack</b> with active items O(n)
-SD: how many seconds in a day	90K
 SD: tunable consistency	from "writes never fail" to <br><br>"block for all replicas to be readable" with quorum levels
 Graph: 4 shortests path algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
-Array: Count triplets with sum smaller than a given value in O(n^2)	sort, loop for first element, use two-pointer-sum <br> O(n^2)|O(1) aux
 SD components: Dynamo<br>sharding, quorums, conflict, replica sync	consistent hashing<br>partial quorums for reading and writing<br>conflict detection and read repair via vector clocks<br>gossip for replica synchronization
 Algo: Gray code construction	recursive, G_{n-1}, G_{n-1} reversed with top bit set<br><br>gray(n) = n ^ (n >> 1)
 SD low-level: how many round trips per second<br>- world-wide<br>- within a data center	world-wide: <b>6-7</b><br><br>datacenter: <b>2000</b>

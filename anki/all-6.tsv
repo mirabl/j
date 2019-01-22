@@ -6,7 +6,6 @@ SD: I in ACID	concurrent execution of transactions leaves the DB in same state t
 SD low-level: OSI and TCP/IP models	OSI: PDNTSPA<br><br>TCP/IP: NITA
 OO: 3 characteristics of OO	inheritance<br>encapsulation<br>polymorphism
 OO: 2 aspects of polymorphism	code or operations or objects behave differently in different contexts<br><br>1. object of derived class can be treated as base class<br><br>2. virtual methods of base class can be overriden
-OO: member overloading	same name but different signature
 SD components: load balancer used for (3), implemented with (2)	- don't send to bad servers<br>- don't overload<br>- eliminate SPOF<br><br>- hard or soft (HAProxy)
 SD components: load balancer multi setup (2)	active-passive or active-active
 LinkedList: beginning of cycle	1. find point in cycle: tortoise/hare<br><br>2. Move one pointer to start, both go to speed 1<br>meeting point is start of cycle
