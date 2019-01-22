@@ -1,16 +1,3 @@
-SD primitives: Gossip	probabilistic technique for <b>synchronizing replicas</b><br><br>nodes have some probability p of attempting to synchronize with each other<br><br>efficient thanks to <b>Merkle trees</b>
-Sort:<br>Heapsort: description, complexity	<b>heapify in O(n)</b><br>n times: get max, put at end, resize heap O(log n)<br><br><b>total: O(n log n)</b>
-Sort:<br>QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
-SD primitives: N, R, W, usual recommendation	N replicas,<br>need R/W votes for read/write<br>R + W > N
-SD primitives: partition tolerant consensus<br>examples, how they work<br>what happens when partition	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
-Graph: graph color theorem	a planar graph can be vertex-colored with most 4 colors
-LinkedList: reverse a linked list	iterative, 3 pointers<br>"new head"
-Prob:<br>combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., <br>same number can be repeated<br>	backtracking (or DP)
-Prob:<br>split array in m continous subarrays<br>minimize largest subarray sum	<b>Binary search</b> on answer<br><br>Greedy packing to check if valid
-SD components: MySQL storage engine (2)	<b>InnoDB</b>: row locking so better concurrency<br><br><b>MyISAM</b>: old, maybe table locking better when lots of reads
-Graph: 11 types of graphs	connected, directed, weighted, Tree, with cycles, DAG, bipartite, complete (all clique), intersection, planar, sparse
-Alg: solve recurrences + examples<br>T(n) = T(n / 2) + O(1)<br>T(n) = 2 T(n / 2) + O(1)<br>T(n) = 2T (n / 2) + O(log n)<br>T(n) = 2 T(n / 2) + O(n)<br>T(n) = T(n / 2) + O(n)	O(log n) binary search<br>O(n)<br>O(n)<br>O(n log n) mergesort<br>O(n) quickselect
-DS: LFU cache<br>implementation	<b>3 hash maps</b>, one with linked list as values
 Prob:<br>Container With Most Water<br>n vertical lines	<b>2 pointers, from start and end</b><br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
 Misc: 5 NP-complete problems	SAT<br>knapsack<br>traveling salesman<br>set cover<br>Hamiltonian cycle
 SD components: ETL	extract data from multiple sources<br><br>clean, join, aggregate, transform into format<br><br>load in warehouse
@@ -38,3 +25,23 @@ SD: mutex	one thread in <b>critical section</b> at a time
 SD: semaphore	<b>count</b> how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
 SD: process vs thread	thread:<br>run in <b>shared memory</b> space<br>share resources<br>context switch faster<br><br>thread has <b>own stack</b>
 Prob: in string, replace a by dd, delete b<br>O(1) space	<b>two passes</b>:<br><br>1. <b>forward</b> delete b's in place<br>and count a's<br><br>2. <b>backward</b> replace a's 
+SD components: how does BigQuery/Dremel distribute queries	<b>Tree</b> Architecture<br>dispatching queries and aggregating results<br>thousands of machines in a few seconds
+SD: hashing for sharding (2)	<b>consistent hashing</b>: circle with many pseudo-random points per node<br><br><br><b>Rendezvous</b> hashing
+Tree: balanced ST: complexity, 5 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>2-3 tree<br>B-tree<br>B+ tree
+DS: implement LRU cache	= <b>DLL Queue + HashTable</b>: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
+SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
+SD primitives: Paxos<br>principle, master, failures, network, use where	<b>majority vote</b><br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br>used in Chubby, BigTable/Megastore, GFS, Spanner
+DS:<br>Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of x to root of y. <br>Union by rank: attach smaller tree to larger. <br>Path compression<br><br>Amortized O(1) in time |O(n) space.
+Heap: complexity and algo of insert, extract-min, search	use <b>last element</b>, bubble up or down<br>O(log n)<br><br>search: difficult O(n)
+Prob: median of two sorted arrays	<b>Binary search</b><br><br>O(log(m + n))<br><br>tricky cases due to parity
+SD: Denormalization	improve read perf at the expense of write perf. <br>Redundant copies of the data are written in multiple tables to avoid expensive joins. 
+Graph: Minimum Spanning tree Prim: algorithm and complexity	Dijkstra-like<br>greedy vertices: add new vertex of minimum distance to partial tree.<br><br>O(V^2), or less with binary heap
+DS: check if item is in known set	<b>Bloom filter</b> if no space for hash table
+SD: Master-master replication	Both masters serve reads and writes and coordinate with each other on writes. <br>If either master goes down, the system can continue to operate with both reads and writes.
+SD apps: 2 difficulties of streaming systems	order<br>exactly once delivery
+Prob: first missing positive	<b>swap pairs</b> to put at its place<br>O(n) time<br>O(1) memory
+SD primitives: strong consistency models	<b>linearizable</b> consistency: real world ordering respected<br><br><b>sequential</b> consistency: can be reordered as long as consistent on each node
+SD low-level: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
+Sort:<br>Radix sort: description, complexity	MSB or LSB<br>O(wn)
+SD apps: most followers on twitter	1B
+Graph: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)

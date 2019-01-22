@@ -1,35 +1,42 @@
-SD apps: how many Kafka messages per second at Uber<br><br>how much storage at FB/YT	billions<br><br>500+ PB
-Geo: nearest neighbour<br>- definition<br>- solved with	k-d tree<br>2D: Voronoi
-String: Find the smallest window in a string containing all characters of another string	sliding window<br><br>O(n)|O(n)
-SD primitives: replication algs with single-copy consistency (+ nb of msg)	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
-SD primitives: 2 rate limiters	leaky bucket<br><br>token bucket
-SD components: 2 Kafka guarantees	at-least-once<br>in order within a partition only
-Alg: NP-complete/NP-hard definition	in NP, and any NP problem can be transformed in a NP-complete<br><br>NP-hard: same but not in NP necessarily
-Sort: 6 questions on data	how many keys, duplicates, partially sorted, long to compare, small range, disk access possible
-SD primitives: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
-Prob: find K-th smallest pair distance<br>from integer array	<b>Sort</b> array<br><b>Binary search</b> on answer<br><b>Two pointers</b> to validate
-SD primitives: 3 weak consistency models	causal (strongest)<br><br>client-centric/session: ex. client will never see older value, read-my-writes<br><br>eventual: after some time all replicas agree
-Graph: bridge<br>def, algo, complexity	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
-Algo: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
-Graph: Detect cycle in a graph<br>(2 ways, complexity)	<b>Colorized DFS</b> look for <b>back-edge</b> O(V + E).<br><br> Also possible with <b>Union-Find</b>: <b>loop on edges</b>, union-find on vertices O(E)?
-SD components: advantage/disadvantage of columnar storage, 3 examples	if usage pattern is to read whole table like OLAP/BI<br>but only some columns<br><br>don't read unused columns<br>can use <b>compression</b> to reduce disk size<br>disadv: <b>difficult to update</b><br>Parquet, Redshift, Dremel/BigQuery
-Graph: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard
-Tree: reconstruct tree from inorder and preorder	find root, left inorder, right inorder etc.<br>recurse
-Geo: range query<br>- def<br>- solved with	given set of points<br>query: for a query region Q, which points are in Q?<br><br>k-d tree<br>Delaunay triangulation if dynamic
-SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
-SD:<br>- how many FB users<br><br>- how many YT videos watched every day	- 2B Montly active users<br><br>- 5B
-Prob: swim in rising water	<b>BS</b> on answer + DFS check<br>O(n^2 log n)<br><br>BFS with priority queue<br>O(n^2 log n)
-Array: find the majority element	Boyer-Moore <b>voting</b> algorithm<br><br>O(n)
-SD components: BigTable: data model, API, 2 open source equivalents	1. row (row key)<br>2. column: column families + column qualifier within family<br>3. timestamp<br><br>sparse: no room taken for empty cells<br><br>- lookup by row key, range query<br>- HBase, Cassandra
-SD: why Kafka performance (2)	zero-copy<br><br>batching
-OO: abstract class	one or more of methods have no implementation<br><br>serves as <b>base class</b> for others
-OO: static class, static member	class: can not be instantiated<br><br>member: one copy exists
-SD components: 5 techniques to scale RDBMS<br>general/read/writes	general:<br>- federation<br>- denormalization<br>- SQL tuning<br><br>scale reads:<br>- master-slave replication<br><br>scale writes:<br>- sharding
-SD: skip list<br>- definition<br>- complexities<br>- used in	linked list for binary search<br>layers of sorted linked lists (<b>express lanes</b>)<br>p = 1/2 or 1/4, proba for element to be also in layer below<br><br><b>O(log n)</b> average for search/insert/delete, O(n) average space<br>used in LevelDB MemTable
-SD low-level: DMA definition, 3 steps	a device controls processor's memory directly<br>can transfer data to/from memory without processor<br><br>1. CPU initiates transfer<br>2. does other things<br>3. receives interrupt from device when done
-SD: How many simultaneous connections on a whatsapp server	2 million
-SD low-level: TCP definition, uses what to be reliable, limitations	reliable, connection-oriented ordered stream of bytes on IP network<br>congestion control<br>seqno and acknowledgments<br><br>no preservation of message boundaries
-SD low-level: content of TCP segment (6)	ports, seq no, ackno, flags, checksum, payload
-SD low-level: UDP, def, can do/can not do	connectionless, message oriented (datagrams)<br>can broadcast<br><br>can be out-of-order or lost<br>no congestion control
-SD meth: system design methodology (6)	1. Scope<br>2. Non-scope<br>3. Usage and existing<br>4. SLO (latency, avail, dura)<br>5. First design<br>6. storage
-SD meth: system design methodology for storage (5)	1. data model<br>2. size<br>3. Usage r/w<br>4. SLO<br>5. Bias (popular, geo)
+OO: 3 characteristics of OO	inheritance<br>encapsulation<br>polymorphism
+OO: 2 aspects of polymorphism	code or operations or objects behave differently in different contexts<br><br>1. object of derived class can be treated as base class<br><br>2. virtual methods of base class can be overriden
+SD components: load balancer used for (3), implemented with (2)	- don't send to bad servers<br>- don't overload<br>- eliminate SPOF<br><br>- hard or soft (HAProxy)
+SD components: load balancer multi setup (2)	active-passive or active-active
+LinkedList: beginning of cycle	1. find point in cycle: tortoise/hare<br><br>2. Move one pointer to start, both go to speed 1<br>meeting point is start of cycle
+Prob: find a mother vertex in directed graph<br>(all vertices can be reached from)	1. find last completely processed vertex in DFS (<b>pseudo toposort</b>)<br><br>2. check if it is a mother vertex<br><br><br>topo sort doesn't exist on cyclic graphs
+Prob: print number of paths with no cycle between two nodes in a directed graph	<b>backtracking</b><br><br>set/unset visited nodes
+Prob: from undirected graph which is a tree, find a root of a tree which gives minimum height	<b>BFS from the leaves</b> to the inside<br><br>one or two remaining nodes<br><br>O(n)
+Prob: check if two nodes are on same path in a tree<br>in O(1) per query	preprocessing: DFS record <b>enter/exit times</b><br><br>check times for (u, v) to see if same subtree
+Prob: weighted job scheduling (2)	1. sort jobs by <b>finish time</b><br><b>DP</b> weightWithJobsUntil[i]<br>include or exclude current job<br><br>O(n^2) / or O(n log n) with BS to find previous nonconflicting job<br><br>2. sort by <b>start time</b>, then <b>DP like LIS</b>
+Prob: number of paths from src to dest with k edges (2)	1. DP numPaths[src][dest][edges]<br>O(k V^3)<br><br>2. Divide and Conquer matrix power G^k<br>O(log k) matrix power<br>total: O(V^3 log k)
+Prob: minimum insertions to make string a palindrome (2)	1. <b>windowed DP</b> minIns[i][j] for substring(i, j)<br>O(n^2)<br><br>2. <b>LCS</b> with <b>reverse</b> string<br>answer: len(s) - lcs<br>O(n^2)
+Prob: longest palindromic subsequence (2)	1. <b>windowed DP</b><br>dp[i][j]: s[i..j], O(n^2)<br><br>2. <b>LCS</b> with <b>reverse</b> string<br>O(n^2)
+SD methodology: types of SLO (5)	correctness<br>availability<br>latency<br>throughput<br>durability
+SD methodology: 3 questions to ask on iteration	possible to scale?<br>can do better?<br>resilient?
+SD primitives: latency of operation with Paxos between DCs	<b>25ms</b>
+SD apps: chat, +protocol	end-to-end encryption? multi device? history on server? ack?<br>push updates: websocket?<br>message delivery queue for offline clients<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
+SD apps: URL shortener	lookup/create<br>read-heavy, load-latency read, metadata store, independent entries, mostly immutable<br>lookup by key<br>data bias+, memory cache<br>key generation service for shortened URLs? maybe offline
+SD apps: youtube	view/upload<br>read heavy but long tail of uploads<br>metadata and blob stores<br>data bias++<br>video processing pipeline
+SD DS: SSTable<br>def, internals, read, write	sorted immutable on disk<br>- Index (in-memory): PK (ex. B-Tree)<br>- Data 64KB block: k/v pairs<br>optimised for reads<br>written once, no in-place changes
+SD DS: LSM: MemTable and SSTable<br>stored where, read/writes, maintenance	MemTable in memory<br>SSTable on disk (except idx)<br>writes go to MemTable<br>reads go to MemTable first<br><br>periodically:<br>- MemTable flushed to SSTable<br>- SSTables merged
+SD apps: instagram	features: feed, by user list, upload<br>metadata+blob store<br>read heavy, bias++, immutable<br>image compression pipeline<br>memory cache<br>e.g. FB Haystack for blob store
+SD apps: docs	metadata+documents<br>can compress text<br>handle conflicts<br>handle offline
+SD apps: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
+SD apps: search	- <b>index servers</b> (random sharded on docs)<br>- <b>doc servers</b> (same)<br><br>scatter: build hit list<br>gather: compute relevance order<br><br>docserver: fetch doc from disk, get snippet for keyword
+Prob: Find the longest path in a matrix increasing by 1 at each cell	<b>DP with memoization</b>
+Prob: matrix chain multiplication order	<b>windowed DP</b><br><br>dp[i][j]: cost for Mi...Mj<br><br>fill with increasing window length
+Prob: word break<br>longstringwithoutspaces + dict	<b>DP</b>: canBreak[offset]
+Prob: box stacking<br>highest stack with smaller on top of bigger<br>can reuse	careful rotations<br><br><b>DP</b> similar to <b>LIS</b><br><br>O(n^2)
+Prob: n eggs / k floors<br>find minimum nb of trials in worst case to find the highest safe floor (2)	1. <b>DP</b> O(n k^2) dp[numEggs][floor]<br><br>2. other solution with binary search and binomial coef
+String: Regex matching (2)	1. <b>recursive</b><br><br><b>DP</b> bool match[iStr][iPat]<br>O(mn)<br><br>offset from left to right<br>maybe store last char in table
+Prob: set matrix zeroes	set cell in <b>first</b> row/column to zero if element in 0<br><br>use 2 variables for first row/column<br><br>set all zeroes by looking at first row/column<br>O(mn)
+Array: Coin change:<br>Given infinite coins of value V1..VN, find the minimum number of coins with sum S	DP<br><br><b>dp[amount]</b><br>loop on coin<br>loop on x to update dp[x]<br><br>O(N S)
+Prob: shortest superstring	<b>bitmask DP</b><br>dp[mask][endingWithString]<br><br>O(2^n n^2)
+Tree: Maximum path sum in a binary tree	recursive<br><br>rec functions return {maxCompletePath, maxIncompletePath}<br><br>O(n)
+Prob: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive DFS O(V(V + E))<br><br>linear for DAG: toposort, then loop<br>O(V + E)
+Prob: find Hamiltonian cycle (def, alg, class)	visit each vertex once<br><br><b>DFS backtrack</b> with path as parameter<br>O(V!)<br>NP-complete<br>or <b>bitmask DP</b>
+Prob: color graph with k colors, algo/complex	<b>backtracking</b><br><br>O(k^V)?
+Prob: shortest path with exactly k edges in a directed and weighted graph	<b>DP dist[s][t][k]</b><br>fill with k increasing<br><br>O(V^3 k)
+Prob: Eulerian cycle: def, check/find algos	visit each edge<br><br>linear time O(E)<br>vs. Hamiltonian is NP-hard<br><br>check if exists: look at conditions on degree<br><br>find: O(E) exists (Fleury)
+SD: types of data store (9)	RDBMS<br>k/v<br>document<br>column-family<br>graph<br>analytics<br>blob<br>search engine DB<br>time series DB
+Misc: how to send updates from server to client (3)	<b>short-polling</b> (client pull)<br><br><b>long-polling</b> (client pull): server doesn't answer request until new data<br><br><b>websocket</b> (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
