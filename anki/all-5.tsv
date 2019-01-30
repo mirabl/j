@@ -32,11 +32,17 @@ String: Regex matching (2)	1. <b>recursive</b><br><br><b>DP</b> bool match[iStr]
 Prob: set matrix zeroes	set cell in <b>first</b> row/column to zero if element in 0<br><br>use 2 variables for first row/column<br><br>set all zeroes by looking at first row/column<br>O(mn)
 Array: Coin change:<br>Given infinite coins of value V1..VN, find the minimum number of coins with sum S	DP<br><br><b>dp[amount]</b><br>loop on coin<br>loop on x to update dp[x]<br><br>O(N S)
 Prob: shortest superstring	<b>bitmask DP</b><br>dp[mask][endingWithString]<br><br>O(2^n n^2)
-Tree: Maximum path sum in a binary tree	recursive<br><br>rec functions return {maxCompletePath, maxIncompletePath}<br><br>O(n)
 Prob: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive DFS O(V(V + E))<br><br>linear for DAG: toposort, then loop<br>O(V + E)
-Prob: find Hamiltonian cycle (def, alg, class)	visit each vertex once<br><br><b>DFS backtrack</b> with path as parameter<br>O(V!)<br>NP-complete<br>or <b>bitmask DP</b>
+Prob: find Hamiltonian cycle (def, class, alg)	visit each vertex once<br><br><br>NP-complete<br><br><b>DFS backtrack</b> with path as parameter<br>O(V!) or <b>bitmask DP</b>
 Prob: color graph with k colors, algo/complex	<b>backtracking</b><br><br>O(k^V)?
 Prob: shortest path with exactly k edges in a directed and weighted graph	<b>DP dist[s][t][k]</b><br>fill with k increasing<br><br>O(V^3 k)
 Prob: Eulerian cycle: def, check/find algos	visit each edge<br><br>linear time O(E)<br>vs. Hamiltonian is NP-hard<br><br>check if exists: look at conditions on degree<br><br>find: O(E) exists (Fleury)
 SD: types of data store (9)	RDBMS<br>k/v<br>document<br>column-family<br>graph<br>analytics<br>blob<br>search engine DB<br>time series DB
 Misc: how to send updates from server to client (3)	<b>short-polling</b> (client pull)<br><br><b>long-polling</b> (client pull): server doesn't answer request until new data<br><br><b>websocket</b> (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
+DS: hash table strategies (3)	chaining: <b>linked lists</b><br><br><b>open adressing</b>: next position<br><br><b>double hashing</b>
+Array: rotate image by 90 degrees (3)	- ring by ring, <br><br>- reverse up to down and transpose<br><br>- if n=2^k, recursive quadrants
+DS: suffix tree<br>- definition<br>- complexities<br>- 1 problem	compressed trie of suffixes<br>naive: construction time and space O(n^2)<br>smart: O(n) / O(n)<br><br>substring search in O(m)
+SD low-level: RAM SSD HDD latency and R/W speed	RAM 100 ns<br>SSD <b>0.1 ms or less</b>    (x1000)<br>HDD 10 ms    (x100)<br><br>RAM 10 GB/s<br>SSD 500MB/s - 1+GB/s  (/20)<br> HDD 100 MB/s    (/5)
+SD: def, usual value for <b>page size</b>	smallest unit of virtual memory<br><br><b>4KB</b><br><br>can be more
+SD: specs of usual machines	24G RAM, 8 cores<br>1Gb ethernet<br><br>- 2x1TB SSD<br>or<br>2x2TB hard drives
+SD: HDD and SSD IOPS	HDD: <b>~100</b> IOPS<br><br>SSD: <b>100K</b> IOPS

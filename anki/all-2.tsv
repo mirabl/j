@@ -30,12 +30,12 @@ SD: hashing for sharding (2)	<b>consistent hashing</b>: circle with many pseudo-
 Tree: balanced ST: complexity, 5 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>2-3 tree<br>B-tree<br>B+ tree
 DS: implement LRU cache	= <b>DLL Queue + HashTable</b>: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
 SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
-SD primitives: Paxos<br>principle, master, failures, network, use where	<b>majority vote</b><br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br>used in Chubby, BigTable/Megastore, GFS, Spanner
+SD primitives: Paxos<br>principle, master, failures, network, use where	<b>majority vote</b><br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br><br>used in Chubby, BigTable/Megastore, GFS, Spanner
 DS:<br>Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of x to root of y. <br>Union by rank: attach smaller tree to larger. <br>Path compression<br><br>Amortized O(1) in time |O(n) space.
 Heap: complexity and algo of insert, extract-min, search	use <b>last element</b>, bubble up or down<br>O(log n)<br><br>search: difficult O(n)
 Prob: median of two sorted arrays	<b>Binary search</b><br><br>O(log(m + n))<br><br>tricky cases due to parity
 SD: Denormalization	improve read perf at the expense of write perf. <br>Redundant copies of the data are written in multiple tables to avoid expensive joins. 
-Graph: Minimum Spanning tree Prim: algorithm and complexity	Dijkstra-like<br>greedy vertices: add new vertex of minimum distance to partial tree.<br><br>O(V^2), or less with binary heap
+Graph: Minimum Spanning tree Prim: algorithm and complexity	<b>Dijkstra-like</b><br>greedy vertices: add new <b>vertex</b> of <b>minimum distance</b> to partial tree.<br><br>O(V^2), or less with binary heap
 DS: check if item is in known set	<b>Bloom filter</b> if no space for hash table
 SD: Master-master replication	Both masters serve reads and writes and coordinate with each other on writes. <br>If either master goes down, the system can continue to operate with both reads and writes.
 SD apps: 2 difficulties of streaming systems	order<br>exactly once delivery
