@@ -277,3 +277,50 @@ public:
         return -1;
     }
 };
+
+class Solution {
+public:
+    int fm(vector<int>& nums) {
+        int lo = 0;
+        int hi = int(nums.size()) - 1;
+        int n = nums.size();
+        while (lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+            
+            if (nums[mid] > nums[n - 1]) {
+                lo = mid + 1;
+            } else {
+                hi = mid;
+            }
+        }
+        return lo;
+    }
+    
+    int bs(vector<int>& nums, int t, int lo, int hi) {
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (nums[mid] == t) {
+                return mid;
+            } else if (nums[mid] > t) {
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            } 
+        }
+        
+        return -1;
+    }
+    
+    int search(vector<int>& nums, int target) {
+        if (nums.empty()) {
+            return -1;
+        }
+        int minI = fm(nums);
+        int n = nums.size();
+        if (target > nums[n - 1]) {
+            return bs(nums, target, 0, minI - 1);
+        } else {
+            return bs(nums, target, minI, n - 1);
+        }
+    }
+};

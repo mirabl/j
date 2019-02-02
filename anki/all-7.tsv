@@ -1,7 +1,7 @@
 Prob: skyline<br>how to solve, complex	 <b>divide and conquer</b><br>similar to merge sort<br><br>- divide in <b>2 equal sets</b> (no order or sort)<br>- compute skyline for each<br>- <b>merge</b>: <b>iterate</b> on both<br><br>O(n log n)
 Prob: count number of inversion i<j A(i)>A(j)	<b>divide and conquer</b>: within two halves + merge<br>= <b>modified merge sort</b><br><br>merge function sorts and returns inversion count<br><br>O(n log n)
 Geo: closest pair with divide and conquer	split in two sets with <b>median</b> of x<br><br>compute min in each side<br>d = min of 2 mins<br><br>merge: get all points in <b>band (-d,+d)</b> and <b>sort with y</b><br><br>find <b>smallest pair in band</b>: not O(n^2) but O(n) since only <b>constant nb points</b> to check
-Tree: Maximum path sum in a binary tree (or diameter)	recursive divide and conquer<br><br>rec functions return {maxCompletePath, maxIncompletePath}<br><br>O(n)<br><br>or use global variable
+Tree: Maximum path sum in a binary tree (or diameter)	recursive divide and conquer<br><br>rec function maxStraightPathDown + global variable<br><br>O(n)
 Prob: subarray sum closest to 0	build <b>prefix sum</b> array<br><b>sort</b> it<br><br>loop and find min consecutive difference<br><br>O(n log n)
 Prob: maximum circular subarray sum	1. compute non-circular<br>2. compute circular: <b>careful</b><br><br>need to try all cutting points O(n)<br><br>or compute <b>minimum non-circular</b> and <b>complement</b><br><br>O(n)
 DP: length of longest increasing subsequence	- O(n^2) bestLISEndingAtOffset[i]<br><br>- O(n log n) <b>active lists</b> (duplicate and extend)<br>or <b>tail array</b>: t[i] smallest tail of all increasing subsequences with length i+1<br><b>update cell or extend</b>
@@ -35,3 +35,4 @@ ree: compress binary trees to canonical form	use <b>hashing</b> on nodes/subtree
 Tree: Check if a binary tree is <b>subtree</b> of another (2)	Naive O(n^2), <br><br>- O(n): <b>inorder and preorder</b> of subtree must be <b>substrings</b> of big tree<br><br>- O(n): <b>hashing</b> of subtrees
 Geo: line through most points	H[line] = list of points<br><br>for each pair, add entry in H<br><br>tricky hash because floats<br>use rationals
 Prob: find elements that appear more than k/n times	generalization of <b>voting</b><br><br><b>two passes</b><br>- keep <b>k</b> counters in <b>hash</b><br><br>purge hash table when needed<br><br>- second pass to check candidates
+Prob: DS for insert/delete/getRandom in O(1)	<b>array + hash</b> (index into array)<br><br>to <b>remove</b> from array: <b>swap</b> with last element
