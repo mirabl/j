@@ -377,3 +377,46 @@ public:
         return m < infty ? m : -1;
     }
 };
+
+class Solution {
+public:
+    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
+        vector<vector<pair<int, int>>> G = vector<vector<pair<int, int>>>(N);
+        for (auto t: times) {
+            G[t[0] - 1].push_back({t[1] - 1, t[2]});
+        }
+        K--;
+        
+        int infty = 1e8;
+        vector<int> D(N, infty);
+        vector<bool> done(N, false);
+        D[K] = 0;
+
+        
+        while (true) {
+            int next = -1;
+            for (int i = 0; i < N; i++) {
+                if (done[i]) {
+                    continue;
+                }
+                if (next == -1 || D[i] < D[next]) {
+                    next = i;
+                }
+            }
+            if (next == -1) {
+                break;
+            }
+            for (auto p: G[next]) {
+                D[p.first] = min(D[p.first], D[next] + p.second);
+            }
+            done[next] = true;
+        }
+        
+        int m = 0;
+        for (int i = 0; i < N; i++) {
+            m = max(m, D[i]);
+        }
+        
+        return m < infty ? m : -1;
+    }
+};
