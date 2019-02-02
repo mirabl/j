@@ -13,7 +13,7 @@ DS: count–min sketch, def, use	probabilistic data structure: <b>frequency tabl
 DS: HyperLogLog, def, use	<b>approximate count-distinct</b><br>hash stream entries and only record the <b>longest leading zero seq length</b><br><br>-> <b>estimate</b> the number of <b>distinct entries</b><br>Improve accuracy with buckets, removing outliers and averaging<br><br>Use in ApproxCountDistinct in DBs.
 DS: tournament tree, def, use	complete binary tree<br>2 case: <b>winner</b>, <b>loser</b> tree<br><br>player=leaves<br>min/max winner/loser<br><br>apps: sorting, first-fit bin packing, k-way merge
 Prob: Huffman coding	sort characters by frequency<br>merge two <b>least common</b> chars into one node (with sum frequency)<br>repeat<br><br>use <b>min-heap</b><br><br>O(n log n)
-Prob: reflex<br>1. permutation<br>2. DAG<br>3. "top k"<br>4. Geometric problem<br>5. Intervals (2)	1. cycles<br>2. topological sort<br>3. heap<br>4. sweep line<br>5. sort by start or end, interval tree
+Prob: reflex<br>1. permutation<br>2. DAG<br>3. "top k" (2)<br>4. Geometric problem<br>5. Intervals (2)	1. cycles<br>2. topological sort<br>3. heap, k-selection<br>4. sweep line<br>5. sort by start or end, interval tree
 Prob: reflex<br>1. linked list (2)<br>2. array range/subarray<br>3. search (2)<br>4. palindrome<br>5. 1D/2D problem	1. two pointers, reverse<br>2. prefix sum<br>3. sort before, k-selection<br>4. look at reverse string (LCS)<br>5. DP
 Prob: reflex<br>1. get low complexity for conflicting ops	1. use multiple DS (reverse index)
 DS: 6 example use of a heap	- priority queue<br>- min of streaming data<br>- k-way merge<br>- continous median<br>- sort when only k indices away<br>- heapsort
@@ -29,7 +29,7 @@ SD: thread model for a web server	use <b>thread pool</b><br><br><b>avoids overhe
 SD: readers-writers problem (3 variations)	<b>multiple readers</b> at the same time<br>only <b>1 writer</b><br><br>1. readers preference (can starve writers)<br>2. writers preference (starve readers)<br>3. fairness
 SD: Deadlock (def, example)	task waits forever for conditions that can not be met<br><br>tasks wait for other tasks<br><br>ex: 2 tasks with 2 resources with each 1 lock<br>dining philosophers
 SD: dining philosophers problem, solutions (2)	round table, knife/fork<br><br>1. request <b>smaller index</b> resources first<br><br>or 2. add <b>arbitrator</b>
-SD: producer-consumer problem, solution	fixed size buffer<br>ensure that don't read if empty, don't write if full<br><br>use <b>semaphores</b>: remainingSpace, currentItems
+SD: producer-consumer problem, solution	fixed size buffer<br>ensure that don't read if empty, don't write if full<br><br>use <b>2 semaphores</b>: remainingSpace, currentItems
 Prob: problem solving steps	<b>CEEBETT</b><br><b>C</b>larify<br><b>E</b>xample<br><b>E</b>dge cases<br><b>B</b>rute force<br><b>E</b>fficient solution<br><b>T</b>rade-offs<br><b>T</b>ests
 ree: compress binary trees to canonical form	use <b>hashing</b> on nodes/subtrees<br><br>recursive
 Tree: Check if a binary tree is <b>subtree</b> of another (2)	Naive O(n^2), <br><br>- O(n): <b>inorder and preorder</b> of subtree must be <b>substrings</b> of big tree<br><br>- O(n): <b>hashing</b> of subtrees
