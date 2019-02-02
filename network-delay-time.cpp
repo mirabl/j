@@ -337,3 +337,43 @@ public:
         return res < infty ? res : -1;
     }
 };
+
+
+// DFS
+class Solution {
+public:
+    vector<int> d;
+    int infty = 1e8;
+    vector<vector<pair<int, int>>> G;
+
+    void dfs(int r, int c) {
+        if (c >= d[r]) {
+            return;
+        }
+        
+        d[r] = c;
+        for (auto p: G[r]) {
+            dfs(p.first, c + p.second);
+        }
+    }
+    
+    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
+        d = vector<int>(N, infty);
+        
+        G = vector<vector<pair<int, int>>>(N);
+        
+        for (auto t: times) {
+            G[t[0] - 1].push_back({t[1] - 1, t[2]});
+        }
+        K--;
+        
+        dfs(K, 0);
+        
+        int m = 0;
+        for (int i = 0; i < N; i++) {
+            m = max(m, d[i]);
+        }
+        
+        return m < infty ? m : -1;
+    }
+};
