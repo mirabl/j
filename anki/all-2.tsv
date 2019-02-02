@@ -45,3 +45,5 @@ SD low-level: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>m
 Sort:<br>Radix sort: description, complexity	MSB or LSB<br>O(wn)
 SD apps: most followers on twitter	1B
 Graph: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
+Geo: closest pair<br>def, 2 algs	find the pair that is closest<br><br><b>sweep line</b>: O(n log n)<br><br><b>divide and conquer</b>: O(n log^2 n)
+Tree: Serialize/Deserialize	<b>preorder and NULL marker</b><br><br>or: pre AND inorder<br>better: <br><br>Special case?<br>BST: pre or postorder<br>Complete: level order<br>Full: preorder with boolean for leaves

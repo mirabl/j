@@ -46,3 +46,4 @@ SD: Availability in CAP theorem (2)	every request receives a response about its 
 SD: Partition tolerance in CAP theorem	system continues to operate despite message loss or failure of part of the system
 SD: I in ACID	concurrent execution of transactions leaves the DB in same state than if the they were executed sequentially
 SD low-level: OSI and TCP/IP models	OSI: PDNTSPA<br><br>TCP/IP: NITA
+SD: Pregel	distributed <b>graph processing</b><br><b>vertex can send a msg</b> to other<br><br>like a mapper can send to reducer in MR<br><br>iterations

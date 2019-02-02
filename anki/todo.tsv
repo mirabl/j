@@ -4,7 +4,6 @@ Remove nodes on root to leaf paths of length < K	TODO
 Reverse alternate levels of a perfect binary tree	TODO
 Check if array can represent pre-order traversal of BST	TODO
 index in permutation sequence	TODO
-next permutation	TODO
 K-th permutation	TODO
 Array: Stock Buy Sell to Maximize Profit with cooldown	TODO
 Find greatest number by reordering digits (but less than current number)	TODO
@@ -12,11 +11,9 @@ Given an inf amount of 3 coins of diff value; print ordered possible sums up to 
 Millionth query to a set of servers gets a prize	TODO
 Implement a set DS with O(1) add; remove and getrandom 	TODO
 Implement a hash table on string	TODO
-Tree: Convert BT to doubly LL	TODO
 Lang: virtual destructor	TODO
 rewrite SD number in terms of latency and throughput	.
 SD: linearizability	.
-at most once, at least once, exaclty once	.
 SD: Dynamo	eventually consistent, highly available key-value store<br>basis for Cassandra, Riak<br>may diverge when writes<br>when a key is read, there is a read reconciliation
 DS: range tree	alternative to kd-tree<br><br>recursive multi-level best
 DS: treaps	.
@@ -29,3 +26,7 @@ catalan numbers and trees	total number of BST and BT
 SD: how context switching works	.
 SD: how scheduling works	.
 SD: fundamentals of "modern" concurrency constructs	.
+complexity topics   why DP not polynomial (pseudo-polynomial - depends on size of entries not only number of entries like O(nW): n is a size but W is a value), complexity when memoizing is used (17.5)
+H index	
+k closest points from origin	
+vertical order tree traversal	
