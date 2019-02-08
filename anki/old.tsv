@@ -52,3 +52,48 @@ Tree: k-th highest element of BST	reverse inorder traversal of BST. O(h + k)
 LinkedList: Select random node from linked list (2)	method1: naive count nodes in first pass. <br><br>method2: <b>reservoir</b> sampling O(n) one pass.
 OO: member overloading	same name but different signature
 String: substring search (3)	naive O(n*m) <br><br>robin-karp rolling hash O(n + m) <br><br>Boyer-Moore: O(n/m) to O(nm)
+SD components: NoSQL 4 types of stores	key-value: Redis, memcached<br><br>document store: MongoDB, CouchDB, ElasticSearch<br><br>wide-column store: BigTable, HBase, Cassandra<br><br>graph DB: neo4j, flockdb
+SD: Denormalization	improve read perf at the expense of write perf. <br>Redundant copies of the data are written in multiple tables to avoid expensive joins. 
+SD primitives: how are conflicts resolved (2)	look at causal history with <b>metadata</b><br>last writer, timestamps, version numbers, vector clocks
+Prob:<br>Max number of intersecting intervals	<b>sort</b> events: <b>enter</b> and <b>exit</b> of intervals.<br><br>O(n log n)|O(n) aux
+Algo: pseudo-polynomial time	running time polynomial in the numeric value of input<br>but exponential in the length of the input
+Graph: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and <b>distance to target</b>
+Prob:<br>Product of array except self	two steps with <b>left+right prefix product</b><br><br>no need of additional array
+Tree: Bottom view of binary tree	BFS with (ordered) map: <br>M[x-coordinate] = value<br><br>O(n)/O(n)
+SD primitives: split brain	failover to backup due to temporary network issue<br>primary and backup are active at the same time
+SD primitives: N, R, W, usual recommendation	N replicas,<br>need R/W votes for read/write<br>R + W > N
+Sort:<br>QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
+Sort:<br>Heapsort: description, complexity	<b>heapify in O(n)</b><br>n times: get max, put at end, resize heap O(log n)<br><br><b>total: O(n log n)</b>
+Prob:<br>combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., <br>same number can be repeated<br>	backtracking (or DP)
+SD components: ETL	extract data from multiple sources<br><br>clean, join, aggregate, transform into format<br><br>load in warehouse
+Array: Reverse an array without affecting special characters	O(n) one pass, in-place: two pointers at start and end <br> swap or skip and meet in the middle <br> O(n)|O(1) aux
+SD: event-sourcing pattern	use append-only store of actions/events
+SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
+Heap: complexity and algo of insert, extract-min, search	use <b>last element</b>, bubble up or down<br>O(log n)<br><br>search: difficult O(n)
+DS:<br>Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of x to root of y. <br>Union by rank: attach smaller tree to larger. <br>Path compression<br><br>Amortized O(1) in time |O(n) space.
+DS: check if item is in known set	<b>Bloom filter</b> if no space for hash table
+SD apps: 2 difficulties of streaming systems	order<br>exactly once delivery
+SD low-level: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
+SD apps: most followers on twitter	1B
+SD components: tablet definition	horizontal partition/shard of a table (Google)
+SD: Geo load-balancing with DNS	some DNS servers have IP range tables and can have different responses for different ranges
+SD: tunable consistency	from "writes never fail" to <br><br>"block for all replicas to be readable" with quorum levels
+Search: find element in a sorted rotated array	<b>double BS</b>: <br><br>find the frontier, <br>BS on left or right part
+Array: Minimum difference partition	DP CanMakeSum[i][T] <br>T <= S/2<br>O(n S)
+SD primitives: why impossible to availability and strong consistency during network partition	<b>divergence</b><br><br>can not prevent divergence if partitioned nodes continue to work
+Array: Next Greater element in an array (2)	- from right to left, using a stack<br><br>- or left to right with stack, but map also<br><br>O(n)/O(n)
+Combinatorics: compute<br>subsets of a set<br>permutations of a set	subsets: recursive, or iterative<br><br>permutations: recursive
+SD apps: how many Kafka messages per second at Uber<br><br>how much storage at FB/YT	billions<br><br>500+ PB
+SD components: 2 Kafka guarantees	at-least-once<br>in order within a partition only
+Tree: reconstruct tree from inorder and preorder	find root, left inorder, right inorder etc.<br>recurse
+Array: find the majority element	Boyer-Moore <b>voting</b> algorithm<br><br>O(n)
+SD components: 5 techniques to scale RDBMS<br>general/read/writes	general:<br>- federation<br>- denormalization<br>- SQL tuning<br><br>scale reads:<br>- master-slave replication<br><br>scale writes:<br>- sharding
+SD components: load balancer multi setup (2)	active-passive or active-active
+SD apps: chat, +protocol	end-to-end encryption? multi device? history on server? ack?<br>push updates: websocket?<br>message delivery queue for offline clients<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
+SD apps: URL shortener	lookup/create<br>read-heavy, load-latency read, metadata store, independent entries, mostly immutable<br>lookup by key<br>data bias+, memory cache<br>key generation service for shortened URLs? maybe offline
+SD apps: youtube	view/upload<br>read heavy but long tail of uploads<br>metadata and blob stores<br>data bias++<br>video processing pipeline
+SD apps: instagram	features: feed, by user list, upload<br>metadata+blob store<br>read heavy, bias++, immutable<br>image compression pipeline<br>memory cache<br>e.g. FB Haystack for blob store
+SD apps: docs	metadata+documents<br>can compress text<br>handle conflicts<br>handle offline
+SD apps: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
+SD apps: search	- <b>index servers</b> (random sharded on docs)<br>- <b>doc servers</b> (same)<br><br>scatter: build hit list<br>gather: compute relevance order<br><br>docserver: fetch doc from disk, get snippet for keyword
+Array: rotate image by 90 degrees (3)	- ring by ring, <br><br>- reverse up to down and transpose<br><br>- if n=2^k, recursive quadrants

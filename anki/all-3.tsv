@@ -1,12 +1,8 @@
 Array: largest rectangle under histogram	left to right with <b>stack</b><br><br>O(n)
 Graph: shortest paths special cases (2)	1. not oriented, no weights: BFS O(V + E)<br><br>2. DAG: topological sort + greedy, O(V + E)
-SD components: tablet definition	horizontal partition/shard of a table (Google)
-Combinatorics: compute<br>subsets of a set<br>permutations of a set	subsets: recursive, or iterative<br><br>permutations: recursive
-SD: Geo load-balancing with DNS	some DNS servers have IP range tables and can have different responses for different ranges
 SD low-level: Send 1K bytes over 1 Gbps network	10 us
 SD components: BigQuery/Dremel perf for 1T read	with 10K disks and 5K cpus<br><br><b>1 second to read 1TB</b>
-SD: tunable consistency	from "writes never fail" to <br><br>"block for all replicas to be readable" with quorum levels
-Graph: 4 shortests path algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
+Graph: 4 SSSP/APSP algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
 SD components: Dynamo<br>sharding, quorums, conflict, replica sync	consistent hashing<br>partial quorums for reading and writing<br>conflict detection and read repair via vector clocks<br>gossip for replica synchronization
 Algo: Gray code construction	recursive, G_{n-1}, G_{n-1} reversed with top bit set<br><br>gray(n) = n ^ (n >> 1)
 SD low-level: how many round trips per second<br>- world-wide<br>- within a data center	world-wide: <b>6-7</b><br><br>datacenter: <b>2000</b>
@@ -19,7 +15,6 @@ Prob: Count distinct occurrences of t as a subsequence of s	dp[offsetS][offsetT]
 DS: B-Tree (def, parameter, idea, use case)	self balancing search tree<br><br>non-binary, <b>small height</b><br>branching factor: ~nb (children=keys+1) per node<br><br>read <b>whole disk block</b> to minimize nb seeks in search<br><br>used in <b>indexes for DBs</b>
 DS: B+ Tree (def, 2 adv/1 disadv with B-Tree)	<b>only leaves have data</b><br>internal nodes are just used for searching<br><br>Also: a leaf have a <b>pointer to next leaf</b> (for full scan)<br><br>B+ good: <b>maximize branching</b> factor, <b>full scan</b><br>B+ bad: always need to <b>go to leaf</b> level for lookup
 Array:<br>Subset sum: a subset of array sums to T	DP CanMakeSum[i][T]<br>O(n S)
-Search: find element in a sorted rotated array	<b>double BS</b>: <br><br>find the frontier, <br>BS on left or right part
 DS:<br>Adv/Disadvantage of BST vs. HashTable	<b>BST</b> can enumerate in <b>key order</b><br><br>HashTable simpler when <b>duplicate keys</b><br><br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
 2D Array: Boggle (Find all possible words in a board of characters)	DFS from every start cell, mark visited cells.<br><br>Complexity?<br> Better solution with Trie.
 Array: Smallest subarray with sum greater than a given value	<b>Sliding window</b>: keep adding array elements while current sum is smaller than x <br> If current sum becomes greater than x, update min length, remove starting elements
@@ -28,21 +23,15 @@ DS: <br>Binary heap definition	complete binary<br><br>with heap property (childr
 Graph: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br><br><br>O(V^2) if adjacency matrix/O(V)
 Array: Given an array of integers, every element appears twice except for one. Find that single one	XOR O(n)
 String:<br>Longest Palindromic Substring (3)	for each position, find longest even and odd length substring with this center O(n^2)|O(1)<br><br>DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1)<br><br>O(n) difficult Manacher.
-DS: segment tree<br>for which operation with complexity	same name but different for Fenwick Trees (prefix sums)<br>store info on intervals or segments<br><br>find segments containing a query point<br>O(log Intervals + MatchingIntervals)
-DS: Fenwick Tree	type of segment tree<br>used for prefix sums
 SD components: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second<br>billions of rows<br>thousands of columns
 SD primitives: CP systems, work how, implementations	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
 Array: Find maximum in sliding window (2)	1. use self-balanced BST O(n log n). <br><br>2. Use <b>sorted dequeue</b> O(n)
-SD components: NoSQL 4 types of stores	key-value: Redis, memcached<br><br>document store: MongoDB, CouchDB, ElasticSearch<br><br>wide-column store: BigTable, HBase, Cassandra<br><br>graph DB: neo4j, flockdb
-Array: Minimum difference partition	DP CanMakeSum[i][T] <br>T <= S/2<br>O(n S)
 Prob:<br>0-1 Knapsack: description, solution, problem class	max weight, items with values and weights, maximize value<br><br>DP Best[i][w]<br>O(n W)<br>NP-complete
 Graph: articulation point<br>def, algo, complex	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
 Array: find the median of non-sorted array<br>+ approximate and why	QuickSelect O(n)<br><br>median of medians: approximate, first step of quicksort/select<br>split in groups of 5<br>find median of each group, recurse
 SD low-level: Read 4K randomly from SSD	150 us
 SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
-SD primitives: why impossible to availability and strong consistency during network partition	<b>divergence</b><br><br>can not prevent divergence if partitioned nodes continue to work
 SD components: one instance RDBMS perf	no answer, depends on query/HW, if fits in RAM<br><br><b>1 TB</b> total size<br><b>billions</b> of rows<br><b>1K</b> r/w QPS<br><br>latency: SSD 1ms, HD: 20ms
-Array: Next Greater element in an array (2)	- from right to left, using a stack<br><br>- or left to right with stack, but map also<br><br>O(n)/O(n)
 DS: <b>Interval tree</b>	red black tree<br>each node is interval<br><br>node contains:<br>1. start of interval=sort key<br>2. end of interval<br>3. maxEnd of intervals in subtree<br><br>search for intersection O(h):<br>go in right or left (bit tricky proof)
 SD: time for a <b>context switch</b>	<b>5μs</b>
 String: Boyer-Moore	try to match from start of text but <b>from end of pattern</b><br>when <b>mismatch, skip chars</b> when possible<br><br>2 prepro tables to skip chars:<br>- indexOfLastOccurence[char]<br>- other table more complicated<br>O(n/m) to O(nm)

@@ -1,7 +1,6 @@
 OO: 3 characteristics of OO	inheritance<br>encapsulation<br>polymorphism
 OO: 2 aspects of polymorphism	code or operations or objects behave differently in different contexts<br><br>1. object of derived class can be treated as base class<br><br>2. virtual methods of base class can be overriden
 SD components: load balancer used for (3), implemented with (2)	- don't send to bad servers<br>- don't overload<br>- eliminate SPOF<br><br>- hard or soft (HAProxy)
-SD components: load balancer multi setup (2)	active-passive or active-active
 LinkedList: beginning of cycle	1. find point in cycle: tortoise/hare<br><br>2. Move one pointer to start, both go to speed 1<br>meeting point is start of cycle
 Prob: find a mother vertex in directed graph<br>(all vertices can be reached from)	1. find last completely processed vertex in DFS (<b>pseudo toposort</b>)<br><br>2. check if it is a mother vertex<br><br><br>topo sort doesn't exist on cyclic graphs
 Prob: print number of paths with no cycle between two nodes in a directed graph	<b>backtracking</b><br><br>set/unset visited nodes
@@ -14,15 +13,8 @@ Prob: longest palindromic subsequence (2)	1. <b>windowed DP</b><br>dp[i][j]: s[i
 SD methodology: types of SLO (5)	correctness<br>availability<br>latency<br>throughput<br>durability
 SD methodology: 3 questions to ask on iteration	possible to scale?<br>can do better?<br>resilient?
 SD primitives: latency of operation with Paxos between DCs	<b>25ms</b>
-SD apps: chat, +protocol	end-to-end encryption? multi device? history on server? ack?<br>push updates: websocket?<br>message delivery queue for offline clients<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
-SD apps: URL shortener	lookup/create<br>read-heavy, load-latency read, metadata store, independent entries, mostly immutable<br>lookup by key<br>data bias+, memory cache<br>key generation service for shortened URLs? maybe offline
-SD apps: youtube	view/upload<br>read heavy but long tail of uploads<br>metadata and blob stores<br>data bias++<br>video processing pipeline
 SD DS: SSTable<br>def, internals, read, write	sorted immutable on disk<br>- Index (in-memory): PK (ex. B-Tree)<br>- Data 64KB block: k/v pairs<br>optimised for reads<br>written once, no in-place changes
-SD DS: LSM: MemTable and SSTable<br>stored where, read/writes, maintenance	MemTable in memory<br>SSTable on disk (except idx)<br>writes go to MemTable<br>reads go to MemTable first<br><br>periodically:<br>- MemTable flushed to SSTable<br>- SSTables merged
-SD apps: instagram	features: feed, by user list, upload<br>metadata+blob store<br>read heavy, bias++, immutable<br>image compression pipeline<br>memory cache<br>e.g. FB Haystack for blob store
-SD apps: docs	metadata+documents<br>can compress text<br>handle conflicts<br>handle offline
-SD apps: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
-SD apps: search	- <b>index servers</b> (random sharded on docs)<br>- <b>doc servers</b> (same)<br><br>scatter: build hit list<br>gather: compute relevance order<br><br>docserver: fetch doc from disk, get snippet for keyword
+SD DS: LSM: MemTable, SSTable<br>stored where, read/writes, maintenance	MemTable in memory<br>SSTable on disk (except idx)<br>writes go to MemTable<br>reads go to MemTable first<br><br>periodically:<br>- MemTable flushed to SSTable<br>- SSTables merged
 Prob: Find the longest path in a matrix increasing by 1 at each cell	<b>DP with memoization</b>
 Prob: matrix chain multiplication order	<b>windowed DP</b><br><br>dp[i][j]: cost for Mi...Mj<br><br>fill with increasing window length
 Prob: word break<br>longstringwithoutspaces + dict	<b>DP</b>: canBreak[offset]
@@ -40,8 +32,7 @@ Prob: Eulerian cycle: def, check/find algos	visit each edge<br><br>linear time O
 SD: types of data store (9)	RDBMS<br>k/v<br>document<br>column-family<br>graph<br>analytics<br>blob<br>search engine DB<br>time series DB
 Misc: how to send updates from server to client (3)	<b>short-polling</b> (client pull)<br><br><b>long-polling</b> (client pull): server doesn't answer request until new data<br><br><b>websocket</b> (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
 DS: hash table strategies (3)	chaining: <b>linked lists</b><br><br><b>open adressing</b>: next position<br><br><b>double hashing</b>
-Array: rotate image by 90 degrees (3)	- ring by ring, <br><br>- reverse up to down and transpose<br><br>- if n=2^k, recursive quadrants
-DS: suffix tree<br>- definition<br>- complexities<br>- 1 problem	compressed trie of suffixes<br>naive: construction time and space O(n^2)<br>smart: O(n) / O(n)<br><br>substring search in O(m)
+DS: suffix tree<br>- definition<br>- complexities<br>- 1 problem	<b>compressed trie</b> of <b>suffixes</b><br>naive: construction time and space O(n^2)<br>smart: O(n) / O(n)<br><br>substring search in O(m)
 SD low-level: RAM SSD HDD latency and R/W speed	RAM 100 ns<br>SSD <b>0.1 ms or less</b>    (x1000)<br>HDD 10 ms    (x100)<br><br>RAM 10 GB/s<br>SSD 500MB/s - 1+GB/s  (/20)<br> HDD 100 MB/s    (/5)
 SD: def, usual value for <b>page size</b>	smallest unit of virtual memory<br><br><b>4KB</b><br><br>can be more
 SD: specs of usual machines	24G RAM, 8 cores<br>1Gb ethernet<br><br>- 2x1TB SSD<br>or<br>2x2TB hard drives

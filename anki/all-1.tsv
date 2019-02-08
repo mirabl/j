@@ -2,16 +2,13 @@ SD primitives: 2PC<br>vote, master, failure, partition, network	unanimous vote: 
 Prob: k-th smallest number in multiplication table	<b>Binary search</b><br><br>O(m log(mn))
 Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>K: first DFS topological sort<br>second DFS in inverse graph collect SCC<br><br>T: only one pass<br>O(V + E)
 SD app: how to handle errors in a streaming processing system	rewrite to <b>errorTopic1</b> and <b>retry</b>, then eT2, ...<br><br>then to <b>dead letter topic</b><br><br>(Uber)
-SD primitives: how are conflicts resolved (2)	look at causal history with <b>metadata</b><br>last writer, timestamps, version numbers, vector clocks
 SD primitives: WAL<br>def, goal	<b>write-ahead logging</b><br><b>first log</b> actions to be done to permanent storage<br><br><b>then do</b> the actions<br><br>gives <b>durability</b> and atomicity even if crash
 LinkedList: 4 problems solved with 2 pointers	find where 2 linked list <b>merge</b><br><br><b>middle</b> of a linked list<br><br><b>last-M-th</b> element of a linked list<br><br><b>cycle</b>: detect/find beginning
 Graph: output of DFS (2)	vertex: entry/exit time,<br><br>edge: tree edge or back edge
 Tree: quad-tree	2D hierarchical partition in quadrants<br><br><b>4</b> children by node<br>split when max capacity reached.
-Algo: pseudo-polynomial time	running time polynomial in the numeric value of input<br>but exponential in the length of the input
 Graph: edge cover<br>desc, problem and solution	<b>set of edges</b> such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
 SD primitives: 3 consensus algos and their CAP status	<b>2PC</b>, full strict quorum protocols: CA<br><br><b>Paxos</b>, majority quorums with minority in partition: CP<br><br><b>Gossip</b>, Dynamo, conflict resolution: AP
 SD primitives: ACID	atomicity, consistency, isolation, durability
-Prob:<br>Max number of intersecting intervals	<b>sort</b> events: <b>enter</b> and <b>exit</b> of intervals.<br><br>O(n log n)|O(n) aux
 SD primitives: how a Lamport clock works	when a process does work, increment<br>when send a message, include counter<br>when message received, take the <b>max</b> counter of self and message
 SD low-level: use cases of UDP	<b>best effort delivery</b> for voice/video streaming, games
 DS: suffix array	same use as suffix tree but with <b>4 times less memory</b><br><br>sorted array of suffixes
@@ -23,24 +20,16 @@ DS: specialized heaps (2)	when <b>limited set</b> of keys,<br><br>or <b>monotoni
 Alg: 5 DP types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
 Graph: clique<br>definition, 2 problems and solutions	complete subgraph<br>maximum clique: largest in the graph (difficult in general, heuristics)<br><br>maximal: can not be extended (greedy)
 SD apps: how many tweets <br>- per second<br>- per day	per second: 6000<br><br>per day: 500 million
-Graph: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and <b>distance to target</b>
-Prob:<br>Product of array except self	two steps with <b>left+right prefix product</b><br><br>no need of additional array
 Graph: Minimum Spanning tree Kruskal: algorithm and complexity	<b>sort, process edges from low weight</b> <br>(take min edge, check if it <b>adds cycle</b> in partial tree). <br><br>Cycle detection with <b>union-find</b><br><br>O(E log E)
 Heapify: algorithm and complexity	heapify <b>from the lower levels</b> first,<br><b>sinkdown</b> nodes<br><br>O(n)
-Tree: Bottom view of binary tree	BFS with (ordered) map: <br>M[x-coordinate] = value<br><br>O(n)/O(n)
-Graph: Find connected components of a graph (2)	BFS/DFS O(V + E), <br><br>- or process edges, Union-Find on vertices<br><br>If dynamic changes, keep track of components with Union-Find.
+Graph: Find connected components of an undirected graph (2)	BFS/DFS O(V + E), <br><br>- or process edges, Union-Find on vertices<br><br>If dynamic changes, keep track of components with Union-Find.
 Graph: matching, perfect matching	<b>set of edges</b> which <b>don't touch</b><br><br>perfect: all vertices are matched,<br>like minimum size edge cover
 DS:<br>Priority queues: 2 implementations	heaps<br><br><br>self balancing BST
 SD primitives: primary/backup replication<br>master, works how, network, failover	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous variant: ensure that write are done one backups before returning to the client
-SD primitives: split brain	failover to backup due to temporary network issue<br>primary and backup are active at the same time
 SD primitives: Gossip	probabilistic technique for <b>synchronizing replicas</b><br><br>nodes have some probability p of attempting to synchronize with each other<br><br>efficient thanks to <b>Merkle trees</b>
-Sort:<br>Heapsort: description, complexity	<b>heapify in O(n)</b><br>n times: get max, put at end, resize heap O(log n)<br><br><b>total: O(n log n)</b>
-Sort:<br>QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
-SD primitives: N, R, W, usual recommendation	N replicas,<br>need R/W votes for read/write<br>R + W > N
 SD primitives: partition tolerant consensus<br>examples, how they work<br>what happens when partition	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
 Graph: color theorem	a <b>planar</b> graph can be vertex-colored with most <b>4 colors</b>
 LinkedList: reverse a linked list	iterative, 3 pointers<br><b>"new head"</b>
-Prob:<br>combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., <br>same number can be repeated<br>	backtracking (or DP)
 Prob:<br>split array in m continous subarrays<br>minimize largest subarray sum	<b>Binary search</b> on answer<br><br>Greedy packing to check if valid
 SD components: MySQL storage engine (2)	<b>InnoDB</b>: row locking so better concurrency<br><br><b>MyISAM</b>: old, maybe table locking better when lots of reads
 Graph: 11 types of graphs	connected, directed, weighted, Tree, with cycles, DAG, bipartite, complete (all clique), intersection, planar, sparse

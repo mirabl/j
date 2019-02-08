@@ -1,20 +1,17 @@
 Prob:<br>Container With Most Water<br>n vertical lines	<b>2 pointers, from start and end</b><br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
 Misc: 5 NP-complete problems	SAT<br>knapsack<br>traveling salesman<br>set cover<br>Hamiltonian cycle
-SD components: ETL	extract data from multiple sources<br><br>clean, join, aggregate, transform into format<br><br>load in warehouse
 Tree: k-d tree<br>definition<br>4 complexities	split in 1 dimension at each node (median of coordinate to get balance)<br><br>search/insert/delete O(log n) average<br>Space: O(n)
 SD primitives: replace global clock by?<br>based on?	vector clock<br><br><br>(t1, ..., tN)<br>based on Lamport clock
 Prob. solving:<br>optimize parameter (find min) when difficult directly	<b>binary search</b> + checkValue(mid)
 SD: classic consistency problem in DB	read-after-write
 SD primitives: CA systems, based on, main problem, used by	more common, <b>not partition aware</b>,<br>often 2PC<br>traditional <b>RDBMS</b>
-Array: Reverse an array without affecting special characters	O(n) one pass, in-place: two pointers at start and end <br> swap or skip and meet in the middle <br> O(n)|O(1) aux
-DS: range minimum or range sum	Segment Tree
+DS: which DS for range minimum or range sum	Segment Tree
 SD primitives: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
 DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
 Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	<b>BFS from start word</b>
 Array: 3 subsequence problems/solutions/cplx	1. <b>Is Subsequence</b>: iterate greedy O(n), no DP<br><br>2. <b>Longest Common Subsequence</b>: DP O(nm)<br><br>3. <b>Longest Increase Subsequence</b><br>- DP O(n^2)<br>- O(n log n): active lists and binary search
 SD: SLO for S3 (2)	99.99 (4) availability<br><br>99.99999999 (10) durability
 SD components: Kafka perf: factors<br>produce, consume, latency	depends on: message size, replication (number and sync/async)<br><br>producer: 700K msg/s<br>consumer: 1M msg/s<br>end-to-end latency: ~3ms 99p
-SD: event-sourcing pattern	use append-only store of actions/events
 SD components: load balancer routes traffic based on (6)	- random<br>- least load<br>- session/cookies<br>- (weighted) round robin<br>- layer 4<br>- layer 7
 SD apps: C numbers	BR 1M/s<br><br>NoSQL cache/persisted: 200To, 1k memcache, 1k couchbase, 1ms 99p, 60M QPS peak<br><br>HDFS: 300 PB, 3k nodes
 SD components: load-balancer layer 4 vs. layer 7	4:<br>- look at transport layer: IP address, port<br>- do <b>NAT</b><br>- often hardware<br><br>7:<br> look at application layer, like URL for HTTP, cookies<br>terminates network traffic, remove TLS<br>called <b>reverse-proxy</b> server
@@ -29,21 +26,13 @@ SD components: how does BigQuery/Dremel distribute queries	<b>Tree</b> Architect
 SD: hashing for sharding (2)	<b>consistent hashing</b>: circle with many pseudo-random points per node<br><br><br><b>Rendezvous</b> hashing
 Tree: balanced ST: complexity, 5 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>2-3 tree<br>B-tree<br>B+ tree
 DS: implement LRU cache	= <b>DLL Queue + HashTable</b>: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
-SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
 SD primitives: Paxos<br>principle, master, failures, network, use where	<b>majority vote</b><br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br><br>used in Chubby, BigTable/Megastore, GFS, Spanner
-DS:<br>Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of x to root of y. <br>Union by rank: attach smaller tree to larger. <br>Path compression<br><br>Amortized O(1) in time |O(n) space.
-Heap: complexity and algo of insert, extract-min, search	use <b>last element</b>, bubble up or down<br>O(log n)<br><br>search: difficult O(n)
 Prob: median of two sorted arrays	<b>Binary search</b><br><br>O(log(m + n))<br><br>tricky cases due to parity
-SD: Denormalization	improve read perf at the expense of write perf. <br>Redundant copies of the data are written in multiple tables to avoid expensive joins. 
 Graph: Minimum Spanning tree Prim: algorithm and complexity	<b>Dijkstra-like</b><br>greedy vertices: add new <b>vertex</b> of <b>minimum distance</b> to partial tree.<br><br>O(V^2), or less with binary heap
-DS: check if item is in known set	<b>Bloom filter</b> if no space for hash table
 SD: Master-master replication	Both masters serve reads and writes and coordinate with each other on writes. <br>If either master goes down, the system can continue to operate with both reads and writes.
-SD apps: 2 difficulties of streaming systems	order<br>exactly once delivery
 Prob: first missing positive	<b>swap pairs</b> to put at its place<br>O(n) time<br>O(1) memory
 SD primitives: strong consistency models	<b>linearizable</b> consistency: real world ordering respected<br><br><b>sequential</b> consistency: can be reordered as long as consistent on each node
-SD low-level: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
 Sort:<br>Radix sort: description, complexity	MSB or LSB<br>O(wn)
-SD apps: most followers on twitter	1B
 Graph: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
 Geo: closest pair<br>def, 2 algs	find the pair that is closest<br><br><b>sweep line</b>: O(n log n)<br><br><b>divide and conquer</b>: O(n log^2 n)
 Tree: Serialize/Deserialize	<b>preorder and NULL marker</b><br><br>or: pre AND inorder<br>better: <br><br>Special case?<br>BST: pre or postorder<br>Complete: level order<br>Full: preorder with boolean for leaves

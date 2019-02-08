@@ -5,12 +5,10 @@ SD: C in ACID	Consistency<br><br>a transaction moves the DB from a <b>valid stat
 SD: D in ACID	when a transaction is committed, it will <b>remain committed</b> even in the case of a system failure (power, crash)
 SD components: in-memory K/V store perf	on machine with good network<br><br>read/write: 200k/s easily<br><br>latency: 1ms<br><br>no bound on size with sharding but $
 SD: three and four nines availability per year	99.9: <b>9</b> hours of downtime/year<br><br>99.99: <b>1</b> hour downtime/year
-SD apps: how many Kafka messages per second at Uber<br><br>how much storage at FB/YT	billions<br><br>500+ PB
 Geo: nearest neighbour<br>- definition<br>- solved with	k-d tree<br>2D: Voronoi
 String: Find the smallest window in a string containing all characters of another string	sliding window<br><br>O(n)|O(n)
 SD primitives: replication algs with single-copy consistency (+ nb of msg)	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
 SD primitives: 2 rate limiters	leaky bucket<br><br>token bucket
-SD components: 2 Kafka guarantees	at-least-once<br>in order within a partition only
 Alg: NP-complete/NP-hard definition	in NP, and any NP problem can be transformed in a NP-complete<br><br>NP-hard: same but not in NP necessarily
 Sort: 6 questions on data	how many keys, duplicates, partially sorted, long to compare, small range, disk access possible
 SD primitives: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
@@ -21,17 +19,13 @@ Algo: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>con
 Graph: Detect cycle in a graph<br>(2 ways, complexity)	<b>Colorized DFS</b> look for <b>back-edge</b> O(V + E).<br><br> Also possible with <b>Union-Find</b>: <b>loop on edges</b>, union-find on vertices O(E)?
 SD components: advantage/disadvantage of columnar storage, 3 examples	if usage pattern is to read whole table like OLAP/BI<br>but only some columns<br><br>don't read unused columns<br>can use <b>compression</b> to reduce disk size<br>disadv: <b>difficult to update</b><br>Parquet, Redshift, Dremel/BigQuery
 Graph: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard
-Tree: reconstruct tree from inorder and preorder	find root, left inorder, right inorder etc.<br>recurse
-Geo: range query<br>- def<br>- solved with	given set of points<br>query: for a query region Q, which points are in Q?<br><br>k-d tree<br>Delaunay triangulation if dynamic
 SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
 SD:<br>- how many FB users<br><br>- how many YT videos watched every day	- 2B Montly active users<br><br>- 5B
 Prob: swim in rising water	<b>BS</b> on answer + DFS check<br>O(n^2 log n)<br><br>BFS with priority queue<br>O(n^2 log n)
-Array: find the majority element	Boyer-Moore <b>voting</b> algorithm<br><br>O(n)
 SD components: BigTable: data model, API, 2 open source equivalents	1. row (row key)<br>2. column: column families + column qualifier within family<br>3. timestamp<br><br>sparse: no room taken for empty cells<br><br>- lookup by row key, range query<br>- HBase, Cassandra
 SD: why Kafka performance (2)	zero-copy<br><br>batching
 OO: abstract class	one or more of methods have no implementation<br><br>serves as <b>base class</b> for others
 OO: static class, static member	class: can not be instantiated<br><br>member: one copy exists
-SD components: 5 techniques to scale RDBMS<br>general/read/writes	general:<br>- federation<br>- denormalization<br>- SQL tuning<br><br>scale reads:<br>- master-slave replication<br><br>scale writes:<br>- sharding
 SD: skip list<br>- definition<br>- complexities<br>- used in	linked list for binary search<br>layers of sorted linked lists (<b>express lanes</b>)<br>p = 1/2 or 1/4, proba for element to be also in layer below<br><br><b>O(log n)</b> average for search/insert/delete, O(n) average space<br>used in LevelDB MemTable
 SD low-level: DMA definition, 3 steps	a device controls processor's memory directly<br>can transfer data to/from memory without processor<br><br>1. CPU initiates transfer<br>2. does other things<br>3. receives interrupt from device when done
 SD: How many simultaneous connections on a whatsapp server	2 million
