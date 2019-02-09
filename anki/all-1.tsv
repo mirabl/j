@@ -13,7 +13,6 @@ SD primitives: how a Lamport clock works	when a process does work, increment<br>
 SD low-level: use cases of UDP	<b>best effort delivery</b> for voice/video streaming, games
 DS: suffix array	same use as suffix tree but with <b>4 times less memory</b><br><br>sorted array of suffixes
 String:<br>print valid n-parentheses	<b>backtrack</b>:<br><br>try a character, recurse if allowed
-Geo: convex-hull algorithm (3)	wrapping<br><br>sweep line<br><br>divide and conquer
 SD primitives: 2 classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
 String: Reverse words in a sentence (2)	1. Word by word from the end.<br><br> 2. <b>reverse whole string</b> char-by-char, <b>reverse within</b> each word
 DS: specialized heaps (2)	when <b>limited set</b> of keys,<br><br>or <b>monotonic</b> input
