@@ -32,3 +32,4 @@ Prob: View from above (stacked segments of different color and height)	sort ente
 BST: nodes have <b>size of their subtree</b> as a field<br>- find size of a <b>range</b> [a,b]<br>- how to <b>update</b> when insert/delete	count number of nodes <a: search a and <b>update count</b> if go <b>left</b> or <b>right</b><br>res: totalsize- "<a" - ">b"<br><br>update: change size along the search path of node to add/remove
 Prob: given set of intervals, find all that <b>intersect a query interval</b><br>support insert/delete	use <b>Interval Tree</b><br><br>search for <b>one</b> intersecting interval<br>remove it<br>repeat
 Geo: convex-hull algorithm (3)	wrapping O(nh)<br><br>sweep line O(n log n)<br><br>divide and conquer O(n log n)
+Prob: find 4th point of rectangle	just use <b>vector</b><br><br>a + (b - c)
