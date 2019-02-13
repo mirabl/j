@@ -18,11 +18,11 @@ Prob: from 3 sorted arrays, find i, j, k s.t. d(i,j,k)=max(|A(i)-B(j)|, ...) is 
 Prob: Gaussian primes	primes with integer-complex numbers<br><br><br>Eratosthene <b>sieve</b><br><br>sort by <b>modulus</b> to order them and put in <b>BST</b>
 Prob: View from above (stacked segments of different color and height)	sort enter/exit list of segments<br>maintain <b>BST</b> (height, color)
 BST: nodes have <b>size of their subtree</b> as a field<br>- find size of a <b>range</b> [a,b]<br>- how to <b>update</b> when insert/delete	count number of nodes <a: search a and <b>update count</b> if go <b>left</b> or <b>right</b><br>res: totalsize- "<a" - ">b"<br><br>update: change size along the search path of node to add/remove
-Prob: given set of intervals, find all that <b>intersect a query interval</b><br>support insert/delete	use <b>Interval Tree</b><br><br>search for <b>one</b> intersecting interval<br>remove it<br>repeat
+Prob: from set of intervals, find all that <b>intersect a query interval</b><br>support insert/delete	use <b>Interval Tree</b><br><br>search for <b>one</b> intersecting interval<br>remove it<br>repeat
 Geo: convex-hull algorithm (3)	wrapping O(nh)<br><br>sweep line O(n log n)<br><br>divide and conquer O(n log n)
-Prob: find 4th point of rectangle	just use <b>vector</b><br><br>a + (b - c)
+Geo: find 4th point of rectangle	just use <b>vector</b><br><br>a + (b - c)
 Prob: skyline<br>how to solve, complex	 <b>divide and conquer</b><br>similar to merge sort<br><br>- divide in <b>2 equal sets</b> (no order or sort)<br>- compute skyline for each<br>- <b>merge</b>: <b>iterate</b> on both<br><br>O(n log n)
-Prob: count number of inversion i<j A(i)>A(j)	<b>divide and conquer</b>: within two halves + merge<br>= <b>modified merge sort</b><br><br>merge function sorts and returns inversion count<br><br>O(n log n)
+Prob: count number of inversions i<j A(i)>A(j)	<b>divide and conquer</b>: within two halves + merge<br>= <b>modified merge sort</b><br><br>merge function sorts and returns inversion count<br><br>O(n log n)
 Tree: Maximum path sum in a binary tree (or diameter)	recursive divide and conquer<br><br>rec function maxStraightPathDown + global variable<br><br>O(n)
 Prob: subarray sum closest to 0	build <b>prefix sum</b> array<br><b>sort</b> it<br><br>loop and find min consecutive difference<br><br>O(n log n)
 Prob: maximum circular subarray sum	1. compute non-circular<br>2. compute circular: <b>careful</b><br><br>need to try all cutting points O(n)<br><br>or compute <b>minimum non-circular</b> and <b>complement</b><br><br>O(n)

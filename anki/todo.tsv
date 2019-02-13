@@ -1,4 +1,3 @@
-8 queens	x
 Top view of binary tree	vertical traversal TODO
 Remove nodes on root to leaf paths of length < K	TODO
 Reverse alternate levels of a perfect binary tree	TODO
@@ -16,8 +15,6 @@ rewrite SD number in terms of latency and throughput	.
 SD: linearizability	.
 SD: Dynamo	eventually consistent, highly available key-value store<br>basis for Cassandra, Riak<br>may diverge when writes<br>when a key is read, there is a read reconciliation
 DS: range tree	alternative to kd-tree<br><br>recursive multi-level best
-DS: treaps	.
-DS: fibonacci heaps	.
 SD components: Chubby: def, internals, open-source version	distributed lock service<br>lock information in small files<br>stored in replicated DB<br>DB implemented on top of fault-tolerant log layer based on Paxos<br>open source: Zookeeper
 Bigtable	Asynchronous, eventually-consistent replication
 Spanner	Planet-scale structured storage<br>Next generation of Bigtable stack<br>Distributed cross-group transactions<br>Synchronous replication groups (Paxos)

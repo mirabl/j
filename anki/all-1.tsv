@@ -7,9 +7,7 @@ LinkedList: 4 problems solved with 2 pointers	find where 2 linked list <b>merge<
 Tree: quad-tree	2D hierarchical partition in quadrants<br><br><b>4</b> children by node<br>split when max capacity reached.
 Graph: edge cover<br>desc, problem and solution	<b>set of edges</b> such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
 SD primitives: 3 consensus algos and their CAP status	<b>2PC</b>, full strict quorum protocols: CA<br><br><b>Paxos</b>, majority quorums with minority in partition: CP<br><br><b>Gossip</b>, Dynamo, conflict resolution: AP
-SD primitives: ACID	atomicity, consistency, isolation, durability
 SD primitives: how a Lamport clock works	when a process does work, increment<br>when send a message, include counter<br>when message received, take the <b>max</b> counter of self and message
-SD low-level: use cases of UDP	<b>best effort delivery</b> for voice/video streaming, games
 DS: suffix array	same use as suffix tree but with <b>4 times less memory</b><br><br>sorted array of suffixes
 String:<br>print valid n-parentheses	<b>backtrack</b>:<br><br>try a character, recurse if allowed
 DS: specialized heaps (2)	when <b>limited set</b> of keys,<br><br>or <b>monotonic</b> input
@@ -28,7 +26,6 @@ Prob. solving:<br>optimize parameter (find min) when difficult directly	<b>binar
 DS: which DS for range minimum or range sum	Segment Tree
 DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
 Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	<b>BFS from start word</b>
-Array: 3 subsequence problems/solutions/cplx	1. <b>Is Subsequence</b>: iterate greedy O(n), no DP<br><br>2. <b>Longest Common Subsequence</b>: DP O(nm)<br><br>3. <b>Longest Increase Subsequence</b><br>- DP O(n^2)<br>- O(n log n): active lists and binary search
 SD: SLO for S3 (2)	99.99 (4) availability<br><br>99.99999999 (10) durability
 SD components: Kafka perf: factors<br>produce, consume, latency	depends on: message size, replication (number and sync/async)<br><br>producer: <b>700K</b> msg/s<br>consumer: <b>1M</b> msg/s<br>end-to-end latency: <b>~3ms</b> 99p
 SD components: load balancer routes traffic based on (6)	- random<br>- least load<br>- session/cookies<br>- (weighted) round robin<br>- layer 4<br>- layer 7

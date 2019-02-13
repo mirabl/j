@@ -152,3 +152,6 @@ SD primitives: Gossip	probabilistic technique for <b>synchronizing replicas</b><
 SD primitives: partition tolerant consensus<br>examples, how they work<br>what happens when partition	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
 SD components: MySQL storage engine (2)	<b>InnoDB</b>: row locking so better concurrency<br><br><b>MyISAM</b>: old, maybe table locking better when lots of reads
 SD primitives: CP systems, work how, implementations	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
+SD primitives: ACID	atomicity, consistency, isolation, durability
+SD low-level: use cases of UDP	<b>best effort delivery</b> for voice/video streaming, games
+Array: 3 subsequence problems/solutions/cplx	1. <b>Is Subsequence</b>: iterate greedy O(n), no DP<br><br>2. <b>Longest Common Subsequence</b>: DP O(nm)<br><br>3. <b>Longest Increase Subsequence</b><br>- DP O(n^2)<br>- O(n log n): active lists and binary search
