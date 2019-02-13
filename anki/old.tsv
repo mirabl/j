@@ -38,7 +38,7 @@ SD components: 4 cache strategies	cache aside: app does everything<br><br>write-
 SD components: replication modes of MySQL<br>(what is in the WAL)	statement-based ("insert ...") = logical<br><br><br>row-based: result of the statement = physical<br><br>or a mix
 Tree: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if <b>in-order traversal</b> is <b>sorted</b> O(n)
 Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
-Sort: sort when limited range of keys	counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
+Sort: sort when limited range of keys (3)	3 <b>distribution sorts</b>:<br><br>counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
 LinkedList: is a linked list a palindrome?	reverse second half, check (and restore)
 SD: CQRS	command query responsibility separation<br><br>separate read and write of data
 LinkedList: insertion in linked list tip	use dummy first node
@@ -97,3 +97,49 @@ SD apps: docs	metadata+documents<br>can compress text<br>handle conflicts<br>han
 SD apps: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
 SD apps: search	- <b>index servers</b> (random sharded on docs)<br>- <b>doc servers</b> (same)<br><br>scatter: build hit list<br>gather: compute relevance order<br><br>docserver: fetch doc from disk, get snippet for keyword
 Array: rotate image by 90 degrees (3)	- ring by ring, <br><br>- reverse up to down and transpose<br><br>- if n=2^k, recursive quadrants
+Graph: output of DFS (2)	vertex: entry/exit time,<br><br>edge: tree edge or back edge
+String: Reverse words in a sentence (2)	1. Word by word from the end.<br><br> 2. <b>reverse whole string</b> char-by-char, <b>reverse within</b> each word
+Graph: 11 types of graphs	connected, directed, weighted, Tree, with cycles, DAG, bipartite, complete (all clique), intersection, planar, sparse
+LinkedList: reverse a linked list	iterative, 3 pointers<br><b>"new head"</b>
+SD apps: how many tweets <br>- per second<br>- per day	per second: 6000<br><br>per day: 500 million
+Alg: 5 DP types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
+SD primitives: 2 classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
+Graph: Minimum Spanning tree Kruskal: algorithm and complexity	<b>sort, process edges from low weight</b> <br>(take min edge, check if it <b>adds cycle</b> in partial tree). <br><br>Cycle detection with <b>union-find</b><br><br>O(E log E)
+Heapify: algorithm and complexity	heapify <b>from the lower levels</b> first,<br><b>sinkdown</b> nodes<br><br>O(n)
+SD primitives: replace global clock by?<br>based on?	vector clock<br><br><br>(t1, ..., tN)<br>based on Lamport clock
+SD: classic consistency problem in DB	read-after-write
+SD primitives: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
+SD: how to <b>avoid deadlock</b>	make <b>locking order fixed</b> when multiple locks
+SD: mutex	one thread in <b>critical section</b> at a time
+SD: livelock	2+ processes change their states in response to changes in the other process(es), no useful work<br><br>ex. corridor
+SD: starvation	runnable process is overlooked indefinitely by the scheduler<br><br>although it is able to proceed, it is never chosen
+Tree: balanced ST: complexity, 5 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>2-3 tree<br>B-tree<br>B+ tree
+SD: Master-master replication	Both masters serve reads and writes and coordinate with each other on writes. <br>If either master goes down, the system can continue to operate with both reads and writes.
+Graph: Minimum Spanning tree Prim: algorithm and complexity	<b>Dijkstra-like</b><br>greedy vertices: add new <b>vertex</b> of <b>minimum distance</b> to partial tree.<br><br>O(V^2), or less with binary heap
+DS: implement LRU cache	= <b>DLL Queue + HashTable</b>: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
+SD: hashing for sharding (2)	<b>consistent hashing</b>: circle with many pseudo-random points per node<br><br><br><b>Rendezvous</b> hashing
+Prob: median of two sorted arrays	<b>Binary search</b><br><br>O(log(m + n))<br><br>tricky cases due to parity
+Sort:<br>Radix sort: description, complexity	MSB or LSB<br>O(wn)
+DS: B-Tree (def, parameter, idea, use case)	self balancing search tree<br><br>non-binary, <b>small height</b><br>branching factor: ~nb (children=keys+1) per node<br><br>read <b>whole disk block</b> to minimize nb seeks in search<br><br>used in <b>indexes for DBs</b>
+DS: B+ Tree (def, 2 adv/1 disadv with B-Tree)	<b>only leaves have data</b><br>internal nodes are just used for searching<br><br>Also: a leaf have a <b>pointer to next leaf</b> (for full scan)<br><br>B+ good: <b>maximize branching</b> factor, <b>full scan</b><br>B+ bad: always need to <b>go to leaf</b> level for lookup
+DS:<br>Adv/Disadvantage of BST vs. HashTable	<b>BST</b> can enumerate in <b>key order</b><br><br>HashTable simpler when <b>duplicate keys</b><br><br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
+Array:<br>Subset sum: a subset of array sums to T	DP CanMakeSum[i][T]<br>O(n S)
+Graph: 4 SSSP/APSP algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
+SD low-level: how many round trips per second<br>- world-wide<br>- within a data center	world-wide: <b>6-7</b><br><br>datacenter: <b>2000</b>
+Graph: shortest paths special cases (2)	1. not oriented, no weights: BFS O(V + E)<br><br>2. DAG: topological sort + greedy, O(V + E)
+Array: Given an array of integers, every element appears twice except for one. Find that single one	XOR O(n)
+SD primitives: 3 weak consistency models	<b>eventual</b>: after some time all replicas agree<br><br><b>client-centric/session</b>: ex. client will never see older value, read-my-writes<br><br><b>causal</b>: strongest
+SD: A in ACID	Atomicity<br><br>All or nothing for a transaction:<br>indivisible<br><b>done or not done</b>
+SD: C in ACID	Consistency<br><br>a transaction moves the DB from a <b>valid state to other valid state</b> (e.g. preserve unique keys)<br><br>Not the same as C in CAP
+SD: D in ACID	when a transaction is committed, it will <b>remain committed</b> even in the case of a system failure (power, crash)
+Algo: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
+SD primitives: replication algs with single-copy consistency (+ nb of msg)	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
+SD: three and four nines availability per year	99.9: <b>9</b> hours of downtime/year<br><br>99.99: <b>1</b> hour downtime/year
+SD:<br>- how many FB users<br><br>- how many YT videos watched every day	- 2B Montly active users<br><br>- 5B
+OO: static class, static member	class: can not be instantiated<br><br>member: one copy exists
+OO: abstract class	one or more of methods have no implementation<br><br>serves as <b>base class</b> for others
+SD: I in ACID	concurrent execution of transactions leaves the DB in same state than if the they were executed sequentially
+LinkedList: beginning of cycle	1. find point in cycle: tortoise/hare<br><br>2. Move one pointer to start, both go to speed 1<br>meeting point is start of cycle
+SD: HDD and SSD IOPS	HDD: <b>~100</b> IOPS<br><br>SSD: <b>100K</b> IOPS
+Array: Find maximum in sliding window (2)	1. use self-balanced BST O(n log n). <br><br>2. Use <b>sorted dequeue</b> O(n)
+SD low-level: Read 4K randomly from SSD	150 us

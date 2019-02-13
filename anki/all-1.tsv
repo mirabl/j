@@ -4,7 +4,6 @@ Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs 
 SD app: how to handle errors in a streaming processing system	rewrite to <b>errorTopic1</b> and <b>retry</b>, then eT2, ...<br><br>then to <b>dead letter topic</b><br><br>(Uber)
 SD primitives: WAL<br>def, goal	<b>write-ahead logging</b><br><b>first log</b> actions to be done to permanent storage<br><br><b>then do</b> the actions<br><br>gives <b>durability</b> and atomicity even if crash
 LinkedList: 4 problems solved with 2 pointers	find where 2 linked list <b>merge</b><br><br><b>middle</b> of a linked list<br><br><b>last-M-th</b> element of a linked list<br><br><b>cycle</b>: detect/find beginning
-Graph: output of DFS (2)	vertex: entry/exit time,<br><br>edge: tree edge or back edge
 Tree: quad-tree	2D hierarchical partition in quadrants<br><br><b>4</b> children by node<br>split when max capacity reached.
 Graph: edge cover<br>desc, problem and solution	<b>set of edges</b> such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
 SD primitives: 3 consensus algos and their CAP status	<b>2PC</b>, full strict quorum protocols: CA<br><br><b>Paxos</b>, majority quorums with minority in partition: CP<br><br><b>Gossip</b>, Dynamo, conflict resolution: AP
@@ -13,25 +12,37 @@ SD primitives: how a Lamport clock works	when a process does work, increment<br>
 SD low-level: use cases of UDP	<b>best effort delivery</b> for voice/video streaming, games
 DS: suffix array	same use as suffix tree but with <b>4 times less memory</b><br><br>sorted array of suffixes
 String:<br>print valid n-parentheses	<b>backtrack</b>:<br><br>try a character, recurse if allowed
-SD primitives: 2 classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
-String: Reverse words in a sentence (2)	1. Word by word from the end.<br><br> 2. <b>reverse whole string</b> char-by-char, <b>reverse within</b> each word
 DS: specialized heaps (2)	when <b>limited set</b> of keys,<br><br>or <b>monotonic</b> input
-Alg: 5 DP types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
 Graph: clique<br>definition, 2 problems and solutions	complete subgraph<br>maximum clique: largest in the graph (difficult in general, heuristics)<br><br>maximal: can not be extended (greedy)
-SD apps: how many tweets <br>- per second<br>- per day	per second: 6000<br><br>per day: 500 million
-Graph: Minimum Spanning tree Kruskal: algorithm and complexity	<b>sort, process edges from low weight</b> <br>(take min edge, check if it <b>adds cycle</b> in partial tree). <br><br>Cycle detection with <b>union-find</b><br><br>O(E log E)
-Heapify: algorithm and complexity	heapify <b>from the lower levels</b> first,<br><b>sinkdown</b> nodes<br><br>O(n)
 Graph: Find connected components of an undirected graph (2)	BFS/DFS O(V + E), <br><br>- or process edges, Union-Find on vertices<br><br>If dynamic changes, keep track of components with Union-Find.
 Graph: matching, perfect matching	<b>set of edges</b> which <b>don't touch</b><br><br>perfect: all vertices are matched,<br>like minimum size edge cover
-DS:<br>Priority queues: 2 implementations	heaps<br><br><br>self balancing BST
+DS:<br>Priority queues: 2 implementations	heaps<br><br>self balancing BST
 SD primitives: primary/backup replication<br>master, works how, network, failover	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous variant: ensure that write are done one backups before returning to the client
 SD primitives: Gossip	probabilistic technique for <b>synchronizing replicas</b><br><br>nodes have some probability p of attempting to synchronize with each other<br><br>efficient thanks to <b>Merkle trees</b>
 SD primitives: partition tolerant consensus<br>examples, how they work<br>what happens when partition	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
 Graph: color theorem	a <b>planar</b> graph can be vertex-colored with most <b>4 colors</b>
-LinkedList: reverse a linked list	iterative, 3 pointers<br><b>"new head"</b>
 Prob:<br>split array in m continous subarrays<br>minimize largest subarray sum	<b>Binary search</b> on answer<br><br>Greedy packing to check if valid
 SD components: MySQL storage engine (2)	<b>InnoDB</b>: row locking so better concurrency<br><br><b>MyISAM</b>: old, maybe table locking better when lots of reads
-Graph: 11 types of graphs	connected, directed, weighted, Tree, with cycles, DAG, bipartite, complete (all clique), intersection, planar, sparse
 Alg: solve recurrences + examples<br>T(n) = T(n / 2) + O(1)<br>T(n) = 2 T(n / 2) + O(1)<br>T(n) = 2T (n / 2) + O(log n)<br>T(n) = 2 T(n / 2) + O(n)<br>T(n) = T(n / 2) + O(n)	O(log n) binary search<br>O(n)<br>O(n)<br>O(n log n) mergesort<br>O(n) quickselect
 DS: LFU cache<br>implementation	<b>3 hash maps</b>, one with linked list as values
 SD: - default stack size<br>- size of empty stack<br>- max nb recursive calls	- <b>1 to 8 MB</b><br><br>= virtual<br>not allocated completely unless needed<br><br>- <b>< 100 bytes frame</b><br><br><b>5K+ calls</b>
+Prob:<br>Container With Most Water<br>n vertical lines	<b>2 pointers, from start and end</b><br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
+Misc: 5 NP-complete problems	SAT<br>knapsack<br>traveling salesman<br>set cover<br>Hamiltonian cycle
+Tree: k-d tree<br>definition<br>4 complexities	split in 1 dimension at each node (median of coordinate to get balance)<br><br>search/insert/delete O(log n) average<br>Space: O(n)
+Prob. solving:<br>optimize parameter (find min) when difficult directly	<b>binary search</b> + checkValue(mid)
+SD primitives: CA systems, based on, main problem, used by	more common, <b>not partition aware</b>,<br>often 2PC<br>traditional <b>RDBMS</b>
+DS: which DS for range minimum or range sum	Segment Tree
+DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
+Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	<b>BFS from start word</b>
+Array: 3 subsequence problems/solutions/cplx	1. <b>Is Subsequence</b>: iterate greedy O(n), no DP<br><br>2. <b>Longest Common Subsequence</b>: DP O(nm)<br><br>3. <b>Longest Increase Subsequence</b><br>- DP O(n^2)<br>- O(n log n): active lists and binary search
+SD: SLO for S3 (2)	99.99 (4) availability<br><br>99.99999999 (10) durability
+SD components: Kafka perf: factors<br>produce, consume, latency	depends on: message size, replication (number and sync/async)<br><br>producer: 700K msg/s<br>consumer: 1M msg/s<br>end-to-end latency: ~3ms 99p
+SD components: load balancer routes traffic based on (6)	- random<br>- least load<br>- session/cookies<br>- (weighted) round robin<br>- layer 4<br>- layer 7
+SD apps: C numbers	BR 1M/s<br><br>NoSQL cache/persisted: 200To, 1k memcache, 1k couchbase, 1ms 99p, 60M QPS peak<br><br>HDFS: 300 PB, 3k nodes
+SD components: load-balancer layer 4 vs. layer 7	4:<br>- look at transport layer: IP address, port<br>- do <b>NAT</b><br>- often hardware<br><br>7:<br> look at application layer, like URL for HTTP, cookies<br>terminates network traffic, remove TLS<br>called <b>reverse-proxy</b> server
+SD: semaphore	<b>count</b> how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
+SD: process vs thread	thread:<br>run in <b>shared memory</b> space<br>share resources<br>context switch faster<br><br>thread has <b>own stack</b>
+Prob: in string, replace a by dd, delete b<br>O(1) space	<b>two passes</b>:<br><br>1. <b>forward</b> delete b's in place<br>and count a's<br><br>2. <b>backward</b> replace a's 
+SD components: how does BigQuery/Dremel distribute queries	<b>Tree</b> Architecture<br>dispatching queries and aggregating results<br>thousands of machines in a few seconds
+SD primitives: Paxos<br>principle, master, failures, network, use where	<b>majority vote</b><br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br><br>used in Chubby, BigTable/Megastore, GFS, Spanner
+Prob: first missing positive	<b>swap pairs</b> to put at its place<br>O(n) time<br>O(1) memory

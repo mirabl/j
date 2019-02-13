@@ -1,38 +1,49 @@
-Prob:<br>Container With Most Water<br>n vertical lines	<b>2 pointers, from start and end</b><br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
-Misc: 5 NP-complete problems	SAT<br>knapsack<br>traveling salesman<br>set cover<br>Hamiltonian cycle
-Tree: k-d tree<br>definition<br>4 complexities	split in 1 dimension at each node (median of coordinate to get balance)<br><br>search/insert/delete O(log n) average<br>Space: O(n)
-SD primitives: replace global clock by?<br>based on?	vector clock<br><br><br>(t1, ..., tN)<br>based on Lamport clock
-Prob. solving:<br>optimize parameter (find min) when difficult directly	<b>binary search</b> + checkValue(mid)
-SD: classic consistency problem in DB	read-after-write
-SD primitives: CA systems, based on, main problem, used by	more common, <b>not partition aware</b>,<br>often 2PC<br>traditional <b>RDBMS</b>
-DS: which DS for range minimum or range sum	Segment Tree
-SD primitives: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
-DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
-Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	<b>BFS from start word</b>
-Array: 3 subsequence problems/solutions/cplx	1. <b>Is Subsequence</b>: iterate greedy O(n), no DP<br><br>2. <b>Longest Common Subsequence</b>: DP O(nm)<br><br>3. <b>Longest Increase Subsequence</b><br>- DP O(n^2)<br>- O(n log n): active lists and binary search
-SD: SLO for S3 (2)	99.99 (4) availability<br><br>99.99999999 (10) durability
-SD components: Kafka perf: factors<br>produce, consume, latency	depends on: message size, replication (number and sync/async)<br><br>producer: 700K msg/s<br>consumer: 1M msg/s<br>end-to-end latency: ~3ms 99p
-SD components: load balancer routes traffic based on (6)	- random<br>- least load<br>- session/cookies<br>- (weighted) round robin<br>- layer 4<br>- layer 7
-SD apps: C numbers	BR 1M/s<br><br>NoSQL cache/persisted: 200To, 1k memcache, 1k couchbase, 1ms 99p, 60M QPS peak<br><br>HDFS: 300 PB, 3k nodes
-SD components: load-balancer layer 4 vs. layer 7	4:<br>- look at transport layer: IP address, port<br>- do <b>NAT</b><br>- often hardware<br><br>7:<br> look at application layer, like URL for HTTP, cookies<br>terminates network traffic, remove TLS<br>called <b>reverse-proxy</b> server
-SD: how to <b>avoid deadlock</b>	make <b>locking order fixed</b> when multiple locks
-SD: livelock	2+ processes change their states in response to changes in the other process(es), no useful work<br><br>ex. corridor
-SD: starvation	runnable process is overlooked indefinitely by the scheduler<br><br>although it is able to proceed, it is never chosen
-SD: mutex	one thread in <b>critical section</b> at a time
-SD: semaphore	<b>count</b> how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
-SD: process vs thread	thread:<br>run in <b>shared memory</b> space<br>share resources<br>context switch faster<br><br>thread has <b>own stack</b>
-Prob: in string, replace a by dd, delete b<br>O(1) space	<b>two passes</b>:<br><br>1. <b>forward</b> delete b's in place<br>and count a's<br><br>2. <b>backward</b> replace a's 
-SD components: how does BigQuery/Dremel distribute queries	<b>Tree</b> Architecture<br>dispatching queries and aggregating results<br>thousands of machines in a few seconds
-SD: hashing for sharding (2)	<b>consistent hashing</b>: circle with many pseudo-random points per node<br><br><br><b>Rendezvous</b> hashing
-Tree: balanced ST: complexity, 5 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>2-3 tree<br>B-tree<br>B+ tree
-DS: implement LRU cache	= <b>DLL Queue + HashTable</b>: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
-SD primitives: Paxos<br>principle, master, failures, network, use where	<b>majority vote</b><br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br><br>used in Chubby, BigTable/Megastore, GFS, Spanner
-Prob: median of two sorted arrays	<b>Binary search</b><br><br>O(log(m + n))<br><br>tricky cases due to parity
-Graph: Minimum Spanning tree Prim: algorithm and complexity	<b>Dijkstra-like</b><br>greedy vertices: add new <b>vertex</b> of <b>minimum distance</b> to partial tree.<br><br>O(V^2), or less with binary heap
-SD: Master-master replication	Both masters serve reads and writes and coordinate with each other on writes. <br>If either master goes down, the system can continue to operate with both reads and writes.
-Prob: first missing positive	<b>swap pairs</b> to put at its place<br>O(n) time<br>O(1) memory
 SD primitives: strong consistency models	<b>linearizable</b> consistency: real world ordering respected<br><br><b>sequential</b> consistency: can be reordered as long as consistent on each node
-Sort:<br>Radix sort: description, complexity	MSB or LSB<br>O(wn)
 Graph: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
 Geo: closest pair<br>def, 2 algs	find the pair that is closest<br><br><b>sweep line</b>: O(n log n)<br><br><b>divide and conquer</b>: O(n log^2 n)
 Tree: Serialize/Deserialize	<b>preorder and NULL marker</b><br><br>or: pre AND inorder<br>better: <br><br>Special case?<br>BST: pre or postorder<br>Complete: level order<br>Full: preorder with boolean for leaves
+SD low-level: Send 1K bytes over 1 Gbps network	10 us
+SD components: BigQuery/Dremel perf for 1T read	with 10K disks and 5K cpus<br><br><b>1 second to read 1TB</b>
+SD components: Dynamo<br>sharding, quorums, conflict, replica sync	consistent hashing<br>partial quorums for reading and writing<br>conflict detection and read repair via vector clocks<br>gossip for replica synchronization
+Algo: Gray code construction	recursive, G_{n-1}, G_{n-1} reversed with top bit set<br><br>gray(n) = n ^ (n >> 1)
+OO: virtual method	can be <b>overriden</b> in derived class
+OO: generics	class/method that defer specification of type until declared and instantiated in client code
+SD: circuit breaker<br>def, how it works	<b>~proxy</b> for operations that might fail<br><br><b>3 states</b>: closed / half-open / open<br>change state by looking at error rate
+SD: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency prefered
+Prob: count distinct subsequences	c(n) = 2 * c(n - 1) - c(index of last occ of cur char)<br><br>use table for c[]<br><br>O(n)
+Prob: Count distinct occurrences of t as a subsequence of s	dp[offsetS][offsetT]<br><br>O(nm)
+2D Array: Boggle (Find all possible words in a board of characters)	DFS from every start cell, mark visited cells.<br><br>Complexity?<br> Better solution with Trie.
+Array: Smallest subarray with sum greater than a given value	<b>Sliding window</b>: keep adding array elements while current sum is smaller than x <br> If current sum becomes greater than x, update min length, remove starting elements
+SD components:<br>2 data warehouses products for an analytical processing OLAP	Redshift, BigQuery/Dremel
+DS: <br>Binary heap definition	complete binary<br><br>with heap property (children smaller than parent)
+Graph: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br><br><br>O(V^2) if adjacency matrix/O(V)
+SD components: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second<br>billions of rows<br>thousands of columns
+SD primitives: CP systems, work how, implementations	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
+Prob:<br>0-1 Knapsack: description, solution, problem class	max weight, items with values and weights, maximize value<br><br>DP Best[i][w]<br>O(n W)<br>NP-complete
+Graph: articulation point<br>def, algo, complex	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
+Array: find the median of non-sorted array<br>+ approximate and why	QuickSelect O(n)<br><br>median of medians: approximate, first step of quicksort/select<br>split in groups of 5<br>find median of each group, recurse
+SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
+SD components: one instance RDBMS perf	no answer, depends on query/HW, if fits in RAM<br><br><b>1 TB</b> total size<br><b>billions</b> of rows<br><b>1K</b> r/w QPS<br><br>latency: SSD 1ms, HD: 20ms
+DS: <b>Interval tree</b>	red black tree<br>each node is interval<br><br>node contains:<br>1. start of interval=sort key<br>2. end of interval<br>3. maxEnd of intervals in subtree<br><br>search for intersection O(h):<br>go in right or left (bit tricky proof)
+SD: time for a <b>context switch</b>	<b>5μs</b>
+String: Boyer-Moore	try to match from start of text but <b>from end of pattern</b><br>when <b>mismatch, skip chars</b> when possible<br><br>2 prepro tables to skip chars:<br>- indexOfLastOccurence[char]<br>- other table more complicated<br>O(n/m) to O(nm)
+SD: log structured merge trees (principle, components, good for, compare)	MemTable/SSTables<br>+ disk WAL<br><br>do only <b>sequential write on disk</b><br>thanks to in-memory buffer<br><br>better <b>write throughput</b> than B+<br>good for write-heavy
+Graph: Topological sort of DAG (2)	 1. <b>DFS</b>: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br><br>2.  <b>BFS-style</b> algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
+SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
+SD components: in-memory K/V store perf	on machine with good network<br><br>read/write: 200k/s easily<br><br>latency: 1ms<br><br>no bound on size with sharding but $
+Geo: nearest neighbour<br>- definition<br>- solved with	k-d tree<br>2D: Voronoi
+String: Find the smallest window in a string containing all characters of another string	sliding window<br><br>O(n)|O(n)
+SD primitives: 2 rate limiters	leaky bucket<br><br>token bucket
+Alg: NP-complete/NP-hard definition	in NP, and any NP problem can be transformed in a NP-complete<br><br>NP-hard: same but not in NP necessarily
+Sort: 6 questions on data	how many keys, duplicates, partially sorted, long to compare, small range, disk access possible
+SD primitives: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
+Prob: find K-th smallest pair distance<br>from integer array	<b>Sort</b> array<br><b>Binary search</b> on answer<br><b>Two pointers</b> to validate
+Graph: bridge<br>def, algo, complexity	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
+Graph: Detect cycle in a graph<br>(2 ways, complexity)	<b>Colorized DFS</b> look for <b>back-edge</b> O(V + E).<br><br> Also possible with <b>Union-Find</b>: <b>loop on edges</b>, union-find on vertices O(E)?
+SD components: advantage/disadvantage of columnar storage, 3 examples	if usage pattern is to read whole table like OLAP/BI<br>but only some columns<br><br>don't read unused columns<br>can use <b>compression</b> to reduce disk size<br>disadv: <b>difficult to update</b><br>Parquet, Redshift, Dremel/BigQuery
+Graph: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard
+SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
+Prob: swim in rising water	<b>BS</b> on answer + DFS check<br>O(n^2 log n)<br><br>BFS with priority queue<br>O(n^2 log n)
+SD components: BigTable: data model, API, 2 open source equivalents	1. row (row key)<br>2. column: column families + column qualifier within family<br>3. timestamp<br><br>sparse: no room taken for empty cells<br><br>- lookup by row key, range query<br>- HBase, Cassandra
+SD: specs of usual machines	24G RAM, 8 cores<br>1Gb ethernet<br><br>- 2x1TB SSD<br>or<br>2x2TB hard drives
+SD: N+2 principle	service can run if 2 largest instances are down<br><br>e.g. machine off or release
