@@ -1,11 +1,3 @@
-Prob: longest subarray with sum <= k	build <b>prefix sum array R</b><br>prob: for i, pick largest j s.t. R(j) <= R(i) + k<br><br><b>efficient frontier</b> array of R:<br>ignore decreasing values: build <b>staircase increasing</b> array<br><br>then: for each i, do <b>binary search</b> to find j<br><br>O(n log n)
-Prob: largest rectangle under histogram	iterate on bars: find <b>largest rectangle to the left with this bar and height</b><br><br><b>efficient frontier:</b> keep only past building with <b>increasing height (stack)</b><br><br>O(n)
-Prob: largest all-1s 2D subarray (or cross shape)	<b>precompute</b>: for each cell, <b>number of 1s</b> to the <b>left</b>, and <b>down</b><br><br>then: for each cell, find largest subarray <b>with this corner</b> (iterate on sizes)<br><br>O(n^2 m)
-Prob:<br>Coin Game: coins in a row, pick one	<b>windowed DP</b><br><br>F(i,j) = max (coinChosen + whatIsLeftAfterOtherPlayer(=min))<br><br>F(from coin i to j) = max(. + min(), . + min())<br>O(n^2)
-DS: count–min sketch, def, use	probabilistic data structure: <b>frequency table of events</b> in a <b>stream</b> of data<br><br>same as <b>counting Bloom Filter</b><br><br><b>Table</b>: row=hash function, column: bucket (space of hash), entry: integer<br><br>ex: count views for many many videos
-DS: HyperLogLog, def, use	<b>approximate count-distinct</b><br>hash stream entries and only record the <b>longest leading zero seq length</b><br><br>-> <b>estimate</b> the number of <b>distinct entries</b><br>Improve accuracy with buckets, removing outliers and averaging<br><br>Use in ApproxCountDistinct in DBs.
-DS: tournament tree, def, use	complete binary tree<br>2 case: <b>winner</b>, <b>loser</b> tree<br><br>player=leaves<br>min/max winner/loser<br><br>apps: sorting, first-fit bin packing, k-way merge
-Prob: Huffman coding	sort characters by frequency<br>merge two <b>least common</b> chars into one node (with sum frequency)<br>repeat<br><br>use <b>min-heap</b><br><br>O(n log n)
 Prob: reflex<br>1. permutation<br>2. DAG<br>3. "top k" (3)<br>4. Geometric problem (2)<br>5. Intervals (3)	1. cycles<br>2. topological sort<br>3. heap, k-selection, 2k table<br>4. sweep line, convex hull<br>5. sort by start/end, in/out events, interval tree
 Prob: reflex<br>1. linked list (2)<br>2. array range/subarray<br>3. search (2)<br>4. palindrome<br>5. 1D/2D problem	1. two pointers, reverse<br>2. prefix sum<br>3. sort before<br>4. look at reverse string (LCS)<br>5. DP
 Prob: reflex<br>1. get low complexity for conflicting ops<br>2. many strings/dictionary<br>3. graph<br>4. in-place	1. use <b>multiple DS</b> (reverse index)<br>2. use <b>trie</b><br>3. connected co, MST<br>4. several <b>passes</b>
@@ -29,7 +21,6 @@ Tree: Check if a binary tree is <b>subtree</b> of another (2)	Naive O(n^2), <br>
 Geo: line through most points	<b>hash</b><br>H[line] = list of points<br><br>for each pair, add entry in H<br><br>tricky hash because floats<br>use rationals
 Prob: find elements that appear more than k/n times	generalization of <b>voting</b><br><br><b>two passes</b><br>- keep <b>k</b> counters in <b>hash</b><br><br>purge hash table when needed<br><br>- second pass to check candidates
 Prob: DS for insert/delete/getRandom in O(1)	<b>array + hash</b> (index into array)<br><br>to <b>remove</b> from array: <b>swap</b> with last element
-Geo: find pair of points with greatest distance	compute <b>convex hull</b> (n log n)<br><br>check <b>all pairs in hull</b>
 Prob: DS for solving	<b>LTGSH USQHP</b><br>Linked list, Tree, Graph, Set, Hash table<br><br>Union-find, Stack, Queue, Heap, Priority queue
 Prob: problem solving approaches (6)	Brute force<br>BF w/ Backtracking<br>Divide and Conquer<br>Greedy<br>DP<br>BS answer+check
 Prob: classical DP problems (6)	max range sum (1D, 2D)<br>Knapsack<br>Coin change<br>LCS/LIS/edit<br>Floyd-Warshall<br>TSP
@@ -46,3 +37,9 @@ String: minimum insertions to make string a palindrome (2)	1. <b>windowed DP</b>
 String: longest palindromic subsequence (2)	1. <b>windowed DP</b><br>dp[i][j]: s[i..j], O(n^2)<br><br>2. <b>LCS</b> with <b>reverse</b> string<br>O(n^2)
 String: palindrome problems (3)	1. <b>max</b> palindrome <b>substring</b>: O(n^2) <b>greedy extend</b><br>or O(n) Manacher<br><br>2. <b>max</b> palindrome <b>subsequence</b>: <b>LCS</b> with <b>reverse</b> O(n^2)<br><br>3. <b>min insertions</b> to <b>make</b> palindrome: <b>LCS</b> with <b>reverse</b> O(n^2)
 DS: probabilistic data structures (3)	<b>Bloom</b> filter: set<br><br><b>Count-Min sketch</b>: count by type<br><br><b>HyperLogLog</b>: count
+Graph: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
+Geo: farthest pair	compute <b>convex hull</b> (n log n)<br><br>check <b>all pairs in hull</b>
+Geo: closest pair<br>def, 2 algs	find the pair that is closest<br><br><b>sweep line</b>: O(n log n)<br><br><b>divide and conquer</b>: O(n log^2 n)
+Geo: closest pair with D&C	split in 2 sets with <b>median</b> of x<br><br>compute min in each side<br>d = min of 2 mins<br><br>merge: <b>vertical sort</b>of <b>band (-d,+d)</b><br><br>find <b>smallest pair in band</b>: not O(n^2) but O(n) since only <b>constant nb points</b> to check
+Geo: closest pair, farthest pair, nearest neighbour	closest:<br><b>sweep</b> line/<b>D&C</b> O(n log^x n)<br><br>farthest: check <b>all pairs</b> on <b>convex hulls</b><br>O(n log n + h^2)<br><br>nearest neighbour: k-d tree O(log n) when tree built
+Geo: nearest neighbour search (NNS)<br>- definition<br>- solved with	given a point in a set, find closest point in set<br><br><b>space partitioning</b>: e.g. <b>k-d tree</b>
