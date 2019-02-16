@@ -43,3 +43,4 @@ Geo: closest pair<br>def, 2 algs	find the pair that is closest<br><br><b>sweep l
 Geo: closest pair with D&C	split in 2 sets with <b>median</b> of x<br><br>compute min in each side<br>d = min of 2 mins<br><br>merge: <b>vertical sort</b>of <b>band (-d,+d)</b><br><br>find <b>smallest pair in band</b>: not O(n^2) but O(n) since only <b>constant nb points</b> to check
 Geo: closest pair, farthest pair, nearest neighbour	closest:<br><b>sweep</b> line/<b>D&C</b> O(n log^x n)<br><br>farthest: check <b>all pairs</b> on <b>convex hulls</b><br>O(n log n + h^2)<br><br>nearest neighbour: k-d tree O(log n) when tree built
 Geo: nearest neighbour search (NNS)<br>- definition<br>- solved with	given a point in a set, find closest point in set<br><br><b>space partitioning</b>: e.g. <b>k-d tree</b>
+Prob: find Hamiltonian cycle (def, class, alg)	visit each vertex once<br>NP-complete<br><br><b>DFS backtrack</b> with path as parameter<br>O(V!) or <b>bitmask DP</b>

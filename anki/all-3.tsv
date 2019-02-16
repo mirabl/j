@@ -37,7 +37,6 @@ Prob: set matrix zeroes	set cell in <b>first</b> row/column to zero if element i
 Array: Coin change:<br>Given infinite coins of value V1..VN, find the minimum number of coins with sum S	DP<br><br><b>dp[amount]</b><br>loop on coin<br>loop on x to update dp[x]<br><br>O(N S)
 Prob: shortest superstring	<b>bitmask DP</b><br>dp[mask][endingWithString]<br><br>O(2^n n^2)
 Prob: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive DFS O(V(V + E))<br><br>linear for DAG: toposort, then loop<br>O(V + E)
-Prob: find Hamiltonian cycle (def, class, alg)	visit each vertex once<br><br><br>NP-complete<br><br><b>DFS backtrack</b> with path as parameter<br>O(V!) or <b>bitmask DP</b>
 Prob: color graph with k colors, algo/complex	<b>backtracking</b><br><br>O(k^V)?
 Prob: shortest path with exactly k edges in a directed and weighted graph	<b>DP dist[s][t][k]</b><br>fill with k increasing<br><br>O(V^3 k)
 Prob: Eulerian cycle: def, check/find algos	visit each edge<br><br>linear time O(E)<br>vs. Hamiltonian is NP-hard<br><br>check if exists: look at conditions on degree<br><br>find: O(E) exists (Fleury)
