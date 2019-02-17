@@ -113,7 +113,7 @@ SD: how to <b>avoid deadlock</b>	make <b>locking order fixed</b> when multiple l
 SD: mutex	one thread in <b>critical section</b> at a time
 SD: livelock	2+ processes change their states in response to changes in the other process(es), no useful work<br><br>ex. corridor
 SD: starvation	runnable process is overlooked indefinitely by the scheduler<br><br>although it is able to proceed, it is never chosen
-Tree: balanced ST: complexity, 5 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>2-3 tree<br>B-tree<br>B+ tree
+Tree: balanced ST: complexity, 6 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>treap: binary<br>2-3 tree<br>B-tree<br>B+ tree
 SD: Master-master replication	Both masters serve reads and writes and coordinate with each other on writes. <br>If either master goes down, the system can continue to operate with both reads and writes.
 Graph: Minimum Spanning tree Prim: algorithm and complexity	<b>Dijkstra-like</b><br>greedy vertices: add new <b>vertex</b> of <b>minimum distance</b> to partial tree.<br><br>O(V^2), or less with binary heap
 DS: implement LRU cache	= <b>DLL Queue + HashTable</b>: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
