@@ -1,49 +1,17 @@
-Prob: next permutation	from the left, find position to increment<br>(except last position)<br><br>increment it<br><br>reset left to minimum
-Prob: copy postings linked-list with no additional storage	<b>3 passes</b><br><br><b>modify</b> next pointer of original list<br>then <b>restore</b>
-Tree: iterative in-order traversal of binary tree	<b>stack</b> of nodes + <b>curnode</b> pointer<br><br>go all <b>down left</b> while <b>pushing to stack</b><br><br><b>pop</b> from stack, <b>print</b>, <b>curnode=right</b>
-Tree: threaded binary tree, def, uses	<b>null right</b> pointers replaced by pointer to <b>next inorder</b> node<br><br><br>used for O(1) space iterative inorder traversal
-Tree: in-order iterative traversal with parent pointers	go <b>all left</b>, then up/right<br><br>when going up, need to know <b>if we come from left or right</b><br><br>-> store child in <b>prev</b> variable
-Tree: reconstruct from pre-order with null	from <b>right to left ⟵</b><br>with <b>stack</b><br><br>push null<br><b>when non-null, <b>pop 2</b>, <b>push new</b>
-Heap: from max-heap, check if k-th largest element is >= x in O(k)/O(k)	<b>recursive</b><br>global descent with larger/equal counters<br><br>stop early<br><br>nb calls is O(k) as counters are almost always incremented
-Binary Search: find <b>first</b> element (2)	- tweak binary search<br><br>- or set <b>currentBest variable</b> and continue
-Prob: find missing one from 1 billion of IP adresses<br>using 2 MB of RAM	<b>two passes LSB/MSB</b><br><br>find missing <b>LSB</b>:<br>count LSB in RAM array<br><br>find <b>whole IP</b>, <b>filtering</b> on LSB
-Prob: array where all elements appear 3 times and one appears once, find it	<b>bit decomposition</b><br><br>for each <b>bit position</b>:<br><b>count modulo 3</b><br><br>at the end, count=0,1,3<br><br>missing element: counts=1
-Sort:<br>3 big sorts on large data<br>+ advantages	quicksort: <b>fast</b>, not stable unless storage, bad <b>worst case</b><br><br>mergesort: <b>stable</b>, <b>not in-place</b>, parallelizable, contiguous access<br><br>heapsort: <b>in-place, not stable</b>, <b>slower</b> than quicksort
-Sort: which sort for:<br>1. general large integer array<br>2. small array<br>3. almost sorted (2)<br>4. small range array<br>5. many duplicates (2)<br>6. stability required (2)	1. quicksort<br>2. insertion sort<br>3. depends: heap/heapsort/insertion<br>4. counting sort in array or BST<br>5. BST<br>6. merge sort/decorate-sort (key, index)
-Sort: sort without moving too many records (which might be expensive)	<b>indirect sort</b>:<br>1. sort secondary <b>array of indices</b><br><br>2. apply sort to array (move records)
-SD: messaging system semantics	<b>at-least-once</b>: producer client retries when ack timeout or error<br><br><b>at-most-once</b>: no retries<br><br><b>exactly-once</b>: on Kafka, uses sequence numbers
-BST: insert/delete	- insert: recursive like searching<br><br>- delete: <b>replace by successor</b> in right subtree<br>careful corner cases
-BST: build from sorted linked list	avoid finding the middle over and over<br><br>have pointer in list<br><br>recursively create left subtree<br><b>move pointer</b> and set root value<br><br>recursively create right<br><br><b>O(n)</b>
-Prob: from 3 sorted arrays, find i, j, k s.t. d(i,j,k)=max(|A(i)-B(j)|, ...) is minimum	<b>1 pointer in each</b><br><b>move 1</b> (min) at each step<br><br>like intersection of sorted arrays<br><br>record minimum<br><br>O(len A + len B + ..)
-Prob: Gaussian primes	primes with integer-complex numbers<br><br><br>Eratosthene <b>sieve</b><br><br>sort by <b>modulus</b> to order them and put in <b>BST</b>
-Prob: View from above (stacked segments of different color and height)	sort enter/exit list of segments<br>maintain <b>BST</b> (height, color)
-BST: nodes have <b>size of their subtree</b> as a field<br>- find size of a <b>range</b> [a,b]<br>- how to <b>update</b> when insert/delete	count number of nodes <a: search a and <b>update count</b> if go <b>left</b> or <b>right</b><br>res: totalsize- "<a" - ">b"<br><br>update: change size along the search path of node to add/remove
-Prob: from set of intervals, find all that <b>intersect a query interval</b><br>support insert/delete	use <b>Interval Tree</b><br><br>search for <b>one</b> intersecting interval<br>remove it<br>repeat
-Geo: convex-hull algorithm (3)	wrapping O(nh)<br><br>sweep line O(n log n)<br><br>divide and conquer O(n log n)
-Geo: find 4th point of rectangle	just use <b>vector</b><br><br>a + (b - c)
-Prob: skyline<br>how to solve, complex	 <b>divide and conquer</b><br>similar to merge sort<br><br>- divide in <b>2 equal sets</b> (no order or sort)<br>- compute skyline for each<br>- <b>merge</b>: <b>iterate</b> on both<br><br>O(n log n)
-Prob: count number of inversions i<j A(i)>A(j)	<b>divide and conquer</b>: within two halves + merge<br>= <b>modified merge sort</b><br><br>merge function sorts and returns inversion count<br><br>O(n log n)
-Tree: Maximum path sum in a binary tree (or diameter)	recursive divide and conquer<br><br>rec function maxStraightPathDown + global variable<br><br>O(n)
-Prob: subarray sum closest to 0	build <b>prefix sum</b> array<br><b>sort</b> it<br><br>loop and find min consecutive difference<br><br>O(n log n)
-Prob: maximum circular subarray sum	1. compute non-circular<br>2. compute circular: <b>careful</b><br><br>need to try all cutting points O(n)<br><br>or compute <b>minimum non-circular</b> and <b>complement</b><br><br>O(n)
-DP: length of longest increasing subsequence	- O(n^2) bestLISEndingAtOffset[i]<br><br>- O(n log n) <b>active lists</b> (duplicate and extend)<br>or <b>tail array</b>: t[i] smallest tail of all increasing subsequences with length i+1<br><b>update cell or extend</b>
-Prob: most visited pages, compute top-k by frequency:<br>-1. once at end<br>-2. any time streaming	1. hash map <b>freq[s]++</b><br>at end, do <b>k-selection</b> (quickselect O(n), 2k array O(n), heap O(n log n))<br><br>2. <b>BST</b> with (count, s) + <b>hashMap</b> bstNodeForString[s]<br><br>update by deleting/re-inserting in BST<br>answer: top-k from BST
-Prob: most visited pages in last W fixed seconds, query any time streaming	<b>3 structures</b>:<br><br>1. <b>BST</b>: (count, s)<br><br>2. <b>HashMap</b> bstNodeForString[s]<br><br>3. <b>Queue</b> Q of elements in current window<br><br>increase-decrease in BST when insert/remove from Q
-Prob: find k-th largest element from n streamed elements, once at the end (2)	- heap: O(n log k)<br><br>- better: <b>array of 2k</b><br><br>when full, purge to size <b>k</b><br>with O(k) <b>selection</b><br><br>total: O(n)
-Prob: find k-th largest elements (3)	1. <b>multiple queries</b>:<br>use <b>priority queue</b><br>O(n log k) + O(log n) by query<br><br><br>2. <b>1 query</b>:<br>2.a with <b>array</b>: <b>quickselect</b> O(n)<br>2.b with <b>stream</b> <b>2k array</b> O(n)
-Prob: find k-th most frequent, no time window (2)	1. 1 query<br><b>HashMap + quickselect</b><br>O(n)<br><br>2. <b>multiple queries</b><br><b>BST (count, elem) + HashMap[elem]=bstNode</b><br>O(n log n) + O(k)
-Sort: real world sorting	<b>insertion sort</b> on <b>small arrays</b> (incl. bottom of recursion)<br><br>need to be <b>good on pre-sorted</b><br><br>maybe be <b>stable</b><br><br>example: <b>timsort</b> (find runs, merge/insertion)
-Sort: merge sort implementation (2)	- <b>top-down</b> using recursion<br><br>- <b>bottom-up</b> using loop
-Sort: Shell sort	choose <b>gap sequence</b><br><b>iterate on gaps</b><br><br><b>swap gapped pairs</b><br>like a bubble sort<br><br>in place<br><br>complexity: difficult
-Tree: LCA with parent pointer	<b>go up</b> the tree to <b>find depth</b><br><br><b>synchronize</b><br><br><b>meet</b> while going up
-Tree: LCA without parent pointer	<b>recursive</b>, returns node*<br>return <b>non-null if one present</b><br><br>if left and right return non-null: root<br>otherwise: the non-null is solution<br><br>O(n)
-Tree: LCA using RMQ	compute <b>Euler tour</b><br>store <b>level</b> of each node in the tour (with repeats)<br><br>LCA is RMQ between first occurence of nodes
-Tree: LCA (5)	no parent pointer: O(n) recursive<br><br>parent pointer: O(h)<br><br>pre-compute sqrt decomposition: O(sqrt h)<br><br>pre-comp SparseTable 2^i-th parent: O(h)<br><br>pre-comp SparseTable RMQ: O(1)
-Prob: longest subarray with sum <= k	build <b>prefix sum array R</b><br>prob: for i, pick largest j s.t. R(j) <= R(i) + k<br><br><b>efficient frontier</b> array of R:<br>ignore decreasing values: build <b>staircase increasing</b> array<br><br>then: for each i, do <b>binary search</b> to find j<br><br>O(n log n)
-Prob: largest rectangle under histogram	iterate on bars: find <b>largest rectangle to the left with this bar and height</b><br><br><b>efficient frontier:</b> keep only past building with <b>increasing height (stack)</b><br><br>O(n)
-Prob: largest all-1s 2D subarray (or cross shape)	<b>precompute</b>: for each cell, <b>number of 1s</b> to the <b>left</b>, and <b>down</b><br><br>then: for each cell, find largest subarray <b>with this corner</b> (iterate on sizes)<br><br>O(n^2 m)
-Prob:<br>Coin Game: coins in a row, pick one	<b>windowed DP</b><br><br>F(i,j) = max (coinChosen + whatIsLeftAfterOtherPlayer(=min))<br><br>F(from coin i to j) = max(. + min(), . + min())<br>O(n^2)
-DS: count–min sketch, def, use	probabilistic data structure: <b>frequency table of events</b> in a <b>stream</b> of data<br><br>same as <b>counting Bloom Filter</b><br><br><b>Table</b>: row=hash function, column: bucket (space of hash), entry: integer<br><br>ex: count views for many many videos
-DS: HyperLogLog, def, use	<b>approximate count-distinct</b><br>hash stream entries and only record the <b>longest leading zero seq length</b><br><br>-> <b>estimate</b> the number of <b>distinct entries</b><br>Improve accuracy with buckets, removing outliers and averaging<br><br>Use in ApproxCountDistinct in DBs.
-DS: tournament tree, def, use	complete binary tree<br>2 case: <b>winner</b>, <b>loser</b> tree<br><br>player=leaves<br>min/max winner/loser<br><br>apps: sorting, first-fit bin packing, k-way merge
-Prob: Huffman coding	sort characters by frequency<br>merge two <b>least common</b> chars into one node (with sum frequency)<br>repeat<br><br>use <b>min-heap</b><br><br>O(n log n)
+Graph: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
+Geo: farthest pair	compute <b>convex hull</b> (n log n)<br><br>check <b>all pairs in hull</b>
+Geo: closest pair<br>def, 2 algs	find the pair that is closest<br><br><b>sweep line</b>: O(n log n)<br><br><b>divide and conquer</b>: O(n log^2 n)
+Geo: closest pair with D&C	split in 2 sets with <b>median</b> of x<br><br>compute min in each side<br>d = min of 2 mins<br><br>merge: <b>vertical sort</b>of <b>band (-d,+d)</b><br><br>find <b>smallest pair in band</b>: not O(n^2) but O(n) since only <b>constant nb points</b> to check
+Geo: closest pair, farthest pair, nearest neighbour	closest:<br><b>sweep</b> line/<b>D&C</b> O(n log^x n)<br><br>farthest: check <b>all pairs</b> on <b>convex hulls</b><br>O(n log n + h^2)<br><br>nearest neighbour: k-d tree O(log n) when tree built
+Geo: nearest neighbour search (NNS)<br>- definition<br>- solved with	given a point in a set, find closest point in set<br><br><b>space partitioning</b>: e.g. <b>k-d tree</b>
+Prob: find Hamiltonian cycle: def, class, alg (2)	visit each vertex once<br>NP-complete<br><br>1. <b>DFS backtrack</b> with path as parameter<br>O(V!)<br><br>2. <b>bitmask DP</b>: O(n^2 2^n)
+Prob: problem solving approaches (6)	BBGS RDDIB<b>B</b>rute force<br>BF w/ <b>B</b>acktracking<br><b>G</b>reedy<br><b>S</b>ort<br><br><b>R</b>ecursion (maybe Memoization)<br><b>D</b>ivide and Conquer<br><b>D</b>P<br><b>I</b>ncremental<br><b>B</b>S answer+check
+Prob: generate random permutation of array	<b>Fisher-Yates</b><br><br>start <b>from end</b><br><b>rand()</b> <b>offset</b> to the <b>left</b><br><b>permute</b><br>continue
+Lang: % in C	<b>remainder</b>, not modulo<br><br>a = b * (a/b) + (a % b)<br><br>add b and do % again for <0 nb
+Prob: weighted job scheduling (2)	1. sort jobs by <b>finish time</b><br><b>DP</b> weightWithJobsUntil[i]<br>include or exclude current job<br><br>O(n^2) / or O(n log n) with BS to find previous nonconflicting job<br><br>2. sort by <b>start time</b>, then <b>DP like LIS</b>
+Prob: job scheduling	weighted: sort by start of end + BS or LIS: O(n log n) or O(n^2)<br><br>prerequisites: DAG toposort<br><br>prerequisites with weights?
+Prob: submatrix problems	largest square/cross: pre-compute<br><br>largest sum: 2D prefix sum + ?<br><br>
+Graph: connected components, transitive closure (for directed/undirected)	1. <b>connected components</b>:<br>- undirected: DFS, or U-F O(V + E)<br>- directed: <b>strongly CC</b>: Kosaraju/Tarjan O(V + E)<br><br><b>transitive closure</b><br>- undirected: CC<br>- directed: DP or FW
+SD: Rabbit MQ vs. Kafka 	Rabbit:<br>- can’t rewind<br>- push to consumers<br>- no batching<br>- better for single messages<br>- worse for scale<br>- different topology
+SD: Games WL-algorithm	isWinning(x):<br><br>true if any reachable pos x is !isWinning(x)<br><br>else false
+SD: game of Nim	several piles, can take any number from one pile<br><br>lose if empty<br><br>winning pos if <b>XOR</b> of pile size is != 0

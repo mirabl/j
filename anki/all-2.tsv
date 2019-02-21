@@ -1,45 +1,49 @@
-SD primitives: strong consistency models	<b>linearizable</b> consistency: real world ordering respected<br><br><b>sequential</b> consistency: can be reordered as long as consistent on each node
-Tree: Serialize/Deserialize	<b>preorder and NULL marker</b><br><br>or: pre AND inorder<br>better: <br><br>Special case?<br>BST: pre or postorder<br>Complete: level order<br>Full: preorder with boolean for leaves
-SD low-level: Send 1K bytes over 1 Gbps network	10 us
-SD components: BigQuery/Dremel perf for 1T read	with 10K disks and 5K cpus<br><br><b>1 second to read 1TB</b>
-SD components: Dynamo<br>sharding, quorums, conflict, replica sync	consistent hashing<br>partial quorums for reading and writing<br>conflict detection and read repair via vector clocks<br>gossip for replica synchronization
-Algo: Gray code construction	recursive, G_{n-1}, G_{n-1} reversed with top bit set<br><br>gray(n) = n ^ (n >> 1)
-OO: virtual method	can be <b>overriden</b> in derived class
-OO: generics	class/method that defer specification of type until declared and instantiated in client code
-SD: circuit breaker<br>def, how it works	<b>~proxy</b> for operations that might fail<br><br><b>3 states</b>: closed / half-open / open<br>change state by looking at error rate
-SD: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency prefered
-Prob: count distinct subsequences	c(n) = 2 * c(n - 1) - c(index of last occ of cur char)<br><br>use table for c[]<br><br>O(n)
-Prob: Count distinct occurrences of t as a subsequence of s	dp[offsetS][offsetT]<br><br>O(nm)
-2D Array: Boggle (Find all possible words in a board of characters)	DFS from every start cell, mark visited cells.<br><br>Complexity?<br> Better solution with Trie.
-Array: Smallest subarray with sum greater than a given value	<b>Sliding window</b>: keep adding array elements while current sum is smaller than x <br> If current sum becomes greater than x, update min length, remove starting elements
-SD components:<br>2 data warehouses products for an analytical processing OLAP	Redshift, BigQuery/Dremel
-DS: <br>Binary heap definition	complete binary<br><br>with heap property (children smaller than parent)
-Graph: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br><br><br>O(V^2) if adjacency matrix/O(V)
-SD components: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second<br>billions of rows<br>thousands of columns
-Prob:<br>0-1 Knapsack: description, solution, problem class	max weight, items with values and weights, maximize value<br><br>DP Best[i][w]<br>O(n W)<br>NP-complete
-Graph: articulation point<br>def, algo, complex	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
-Array: find the median of non-sorted array<br>+ approximate and why	QuickSelect O(n)<br><br>median of medians: approximate, first step of quicksort/select<br>split in groups of 5<br>find median of each group, recurse
-SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
-SD components: one instance RDBMS perf	no answer, depends on query/HW, if fits in RAM<br><br><b>1 TB</b> total size<br><b>billions</b> of rows<br><b>1K</b> r/w QPS<br><br>latency: SSD 1ms, HD: 20ms
-DS: <b>Interval tree</b>	red black tree<br>each node is interval<br><br>node contains:<br>1. start of interval=sort key<br>2. end of interval<br>3. maxEnd of intervals in subtree<br><br>search for intersection O(h):<br>go in right or left (bit tricky proof)
-SD: time for a <b>context switch</b>	<b>5μs</b>
-String: Boyer-Moore	try to match from start of text but <b>from end of pattern</b><br>when <b>mismatch, skip chars</b> when possible<br><br>2 prepro tables to skip chars:<br>- indexOfLastOccurence[char]<br>- other table more complicated<br>O(n/m) to O(nm)
-SD: log structured merge trees (principle, components, good for, compare)	MemTable/SSTables<br>+ disk WAL<br><br>do only <b>sequential write on disk</b><br>thanks to in-memory buffer<br><br>better <b>write throughput</b> than B+<br>good for write-heavy
-Graph: Topological sort of DAG (2)	 1. <b>DFS</b>: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br><br>2.  <b>BFS-style</b> algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
-SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
-SD components: in-memory K/V store perf	on machine with good network<br><br>read/write: 200k/s easily<br><br>latency: 1ms<br><br>no bound on size with sharding but $
-String: Find the smallest window in a string containing all characters of another string	sliding window<br><br>O(n)|O(n)
-SD primitives: 2 rate limiters	leaky bucket<br><br>token bucket
-Alg: NP-complete/NP-hard definition	in NP, and any NP problem can be transformed in a NP-complete<br><br>NP-hard: same but not in NP necessarily
-Sort: 6 questions on data	how many keys, duplicates, partially sorted, long to compare, small range, disk access possible
-SD primitives: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
-Prob: find K-th smallest pair distance<br>from integer array	<b>Sort</b> array<br><b>Binary search</b> on answer<br><b>Two pointers</b> to validate
-Graph: bridge<br>def, algo, complexity	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
-Graph: Detect cycle in a graph<br>(2 ways, complexity)	<b>Colorized DFS</b> look for <b>back-edge</b> O(V + E).<br><br> Also possible with <b>Union-Find</b>: <b>loop on edges</b>, union-find on vertices O(E)?
-SD components: advantage/disadvantage of columnar storage, 3 examples	if usage pattern is to read whole table like OLAP/BI<br>but only some columns<br><br>don't read unused columns<br>can use <b>compression</b> to reduce disk size<br>disadv: <b>difficult to update</b><br>Parquet, Redshift, Dremel/BigQuery
-Graph: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard
-SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
-Prob: swim in rising water	<b>BS</b> on answer + DFS check<br>O(n^2 log n)<br><br>BFS with priority queue<br>O(n^2 log n)
-SD components: BigTable: data model, API, 2 open source equivalents	1. row (row key)<br>2. column: column families + column qualifier within family<br>3. timestamp<br><br>sparse: no room taken for empty cells<br><br>- lookup by row key, range query<br>- HBase, Cassandra
-SD: specs of usual machines	24G RAM, 8 cores<br>1Gb ethernet<br><br>- 2x1TB SSD<br>or<br>2x2TB hard drives
-SD: N+2 principle	service can run if 2 largest instances are down<br><br>e.g. machine off or release
+SD meth: system design methodology (6)	1. Scope<br>2. Non-scope<br>3. Requirements: current and future scale<br>4. Req: reliability to which failures<br>5. SLO (latency, avail, dura, correct)<br>6. First design<br>7. storage
+SD meth: system design methodology for storage (5)	1. data model<br>2. size<br>3. Usage r/w<br>4. SLO<br>5. Bias (popular, geo)
+Sort: 6 sort properties	- stable<br>- in place<br>- comparison or not<br>- external<br>- good with pre-sorted<br>- method: partition, merge, select, insert, exchange   Sort
+OO: 3 characteristics of OO	inheritance<br>encapsulation<br>polymorphism
+OO: 2 aspects of polymorphism	code or operations or objects behave differently in different contexts<br><br>1. object of derived class can be treated as base class<br><br>2. virtual methods of base class can be overriden
+Prob: print number of paths with no cycle between two nodes in a directed graph	<b>backtracking</b><br><br>set/unset visited nodes
+Prob: check if two nodes are on same path in a tree<br>in O(1) per query	preprocessing: DFS record <b>enter/exit times</b><br><br>check times for (u, v) to see if same subtree
+Prob: number of paths from src to dest with k edges (2)	1. DP numPaths[src][dest][edges]<br>O(k V^3)<br><br>2. Divide and Conquer matrix power G^k<br>O(log k) matrix power<br>total: O(V^3 log k)
+SD DS: SSTable<br>def, internals, read, write	sorted immutable on disk<br>- Index (in-memory): PK (ex. B-Tree)<br>- Data 64KB block: k/v pairs<br>optimised for reads<br>written once, no in-place changes
+SD DS: LSM: MemTable, SSTable<br>stored where, read/writes, maintenance	MemTable in memory<br>SSTable on disk (except idx)<br>writes go to MemTable<br>reads go to MemTable first<br><br>periodically:<br>- MemTable flushed to SSTable<br>- SSTables merged
+Prob: matrix chain multiplication order	<b>windowed DP</b><br><br>dp[i][j]: cost for Mi...Mj<br><br>fill with increasing window length
+Prob: box stacking<br>highest stack with smaller on top of bigger<br>can reuse	careful rotations<br><br><b>DP</b> similar to <b>LIS</b><br><br>O(n^2)
+Prob: n eggs / k floors<br>find minimum nb of trials in worst case to find the highest safe floor (2)	1. <b>DP</b> O(n k^2) dp[numEggs][floor]<br><br>2. other solution with binary search and binomial coef
+String: Regex matching (2)	1. <b>recursive</b><br><br><b>DP</b> bool match[iStr][iPat]<br>O(mn)<br><br>offset from left to right<br>maybe store last char in table
+Prob: shortest superstring	<b>bitmask DP</b><br>dp[mask][endingWithString]<br><br>O(2^n n^2)
+Prob: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive DFS O(V(V + E))<br><br>linear for DAG: toposort, then loop<br>O(V + E)
+Prob: shortest path with exactly k edges in a directed and weighted graph	<b>DP dist[s][t][k]</b><br>fill with k increasing<br><br>O(V^3 k)
+Prob: Eulerian cycle: def, check/find algos	visit each edge<br><br>linear time O(E)<br>vs. Hamiltonian is NP-hard<br><br>check if exists: look at conditions on degree<br><br>find: O(E) exists (Fleury)
+SD low-level: RAM SSD HDD latency and R/W speed	RAM 100 ns<br>SSD <b>0.1 ms or less</b>    (x1000)<br>HDD 10 ms    (x100)<br><br>RAM 10 GB/s<br>SSD 500MB/s - 1+GB/s  (/20)<br> HDD 100 MB/s    (/5)
+SD: def, usual value for <b>page size</b>	smallest unit of virtual memory<br><br><b>4KB</b><br><br>can be more
+Tree: iterative in-order traversal of binary tree	<b>stack</b> of nodes + <b>curnode</b> pointer<br><br>go all <b>down left</b> while <b>pushing to stack</b><br><br><b>pop</b> from stack, <b>print</b>, <b>curnode=right</b>
+Tree: threaded binary tree, def, uses	<b>null right</b> pointers replaced by pointer to <b>next inorder</b> node<br><br><br>used for O(1) space iterative inorder traversal
+Tree: in-order iterative traversal with parent pointers	go <b>all left</b>, then up/right<br><br>when going up, need to know <b>if we come from left or right</b><br><br>-> store child in <b>prev</b> variable
+Tree: reconstruct from pre-order with null	from <b>right to left ⟵</b><br>with <b>stack</b><br><br>push null<br><b>when non-null, <b>pop 2</b>, <b>push new</b>
+Heap: from max-heap, check if k-th largest element is >= x in O(k)/O(k)	<b>recursive</b><br>global descent with larger/equal counters<br><br>stop early<br><br>nb calls is O(k) as counters are almost always incremented
+BST: insert/delete	- insert: recursive like searching<br><br>- delete: <b>replace by successor</b> in right subtree<br>careful corner cases
+BST: build from sorted linked list	avoid finding the middle over and over<br><br>have pointer in list<br><br>recursively create left subtree<br><b>move pointer</b> and set root value<br><br>recursively create right<br><br><b>O(n)</b>
+Prob: from 3 sorted arrays, find i, j, k s.t. d(i,j,k)=max(|A(i)-B(j)|, ...) is minimum	<b>1 pointer in each</b><br><b>move 1</b> (min) at each step<br><br>like intersection of sorted arrays<br><br>record minimum<br><br>O(len A + len B + ..)
+Prob: Gaussian primes	primes with integer-complex numbers<br><br><br>Eratosthene <b>sieve</b><br><br>sort by <b>modulus</b> to order them and put in <b>BST</b>
+Prob: View from above (stacked segments of different color and height)	sort enter/exit list of segments<br>maintain <b>BST</b> (height, color)
+BST: nodes have <b>size of their subtree</b> as a field<br>- find size of a <b>range</b> [a,b]<br>- how to <b>update</b> when insert/delete	count number of nodes <a: search a and <b>update count</b> if go <b>left</b> or <b>right</b><br>res: totalsize- "<a" - ">b"<br><br>update: change size along the search path of node to add/remove
+Prob: from set of intervals, find all that <b>intersect a query interval</b><br>support insert/delete	use <b>Interval Tree</b><br><br>search for <b>one</b> intersecting interval<br>remove it<br>repeat
+Geo: convex-hull algorithm (3)	wrapping O(nh)<br><br>sweep line O(n log n)<br><br>divide and conquer O(n log n)
+Geo: find 4th point of rectangle	just use <b>vector</b><br><br>a + (b - c)
+Tree: Maximum path sum in a binary tree (or diameter)	recursive divide and conquer<br><br>rec function maxStraightPathDown + global variable<br><br>O(n)
+Prob: subarray sum closest to 0	build <b>prefix sum</b> array<br><b>sort</b> it<br><br>loop and find min consecutive difference<br><br>O(n log n)
+Prob: most visited pages, compute top-k by frequency:<br>-1. once at end<br>-2. any time streaming	1. hash map <b>freq[s]++</b><br>at end, do <b>k-selection</b> (quickselect O(n), 2k array O(n), heap O(n log n))<br><br>2. <b>BST</b> with (count, s) + <b>hashMap</b> bstNodeForString[s]<br><br>update by deleting/re-inserting in BST<br>answer: top-k from BST
+Prob: most visited pages in last W fixed seconds, query any time streaming	<b>3 structures</b>:<br><br>1. <b>BST</b>: (count, s)<br><br>2. <b>HashMap</b> bstNodeForString[s]<br><br>3. <b>Queue</b> Q of elements in current window<br><br>increase-decrease in BST when insert/remove from Q
+Prob: find k-th largest element from n streamed elements, once at the end (2)	- heap: O(n log k)<br><br>- better: <b>array of 2k</b><br><br>when full, purge to size <b>k</b><br>with O(k) <b>selection</b><br><br>total: O(n)
+Prob: find k-th largest elements (3)	1. <b>multiple queries</b>:<br>use <b>priority queue</b><br>O(n log k) + O(log n) by query<br><br><br>2. <b>1 query</b>:<br>2.a with <b>array</b>: <b>quickselect</b> O(n)<br>2.b with <b>stream</b> <b>2k array</b> O(n)
+Prob: find k-th most frequent, no time window (2)	1. 1 query<br><b>HashMap + quickselect</b><br>O(n)<br><br>2. <b>multiple queries</b><br><b>BST (count, elem) + HashMap[elem]=bstNode</b><br>O(n log n) + O(k)
+Sort: real world sorting	<b>insertion sort</b> on <b>small arrays</b> (incl. bottom of recursion)<br><br>need to be <b>good on pre-sorted</b><br><br>maybe be <b>stable</b><br><br>example: <b>timsort</b> (find runs, merge/insertion)
+Sort: merge sort implementation (2)	- <b>top-down</b> using recursion<br><br>- <b>bottom-up</b> using loop
+Sort: Shell sort	choose <b>gap sequence</b><br><b>iterate on gaps</b><br><br><b>swap gapped pairs</b><br>like a bubble sort<br><br>in place<br><br>complexity: difficult
+Tree: LCA with parent pointer	<b>go up</b> the tree to <b>find depth</b><br><br><b>synchronize</b><br><br><b>meet</b> while going up
+Tree: LCA without parent pointer	<b>recursive</b>, returns node*<br>return <b>non-null if one present</b><br><br>if left and right return non-null: root<br>otherwise: the non-null is solution<br><br>O(n)
+Tree: LCA using RMQ	compute <b>Euler tour</b><br>store <b>level</b> of each node in the tour (with repeats)<br><br>LCA is RMQ between first occurence of nodes
+Tree: LCA (5)	no parent pointer: O(n) recursive<br><br>parent pointer: O(h)<br><br>pre-compute sqrt decomposition: O(sqrt h)<br><br>pre-comp SparseTable 2^i-th parent: O(h)<br><br>pre-comp SparseTable RMQ: O(1)
+Prob: largest rectangle under histogram	iterate on bars: find <b>largest rectangle to the left with this bar and height</b><br><br><b>efficient frontier:</b> keep only past building with <b>increasing height (stack)</b><br><br>O(n)

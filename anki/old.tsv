@@ -8,7 +8,6 @@ DS: external merge sort	sort chunk & write to disk, load chunk of chuck and merg
 Sort:<br>Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
 Sort: bubble sort	swap pairs to put max at i=end of array<br>i--
 SD: Federation	= functional partitioning<br><br>splits up databases by function. <br><br>For example, forums, users, and products
-Array: find subarray with maximum sum	one pass, accumulate (Kadane)<br><br>at each position either extend or start new subarray O(n)|O(1)
 Array: 3Sum  Find all unique triplets in the array which gives the sum of zero	sort, loop for first element and then 2sum sweep, <br>avoid duplicates by avoiding duplicate first element <br>O(n^2)|O(1)
 Sort: insertion sort<br>selection sort	insertion: insert A[i] in sorted A[0]...A[i-1]<br><br>select min put it at A[i=0], i++
 Stack: implement stack with O(1) min<br>(2 ways)	push (x, min) when pushing x, <br><br>or use second stack
@@ -155,3 +154,74 @@ SD primitives: CP systems, work how, implementations	tolerate network partition,
 SD primitives: ACID	atomicity, consistency, isolation, durability
 SD low-level: use cases of UDP	<b>best effort delivery</b> for voice/video streaming, games
 Array: 3 subsequence problems/solutions/cplx	1. <b>Is Subsequence</b>: iterate greedy O(n), no DP<br><br>2. <b>Longest Common Subsequence</b>: DP O(nm)<br><br>3. <b>Longest Increase Subsequence</b><br>- DP O(n^2)<br>- O(n log n): active lists and binary search
+Prob:<br>Container With Most Water<br>n vertical lines	<b>2 pointers, from start and end</b><br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
+SD: SLO for S3 (2)	99.99 (4) availability<br><br>99.99999999 (10) durability
+SD components: how does BigQuery/Dremel distribute queries	<b>Tree</b> Architecture<br>dispatching queries and aggregating results<br>thousands of machines in a few seconds
+SD primitives: Paxos<br>principle, master, failures, network, use where	<b>majority vote</b><br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br><br>used in Chubby, BigTable/Megastore, GFS, Spanner
+SD app: how to handle errors in a streaming processing system	rewrite to <b>errorTopic1</b> and <b>retry</b>, then eT2, ...<br><br>then to <b>dead letter topic</b><br><br>(Uber)
+Prob: k-th smallest number in multiplication table	<b>Binary search</b><br><br>O(m log(mn))
+Graph: matching, perfect matching	<b>set of edges</b> which <b>don't touch</b><br><br>perfect: all vertices are matched,<br>like minimum size edge cover
+Alg: solve recurrences + examples<br>T(n) = T(n / 2) + O(1)<br>T(n) = 2 T(n / 2) + O(1)<br>T(n) = 2T (n / 2) + O(log n)<br>T(n) = 2 T(n / 2) + O(n)<br>T(n) = T(n / 2) + O(n)	O(log n) binary search<br>O(n)<br>O(n)<br>O(n log n) mergesort<br>O(n) quickselect
+SD components: Kafka perf: factors<br>produce, consume, latency	depends on: message size, replication (number and sync/async)<br><br>producer: <b>700K</b> msg/s<br>consumer: <b>1M</b> msg/s<br>end-to-end latency: <b>~3ms</b> 99p
+SD components: load balancer routes traffic based on (6)	- random<br>- least load<br>- session/cookies<br>- (weighted) round robin<br>- layer 4<br>- layer 7
+String:<br>print valid n-parentheses	<b>backtrack</b>:<br><br>try a character, recurse if allowed
+SD primitives: how a Lamport clock works	when a process does work, increment<br>when send a message, include counter<br>when message received, take the <b>max</b> counter of self and message
+SD components: BigQuery/Dremel perf for 1T read	with 10K disks and 5K cpus<br><br><b>1 second to read 1TB</b>
+SD primitives: strong consistency models	<b>linearizable</b> consistency: real world ordering respected<br><br><b>sequential</b> consistency: can be reordered as long as consistent on each node
+Tree: Serialize/Deserialize	<b>preorder and NULL marker</b><br><br>or: pre AND inorder<br>better: <br><br>Special case?<br>BST: pre or postorder<br>Complete: level order<br>Full: preorder with boolean for leaves
+OO: generics	class/method that defer specification of type until declared and instantiated in client code
+SD: circuit breaker<br>def, how it works	<b>~proxy</b> for operations that might fail<br><br><b>3 states</b>: closed / half-open / open<br>change state by looking at error rate
+SD components: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second<br>billions of rows<br>thousands of columns
+SD: log structured merge trees (principle, components, good for, compare)	MemTable/SSTables<br>+ disk WAL<br><br>do only <b>sequential write on disk</b><br>thanks to in-memory buffer<br><br>better <b>write throughput</b> than B+<br>good for write-heavy
+Graph: Topological sort of DAG (2)	 1. <b>DFS</b>: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br><br>2.  <b>BFS-style</b> algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
+Graph: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard
+SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
+SD primitives: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
+Alg: NP-complete/NP-hard definition	in NP, and any NP problem can be transformed in a NP-complete<br><br>NP-hard: same but not in NP necessarily
+Sort: 6 questions on data	how many keys, duplicates, partially sorted, long to compare, small range, disk access possible
+String: Find the smallest window in a string containing all characters of another string	sliding window<br><br>O(n)|O(n)
+SD components: BigTable: data model, API, 2 open source equivalents	1. row (row key)<br>2. column: column families + column qualifier within family<br>3. timestamp<br><br>sparse: no room taken for empty cells<br><br>- lookup by row key, range query<br>- HBase, Cassandra
+SD: specs of usual machines	24G RAM, 8 cores<br>1Gb ethernet<br><br>- 2x1TB SSD<br>or<br>2x2TB hard drives
+Graph: Detect cycle in a graph<br>(2 ways, complexity)	<b>Colorized DFS</b> look for <b>back-edge</b> O(V + E).<br><br> Also possible with <b>Union-Find</b>: <b>loop on edges</b>, union-find on vertices O(E)?
+SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
+SD components: Dynamo<br>sharding, quorums, conflict, replica sync	consistent hashing<br>partial quorums for reading and writing<br>conflict detection and read repair via vector clocks<br>gossip for replica synchronization
+DS: <br>Binary heap definition	complete binary<br><br>with heap property (children smaller than parent)
+SD components:<br>2 data warehouses products for an analytical processing OLAP	Redshift, BigQuery/Dremel
+SD components: in-memory K/V store perf	on machine with good network<br><br>read/write: 200k/s easily<br><br>latency: 1ms<br><br>no bound on size with sharding but $
+SD: N+2 principle	other machines can absorb load if 2 largest instances are down<br><br>e.g. machine off or release
+Array: find the <b>median</b> of non-sorted array<br>+ approximate and why	QuickSelect O(n)<br><br>median of medians: approximate, first step of quicksort/select<br>split in groups of 5<br>find median of each group, recurse
+SD primitives: 2 rate limiters	leaky bucket<br><br>token bucket
+Prob: copy postings linked-list with no additional storage	<b>3 passes</b><br><br><b>modify</b> next pointer of original list<br>then <b>restore</b>
+DS: hash table strategies (3)	chaining: <b>linked lists</b><br><br><b>open adressing</b>: next position<br><br><b>double hashing</b>
+SD: types of data store (9)	RDBMS<br>k/v<br>document<br>column-family<br>graph<br>analytics<br>blob<br>search engine DB<br>time series DB
+Prob: color graph with k colors, algo/complex	<b>backtracking</b><br><br>O(k^V)?
+Prob: next permutation	from the left, find position to increment<br>(except last position)<br><br>increment it<br><br>reset left to minimum
+DS: suffix tree<br>- definition<br>- complexities<br>- 1 problem	<b>compressed trie</b> of <b>suffixes</b><br>naive: construction time and space O(n^2)<br>smart: O(n) / O(n)<br><br>substring search in O(m)
+Array: Coin change:<br>Given infinite coins of value V1..VN, find the minimum number of coins with sum S	DP<br><br><b>dp[amount]</b><br>loop on coin<br>loop on x to update dp[x]<br><br>O(N S)
+Prob: Find the longest path in a matrix increasing by 1 at each cell	<b>DP with memoization</b>
+SD methodology: 3 questions to ask on iteration	possible to scale?<br>can do better?<br>resilient?
+SD primitives: latency of operation with Paxos between DCs	<b>25ms</b>
+Prob: word break<br>longstringwithoutspaces + dict	<b>DP</b>: canBreak[offset]
+Prob: set matrix zeroes	set cell in <b>first</b> row/column to zero if element in 0<br><br>use 2 variables for first row/column<br><br>set all zeroes by looking at first row/column<br>O(mn)
+SD components: load balancer used for (3), implemented with (2)	- don't send to bad servers<br>- don't overload<br>- eliminate SPOF<br><br>- hard or soft (HAProxy)
+Prob: from undirected graph which is a tree, find a root of a tree which gives minimum height	<b>BFS from the leaves</b> to the inside<br><br>one or two remaining nodes<br><br>O(n)
+Prob: find a mother vertex in directed graph<br>(all vertices can be reached from)	1. find last completely processed vertex in DFS (<b>pseudo toposort</b>)<br><br>2. check if it is a mother vertex<br><br><br>topo sort doesn't exist on cyclic graphs
+SD: Consistency in CAP theorem	all nodes see the same data all the time<br><br>equivalent to <b>single-copy</b> of the data
+SD: Availability in CAP theorem (2)	every request receives a response about its success<br><br>or any reachable replica is available for reads and writes
+SD: Partition tolerance in CAP theorem	system continues to operate despite message loss or failure of part of the system
+SD low-level: OSI and TCP/IP models	OSI: PDNTSPA<br><br>TCP/IP: NITA
+SD: Pregel	distributed <b>graph processing</b><br><b>vertex can send a msg</b> to other<br><br>like a mapper can send to reducer in MR<br><br>iterations
+SD: How many simultaneous connections on a whatsapp server	2 million
+SD low-level: TCP definition, uses what to be reliable, limitations	reliable, connection-oriented ordered stream of bytes on IP network<br>congestion control<br>seqno and acknowledgments<br><br>no preservation of message boundaries
+SD low-level: content of TCP segment (6)	ports, seq no, ackno, flags, checksum, payload
+SD low-level: UDP, def, can do/can not do	connectionless, message oriented (datagrams)<br>can broadcast<br><br>can be out-of-order or lost<br>no congestion control
+SD low-level: DMA definition, 3 steps	a device controls processor's memory directly<br>can transfer data to/from memory without processor<br><br>1. CPU initiates transfer<br>2. does other things<br>3. receives interrupt from device when done
+SD: why Kafka performance (2)	zero-copy<br><br>batching
+SD: skip list<br>- definition<br>- complexities<br>- used in	linked list for binary search<br>layers of sorted linked lists (<b>express lanes</b>)<br>p = 1/2 or 1/4, proba for element to be also in layer below<br><br><b>O(log n)</b> average for search/insert/delete, O(n) average space<br>used in LevelDB MemTable
+SD: messaging system semantics	<b>at-least-once</b>: producer client retries when ack timeout or error<br><br><b>at-most-once</b>: no retries<br><br><b>exactly-once</b>: on Kafka, uses sequence numbers
+SD methodology: types of SLO (5)	correctness<br>availability<br>latency<br>throughput<br>durability
+Prob: skyline<br>how to solve, complex	 <b>divide and conquer</b><br>similar to merge sort<br><br>- divide in <b>2 equal sets</b> (no order or sort)<br>- compute skyline for each<br>- <b>merge</b>: <b>iterate</b> on both<br><br>O(n log n)
+Prob: count number of inversions i<j A(i)>A(j)	<b>divide and conquer</b>: within two halves + merge<br>= <b>modified merge sort</b><br><br>merge function sorts and returns inversion count<br><br>O(n log n)
+Prob: maximum circular subarray sum	1. compute non-circular<br>2. compute circular: <b>careful</b><br><br>need to try all cutting points O(n)<br><br>or compute <b>minimum non-circular</b> and <b>complement</b><br><br>O(n)
+DP: length of longest increasing subsequence	- O(n^2) bestLISEndingAtOffset[i]<br><br>- O(n log n) <b>active lists</b> (duplicate and extend)<br>or <b>tail array</b>: t[i] smallest tail of all increasing subsequences with length i+1<br><b>update cell or extend</b>
+Misc: how to send updates from server to client (3)	<b>short-polling</b> (client pull)<br><br><b>long-polling</b> (client pull): server doesn't answer request until new data<br><br><b>websocket</b> (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake

@@ -25,5 +25,3 @@ SD: how scheduling works	.
 SD: fundamentals of "modern" concurrency constructs	.
 complexity topics   why DP not polynomial (pseudo-polynomial - depends on size of entries not only number of entries like O(nW): n is a size but W is a value), complexity when memoizing is used (17.5)
 H index	
-k closest points from origin	
-vertical order tree traversal	
