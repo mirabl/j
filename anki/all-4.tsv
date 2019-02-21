@@ -10,9 +10,11 @@ Prob: generate random permutation of array	<b>Fisher-Yates</b><br><br>start <b>f
 Lang: % in C	<b>remainder</b>, not modulo<br><br>a = b * (a/b) + (a % b)<br><br>add b and do % again for <0 nb
 Prob: weighted job scheduling (2)	1. sort jobs by <b>finish time</b><br><b>DP</b> weightWithJobsUntil[i]<br>include or exclude current job<br><br>O(n^2) / or O(n log n) with BS to find previous nonconflicting job<br><br>2. sort by <b>start time</b>, then <b>DP like LIS</b>
 Prob: job scheduling	weighted: sort by start of end + BS or LIS: O(n log n) or O(n^2)<br><br>prerequisites: DAG toposort<br><br>prerequisites with weights?
-Prob: submatrix problems	largest square/cross: pre-compute<br><br>largest sum: 2D prefix sum + ?<br><br>
 Graph: connected components, transitive closure (for directed/undirected)	1. <b>connected components</b>:<br>- undirected: DFS, or U-F O(V + E)<br>- directed: <b>strongly CC</b>: Kosaraju/Tarjan O(V + E)<br><br><b>transitive closure</b><br>- undirected: CC<br>- directed: DP or FW
 SD: Rabbit MQ vs. Kafka 	Rabbit:<br>- can’t rewind<br>- push to consumers<br>- no batching<br>- better for single messages<br>- worse for scale<br>- different topology
 SD: Games WL-algorithm	isWinning(x):<br><br>true if any reachable pos x is !isWinning(x)<br><br>else false
 SD: game of Nim	several piles, can take any number from one pile<br><br>lose if empty<br><br>winning pos if <b>XOR</b> of pile size is != 0
 Graph: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive Bruteforce E!<br><br>linear for DAG: toposort, then loop<br>O(V + E)
+Array: subarray sum (max, max no more than k)	- max: Kadane O(n)<br><br>- max <= k: O(n log n) using <b>BST upper_bound</b>
+Prob: submatrix problems	largest square/cross: pre-compute<br><br>largest rectangle sum: reduce to n^2 * Kadane O(n)
+Prob: reflex D<br>1. find max less than k (min/more)	1. <b>BST</b> with upper/lower_bound

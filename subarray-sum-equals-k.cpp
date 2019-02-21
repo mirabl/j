@@ -41,3 +41,21 @@ public:
         return res;
     }
 };
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        map<int, int> H;
+        int res = 0;
+        int s = 0;
+        H[0] = 1;
+        for (auto x: nums) {
+            s += x;
+            if (H.count(s - k)) {
+                res += H[s - k];
+            }
+            H[s]++;
+        }
+        return res;
+    }
+};
+
