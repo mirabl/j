@@ -15,3 +15,4 @@ Graph: connected components, transitive closure (for directed/undirected)	1. <b>
 SD: Rabbit MQ vs. Kafka 	Rabbit:<br>- can’t rewind<br>- push to consumers<br>- no batching<br>- better for single messages<br>- worse for scale<br>- different topology
 SD: Games WL-algorithm	isWinning(x):<br><br>true if any reachable pos x is !isWinning(x)<br><br>else false
 SD: game of Nim	several piles, can take any number from one pile<br><br>lose if empty<br><br>winning pos if <b>XOR</b> of pile size is != 0
+Graph: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive Bruteforce E!<br><br>linear for DAG: toposort, then loop<br>O(V + E)
