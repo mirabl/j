@@ -170,9 +170,9 @@ SD components: BigQuery/Dremel perf for 1T read	with 10K disks and 5K cpus<br><b
 SD primitives: strong consistency models	<b>linearizable</b> consistency: real world ordering respected<br><br><b>sequential</b> consistency: can be reordered as long as consistent on each node
 Tree: Serialize/Deserialize	<b>preorder and NULL marker</b><br><br>or: pre AND inorder<br>better: <br><br>Special case?<br>BST: pre or postorder<br>Complete: level order<br>Full: preorder with boolean for leaves
 OO: generics	class/method that defer specification of type until declared and instantiated in client code
-SD: circuit breaker<br>def, how it works	<b>~proxy</b> for operations that might fail<br><br><b>3 states</b>: closed / half-open / open<br>change state by looking at error rate
+SD: circuit breaker<br>def, how it works	<b>~proxy</b> for operations that might fail<br><br><b>3 states</b>: closed / half-open / open<br>change state by looking at <b>error rate</b>
 SD components: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second<br>billions of rows<br>thousands of columns
-SD: log structured merge trees (principle, components, good for, compare)	MemTable/SSTables<br>+ disk WAL<br><br>do only <b>sequential write on disk</b><br>thanks to in-memory buffer<br><br>better <b>write throughput</b> than B+<br>good for write-heavy
+SD: log structured merge trees (principle, components, good for, compare)	MemTable/SSTable<b>s</b><br>+ disk WAL<br><br>do only <b>sequential write on disk</b><br>thanks to in-memory buffer<br><br>better <b>write throughput</b> than B+<br>good for write-heavy<br><br>read: try all SST (Bloom)
 Graph: Topological sort of DAG (2)	 1. <b>DFS</b>: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br><br>2.  <b>BFS-style</b> algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
 Graph: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard
 SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
