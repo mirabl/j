@@ -7,7 +7,7 @@ Graph: edge cover<br>desc, problem and solution	<b>set of edges</b> such that ev
 SD primitives: 3 consensus algos and their CAP status	<b>2PC</b>, full strict quorum protocols: CA<br><br><b>Paxos</b>, majority quorums with minority in partition: CP<br><br><b>Gossip</b>, Dynamo, conflict resolution: AP
 DS: suffix array	same use as suffix tree but with <b>4 times less memory</b><br><br>sorted array of suffixes
 DS: specialized heaps (2)	when <b>limited set</b> of keys,<br><br>or <b>monotonic</b> input
-Graph: Find connected components of an undirected graph (2)	BFS/DFS O(V + E), <br><br>- or process edges, Union-Find on vertices<br><br>If dynamic changes, keep track of components with Union-Find.
+Graph: Find connected components of an undirected graph (2)	<b>- BFS/DFS</b> O(V + E), <br><br>- <b>or</b> process <b>edges</b>, <b>Union-Find</b> on vertices<br><br>If <b>dynamic</b> changes, keep track of components with <b>Union-Find</b>.
 DS:<br>implementations <b>priority queue</b> (2) and <b>stack</b> (2)	- priority queue: <b>heap</b>, <b>BST</b><br><br><b>stack</b>: <b>linked list</b><br>or <b>array</b><br>(needs resizing, so amortized)
 Graph: color theorem	a <b>planar</b> graph can be vertex-colored with most <b>4 colors</b>
 DS: LFU cache<br>implementation	<b>3 hash maps</b>, one with linked list as values
@@ -15,7 +15,7 @@ SD: - default stack size<br>- size of empty stack<br>- max nb recursive calls	- 
 Misc: 5 NP-complete problems	SAT<br>knapsack<br>traveling salesman<br>set cover<br>Hamiltonian cycle
 Tree: k-d tree<br>definition<br>4 complexities	split in 1 dimension at each node (median of coordinate to get balance)<br><br>search/insert/delete O(log n) average<br>Space: O(n)
 Prob. solving:<br>optimize parameter (find min) when difficult directly	<b>binary search</b> + checkValue(mid)
-DS: which DS for range minimum or range sum	Segment Tree
+DS: which DS for range minimum or range sum (3)	Segment Tree<br>Fenwick Tree (Binary Indexed Tree)<br>SparseTable?
 DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
 Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	<b>BFS from start word</b>
 SD apps: C numbers	BR 1M/s<br><br>NoSQL cache/persisted: 200To, 1k memcache, 1k couchbase, 1ms 99p, 60M QPS peak<br><br>HDFS: 300 PB, 3k nodes
@@ -33,12 +33,12 @@ OO: virtual method	can be <b>overriden</b> in derived class
 SD: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency prefered
 Prob: count distinct subsequences	c(n) = 2 * c(n - 1) - c(index of last occ of cur char)<br><br>use table for c[]<br><br>O(n)
 Prob: Count distinct occurrences of t as a subsequence of s	dp[offsetS][offsetT]<br><br>O(nm)
-2D Array: Boggle (Find all possible words in a board of characters)	<b>DFS</b> <b>from every start cell</b>, mark <b>visited</b> cells.<br><br>Complexity?<br> Better solution with <b>Trie</b>.
+2D Array: Boggle (Find all possible words in a board of characters)	<b>DFS</b> <b>from every start cell</b>, mark <b>visited</b> cells.<br><br>Complexity?<br>Store dict in <b>Trie</b>.
 Graph: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br><br><br>O(V^2) if adjacency matrix/O(V)
 Prob:<br>0-1 Knapsack: description, solution, problem class	max weight, items with values and weights, maximize value<br><br>DP Best[i][w]<br>O(n W)<br>NP-complete
 Graph: articulation point<br>def, algo, complex	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
 SD components: one instance RDBMS perf	no answer, depends on query/HW, if fits in RAM<br><br><b>1 TB</b> total size<br><b>billions</b> of rows<br><b>1K</b> r/w QPS<br><br>latency: SSD 1ms, HD: 20ms
-DS: <b>Interval tree</b>	red black tree<br>each node is interval<br><br>node contains:<br>1. start of interval=sort key<br>2. end of interval<br>3. maxEnd of intervals in subtree<br><br>search for intersection O(h):<br>go in right or left (bit tricky proof)
+DS: <b>Interval tree</b>, search algo	red black tree<br>each node is interval<br><br>node contains:<br>1. start of interval=sort key<br>2. end of interval<br>3. maxEnd of intervals in subtree<br><br>search for intersection O(h):<br>go in right or left (bit tricky proof)
 SD: time for a <b>context switch</b>	<b>5μs</b>
 String: Boyer-Moore	try to match from start of text but <b>from end of pattern</b><br>when <b>mismatch, skip chars</b> when possible<br><br>2 prepro tables to skip chars:<br>- indexOfLastOccurence[char]<br>- other table more complicated<br>O(n/m) to O(nm)
 SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
@@ -50,5 +50,5 @@ Binary Search: find <b>first</b> element (2)	- tweak binary search<br><br>- or s
 Prob: find missing one from 1 billion of IP adresses<br>using 2 MB of RAM	<b>two passes LSB/MSB</b><br><br>find missing <b>LSB</b>:<br>count LSB in RAM array<br><br>find <b>whole IP</b>, <b>filtering</b> on LSB
 Prob: array where all elements appear 3 times and one appears once, find it	<b>bit decomposition</b><br><br>for each <b>bit position</b>:<br><b>count modulo 3</b><br><br>at the end, count=0,1,3<br><br>missing element: counts=1
 Sort:<br>3 big sorts on large data<br>+ advantages	quicksort: <b>fast</b>, not stable unless storage, bad <b>worst case</b><br><br>mergesort: <b>stable</b>, <b>not in-place</b>, parallelizable, contiguous access<br><br>heapsort: <b>in-place, not stable</b>, <b>slower</b> than quicksort
-Sort: which sort for:<br>1. general large integer array<br>2. small array<br>3. almost sorted (2)<br>4. small range array<br>5. many duplicates (2)<br>6. stability required (2)	1. quicksort<br>2. insertion sort<br>3. depends: heap/heapsort/insertion<br>4. counting sort in array or BST<br>5. BST<br>6. merge sort/decorate-sort (key, index)
+Sort: which sort for:<br>1. general large integer array (2)<br>2. small array<br>3. almost sorted (2)<br>4. small range array<br>5. many duplicates (2)<br>6. stability required (2)	1. quicksort, timsort<br>2. insertion sort<br>3. depends: heap/heapsort/insertion<br>4. counting sort in array or BST<br>5. BST<br>6. merge sort/decorate-sort (key, index)
 Sort: sort without moving too many records (which might be expensive)	<b>indirect sort</b>:<br>1. sort secondary <b>array of indices</b><br><br>2. apply sort to array (move records)
