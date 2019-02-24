@@ -5,7 +5,7 @@ Geo: closest pair with D&C	split in 2 sets with <b>median</b> of x<br><br>comput
 Geo: closest pair, farthest pair, nearest neighbour	- closest:<br><b>sweep</b> line/<b>D&C</b> O(n log^x n)<br><br>- farthest: check <b>all pairs</b> on <b>convex hull</b><br>O(n log n + h^2)<br><br>- nearest neighbour: <b>k-d tree</b> O(log n) when tree built
 Geo: nearest neighbour search (NNS)<br>- definition<br>- solved with	given a point in a set, find closest point in set<br><br><b>space partitioning</b>: e.g. <b>k-d tree</b>
 Prob: find Hamiltonian cycle: def, class, alg (2)	visit each vertex once<br>NP-complete<br><br>1. <b>DFS backtrack</b> with path as parameter<br>O(V!)<br><br>2. <b>bitmask DP</b>: O(n^2 2^n)
-Prob: problem solving approaches	BBGS RDDIB<br><b>B</b>rute force<br>BF w/ <b>B</b>acktracking<br><b>G</b>reedy<br><b>S</b>ort<br><br><b>R</b>ecursion (maybe Memoization)<br><b>D</b>ivide and Conquer<br><b>D</b>P<br><b>I</b>ncremental<br><b>B</b>S answer+check
+Prob: problem solving approaches	<b>BBGS RDDIB</b><br><br><b>B</b>rute force<br>BF w/ <b>B</b>acktracking<br><b>G</b>reedy<br><b>S</b>ort<br><br><b>R</b>ecursion (maybe Memoization)<br><b>D</b>ivide and Conquer<br><b>D</b>P<br><b>I</b>ncremental<br><b>B</b>S answer+check
 Prob: generate random permutation of array	<b>Fisher-Yates</b><br><br>start <b>from end</b><br><b>rand()</b> <b>offset</b> to the <b>left</b><br><b>permute</b><br>continue
 Lang: % in C	<b>remainder</b>, not modulo<br><br>a = b * (a/b) + (a % b)<br><br>add b and do % again for <0 nb
 Prob: weighted job scheduling (2)	1. sort jobs by <b>finish time</b><br><b>DP</b> weightWithJobsUntil[i]<br>include or exclude current job<br><br>O(n^2) / or O(n log n) with BS to find previous nonconflicting job<br><br>2. sort by <b>start time</b>, then <b>DP like LIS</b>
@@ -17,7 +17,7 @@ SD: game of Nim	several piles, can take any number from one pile<br><br>lose if 
 Graph: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive Bruteforce E!<br><br>linear for DAG: toposort, then loop<br>O(V + E)
 Array: subarray sum (max, max no more than k)	- max: Kadane O(n)<br><br>- max <= k: O(n log n) using <b>BST upper_bound</b><br><br>- min
 Prob: submatrix problems:<br>largest square/cross, max rectangle sum	- largest square/cross: <b>pre-compute</b><br><br>- static RSQ: precompute<br><br>- max rectangle sum: <b>reduce</b> to n^2 * <b>1D Kadane</b> O(n)
-Prob: reflex D<br>1. find max less than k (min/more)	1. <b>BST</b> with upper/lower_bound
+Prob: reflex D<br>1. find max less than k (min/more)<br>2. Graph all paths	1. <b>BST</b> with upper/lower_bound<br>2. BF backtracking if possible, maybe TSP DP
 DS: Fenwick tree (=Binary Index Tree)	store <b>cumulative sum/prefix sums</b><br><br>easier to code than RMQ<br><br>update: log(n)<br>compute: log(n)<br>build: O(n log n)?
 Geo: horizontal/vertical line intersections	3 events: start/end of horiz, vertical<br><br>keep set of <b>active horiz lines</b> in <b>BST</b><br><br>for a vertical: <b>range search</b> in BST to find intersections
 Array: count smaller element on the right side (3)	- augmented BST with size field<br>O(n log n)<br><br>- Fenwick/Binary Index Tree<br>O(n log n)<br><br>- Merge sort based inversions?<br>avg O(n log n)
