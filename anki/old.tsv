@@ -182,7 +182,6 @@ Sort: 6 questions on data	how many keys, duplicates, partially sorted, long to c
 String: Find the smallest window in a string containing all characters of another string	sliding window<br><br>O(n)|O(n)
 SD components: BigTable: data model, API, 2 open source equivalents	1. row (row key)<br>2. column: column families + column qualifier within family<br>3. timestamp<br><br>sparse: no room taken for empty cells<br><br>- lookup by row key, range query<br>- HBase, Cassandra
 SD: specs of usual machines	24G RAM, 8 cores<br>1Gb ethernet<br><br>- 2x1TB SSD<br>or<br>2x2TB hard drives
-Graph: Detect cycle in a graph<br>(2 ways, complexity)	<b>Colorized DFS</b> look for <b>back-edge</b> O(V + E).<br><br> Also possible with <b>Union-Find</b>: <b>loop on edges</b>, union-find on vertices O(E)?
 SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
 SD components: Dynamo<br>sharding, quorums, conflict, replica sync	consistent hashing<br>partial quorums for reading and writing<br>conflict detection and read repair via vector clocks<br>gossip for replica synchronization
 DS: <br>Binary heap definition	complete binary<br><br>with heap property (children smaller than parent)
@@ -190,7 +189,6 @@ SD components:<br>2 data warehouses products for an analytical processing OLAP	R
 SD components: in-memory K/V store perf	on machine with good network<br><br>read/write: 200k/s easily<br><br>latency: 1ms<br><br>no bound on size with sharding but $
 SD: N+2 principle	other machines can absorb load if 2 largest instances are down<br><br>e.g. machine off or release
 Array: find the <b>median</b> of non-sorted array<br>+ approximate and why	QuickSelect O(n)<br><br>median of medians: approximate, first step of quicksort/select<br>split in groups of 5<br>find median of each group, recurse
-SD primitives: 2 rate limiters	leaky bucket<br><br>token bucket
 Prob: copy postings linked-list with no additional storage	<b>3 passes</b><br><br><b>modify</b> next pointer of original list<br>then <b>restore</b>
 DS: hash table strategies (3)	chaining: <b>linked lists</b><br><br><b>open adressing</b>: next position<br><br><b>double hashing</b>
 SD: types of data store (9)	RDBMS<br>k/v<br>document<br>column-family<br>graph<br>analytics<br>blob<br>search engine DB<br>time series DB
