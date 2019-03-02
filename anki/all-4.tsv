@@ -1,29 +1,16 @@
-Graph: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
-Geo: farthest pair	compute <b>convex hull</b> (n log n)<br><br>check <b>all pairs in hull</b>
-Geo: closest pair<br>def, 2 algs	find the pair that is closest<br><br><b>- sweep line</b>: O(n log n)<br><br><b>- divide and conquer</b>: O(n log^2 n)
-Geo: closest pair with D&C	split in 2 sets with <b>median</b> of x<br><br>compute min in each side<br>d = min of 2 mins<br><br>merge: <b>vertical sort</b>of <b>band (-d,+d)</b><br><br>find <b>smallest pair in band</b>: not O(n^2) but O(n) since only <b>constant nb points</b> to check
-Geo: closest pair, farthest pair, nearest neighbour	- closest:<br><b>sweep</b> line/<b>D&C</b> O(n log^x n)<br><br>- farthest: check <b>all pairs</b> on <b>convex hull</b><br>O(n log n + h^2)<br><br>- nearest neighbour: <b>k-d tree</b> O(log n) when tree built
-Geo: nearest neighbour search (NNS)<br>- definition<br>- solved with	given a point in a set, find closest point in set<br><br><b>space partitioning</b>: e.g. <b>k-d tree</b>
-Prob: find Hamiltonian cycle: def, class, alg (2)	visit each vertex once<br>NP-complete<br><br>1. <b>DFS backtrack</b> with path as parameter<br>O(V!)<br><br>2. <b>bitmask DP</b>: O(n^2 2^n)
-Prob: problem solving approaches	<b>BBGS RDDIB</b><br><br><b>B</b>rute force<br>BF w/ <b>B</b>acktracking<br><b>G</b>reedy<br><b>S</b>ort<br><br><b>R</b>ecursion (maybe Memoization)<br><b>D</b>ivide and Conquer<br><b>D</b>P<br><b>I</b>ncremental<br><b>B</b>S answer+check
-Prob: generate random permutation of array	<b>Fisher-Yates</b><br><br>start <b>from end</b><br><b>rand()</b> <b>offset</b> to the <b>left</b><br><b>permute</b><br>continue
-Lang: % in C	<b>remainder</b>, not modulo<br><br>a = b * (a/b) + (a % b)<br><br>add b and do % again for <0 nb
-Prob: weighted job scheduling (2)	1. sort jobs by <b>finish time</b><br><b>DP</b> weightWithJobsUntil[i]<br>include or exclude current job<br><br>O(n^2) / or O(n log n) with BS to find previous nonconflicting job<br><br>2. sort by <b>start time</b>, then <b>DP like LIS</b>
-Prob: job scheduling	weighted: sort by start of end + BS or LIS: O(n log n) or O(n^2)<br><br>prerequisites: DAG toposort<br><br>prerequisites with weights?
-Graph: connected components, transitive closure (for directed/undirected)	1. <b>connected components</b>:<br>- undirected: DFS, or U-F O(V + E)<br>- directed: <b>strongly CC</b>: Kosaraju/Tarjan O(V + E)<br><br><b>transitive closure</b><br>- undirected: CC<br>- directed: DP or FW
 SD: Rabbit MQ vs. Kafka 	Rabbit:<br>- can’t rewind<br>- push to consumers<br>- no batching<br>- better for single messages<br>- worse for scale<br>- different topology
-SD: Games WL-algorithm	isWinning(x):<br><br>true if any reachable pos x is !isWinning(x)<br><br>else false
-SD: game of Nim	several piles, can take any number from one pile<br><br>lose if empty<br><br>winning pos if <b>XOR</b> of pile size is != 0
+Prob: Games WL-algorithm	isWinning(x):<br><br>true if any reachable pos x is !isWinning(x)<br><br>else false
+Prob: game of Nim (def, win)	several piles, can take any number from one pile<br><br>lose if empty<br><br>winning pos if <b>XOR</b> of pile size is != 0
 Graph: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive Bruteforce E!<br><br>linear for DAG: toposort, then loop<br>O(V + E)
-Array: subarray sum (max, max no more than k)	- max: Kadane O(n)<br><br>- max <= k: O(n log n) using <b>BST upper_bound</b><br><br>- min
-Prob: submatrix problems:<br>largest square/cross, max rectangle sum	- largest square/cross: <b>pre-compute</b><br><br>- static RSQ: precompute<br><br>- max rectangle sum: <b>reduce</b> to n^2 * <b>1D Kadane</b> O(n)
+Array: subarray sum (max, shortest >= k, max no more than k)	- max: Kadane O(n)<br><br>- sliding window O(n) or monotonic stack<br><br>- max <= k: O(n log n) using <b>BST upper_bound</b>
+Prob: submatrix problems:<br>largest square/cross, static RSQ, max rectangle sum	- largest square/cross: <b>pre-compute</b><br><br>- static RSQ: precompute<br><br>- max rectangle sum: <b>reduce</b> to n^2 * <b>1D Kadane</b> O(n)
 Prob: reflex D<br>1. find max less than k (min/more)<br>2. Graph all paths	1. <b>BST</b> with upper/lower_bound<br>2. BF backtracking if possible, maybe TSP DP
-DS: Fenwick tree (=Binary Index Tree)	store <b>cumulative sum/prefix sums</b><br><br>easier to code than RMQ<br><br>update: log(n)<br>compute: log(n)<br>build: O(n log n)?
+DS: Fenwick tree (=Binary Index Tree)	store <b>cumulative sum/prefix sums</b><br><br>easier to code than SegmentTree<br><br>update: log(n)<br>compute: log(n)<br>build: O(n log n)?
 Geo: horizontal/vertical line intersections	3 events: start/end of horiz, vertical<br><br>keep set of <b>active horiz lines</b> in <b>BST</b><br><br>for a vertical: <b>range search</b> in BST to find intersections
 Array: count smaller element on the right side (3)	- augmented BST with size field<br>O(n log n)<br><br>- Fenwick/Binary Index Tree<br>O(n log n)<br><br>- Merge sort based inversions?<br>avg O(n log n)
 DS: Segment Tree	binary tree built on <b>top of integer array</b><br><br>solve the <b>dynamic Range Min/Max/Sum Query</b> with <b>Range Update Query</b><br><br>all in <b>O(log N)</b><br><br><b>3</b> types of trees: RMinQ/RMaxQ/RSumQ<br><br>built in O(n)
 DS: Binary Indexed Tree (BIT, Fenwick)	from a <b>prefix sum table</b><br><b>dynamic query</b> and <b>update</b><br><br>Variants: with Point or Range query, with Point or Range update<br><br>Build: O(n), Queries: O(log n)
-DS: Difference between Interval/Segment/Binary Index Tree	Interval: from intervals, dynamic, find intersection with query interval<br><br>Segment Tree: from int array, solve dynamic Range Min/Max/Sum with Range Update<br><br>Binary Indexed Tree (=Fenwick): for array, solve dynamic Range Sum only, but simpler than Segment Tree
+DS: Difference between Interval/Segment/Binary Index Tree	- Interval: from intervals, dynamic, find intersection with query interval<br><br>- Segment Tree: from int array, solve dynamic Range Min/Max/Sum with Range Update<br><br>- Binary Indexed Tree (=Fenwick): for array, solve dynamic Range Sum only, but simpler than Segment Tree
 String: <b>Longest Repeated</b> Substring and <b>Longest Common</b> Substring (LCS) with <b>Suffix Tree</b>	- repeated: <b>deepest non-leaf</b> node of ST<br>O(n)<br><br>- common: build ST with 1 <b>terminal symbol</b> for <b>each</b> string<br>find <b>deepest non-leaf</b> with <b>both</b> ends in subtree<br>O(n)
 SD primitives: 2 rate limiters (with 1 def)	- leaky bucket: <b>2</b> parameters (burst size=bucket size, rate)<br>><b>increment</b> counter when new request<br><b>decrement</b> counter at given rate<br>reject request if bucket full<br><br>- token bucket
 SD: network addressing methods (routing schemes) (5)	<b>unicast</b><br><br><b>broadcast</b>: one-to-all, subnet generally<br><br><b>multicast</b>: like broadcast but subset<br><br><b>anycast</b>: to one of many with same IP address (closest), used by CDN<br><br><b>geocast</b>
@@ -34,4 +21,5 @@ Graph: Detect cycle in a graph<br>(dir/undir, complex) (2)	1. <b>Colorized DFS</
 Graph: number of paths of length k, APSP of length k	- nb paths: <b>power</b< of <b>adjacency</b> matrix: <b>G^k</b><br><br>O(k n^3)<br><br>O(log k  n^3) with binary exponentiation<br><br>- APSP(k): G^k but with <b>min</b> operator<br>O(n^3 log k)
 SD: Dedup system by UID	UID-<b>partitioned</b> workers with a local <b>KV store</b> (RocksDB)<br>Membership test efficient on LSM DBs as Bloom filters in memory<br><br>Keep UIDs in some time window, <b>expire</b> others:<br>use TTL from DB; or <b>secondary index</b> with seqno/ts in <b>column family</b>: <b>sorted iterate</b> to expire records
 SD: Primary vs. Secondary index	- Primary:  on a key with <b>unique values</b><br>controls <b>sorted storage layout</b> of rows. Multiple columns?<br><br>- Secondary: can be on <b>key with duplicates</b><br>no effect on order
-DS: complexity analysis (3)	- <b>flatten loops</b> for global count<br><br>- Memoized: NbDiffSubProblems * TimePerSubProblem<br><br>- Recursion with formula<br><br>
+DS: complexity analysis (4)	- <b>flatten loops</b> for global count<br><br>- Memoized: NbDiffSubProblems * TimePerSubProblem<br><br>- Recursion with formula<br><br>- Amortization
+SD: foreign key	field (or several) in one table that <b>uniquely</b> identifies a <b>row</b> of <b>another table</b> (<b>primary</b> or unique key of that table)

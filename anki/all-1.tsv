@@ -8,7 +8,7 @@ SD primitives: 3 consensus algos and their CAP status	<b>2PC</b>, full strict qu
 DS: suffix array	same use as suffix tree but with <b>4 times less memory</b><br><br>sorted array of suffixes
 DS: specialized heaps (2)	when <b>limited set</b> of keys,<br><br>or <b>monotonic</b> input
 Graph: Find connected components of an undirected graph (2)	<b>- BFS/DFS</b> O(V + E), <br><br>- <b>or</b> process <b>edges</b>, <b>Union-Find</b> on vertices<br><br>If <b>dynamic</b> changes, keep track of components with <b>Union-Find</b>.
-DS:<br>implementations <b>priority queue</b> (2) and <b>stack</b> (2)	- priority queue: <b>heap</b>, <b>BST</b><br><br><b>stack</b>: <b>linked list</b><br>or <b>array</b><br>(needs resizing, so amortized)
+DS:<br>implementations <b>priority queue</b> (2) and <b>stack</b> (2)	- priority queue: <b>heap</b>, <b>BST</b><br><br>- stack: <b>linked list</b><br>or <b>array</b><br>(needs resizing, so amortized)
 Graph: color theorem	a <b>planar</b> graph can be vertex-colored with most <b>4 colors</b>
 DS: LFU cache<br>implementation	<b>3 hash maps</b>, one with linked list as values
 SD: - default stack size<br>- size of empty stack<br>- max nb recursive calls	- <b>1 to 8 MB</b><br><br>= virtual<br>not allocated completely unless needed<br><br>- <b>< 100 bytes frame</b><br><br><b>5K+ calls</b>

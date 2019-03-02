@@ -223,3 +223,15 @@ Prob: count number of inversions i<j A(i)>A(j)	<b>divide and conquer</b>: within
 Prob: maximum circular subarray sum	1. compute non-circular<br>2. compute circular: <b>careful</b><br><br>need to try all cutting points O(n)<br><br>or compute <b>minimum non-circular</b> and <b>complement</b><br><br>O(n)
 DP: length of longest increasing subsequence	- O(n^2) bestLISEndingAtOffset[i]<br><br>- O(n log n) <b>active lists</b> (duplicate and extend)<br>or <b>tail array</b>: t[i] smallest tail of all increasing subsequences with length i+1<br><b>update cell or extend</b>
 Misc: how to send updates from server to client (3)	<b>short-polling</b> (client pull)<br><br><b>long-polling</b> (client pull): server doesn't answer request until new data<br><br><b>websocket</b> (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
+Graph: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
+Array: Smallest subarray with sum greater than a given value	<b>Sliding window</b>: keep adding array elements while current sum is smaller than x <br> If current sum becomes greater than x, update min length, remove starting elements<br><br>O(n)
+Array: find subarray with maximum sum	one pass, accumulate (Kadane)<br><br>at each position either extend or start new subarray O(n)|O(1)
+Prob:<br>Coin Game: coins in a row, pick one	<b>windowed DP</b><br><br>F(i,j) = max (coinChosen + whatIsLeftAfterOtherPlayer(=min))<br><br>F(from coin i to j) = max(. + min(), . + min())<br>O(n^2)
+Prob:<br>split array in m continous subarrays<br>minimize largest subarray sum	<b>Binary search</b> on answer<br><br>Greedy packing to check if valid
+Graph: 4 classes of problems in polynomial time	- shortest paths<br>- MST<br>- matching<br>- max flow
+SD: Deadlock (def, example)	task waits forever for conditions that can not be met<br><br>tasks wait for other tasks<br><br>ex: 2 tasks with 2 resources with each 1 lock<br>dining philosophers
+Prob: approximate TSP in 2D plane when distance is euclidian	satisfies <b>triangle inequality</b><br><br>build <b>MST</b> from graph<br><br>tour: <b>like in-order walk</b> on MST skipping already seen vertices<br><br>thanks to triangle ineq., approximation factor: <b>2</b>
+Prob: approximate warehouse location problem (k warehouse for n cities), with euclidian distance	heuristic: one warehouse at a time<br><br>choose warehouse <b>farthest</b> from existing warehouses
+SD: <b>synchronized</b> Java primitive	used to define a <b>critical section</b><br><br>only <b>one thread</b> can enter block of code<br><br>can be used on code blocks or methods
+SD: thread model for a web server	use <b>thread pool</b><br><br><b>avoids overhead</b> when create/delete<br>caps <b>maxThreads</b><br><br>use <b>synchronized task queue</b>
+Tree: compress binary trees to canonical form	use <b>hashing</b> on nodes/subtrees<br><br>recursive
