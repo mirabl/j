@@ -9,7 +9,7 @@ Prob: reflex A<br>1. permutation<br>2. DAG<br>3. "top k" (3)<br>4. Geometric pro
 Prob: reflex B<br>1. linked list (2)<br>2. array range/subarray<br>3. search<br>4. palindrome (2)<br>5. 1D/2D problem	1. two pointers, reverse<br>2. prefix sum<br>3. sort before<br>4. look at reverse string (LCS), windowed DP<br>5. DP
 Prob: reflex C<br>1. get low complexity for conflicting ops<br>2. many strings/dictionary<br>3. graph (2)<br>4. in-place<br>5. small size set	1. use <b>multiple DS</b> (reverse index)<br>2. use <b>trie</b><br>3. connected co, MST<br>4. several <b>passes</b><br>5. use <b>bitmask</b>
 DS: 6 example use of a priority queue	- continous top k<br>- k-way merge<br>- continous median<br>- sort when only k indices away<br>- heapsort/tree sort<br>- Dijkstra/Prim
-Trees: types of trees (8)	- Binary or not<br>- BST (balanced or not)<br>- Trie<br>- Heap<br>- Spanning (with a graph)<br>- Tournament (win/lose min/max)<br>- Segment tree<br>- Merkle
+Tree: types of trees (8)	- Binary or not<br>- BST (balanced or not)<br>- Trie<br>- Heap<br>- Spanning (with a graph)<br>- Tournament (win/lose min/max)<br>- Segment tree<br>- Merkle
 Prob: set of equality and inequality constraints on a set of boolean variables, find if possible	build undirected graph with <b>equality</b> only<br>compute <b>connected components</b><br><br>for <b>each inequality</b>: check that they are in <b>different connected components</b>
 Prob: arbitrage between a set of exchangeable currencies	take log of rates<br>look for <b>negative weight cycle</b><br>alg: <b>Bellman-Ford</b> O(VE)
 Prob: shortest path with a max delay constraint (edges have weight and delay)	<b>memoized DP</b><br>dp[destinationVertex,withDelay]<br><br>O(E maxDelay)
@@ -22,8 +22,6 @@ Geo: line through most points	<b>hash</b><br>H[line] = list of points<br><br>for
 Prob: find elements that appear more than k/n times	generalization of <b>voting</b><br><br><b>two passes</b><br>- keep <b>k</b> counters in <b>hash</b><br><br>purge hash table when needed<br><br>- second pass to check candidates
 Prob: DS for insert/delete/getRandom in O(1)	<b>array + hash</b> (index into array)<br><br>to <b>remove</b> from array: <b>swap</b> with last element
 Prob: classical DP problems (5)	Knapsack<br>Coin change<br>Grid traversal<br>LCS/LIS/edit<br>TSP
-Prob: Range Minimum Query problem (RMQ) solutions	<b>static</b>:<br><b>preprocess</b> trade-offs: ex. full lookup<br><br><b>Sqrt decomposition</b> 1D trade-off<br><br><b>Sparse table</b><br>O(1) query, O(n log n)/O(n log n) prepro<br><br>if <b>dynamic</b>: <b>Segment Tree</b><br>O(log n) query/update 
-DS: Sparse Table, application, def	<b>static</b> Range Minimum Query<br>easier than <b>Segment Tree</b> when static<br><br>get O(1)?? query but without full O(n^2) lookup<br><br>T[i][k]: minimum of <b>A[i][i+2^k]</b><br><br>build <b>bottom-up</b> DP<br><br>O(1) query, O(n log n)/O(n log n) prepro
 Tree: Euler tour, usage	traverse <b>without lifting pencil</b><br><br>like <b>preorder DFS</b> but with <b>repeats</b><br><br>used to reduce <b>LCA</b> to <b>RMQ</b>
 Graph: how to check for negative weight cycles	<b>Bellman-Ford</b><br><br>run the <b>relaxing-loop once more</b><br>if relaxing decreases distance to a vertex, then there is a negative cycle<br><br>O(VE)
 SD: bucket queue<br>def, use case	<b>heap</b> when <b>restricted prio range</b><br>{0, 1, ..., C - 1}<br><br><b>array</b> of <b>C linked lists</b><br><br>to find min, search non-empty list from i=0: O(C)<br>(optimizations possible)<br><br>insert: O(1)
@@ -35,15 +33,3 @@ String: minimum insertions to make string a palindrome (2)	1. <b>windowed DP</b>
 String: longest palindromic subsequence (2)	1. <b>windowed DP</b><br>dp[i][j]: s[i..j], O(n^2)<br><br>2. <b>LCS</b> with <b>reverse</b> string<br>O(n^2)
 String: palindrome problems (3)	1. <b>max</b> palindrome <b>substring</b>: O(n^2) <b>greedy extend</b><br>or O(n) Manacher<br><br>2. <b>max</b> palindrome <b>subsequence</b>: <b>LCS</b> with <b>reverse</b> O(n^2)<br><br>3. <b>min insertions</b> to <b>make</b> palindrome: <b>LCS</b> with <b>reverse</b> O(n^2)
 DS: probabilistic data structures (3)	<b>Bloom</b> filter: set<br><br><b>Count-Min sketch</b>: count by type<br><br><b>HyperLogLog</b>: count
-Geo: farthest pair	compute <b>convex hull</b> (n log n)<br><br>check <b>all pairs in hull</b>
-Geo: closest pair<br>def, 2 algs	find the pair that is closest<br><br><b>- sweep line</b>: O(n log n)<br><br><b>- divide and conquer</b>: O(n log^2 n)
-Geo: closest pair with D&C	split in 2 sets with <b>median</b> of x<br><br>compute min in each side<br>d = min of 2 mins<br><br>merge: <b>vertical sort</b>of <b>band (-d,+d)</b><br><br>find <b>smallest pair in band</b>: not O(n^2) but O(n) since only <b>constant nb points</b> to check
-Geo: closest pair, farthest pair, nearest neighbour	- closest:<br><b>sweep</b> line/<b>D&C</b> O(n log^x n)<br><br>- farthest: check <b>all pairs</b> on <b>convex hull</b><br>O(n log n + h^2)<br><br>- nearest neighbour: <b>k-d tree</b> O(log n) when tree built
-Geo: nearest neighbour search (NNS)<br>- definition<br>- solved with	given a point in a set, find closest point in set<br><br><b>space partitioning</b>: e.g. <b>k-d tree</b>
-Prob: find Hamiltonian cycle: def, class, alg (2)	visit each vertex once<br>NP-complete<br><br>1. <b>DFS backtrack</b> with path as parameter<br>O(V!)<br><br>2. <b>bitmask DP</b>: O(n^2 2^n)
-Prob: problem solving approaches	<b>BBGS RDDIB</b><br><br><b>B</b>rute force<br>BF w/ <b>B</b>acktracking<br><b>G</b>reedy<br><b>S</b>ort<br><br><b>R</b>ecursion (maybe Memoization)<br><b>D</b>ivide and Conquer<br><b>D</b>P<br><b>I</b>ncremental<br><b>B</b>S answer+check
-Prob: generate random permutation of array	<b>Fisher-Yates</b><br><br>start <b>from end</b><br><b>rand()</b> <b>offset</b> to the <b>left</b><br><b>permute pair</b><br>continue
-Lang: % in C	<b>remainder</b>, not modulo<br><br>a = b * (a/b) + (a % b)<br><br>add b and do % again for <0 nb
-Prob: weighted job scheduling (2)	1. sort jobs by <b>finish time</b><br><b>DP</b> weightWithJobsUntil[i]<br>include or exclude current job<br><br>O(n^2) / or O(n log n) with BS to find previous nonconflicting job<br><br>2. sort by <b>start time</b>, then <b>DP like LIS</b>
-Prob: job scheduling	weighted: sort by start of end + BS or LIS: O(n log n) or O(n^2)<br><br>prerequisites: DAG toposort<br><br>prerequisites with weights?
-Graph: connected components, transitive closure (for directed/undirected)	1. <b>connected components</b>:<br>- undirected: DFS, or U-F O(V + E)<br>- directed: <b>strongly CC</b>: Kosaraju/Tarjan O(V + E)<br><br><b>transitive closure</b><br>- undirected: CC<br>- directed: DP or FW

@@ -15,9 +15,6 @@ SD: - default stack size<br>- size of empty stack<br>- max nb recursive calls	- 
 Misc: 5 NP-complete problems	SAT<br>knapsack<br>traveling salesman<br>set cover<br>Hamiltonian cycle
 Tree: k-d tree<br>definition<br>4 complexities	split in 1 dimension at each node (median of coordinate to get balance)<br><br>search/insert/delete O(log n) average<br>Space: O(n)
 Prob. solving:<br>optimize parameter (find min) when difficult directly	<b>binary search</b> + checkValue(mid)
-DS: which DS for range minimum or range sum (3)	Segment Tree<br>Fenwick Tree (Binary Indexed Tree)<br>SparseTable?
-DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
-Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	<b>BFS from start word</b>
 SD apps: C numbers	BR 1M/s<br><br>NoSQL cache/persisted: 200To, 1k memcache, 1k couchbase, 1ms 99p, 60M QPS peak<br><br>HDFS: 300 PB, 3k nodes
 SD components: load-balancer layer 4 vs. layer 7	4:<br>- look at transport layer: IP address, port<br>- do <b>NAT</b><br>- often hardware<br><br>7:<br> look at application layer, like URL for HTTP, cookies<br>terminates network traffic, remove TLS<br>called <b>reverse-proxy</b> server
 SD: semaphore	<b>count</b> how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
@@ -28,12 +25,10 @@ Prob: transitive closure def, algo	= reachable[s][t] matrix<br><br><b>(if undire
 Prob: subset of size n array which sums to 0 mod n	<b>prefix sums: 0 or collisions</b><br><br>either:<br>- one is <b>0</b><br><br>- <b>two are equal</b>, so difference is solution<br><br>O(n)
 Prob: invert permutation with constant space	decompose in <b>cycles</b><br><br>invert each cycle<br><br>fix only one element at a time (min of cycle)
 SD low-level: Send 1K bytes over 1 Gbps network	10 us
-Algo: Gray code construction	recursive, G_{n-1}, G_{n-1} reversed with top bit set<br><br>gray(n) = n ^ (n >> 1)
 OO: virtual method	can be <b>overriden</b> in derived class
 SD: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency prefered
 Prob: count distinct subsequences	c(n) = 2 * c(n - 1) - c(index of last occ of cur char)<br><br>use table for c[]<br><br>O(n)
 Prob: Count distinct occurrences of t as a subsequence of s	dp[offsetS][offsetT]<br><br>O(nm)
-2D Array: Boggle (Find all possible words in a board of characters)	<b>DFS</b> <b>from every start cell</b>, mark <b>visited</b> cells.<br><br>Complexity?<br>Store dict in <b>Trie</b>.
 Graph: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br><br><br>O(V^2) if adjacency matrix/O(V)
 Prob:<br>0-1 Knapsack: description, solution, problem class	max weight, items with values and weights, maximize value<br><br>DP Best[i][w]<br>O(n W)<br>NP-complete
 Graph: articulation point<br>def, algo, complex	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
@@ -45,7 +40,6 @@ SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SS
 Prob: find K-th smallest pair distance<br>from integer array	<b>Sort</b> array<br><b>Binary search</b> on answer<br><b>Two pointers</b> to validate
 Graph: bridge<br>def, algo, complexity	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
 SD components: advantage/disadvantage of columnar storage, 3 examples	if usage pattern is to read whole table like OLAP/BI<br>but only some columns<br><br>don't read unused columns<br>can use <b>compression</b> to reduce disk size<br>disadv: <b>difficult to update</b><br>Parquet, Redshift, Dremel/BigQuery
-Prob: swim in rising water	<b>BS</b> on answer + DFS check<br>O(n^2 log n)<br><br>BFS with priority queue<br>O(n^2 log n)
 Binary Search: find <b>first</b> element (2)	- tweak binary search<br><br>- or set <b>currentBest variable</b> and continue
 Prob: find missing one from 1 billion of IP adresses<br>using 2 MB of RAM	<b>two passes LSB/MSB</b><br><br>find missing <b>LSB</b>:<br>count LSB in RAM array<br><br>find <b>whole IP</b>, <b>filtering</b> on LSB
 Prob: array where all elements appear 3 times and one appears once, find it	<b>bit decomposition</b><br><br>for each <b>bit position</b>:<br><b>count modulo 3</b><br><br>at the end, count=0,1,3<br><br>missing element: counts=1

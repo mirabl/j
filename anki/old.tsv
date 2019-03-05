@@ -235,3 +235,8 @@ Prob: approximate warehouse location problem (k warehouse for n cities), with eu
 SD: <b>synchronized</b> Java primitive	used to define a <b>critical section</b><br><br>only <b>one thread</b> can enter block of code<br><br>can be used on code blocks or methods
 SD: thread model for a web server	use <b>thread pool</b><br><br><b>avoids overhead</b> when create/delete<br>caps <b>maxThreads</b><br><br>use <b>synchronized task queue</b>
 Tree: compress binary trees to canonical form	use <b>hashing</b> on nodes/subtrees<br><br>recursive
+Algo: Gray code construction	recursive, G_{n-1}, G_{n-1} reversed with top bit set<br><br>gray(n) = n ^ (n >> 1)
+2D Array: Boggle (Find all possible words in a board of characters)	<b>DFS</b> <b>from every start cell</b>, mark <b>visited</b> cells.<br><br>Complexity?<br>Store dict in <b>Trie</b>.
+Prob: swim in rising water	<b>BS</b> on answer + DFS check<br>O(n^2 log n)<br><br>BFS with priority queue<br>O(n^2 log n)
+Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	<b>BFS from start word</b>
+DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
