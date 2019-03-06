@@ -1,0 +1,49 @@
+SD: Pregel	distributed <b>graph processing</b><br><b>vertex can send a msg</b> to other<br><br>like a mapper can send to reducer in MR<br><br>iterations
+SD: SLO for S3 (2)	99.99 (4) availability<br><br>99.99999999 (10) durability
+SD: bucket queue<br>def, use case	<b>heap</b> when <b>restricted prio range</b><br>{0, 1, ..., C - 1}<br><br><b>array</b> of <b>C linked lists</b><br><br>to find min, search non-empty list from i=0: O(C)<br>(optimizations possible)<br><br>insert: O(1)
+SD: circuit breaker<br>def, how it works	<b>~proxy</b> for operations that might fail<br><br><b>3 states</b>: closed / half-open / open<br>change state by looking at <b>error rate</b>
+SD: classic consistency problem in DB	read-after-write
+SD: def, usual value for <b>page size</b>	smallest unit of virtual memory<br><br><b>4KB</b><br><br>can be more
+SD: dining philosophers problem, solutions (2)	round table, knife/fork<br><br>1. request <b>smaller index</b> resources first<br><br>or 2. add <b>arbitrator</b>
+SD: drawback of DNS load balancing	results are cached by intermediate servers, so not responsive when change
+SD: event-sourcing pattern	use append-only store of actions/events
+SD: hashing for sharding (2)	<b>consistent hashing</b>: circle with many pseudo-random points per node<br><br><br><b>Rendezvous</b> hashing
+SD: how many seconds in a day	90K
+SD: how to <b>avoid deadlock</b>	make <b>locking order fixed</b> when multiple locks
+SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
+SD: livelock	2+ processes change their states in response to changes in the other process(es), no useful work<br><br>ex. corridor
+SD: log structured merge trees (principle, components, good for, compare)	MemTable/SSTable<b>s</b><br>+ disk WAL<br><br>do only <b>sequential write on disk</b><br>thanks to in-memory buffer<br><br>better <b>write throughput</b> than B+<br>good for write-heavy<br><br>read: try all SST (Bloom)
+SD: messaging system semantics	<b>at-least-once</b>: producer client retries when ack timeout or error<br><br><b>at-most-once</b>: no retries<br><br><b>exactly-once</b>: on Kafka, uses sequence numbers
+SD: monotonic priority queue<br>def, examples	min monotonic: inserted elements have <b>higher prio than min</b> of heap<br><br>ie. will not become min<br><br>Dijkstra, sweep line<br><br>can <b>optimize bucket queue</b>
+SD: mutex	one thread in <b>critical section</b> at a time
+SD: process vs thread	thread:<br>run in <b>shared memory</b> space<br>share resources<br>context switch faster<br><br>thread has <b>own stack</b>
+SD: producer-consumer problem, solution	fixed size buffer<br>ensure that don't read if empty, don't write if full<br><br>use <b>2 semaphores</b>: remainingSpace, currentItems
+SD: readers-writers problem (3 variations)	<b>multiple readers</b> at the same time<br>only <b>1 writer</b><br><br>1. readers preference (can starve writers)<br>2. writers preference (starve readers)<br>3. fairness
+SD: replication lag for MySQL	time between read/write to master and replication to all slaves
+SD: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency prefered
+SD: semaphore	<b>count</b> how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
+SD: skip list<br>- definition<br>- complexities<br>- used in	linked list for binary search<br>layers of sorted linked lists (<b>express lanes</b>)<br>p = 1/2 or 1/4, proba for element to be also in layer below<br><br><b>O(log n)</b> average for search/insert/delete, O(n) average space<br>used in LevelDB MemTable
+SD: specs of usual machines	24G RAM, 8 cores<br>1Gb ethernet<br><br>- 2x1TB SSD<br>or<br>2x2TB hard drives
+SD: starvation	runnable process is overlooked indefinitely by the scheduler<br><br>although it is able to proceed, it is never chosen
+SD: thread model for a web server	use <b>thread pool</b><br><br><b>avoids overhead</b> when create/delete<br>caps <b>maxThreads</b><br><br>use <b>synchronized task queue</b>
+SD: three and four nines availability per year	99.9: <b>9</b> hours of downtime/year<br><br>99.99: <b>1</b> hour downtime/year
+SD: time for a <b>context switch</b>	<b>5μs</b>
+SD: treap, def, use	<b>BST</b> and <b>heap</b><br><br>node is <b>pair</b> (x, y)<br>x: key in the <b>BST</b><br>y: key in the heap (<b>priority</b>)<br><br>random prio: will probably <b>make BST balanced</b>
+SD: tunable consistency	from "writes never fail" to <br><br>"block for all replicas to be readable" with quorum levels
+SD: types of data store (9)	RDBMS<br>k/v<br>document<br>column-family<br>graph<br>analytics<br>blob<br>search engine DB<br>time series DB
+SD: vertical/horizontal scaling 	vertical: add more power to a machine<br><br>horizontal: add more machines
+SD: why Kafka performance (2)	zero-copy<br><br>batching
+SD:<br>- how many FB users<br><br>- how many YT videos watched every day	- 2B Montly active users<br><br>- 5B
+Search: find element in a sorted rotated array	<b>double BS</b>: <br><br>find the frontier, <br>BS on left or right part
+Sort: 6 questions on data	how many keys, duplicates, partially sorted, long to compare, small range, disk access possible
+Sort: 6 sort properties	- stable<br>- in place<br>- comparison or not<br>- external<br>- good with pre-sorted<br>- method: partition, merge, select, insert, exchange   Sort
+Sort: Shell sort	choose <b>gap sequence</b><br><b>iterate on gaps</b><br><br><b>swap gapped pairs</b><br>like a bubble sort<br><br>in place<br><br>complexity: difficult
+Sort: bubble sort	swap pairs to put max at i=end of array<br>i--
+Sort: insertion sort<br>selection sort	insertion: insert A[i] in sorted A[0]...A[i-1]<br><br>select min put it at A[i=0], i++
+Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
+Sort: merge sort implementation (2)	- <b>top-down</b> using recursion<br><br>- <b>bottom-up</b> using loop
+Sort: real world sorting	<b>insertion sort</b> on <b>small arrays</b> (incl. bottom of recursion)<br><br>need to be <b>good on pre-sorted</b><br><br>maybe be <b>stable</b><br><br>example: <b>timsort</b> (find runs, merge/insertion)
+Sort: sort when element are nearly sorted (2 ways)	insertion sort<br>heapsort
+Sort: sort when limited range of keys (3)	3 <b>distribution sorts</b>:<br><br>counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
+Sort: sort without moving too many records (which might be expensive)	<b>indirect sort</b>:<br>1. sort secondary <b>array of indices</b><br><br>2. apply sort to array (move records)
+Sort: tournament sort	load elements in a <b>min winner tournament tree</b><br><br>extract top to a <b>sorted list</b><br><br>not all array fits at bottom of tree (memory tradeoff)<br><br>do <b>multiple passes</b> and <b>merge sorted lists</b>

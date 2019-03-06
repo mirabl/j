@@ -1,7 +1,6 @@
 SD: Rabbit MQ vs. Kafka 	Rabbit:<br>- can’t rewind<br>- push to consumers<br>- no batching<br>- better for single messages<br>- worse for scale<br>- different topology
 Prob: Games WL-algorithm	isWinning(x):<br><br>true if any reachable pos x is !isWinning(x)<br><br>else false
 Prob: game of Nim (def, win)	several piles, can take any number from one pile<br><br>lose if empty<br><br>winning pos if <b>XOR</b> of pile size is != 0
-Graph: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive Bruteforce E!<br><br>linear for DAG: toposort, then loop<br>O(V + E)
 Array: subarray sum (max, shortest >= k, max no more than k)	- max: Kadane O(n)<br><br>- sliding window O(n) or monotonic stack<br><br>- max <= k: O(n log n) using <b>BST upper_bound</b>
 Prob: submatrix problems:<br>largest square/cross, static RSQ, max rectangle sum	- largest square/cross: <b>pre-compute</b><br><br>- static RSQ: precompute<br><br>- max rectangle sum: <b>reduce</b> to n^2 * <b>1D Kadane</b> O(n)
 Prob: reflex D<br>1. find max less than k (min/more)<br>2. Graph all paths<br>3. count s.t. = K<br>4. count to the right of array	1. <b>BST</b> with upper/lower_bound<br>2. BF backtracking if possible, maybe TSP DP<br>3. count <= K - <= K - 1<br>4. D&C mergesort-like

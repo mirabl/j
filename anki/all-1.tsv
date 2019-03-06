@@ -1,48 +1,49 @@
-SD primitives: 2PC<br>vote, master, failure, partition, network	unanimous vote: commit or abort<br>static master<br>fails if coordinator and a node fail when commit<br>not partition tolerant, tail latency sensitives
-Graph: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>K: first DFS topological sort<br>second DFS in inverse graph collect SCC<br><br>T: only one pass<br>O(V + E)
-SD primitives: WAL<br>def, goal	<b>write-ahead logging</b><br><b>first log</b> actions to be done to permanent storage<br><br><b>then do</b> the actions<br><br>gives <b>durability</b> and atomicity even if crash
-LinkedList: 4 problems solved with 2 pointers	find where 2 linked list <b>merge</b><br><br><b>middle</b> of a linked list<br><br><b>last-M-th</b> element of a linked list<br><br><b>cycle</b>: detect/find beginning
-Tree: quad-tree	2D hierarchical partition in quadrants<br><br><b>4</b> children by node<br>split when max capacity reached.
-Graph: edge cover<br>desc, problem and solution	<b>set of edges</b> such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
-SD primitives: 3 consensus algos and their CAP status	<b>2PC</b>, full strict quorum protocols: CA<br><br><b>Paxos</b>, majority quorums with minority in partition: CP<br><br><b>Gossip</b>, Dynamo, conflict resolution: AP
-DS: suffix array	same use as suffix tree but with <b>4 times less memory</b><br><br>sorted array of suffixes
-DS: specialized heaps (2)	when <b>limited set</b> of keys,<br><br>or <b>monotonic</b> input
-Graph: Find connected components of an undirected graph (2)	<b>- BFS/DFS</b> O(V + E), <br><br>- <b>or</b> process <b>edges</b>, <b>Union-Find</b> on vertices<br><br>If <b>dynamic</b> changes, keep track of components with <b>Union-Find</b>.
-DS:<br>implementations <b>priority queue</b> (2) and <b>stack</b> (2)	- priority queue: <b>heap</b>, <b>BST</b><br><br>- stack: <b>linked list</b><br>or <b>array</b><br>(needs resizing, so amortized)
-Graph: color theorem	a <b>planar</b> graph can be vertex-colored with most <b>4 colors</b>
-DS: LFU cache<br>implementation	<b>3 hash maps</b>, one with linked list as values
-SD: - default stack size<br>- size of empty stack<br>- max nb recursive calls	- <b>1 to 8 MB</b><br><br>= virtual<br>not allocated completely unless needed<br><br>- <b>< 100 bytes frame</b><br><br><b>5K+ calls</b>
-Misc: 5 NP-complete problems	SAT<br>knapsack<br>traveling salesman<br>set cover<br>Hamiltonian cycle
-Tree: k-d tree<br>definition<br>4 complexities	split in 1 dimension at each node (median of coordinate to get balance)<br><br>search/insert/delete O(log n) average<br>Space: O(n)
-Prob. solving:<br>optimize parameter (find min) when difficult directly	<b>binary search</b> + checkValue(mid)
-SD apps: C numbers	BR 1M/s<br><br>NoSQL cache/persisted: 200To, 1k memcache, 1k couchbase, 1ms 99p, 60M QPS peak<br><br>HDFS: 300 PB, 3k nodes
-SD components: load-balancer layer 4 vs. layer 7	4:<br>- look at transport layer: IP address, port<br>- do <b>NAT</b><br>- often hardware<br><br>7:<br> look at application layer, like URL for HTTP, cookies<br>terminates network traffic, remove TLS<br>called <b>reverse-proxy</b> server
-SD: semaphore	<b>count</b> how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
-SD: process vs thread	thread:<br>run in <b>shared memory</b> space<br>share resources<br>context switch faster<br><br>thread has <b>own stack</b>
-Prob: in string, replace a by dd, delete b<br>O(1) space	<b>two passes</b>:<br><br>1. <b>forward</b> delete b's in place<br>and count a's<br><br>2. <b>backward</b> replace a's 
-Prob: first missing positive	<b>swap pairs</b> to put at its place<br>O(n) time<br>O(1) memory
-Prob: transitive closure def, algo	= reachable[s][t] matrix<br><br><b>(if undirected: = easy connected-co)</b><br><br>directed (2):<br><br>1. DFS on each vertex to fill reachable[src][*]<br>O(V (V + E))<br><br>2. or <b>Floyd-Warshall-like</b> O(n^3)
-Prob: subset of size n array which sums to 0 mod n	<b>prefix sums: 0 or collisions</b><br><br>either:<br>- one is <b>0</b><br><br>- <b>two are equal</b>, so difference is solution<br><br>O(n)
-Prob: invert permutation with constant space	decompose in <b>cycles</b><br><br>invert each cycle<br><br>fix only one element at a time (min of cycle)
-SD low-level: Send 1K bytes over 1 Gbps network	10 us
-OO: virtual method	can be <b>overriden</b> in derived class
-SD: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency prefered
-Prob: count distinct subsequences	c(n) = 2 * c(n - 1) - c(index of last occ of cur char)<br><br>use table for c[]<br><br>O(n)
-Prob: Count distinct occurrences of t as a subsequence of s	dp[offsetS][offsetT]<br><br>O(nm)
-Graph: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br><br><br>O(V^2) if adjacency matrix/O(V)
-Prob:<br>0-1 Knapsack: description, solution, problem class	max weight, items with values and weights, maximize value<br><br>DP Best[i][w]<br>O(n W)<br>NP-complete
-Graph: articulation point<br>def, algo, complex	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
-SD components: one instance RDBMS perf	no answer, depends on query/HW, if fits in RAM<br><br><b>1 TB</b> total size<br><b>billions</b> of rows<br><b>1K</b> r/w QPS<br><br>latency: SSD 1ms, HD: 20ms
-DS: <b>Interval tree</b>, search algo	red black tree<br>each node is interval<br><br>node contains:<br>1. start of interval=sort key<br>2. end of interval<br>3. maxEnd of intervals in subtree<br><br>search for intersection O(h):<br>go in right or left (bit tricky proof)
-SD: time for a <b>context switch</b>	<b>5μs</b>
-String: Boyer-Moore	try to match from start of text but <b>from end of pattern</b><br>when <b>mismatch, skip chars</b> when possible<br><br>2 prepro tables to skip chars:<br>- indexOfLastOccurence[char]<br>- other table more complicated<br>O(n/m) to O(nm)
-SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
-Prob: find K-th smallest pair distance<br>from integer array	<b>Sort</b> array<br><b>Binary search</b> on answer<br><b>Two pointers</b> to validate
-Graph: bridge<br>def, algo, complexity	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
-SD components: advantage/disadvantage of columnar storage, 3 examples	if usage pattern is to read whole table like OLAP/BI<br>but only some columns<br><br>don't read unused columns<br>can use <b>compression</b> to reduce disk size<br>disadv: <b>difficult to update</b><br>Parquet, Redshift, Dremel/BigQuery
-Binary Search: find <b>first</b> element (2)	- tweak binary search<br><br>- or set <b>currentBest variable</b> and continue
-Prob: find missing one from 1 billion of IP adresses<br>using 2 MB of RAM	<b>two passes LSB/MSB</b><br><br>find missing <b>LSB</b>:<br>count LSB in RAM array<br><br>find <b>whole IP</b>, <b>filtering</b> on LSB
-Prob: array where all elements appear 3 times and one appears once, find it	<b>bit decomposition</b><br><br>for each <b>bit position</b>:<br><b>count modulo 3</b><br><br>at the end, count=0,1,3<br><br>missing element: counts=1
-Sort:<br>3 big sorts on large data<br>+ advantages	quicksort: <b>fast</b>, not stable unless storage, bad <b>worst case</b><br><br>mergesort: <b>stable</b>, <b>not in-place</b>, parallelizable, contiguous access<br><br>heapsort: <b>in-place, not stable</b>, <b>slower</b> than quicksort
-Sort: which sort for:<br>1. general large integer array (2)<br>2. small array<br>3. almost sorted (2)<br>4. small range array<br>5. many duplicates (2)<br>6. stability required (2)	1. quicksort, timsort<br>2. insertion sort<br>3. depends: heap/heapsort/insertion<br>4. counting sort in array or BST<br>5. BST<br>6. merge sort/decorate-sort (key, index)
-Sort: sort without moving too many records (which might be expensive)	<b>indirect sort</b>:<br>1. sort secondary <b>array of indices</b><br><br>2. apply sort to array (move records)
+Algo: Gray code construction	recursive, G_{n-1}, G_{n-1} reversed with top bit set<br><br>gray(n) = n ^ (n >> 1)
+Algo: NP-complete/NP-hard definition	in NP, and any NP problem can be transformed in a NP-complete<br><br>NP-hard: same but not in NP necessarily
+Algo: P, NP definition	solvable in polynomial time<br>a solution can be verified in polynomial time
+Algo: pseudo-polynomial time	running time polynomial in the numeric value of input<br>but exponential in the length of the input
+Array/Matrix: Boggle (Find all possible words in a board of characters)	<b>DFS</b> <b>from every start cell</b>, mark <b>visited</b> cells.<br><br>Complexity?<br>Store dict in <b>Trie</b>.
+Array/Matrix: Find the longest path in a matrix increasing by 1 at each cell	<b>DP with memoization</b>
+Array/Matrix: k-th smallest number in multiplication table	<b>Binary search</b><br><br>O(m log(mn))
+Array/Matrix: largest all-1s 2D subarray (or cross shape)	<b>precompute</b>: for each cell, <b>number of 1s</b> to the <b>left</b>, and <b>down</b><br><br>then: for each cell, find largest subarray <b>with this corner</b> (iterate on sizes)<br><br>O(n^2 m)
+Array/Matrix: set matrix zeroes	set cell in <b>first</b> row/column to zero if element in 0<br><br>use 2 variables for first row/column<br><br>set all zeroes by looking at first row/column<br>O(mn)
+Array/Matrix: swim in rising water	<b>BS</b> on answer + DFS check<br>O(n^2 log n)<br><br>BFS with priority queue<br>O(n^2 log n)
+Array/Matrix:<br>Search: find element in row-and-column-sorted matrix	start from NE corner
+Array/Matrix: Print matrix in spiral	four variables top bottom left right. Reduce
+Array: 2sum (3 ways)	same element twice?<br> Use hash table O(n)|O(n), <br>sort+two pointers O(n log n)|O(1), <br>sort+BS O(n log n)|O(1)
+Array: 3 subsequence problems/solutions/cplx	1. <b>Is Subsequence</b>: iterate greedy O(n), no DP<br><br>2. <b>Longest Common Subsequence</b>: DP O(nm)<br><br>3. <b>Longest Increase Subsequence</b><br>- DP O(n^2)<br>- O(n log n): active lists and binary search
+Array: 3Sum  Find all unique triplets in the array which gives the sum of zero	sort, loop for first element and then 2sum sweep, <br>avoid duplicates by avoiding duplicate first element <br>O(n^2)|O(1)
+Array: Coin change:<br>Given infinite coins of value V1..VN, find the minimum number of coins with sum S	DP<br><br><b>dp[amount]</b><br>loop on coin<br>loop on x to update dp[x]<br><br>O(N S)
+Array: Convert array into Zig-Zag fashion: distinct element or not cases	distinct O(n)|O(1) aux bubble sort-like swap <br> not distinct QuickSelect to find median, partition O(n)
+Array: Count distinct occurrences of t as a subsequence of s	dp[offsetS][offsetT]<br><br>O(nm)
+Array: Count triplets with sum smaller than a given value in O(n^2)	sort, loop for first element, use two-pointer-sum <br> O(n^2)|O(1) aux
+Array: Find maximum in sliding window (2)	1. use self-balanced BST O(n log n). <br><br>2. Use <b>sorted dequeue</b> O(n)
+Array: Given an array of integers, every element appears twice except for one. Find that single one	XOR O(n)
+Array: Minimum difference partition	DP CanMakeSum[i][T] <br>T <= S/2<br>O(n S)
+Array: Next Greater element in an array (2)	- from right to left, using a stack<br><br>- or left to right with stack, but map also<br><br>O(n)/O(n)
+Array: Reverse an array without affecting special characters	O(n) one pass, in-place: two pointers at start and end <br> swap or skip and meet in the middle <br> O(n)|O(1) aux
+Array: Rotate an array<br>(3 ways)	1. naive, step by step<br><br>2. With a temp array of size K. <br><br>3. With cycles (compute gcd)
+Array: Selection algorithm<br>def, algo, complex find <b>k-th greatest</b> element(s)<br>find <b>median</b><br><br>use <b>Quickselect</b><br><b>O(n) average</b><br><br>but worst case <b>O(n^2) if bad pivot</b><br>use <b>random</b> or median of medians
+Array: Smallest subarray with sum greater than a given value	<b>Sliding window</b>: keep adding array elements while current sum is smaller than x <br> If current sum becomes greater than x, update min length, remove starting elements<br><br>O(n)
+Array: array where all elements appear 3 times and one appears once, find it	<b>bit decomposition</b><br><br>for each <b>bit position</b>:<br><b>count modulo 3</b><br><br>at the end, count=0,1,3<br><br>missing element: counts=1
+Array: count distinct subsequences	c(n) = 2 * c(n - 1) - c(index of last occ of cur char)<br><br>use table for c[]<br><br>O(n)
+Array: count number of inversions i<j A(i)>A(j)	<b>divide and conquer</b>: within two halves + merge<br>= <b>modified merge sort</b><br><br>merge function sorts and returns inversion count<br><br>O(n log n)
+Array: find K-th smallest pair distance<br>from integer array	<b>Sort</b> array<br><b>Binary search</b> on answer<br><b>Two pointers</b> to validate
+Array: find subarray with maximum sum	one pass, accumulate (Kadane)<br><br>at each position either extend or start new subarray O(n)|O(1)
+Array: find the <b>median</b> of non-sorted array<br>+ approximate and why	QuickSelect O(n)<br><br>median of medians: approximate, first step of quicksort/select<br>split in groups of 5<br>find median of each group, recurse
+Array: find the majority element	Boyer-Moore <b>voting</b> algorithm<br><br>O(n)
+Array: first missing positive	<b>swap pairs</b> to put at its place<br>O(n) time<br>O(1) memory
+Array: from 3 sorted arrays, find i, j, k s.t. d(i,j,k)=max(|A(i)-B(j)|, ...) is minimum	<b>1 pointer in each</b><br><b>move 1</b> (min) at each step<br><br>like intersection of sorted arrays<br><br>record minimum<br><br>O(len A + len B + ..)
+Array: in string, replace a by dd, delete b<br>O(1) space	<b>two passes</b>:<br><br>1. <b>forward</b> delete b's in place<br>and count a's<br><br>2. <b>backward</b> replace a's 
+Array: length of longest increasing subsequence	- O(n^2) bestLISEndingAtOffset[i]<br><br>- O(n log n) <b>active lists</b> (duplicate and extend)<br>or <b>tail array</b>: t[i] smallest tail of all increasing subsequences with length i+1<br><b>update cell or extend</b>
+Array: longest increasing <b>subarray</b><br>+ trick	<b>one pass</b> O(n)<br><br>--<br>trick: if current max is L<br><b>skip</b> L chars and check in <b>reverse order first</b><br><br>improves best-case complexity<br>but not worst-case
+Array: longest subarray with sum <= k	build <b>prefix sum array R</b><br>prob: for i, pick largest j s.t. R(j) <= R(i) + k<br><br><b>efficient frontier</b> array of R:<br>ignore decreasing values: build <b>staircase increasing</b> array<br><br>then: for each i, do <b>binary search</b> to find j<br><br>O(n log n)
+Array: maximum circular subarray sum	1. compute non-circular<br>2. compute circular: <b>careful</b><br><br>need to try all cutting points O(n)<br><br>or compute <b>minimum non-circular</b> and <b>complement</b><br><br>O(n)
+Array: median of two sorted arrays	<b>Binary search</b><br><br>O(log(m + n))<br><br>tricky cases due to parity
+Array: rotate image by 90 degrees (3)	- ring by ring, <br><br>- reverse up to down and transpose<br><br>- if n=2^k, recursive quadrants
+Array: subarray sum closest to 0	build <b>prefix sum</b> array<br><b>sort</b> it<br><br>loop and find min consecutive difference<br><br>O(n log n)
+Array: subset of size n array which sums to 0 mod n	<b>prefix sums: 0 or collisions</b><br><br>either:<br>- one is <b>0</b><br><br>- <b>two are equal</b>, so difference is solution<br><br>O(n)
+Array:<br>Coin Game: coins in a row, pick one	<b>windowed DP</b><br><br>F(i,j) = max (coinChosen + whatIsLeftAfterOtherPlayer(=min))<br><br>F(from coin i to j) = max(. + min(), . + min())<br>O(n^2)
+Array:<br>Product of array except self	two steps with <b>left+right prefix product</b><br><br>no need of additional array
+Array:<br>Subset sum: a subset of array sums to T	DP CanMakeSum[i][T]<br>O(n S)
+Array:<br>split array in m continous subarrays<br>minimize largest subarray sum	<b>Binary search</b> on answer<br><br>Greedy packing to check if valid
