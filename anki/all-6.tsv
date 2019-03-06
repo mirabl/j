@@ -7,7 +7,6 @@ SD primitives: 2 classifications of replication techniques	-synchronous<br>-asyn
 SD primitives: 2PC<br>vote, master, failure, partition, network	unanimous vote: commit or abort<br>static master<br>fails if coordinator and a node fail when commit<br>not partition tolerant, tail latency sensitives
 SD primitives: 3 consensus algos and their CAP status	<b>2PC</b>, full strict quorum protocols: CA<br><br><b>Paxos</b>, majority quorums with minority in partition: CP<br><br><b>Gossip</b>, Dynamo, conflict resolution: AP
 SD primitives: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
-SD primitives: 3 weak consistency models	<b>eventual</b>: after some time all replicas agree<br><br><b>client-centric/session</b>: ex. client will never see older value, read-my-writes<br><br><b>causal</b>: strongest
 SD primitives: ACID	atomicity, consistency, isolation, durability
 SD primitives: CA systems, based on, main problem, used by	more common, <b>not partition aware</b>,<br>often 2PC<br>traditional <b>RDBMS</b>
 SD primitives: CP systems, work how, implementations	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft

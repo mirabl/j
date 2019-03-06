@@ -1,10 +1,3 @@
-SD DS: LSM: MemTable, SSTable<br>stored where, read/writes, maintenance	MemTable in memory<br>SSTable on disk (except idx)<br>writes go to MemTable<br>reads go to MemTable first<br><br>periodically:<br>- MemTable flushed to SSTable<br>- SSTables merged
-SD DS: SSTable<br>def, internals, read, write	sorted immutable on disk<br>- Index (in-memory): PK (ex. B-Tree)<br>- Data 64KB block: k/v pairs<br>optimised for reads<br>written once, no in-place changes
-SD app: how to handle errors in a streaming processing system	rewrite to <b>errorTopic1</b> and <b>retry</b>, then eT2, ...<br><br>then to <b>dead letter topic</b><br><br>(Uber)
-SD apps: 2 difficulties of streaming systems	order<br>exactly once delivery
-SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
-SD apps: C numbers	BR 1M/s<br><br>NoSQL cache/persisted: 200To, 1k memcache, 1k couchbase, 1ms 99p, 60M QPS peak<br><br>HDFS: 300 PB, 3k nodes
-SD apps: URL shortener	lookup/create<br>read-heavy, load-latency read, metadata store, independent entries, mostly immutable<br>lookup by key<br>data bias+, memory cache<br>key generation service for shortened URLs? maybe offline
 SD apps: chat, +protocol	end-to-end encryption? multi device? history on server? ack?<br>push updates: websocket?<br>message delivery queue for offline clients<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
 SD apps: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
 SD apps: docs	metadata+documents<br>can compress text<br>handle conflicts<br>handle offline

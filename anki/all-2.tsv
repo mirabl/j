@@ -1,0 +1,43 @@
+BST: build from sorted linked list	avoid finding the middle over and over<br><br>have pointer in list<br><br>recursively create left subtree<br><b>move pointer</b> and set root value<br><br>recursively create right<br><br><b>O(n)</b>
+BST: insert/delete	- insert: recursive like searching<br><br>- delete: <b>replace by successor</b> in right subtree<br>careful corner cases
+BST: nodes have <b>size of their subtree</b> as a field<br>- find size of a <b>range</b> [a,b]<br>- how to <b>update</b> when insert/delete	count number of nodes <a: search a and <b>update count</b> if go <b>left</b> or <b>right</b><br>res: totalsize- "<a" - ">b"<br><br>update: change size along the search path of node to add/remove
+Binary Search: find <b>first</b> element (2)	- tweak binary search<br><br>- or set <b>currentBest variable</b> and continue
+Bit: test if a number is a power of two	(n & (n-1)) == 0
+Combinatorics: compute<br>subsets of a set<br>permutations of a set	subsets: recursive, or iterative<br><br>permutations: recursive
+DS: 6 example use of a priority queue	- continous top k<br>- k-way merge<br>- continous median<br>- sort when only k indices away<br>- heapsort/tree sort<br>- Dijkstra/Prim
+DS: <b>Interval tree</b>, search algo	red black tree<br>each node is interval<br><br>node contains:<br>1. start of interval=sort key<br>2. end of interval<br>3. maxEnd of intervals in subtree<br><br>search for intersection O(h):<br>go in right or left (bit tricky proof)
+DS: <br>Binary heap definition	complete binary<br><br>with heap property (children smaller than parent)
+DS: B+ Tree (def, 2 adv/1 disadv with B-Tree)	<b>only leaves have data</b><br>internal nodes are just used for searching<br><br>Also: a leaf have a <b>pointer to next leaf</b> (for full scan)<br><br>B+ good: <b>maximize branching</b> factor, <b>full scan</b><br>B+ bad: always need to <b>go to leaf</b> level for lookup
+DS: B-Tree (def, parameter, idea, use case)	self balancing search tree<br><br>non-binary, <b>small height</b><br>branching factor: ~nb (children=keys+1) per node<br><br>read <b>whole disk block</b> to minimize nb seeks in search<br><br>used in <b>indexes for DBs</b>
+DS: HyperLogLog, def, use	<b>approximate count-distinct</b> with O(1) mem<br>hash stream entries and only record the <b>longest leading zero seq length</b><br><br>Improve with buckets, outliers and averaging<br><br>Use in ApproxCountDistinct in DBs.
+DS: LFU cache<br>implementation	<b>3 hash maps</b>, one with linked list as values
+DS: check if item is in known set	<b>Bloom filter</b> if no space for hash table
+DS: count–min sketch, def, use	probabilistic data structure: <b>frequency table of events</b> in a <b>stream</b> of data<br><br>same as <b>counting Bloom Filter</b><br><br><b>Table</b>: row=hash function, column: bucket (space of hash), entry: integer<br><br>ex: count views for many many videos
+DS: external merge sort	sort chunk & write to disk, load chunk of chuck and merge-write
+DS: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
+DS: hash table strategies (3)	chaining: <b>linked lists</b><br><br><b>open adressing</b>: next position<br><br><b>double hashing</b>
+DS: implement LRU cache	= <b>DLL Queue + HashTable</b>: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
+DS: implement a queue using two stacks	empty first stack into second stack
+DS: probabilistic data structures (3)	<b>Bloom</b> filter: set<br><br><b>Count-Min sketch</b>: count by type<br><br><b>HyperLogLog</b>: count
+DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
+DS: specialized heaps (2)	when <b>limited set</b> of keys,<br><br>or <b>monotonic</b> input
+DS: suffix array	same use as suffix tree but with <b>4 times less memory</b><br><br>sorted array of suffixes
+DS: suffix tree<br>- definition<br>- complexities<br>- 1 problem	<b>compressed trie</b> of <b>suffixes</b><br>naive: construction time and space O(n^2)<br>smart: O(n) / O(n)<br><br>substring search in O(m)
+DS: tournament tree, def, use	complete binary tree<br>2 case: <b>winner</b>, <b>loser</b> tree<br><br>player=leaves<br>min/max winner/loser<br><br>apps: sorting, first-fit bin packing, k-way merge
+DS:<br>Adv/Disadvantage of BST vs. HashTable	<b>BST</b> can enumerate in <b>key order</b><br><br>HashTable simpler when <b>duplicate keys</b><br><br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
+DS:<br>Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of x to root of y. <br>Union by rank: attach smaller tree to larger. <br>Path compression<br><br>Amortized O(1) in time |O(n) space.
+DS:<br>implementations <b>priority queue</b> (2) and <b>stack</b> (2)	- priority queue: <b>heap</b>, <b>BST</b><br><br>- stack: <b>linked list</b><br>or <b>array</b><br>(needs resizing, so amortized)
+Geo: convex-hull algorithm (3)	wrapping O(nh)<br><br>sweep line O(n log n)<br><br>divide and conquer O(n log n)
+Geo: find 4th point of rectangle	just use <b>vector</b><br><br>a + (b - c)
+Geo: line through most points	<b>hash</b><br>H[line] = list of points<br><br>for each pair, add entry in H<br><br>tricky hash because floats<br>use rationals
+Math: number of trailing zeroes in a factorial	powers of 2, 5
+MergeSort:<br>- time: best and worst case<br>- memory	time: always O(n log n)<br><br>memory: O(n) aux
+Misc: 5 NP-complete problems	SAT<br>knapsack<br>traveling salesman<br>set cover<br>Hamiltonian cycle
+Misc: how to send updates from server to client (3)	<b>short-polling</b> (client pull)<br><br><b>long-polling</b> (client pull): server doesn't answer request until new data<br><br><b>websocket</b> (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
+OO: 2 aspects of polymorphism	code or operations or objects behave differently in different contexts<br><br>1. object of derived class can be treated as base class<br><br>2. virtual methods of base class can be overriden
+OO: 3 characteristics of OO	inheritance<br>encapsulation<br>polymorphism
+OO: abstract class	one or more of methods have no implementation<br><br>serves as <b>base class</b> for others
+OO: generics	class/method that defer specification of type until declared and instantiated in client code
+OO: member overloading	same name but different signature
+OO: static class, static member	class: can not be instantiated<br><br>member: one copy exists
+OO: virtual method	can be <b>overriden</b> in derived class

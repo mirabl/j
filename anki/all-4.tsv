@@ -22,7 +22,6 @@ Prob: matrix chain multiplication order	<b>windowed DP</b><br><br>dp[i][j]: cost
 Prob: most visited pages in last W fixed seconds, query any time streaming	<b>3 structures</b>:<br><br>1. <b>BST</b>: (count, s)<br><br>2. <b>HashMap</b> bstNodeForString[s]<br><br>3. <b>Queue</b> Q of elements in current window<br><br>increase-decrease in BST when insert/remove from Q
 Prob: most visited pages, compute top-k by frequency:<br>-1. once at end<br>-2. any time streaming	1. hash map <b>freq[s]++</b><br>at end, do <b>k-selection</b> (quickselect O(n), heap O(n log n))<br><br>2. <b>BST</b> with (count, s) + <b>hashMap</b> bstNodeForString[s]<br><br>update by deleting/re-inserting in BST<br>answer: top-k from BST
 Prob: n eggs / k floors<br>find minimum nb of trials in worst case to find the highest safe floor (2)	1. <b>DP</b> O(n k^2) dp[numEggs][floor]<br><br>2. other solution with binary search and binomial coef
-Prob: problem solving steps	<b>CEEBETT</b><br><b>C</b>larify<br><b>E</b>xample<br><b>E</b>dge cases<br><b>B</b>rute force<br><b>E</b>fficient solution<br><b>T</b>rade-offs<br><b>T</b>ests
 Prob: reflex A<br>1. permutation<br>2. DAG<br>3. "top k" (3)<br>4. Geometric problem (3)<br>5. Intervals (3)	1. cycles<br>2. topological sort<br>3. heap, k-selection, 2k quickselects<br>4. sweep line, convex hull, D&C<br>5. sort by start/end, in/out events, interval tree
 Prob: reflex B<br>1. linked list (2)<br>2. array range/subarray<br>3. search<br>4. palindrome (2)<br>5. 1D/2D problem	1. two pointers, reverse<br>2. prefix sum<br>3. sort before<br>4. look at reverse string (LCS), windowed DP<br>5. DP
 Prob: reflex C<br>1. get low complexity for conflicting ops<br>2. many strings/dictionary<br>3. graph (2)<br>4. in-place<br>5. small size set	1. use <b>multiple DS</b> (reverse index)<br>2. use <b>trie</b><br>3. connected co, MST<br>4. several <b>passes</b><br>5. use <b>bitmask</b>
@@ -35,3 +34,10 @@ Prob:<br>Max number of intersecting intervals	<b>sort</b> events: <b>enter</b> a
 Prob:<br>Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
 Prob:<br>combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., <br>same number can be repeated<br>	backtracking (or DP)
 QuickSort: best and worst case of QuickSort<br><br>memory complexity	best: pivot splits array in half each time O(n log n)/O(log n)<br>worst: pivot is min (or max), O(n^2)/O(log n)<br><br>Memory: O(log n) with in-place partitioning
+SD DS: LSM: MemTable, SSTable<br>stored where, read/writes, maintenance	MemTable in memory<br>SSTable on disk (except idx)<br>writes go to MemTable<br>reads go to MemTable first<br><br>periodically:<br>- MemTable flushed to SSTable<br>- SSTables merged
+SD DS: SSTable<br>def, internals, read, write	sorted immutable on disk<br>- Index (in-memory): PK (ex. B-Tree)<br>- Data 64KB block: k/v pairs<br>optimised for reads<br>written once, no in-place changes
+SD app: how to handle errors in a streaming processing system	rewrite to <b>errorTopic1</b> and <b>retry</b>, then eT2, ...<br><br>then to <b>dead letter topic</b><br><br>(Uber)
+SD apps: 2 difficulties of streaming systems	order<br>exactly once delivery
+SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
+SD apps: C numbers	BR 1M/s<br><br>NoSQL cache/persisted: 200To, 1k memcache, 1k couchbase, 1ms 99p, 60M QPS peak<br><br>HDFS: 300 PB, 3k nodes
+SD apps: URL shortener	lookup/create<br>read-heavy, load-latency read, metadata store, independent entries, mostly immutable<br>lookup by key<br>data bias+, memory cache<br>key generation service for shortened URLs? maybe offline

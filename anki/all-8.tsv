@@ -35,7 +35,7 @@ Tree: Maximum path sum in a binary tree (or diameter)	recursive divide and conqu
 Tree: Print tree perimeter (border)	print left boundary without leaf,<br> print leaves, <br>print right in reverse (recursive)
 Tree: Serialize/Deserialize	<b>preorder and NULL marker</b><br><br>or: pre AND inorder<br>better: <br><br>Special case?<br>BST: pre or postorder<br>Complete: level order<br>Full: preorder with boolean for leaves
 Tree: balanced ST: complexity, 6 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>treap: binary<br>2-3 tree<br>B-tree<br>B+ tree
-Tree: check if two nodes are on same path in a tree<br>in O(1) per query	preprocessing: DFS record <b>enter/exit times</b><br><br>check times for (u, v) to see if same subtree
+Tree: check if two nodes are on same path in a tree, ie. if <b>ancestor</b><br>in O(1) per query	preprocessing: DFS record <b>enter/exit times</b><br><br>check times for (u, v) to see if same subtree
 Tree: compress binary trees to canonical form	use <b>hashing</b> on nodes/subtrees<br><br>recursive
 Tree: from array, create BST with minimal height	sort, <br>take middle of array then recursive
 Tree: in-order iterative traversal with parent pointers	go <b>all left</b>, then up/right<br><br>when going up, need to know <b>if we come from left or right</b><br><br>-> store child in <b>prev</b> variable
