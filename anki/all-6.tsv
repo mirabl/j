@@ -25,7 +25,7 @@ SD primitives: replace global clock by?<br>based on?	vector clock<br><br><br>(t1
 SD primitives/cons: replication algs with single-copy consistency (+ nb of msg)	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
 SD primitives: split brain	failover to backup due to temporary network issue<br>primary and backup are active at the same time
 SD primitives/consist: strong consistency models	<b>linearizable</b> consistency: real world ordering respected<br><br><b>sequential</b> consistency: can be reordered as long as consistent on each node
-SD primitives: why impossible to availability and strong consistency during network partition	<b>divergence</b><br><br>can not prevent divergence if partitioned nodes continue to work
+SD primitives/cap: why impossible to availability and strong consistency during network partition	<b>divergence</b><br><br>can not prevent divergence if partitioned nodes continue to work
 SD low-level: - default stack size<br>- size of empty stack<br>- max nb recursive calls	- <b>1 to 8 MB</b><br><br>= virtual<br>not allocated completely unless needed<br><br>- <b>< 100 bytes frame</b><br><br><b>5K+ calls</b>
 SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
 SD/para: <b>synchronized</b> Java primitive	used to define a <b>critical section</b><br><br>only <b>one thread</b> can enter block of code<br><br>can be used on code blocks or methods

@@ -25,7 +25,7 @@ Tree: Bottom view of binary tree	BFS with (ordered) map: <br>M[x-coordinate] = v
 Tree: Check if a binary tree is <b>subtree</b> of another (2)	Naive O(n^2), <br><br>- O(n): <b>inorder and preorder</b> of subtree must be <b>substrings</b> of big tree<br><br>- O(n): <b>hashing</b> of subtrees
 Tree/bst: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if <b>in-order traversal</b> is <b>sorted</b> O(n)
 Tree/trav: Euler tour, usage	traverse <b>without lifting pencil</b><br><br>like <b>preorder DFS</b> but with <b>repeats</b><br><br>used to reduce <b>LCA</b> to <b>RMQ</b>
-Tree/trav: Inorder sucessor in BST without parent pointer	Search from root O(h). <br>Instead of traveling up with parent pointers: Travel down the tree, if a node’s data is greater than root’s data then go right side, otherwise go to left side.
+Tree/trav bst: Inorder sucessor in BST without parent pointer	Search from root O(h). <br>Instead of traveling up with parent pointers: Travel down the tree, if a node’s data is greater than root’s data then go right side, otherwise go to left side.
 Tree: LCA (5)	no parent pointer: O(n) recursive<br><br>parent pointer: O(h)<br><br>pre-compute sqrt decomposition: O(sqrt h)<br><br>pre-comp SparseTable 2^i-th parent: O(h)<br><br>pre-comp SparseTable Euler RMQ: O(1)
 Tree: LCA using RMQ	compute <b>Euler tour</b><br>store <b>level</b> of each node in the tour (with repeats)<br><br>LCA is RMQ between first occurence of nodes
 Tree: LCA with parent pointer on Tree	<b>go up</b> the tree to <b>find depth</b><br><br><b>synchronize</b><br><br><b>meet</b> while going up
@@ -40,7 +40,7 @@ Tree/bst: from array, create BST with minimal height	sort, <br>take middle of ar
 Tree/trav: in-order iterative traversal with parent pointers	go <b>all left</b>, then up/right<br><br>when going up, need to know <b>if we come from left or right</b><br><br>-> store child in <b>prev</b> variable
 Tree/trav: iterative in-order traversal of binary tree	<b>stack</b> of nodes + <b>curnode</b> pointer<br><br>go all <b>down left</b> while <b>pushing to stack</b><br><br><b>pop</b> from stack, <b>print</b>, <b>curnode=right</b>
 Geo: k-d tree<br>definition<br>4 complexities	split in 1 dimension at each node (median of coordinate to get balance)<br><br>search/insert/delete O(log n) average<br>Space: O(n)
-Tree: k-th highest element of BST	reverse inorder traversal of BST. O(h + k)
+Tree/bst: k-th highest element of BST	reverse inorder traversal of BST. O(h + k)
 Geo: quad-tree	2D hierarchical partition in quadrants<br><br><b>4</b> children by node<br>split when max capacity reached.
 Tree/trav: reconstruct from pre-order with null	from <b>right to left ⟵</b><br>with <b>stack</b><br><br>push null<br><b>when non-null, <b>pop 2</b>, <b>push new</b>
 Tree/trav: reconstruct tree from inorder and preorder	find root, left inorder, right inorder etc.<br>recurse

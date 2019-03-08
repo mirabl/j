@@ -9,16 +9,16 @@ DS: <b>Interval tree</b>, search algo	red black tree<br>each node is interval<br
 DS: <br>Binary heap definition	complete binary<br><br>with heap property (children smaller than parent)
 Tree: B+ Tree (def, 2 adv/1 disadv with B-Tree)	<b>only leaves have data</b><br>internal nodes are just used for searching<br><br>Also: a leaf have a <b>pointer to next leaf</b> (for full scan)<br><br>B+ good: <b>maximize branching</b> factor, <b>full scan</b><br>B+ bad: always need to <b>go to leaf</b> level for lookup
 Tree: B-Tree (def, parameter, idea, use case)	self balancing search tree<br><br>non-binary, <b>small height</b><br>branching factor: ~nb (children=keys+1) per node<br><br>read <b>whole disk block</b> to minimize nb seeks in search<br><br>used in <b>indexes for DBs</b>
-DS: HyperLogLog, def, use	<b>approximate count-distinct</b> with O(1) mem<br>hash stream entries and only record the <b>longest leading zero seq length</b><br><br>Improve with buckets, outliers and averaging<br><br>Use in ApproxCountDistinct in DBs.
+DS/prob: HyperLogLog, def, use	<b>approximate count-distinct</b> with O(1) mem<br>hash stream entries and only record the <b>longest leading zero seq length</b><br><br>Improve with buckets, outliers and averaging<br><br>Use in ApproxCountDistinct in DBs.
 DS: LFU cache<br>implementation	<b>3 hash maps</b>, one with linked list as values
-DS: check if item is in known set	<b>Bloom filter</b> if no space for hash table
-DS: count–min sketch, def, use	probabilistic data structure: <b>frequency table of events</b> in a <b>stream</b> of data<br><br>same as <b>counting Bloom Filter</b><br><br><b>Table</b>: row=hash function, column: bucket (space of hash), entry: integer<br><br>ex: count views for many many videos
+DS/prob: check if item is in known set	<b>Bloom filter</b> if no space for hash table
+DS/prob: count–min sketch, def, use	probabilistic data structure: <b>frequency table of events</b> in a <b>stream</b> of data<br><br>same as <b>counting Bloom Filter</b><br><br><b>Table</b>: row=hash function, column: bucket (space of hash), entry: integer<br><br>ex: count views for many many videos
 Sort: external merge sort	sort chunk & write to disk, load chunk of chuck and merge-write
 Sort: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
 DS HashTable: hash table strategies (3)	chaining: <b>linked lists</b><br><br><b>open adressing</b>: next position<br><br><b>double hashing</b>
 DS: implement LRU cache	= <b>DLL Queue + HashTable</b>: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
 DS Queue: implement a queue using two stacks	empty first stack into second stack
-DS: probabilistic data structures (3)	<b>Bloom</b> filter: set<br><br><b>Count-Min sketch</b>: count by type<br><br><b>HyperLogLog</b>: count
+DS/prob: probabilistic data structures (3)	<b>Bloom</b> filter: set<br><br><b>Count-Min sketch</b>: count by type<br><br><b>HyperLogLog</b>: count
 DS: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
 DS Heap: specialized heaps (2)	when <b>limited set</b> of keys,<br><br>or <b>monotonic</b> input
 String: suffix array	same use as suffix tree but with <b>4 times less memory</b><br><br>sorted array of suffixes
