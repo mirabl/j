@@ -1,48 +1,22 @@
-Sort/gen: 3 big sorts on large data<br>+ advantages	quicksort: <b>fast</b>, not stable unless storage, bad <b>worst case</b><br><br>mergesort: <b>stable</b>, <b>not in-place</b>, parallelizable, contiguous access<br><br>heapsort: <b>in-place, not stable</b>, <b>slower</b> than quicksort
-Sort: Heapsort: description, complexity	<b>heapify in O(n)</b><br>n times: get max, put at end, resize heap O(log n)<br><br><b>total: O(n log n)</b>
-Sort: QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
-Sort: Radix sort: description, complexity	MSB or LSB<br>O(wn)
-Sort: Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
-DS Stack: implement stack with O(1) min<br>(2 ways)	push (x, min) when pushing x, <br><br>or use second stack
-DS Stack: sort a stack (2)	using a second stack<br><br>or recursively:<br>need 2 recursions:<br>sort, insert in sorted
-String/match: Boyer-Moore	try to match from start of text but <b>from end of pattern</b><br>when <b>mismatch, skip chars</b> when possible<br><br>2 prepro tables to skip chars:<br>- indexOfLastOccurence[char]<br>- other table more complicated<br>O(n/m) to O(nm)
-String: Edit Distance algo, complex	DP O(mn)
-String/subs: Find the smallest substring in a string containing all characters of another string	sliding window<br><br>O(n)
-String/paren: Is a string with (), {}, [] balanced	<b>stack</b> with active items O(n)
-String/subs: Longest Substring Without Repeating Characters	Window. left and right pointers, hash set for characters in the substring, move either left or right O(n)|O(n) // traverse left to right, maintaining longest valid substring ending at this position, use map<char,position> to know where current character appeared last O(n)|O(n)
-String/match: Regex matching (2)	1. <b>recursive</b><br><br><b>DP</b> bool match[iStr][iPat]<br>O(mn)<br><br>offset from left to right<br>maybe store last char in table
-String: Reverse words in a sentence (2)	1. Word by word from the end.<br><br> 2. <b>reverse whole string</b> char-by-char, <b>reverse within</b> each word
-String: determine if a string has only unique characters (2)	use a set, <br><br>or <b>sort</b> the string
-String/pal: longest palindromic subsequence (2)	1. <b>windowed DP</b><br>dp[i][j]: s[i..j], O(n^2)<br><br>2. <b>LCS</b> with <b>reverse</b> string<br>O(n^2)
-String/pal: minimum insertions to make string a palindrome (2)	1. <b>windowed DP</b> minIns[i][j] for substring(i, j)<br>O(n^2)<br><br>2. <b>LCS</b> with <b>reverse</b> string<br>answer: len(s) - lcs<br>O(n^2)
-String/pal: palindrome problems (3)	1. <b>max</b> palindrome <b>substring</b>: O(n^2) <b>greedy extend</b><br>or O(n) Manacher<br><br>2. <b>max</b> palindrome <b>subsequence</b>: <b>LCS</b> with <b>reverse</b> O(n^2)<br><br>3. <b>min insertions</b> to <b>make</b> palindrome: <b>LCS</b> with <b>reverse</b> O(n^2)
-String: shortest superstring	<b>bitmask DP</b><br>dp[mask][endingWithString]<br><br>O(2^n n^2)
-String/match: substring search (3)	naive O(n*m) <br><br>robin-karp rolling hash O(n + m) <br><br>Boyer-Moore: O(n/m) to O(nm)
-String: word break<br>longstringwithoutspaces + dict	<b>DP</b>: canBreak[offset]
-String/pal: Longest Palindromic Substring (3)	for each position, find longest even and odd length substring with this center O(n^2)|O(1)<br><br>DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1)<br><br>O(n) difficult Manacher.
-String/paren: print valid n-parentheses	<b>backtrack</b>:<br><br>try a character, recurse if allowed
+Tree/bst: nodes have <b>size of their subtree</b> as a field<br>- find size of a <b>range</b> [a,b]<br>- how to <b>update</b> when insert/delete	count number of nodes <a: search a and <b>update count</b> if go <b>left</b> or <b>right</b><br>res: totalsize- "<a" - ">b"<br><br>update: change size along the search path of node to add/remove
+Tree/trav bst: Inorder sucessor in BST without parent pointer	Search from root O(h). <br>Instead of traveling up with parent pointers: Travel down the tree, if a node’s data is greater than root’s data then go right side, otherwise go to left side.
+Tree/trav: Euler tour, usage	traverse <b>without lifting pencil</b><br><br>like <b>preorder DFS</b> but with <b>repeats</b><br><br>used to reduce <b>LCA</b> to <b>RMQ</b>
+Tree/trav: Serialize/Deserialize	<b>preorder and NULL marker</b><br><br>or: pre AND inorder<br>better: <br><br>Special case?<br>BST: pre or postorder<br>Complete: level order<br>Full: preorder with boolean for leaves
+Tree/trav: in-order iterative traversal with parent pointers	go <b>all left</b>, then up/right<br><br>when going up, need to know <b>if we come from left or right</b><br><br>-> store child in <b>prev</b> variable
+Tree/trav: iterative in-order traversal of binary tree	<b>stack</b> of nodes + <b>curnode</b> pointer<br><br>go all <b>down left</b> while <b>pushing to stack</b><br><br><b>pop</b> from stack, <b>print</b>, <b>curnode=right</b>
+Tree/trav: reconstruct from pre-order with null	from <b>right to left ⟵</b><br>with <b>stack</b><br><br>push null<br><b>when non-null, <b>pop 2</b>, <b>push new</b>
+Tree/trav: reconstruct tree from inorder and preorder	find root, left inorder, right inorder etc.<br>recurse
+Tree: B+ Tree (def, 2 adv/1 disadv with B-Tree)	<b>only leaves have data</b><br>internal nodes are just used for searching<br><br>Also: a leaf have a <b>pointer to next leaf</b> (for full scan)<br><br>B+ good: <b>maximize branching</b> factor, <b>full scan</b><br>B+ bad: always need to <b>go to leaf</b> level for lookup
+Tree: B-Tree (def, parameter, idea, use case)	self balancing search tree<br><br>non-binary, <b>small height</b><br>branching factor: ~nb (children=keys+1) per node<br><br>read <b>whole disk block</b> to minimize nb seeks in search<br><br>used in <b>indexes for DBs</b>
 Tree: Bottom view of binary tree	BFS with (ordered) map: <br>M[x-coordinate] = value<br><br>O(n)/O(n)
 Tree: Check if a binary tree is <b>subtree</b> of another (2)	Naive O(n^2), <br><br>- O(n): <b>inorder and preorder</b> of subtree must be <b>substrings</b> of big tree<br><br>- O(n): <b>hashing</b> of subtrees
-Tree/bst: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if <b>in-order traversal</b> is <b>sorted</b> O(n)
-Tree/trav: Euler tour, usage	traverse <b>without lifting pencil</b><br><br>like <b>preorder DFS</b> but with <b>repeats</b><br><br>used to reduce <b>LCA</b> to <b>RMQ</b>
-Tree/trav bst: Inorder sucessor in BST without parent pointer	Search from root O(h). <br>Instead of traveling up with parent pointers: Travel down the tree, if a node’s data is greater than root’s data then go right side, otherwise go to left side.
 Tree: LCA (5)	no parent pointer: O(n) recursive<br><br>parent pointer: O(h)<br><br>pre-compute sqrt decomposition: O(sqrt h)<br><br>pre-comp SparseTable 2^i-th parent: O(h)<br><br>pre-comp SparseTable Euler RMQ: O(1)
 Tree: LCA using RMQ	compute <b>Euler tour</b><br>store <b>level</b> of each node in the tour (with repeats)<br><br>LCA is RMQ between first occurence of nodes
 Tree: LCA with parent pointer on Tree	<b>go up</b> the tree to <b>find depth</b><br><br><b>synchronize</b><br><br><b>meet</b> while going up
 Tree: LCA without parent pointer on Tree	<b>recursive</b>, returns node*<br>return <b>non-null if one present</b><br><br>if left and right return non-null: root<br>otherwise: the non-null is solution<br><br>O(n)
 Tree: Maximum path sum in a binary tree (or diameter)	recursive divide and conquer<br><br>rec function <b>maxStraightPathDown</b> + <b>global</b> variable<br><br>O(n)
 Tree: Print tree perimeter (border)	print left boundary without leaf,<br> print leaves, <br>print right in reverse (recursive)
-Tree/trav: Serialize/Deserialize	<b>preorder and NULL marker</b><br><br>or: pre AND inorder<br>better: <br><br>Special case?<br>BST: pre or postorder<br>Complete: level order<br>Full: preorder with boolean for leaves
-Tree/bst: balanced ST: complexity, 6 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>treap: binary<br>2-3 tree<br>B-tree<br>B+ tree
 Tree: check if two nodes are on same path in a tree, ie. if <b>ancestor</b><br>in O(1) per query	preprocessing: DFS record <b>enter/exit times</b><br><br>check times for (u, v) to see if same subtree
 Tree: compress binary trees to canonical form	use <b>hashing</b> on nodes/subtrees<br><br>recursive
-Tree/bst: from array, create BST with minimal height	sort, <br>take middle of array then recursive
-Tree/trav: in-order iterative traversal with parent pointers	go <b>all left</b>, then up/right<br><br>when going up, need to know <b>if we come from left or right</b><br><br>-> store child in <b>prev</b> variable
-Tree/trav: iterative in-order traversal of binary tree	<b>stack</b> of nodes + <b>curnode</b> pointer<br><br>go all <b>down left</b> while <b>pushing to stack</b><br><br><b>pop</b> from stack, <b>print</b>, <b>curnode=right</b>
-Geo: k-d tree<br>definition<br>4 complexities	split in 1 dimension at each node (median of coordinate to get balance)<br><br>search/insert/delete O(log n) average<br>Space: O(n)
-Tree/bst: k-th highest element of BST	reverse inorder traversal of BST. O(h + k)
-Geo: quad-tree	2D hierarchical partition in quadrants<br><br><b>4</b> children by node<br>split when max capacity reached.
-Tree/trav: reconstruct from pre-order with null	from <b>right to left ⟵</b><br>with <b>stack</b><br><br>push null<br><b>when non-null, <b>pop 2</b>, <b>push new</b>
-Tree/trav: reconstruct tree from inorder and preorder	find root, left inorder, right inorder etc.<br>recurse
 Tree: threaded binary tree, def, uses	<b>null right</b> pointers replaced by pointer to <b>next inorder</b> node<br><br><br>used for O(1) space iterative inorder traversal
 Tree: types of trees (8)	- Binary or not<br>- BST (balanced or not)<br>- Trie<br>- Heap<br>- Spanning (with a graph)<br>- Tournament (win/lose min/max)<br>- Segment tree<br>- Merkle

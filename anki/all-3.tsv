@@ -1,39 +1,27 @@
-Graph: 11 types of graphs	connected, directed, weighted, Tree, with cycles, DAG, bipartite, complete (all clique), intersection, planar, sparse
-Graph: 4 classes of problems in polynomial time	- shortest paths<br>- MST<br>- matching<br>- max flow
-Graph: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br><br><br>O(V^2) if adjacency matrix/O(V)
-Graph/cycle: Eulerian cycle: def, check/find algos	visit each edge<br><br>linear time O(E)<br>vs. Hamiltonian is NP-hard<br><br>check if exists: look at conditions on degree<br><br>find: O(E) exists (Fleury)
-Graph/co: Find connected components of an undirected graph (2)	<b>- BFS/DFS</b> O(V + E), <br><br>- <b>or</b> process <b>edges</b>, <b>Union-Find</b> on vertices<br><br>If <b>dynamic</b> changes, keep track of components with <b>Union-Find</b>.
-Graph: Minimum Spanning tree Kruskal: algorithm and complexity	<b>sort, process edges from low weight</b> <br>(take min edge, check if it <b>adds cycle</b> in partial tree). <br><br>Cycle detection with <b>union-find</b><br><br>O(E log E)
-Graph: Minimum Spanning tree Prim: algorithm and complexity	<b>Dijkstra-like</b><br>greedy vertices: add new <b>vertex</b> of <b>minimum distance</b> to partial tree.<br><br>O(V^2), or less with binary heap
-Graph/co: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>K: first DFS topological sort<br>second DFS in inverse graph collect SCC<br><br>T: only one pass<br>O(V + E)
-Graph: Topological sort of DAG (2)	 1. <b>DFS</b>: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br><br>2.  <b>BFS-style</b> algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
-Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	<b>BFS from start word</b>
-Graph: approximate TSP in 2D plane when distance is euclidian	satisfies <b>triangle inequality</b><br><br>build <b>MST</b> from graph<br><br>tour: <b>like in-order walk</b> on MST skipping already seen vertices<br><br>thanks to triangle ineq., approximation factor: <b>2</b>
+Graph/paths: shortest path with exactly k edges in a directed and weighted graph	<b>DP dist[s][t][k]</b><br>fill with k increasing<br><br>O(V^3 k)
+Graph/paths: shortest paths special cases (2)	1. not oriented, no weights: BFS O(V + E)<br><br>2. DAG: topological sort + greedy, O(V + E)
 Graph/prob: articulation point<br>def, algo, complex	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
 Graph/prob: bridge<br>def, algo, complexity	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
 Graph/prob: clique<br>definition, 2 problems and solutions	complete subgraph<br>maximum clique: largest in the graph (difficult in general, heuristics)<br><br>maximal: can not be extended (greedy)
 Graph/prob: color graph with k colors, algo/complex	<b>backtracking</b><br><br>O(k^V)?
 Graph/prob: color theorem	a <b>planar</b> graph can be vertex-colored with most <b>4 colors</b>
+Graph/prob: matching, perfect matching	<b>set of edges</b> which <b>don't touch</b><br><br>perfect: all vertices are matched,<br>like minimum size edge cover
+Graph/prob: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
+Graph/prob: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard
+Graph: 4 classes of problems in polynomial time	- shortest paths<br>- MST<br>- matching<br>- max flow
+Graph: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br><br><br>O(V^2) if adjacency matrix/O(V)
+Graph: Minimum Spanning tree Kruskal: algorithm and complexity	<b>sort, process edges from low weight</b> <br>(take min edge, check if it <b>adds cycle</b> in partial tree). <br><br>Cycle detection with <b>union-find</b><br><br>O(E log E)
+Graph: Minimum Spanning tree Prim: algorithm and complexity	<b>Dijkstra-like</b><br>greedy vertices: add new <b>vertex</b> of <b>minimum distance</b> to partial tree.<br><br>O(V^2), or less with binary heap
+Graph: Topological sort of DAG (2)	 1. <b>DFS</b>: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br><br>2.  <b>BFS-style</b> algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
+Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	<b>BFS from start word</b>
+Graph: approximate TSP in 2D plane when distance is euclidian	satisfies <b>triangle inequality</b><br><br>build <b>MST</b> from graph<br><br>tour: <b>like in-order walk</b> on MST skipping already seen vertices<br><br>thanks to triangle ineq., approximation factor: <b>2</b>
 Graph: edge cover<br>desc, problem and solution	<b>set of edges</b> such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
 Graph: find a mother vertex in directed graph<br>(all vertices can be reached from)	1. find last completely processed vertex in DFS (<b>pseudo toposort</b>)<br><br>2. check if it is a mother vertex<br><br><br>topo sort doesn't exist on cyclic graphs
 Graph: from undirected graph which is a tree, find a root of a tree which gives minimum height	<b>BFS from the leaves</b> to the inside<br><br>one or two remaining nodes<br><br>O(n)
-Graph/cycle: how to check for negative weight cycles	<b>Bellman-Ford</b><br><br>run the <b>relaxing-loop once more</b><br>if relaxing decreases distance to a vertex, then there is a negative cycle<br><br>O(VE)
-Graph/prob: matching, perfect matching	<b>set of edges</b> which <b>don't touch</b><br><br>perfect: all vertices are matched,<br>like minimum size edge cover
-Graph/prob: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
 Graph: output of DFS (2)	vertex: entry/exit time,<br><br>edge: tree edge or back edge
-Graph/paths: number of paths from src to dest with k edges (2)	1. DP <b>numPaths[src][dest][edges]</b><br>O(k V^3)<br><br>2. Divide and Conquer <b>matrix power</b> G^k<br>O(log k) matrix power<br>total: O(V^3 log k)
-Graph/paths: 4 SSSP/APSP algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
-Graph/paths: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive Bruteforce E!<br><br>linear for DAG: toposort, then loop<br>O(V + E)
-Graph/paths: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and <b>distance to target</b>
-Graph/paths: print number of paths with no cycle between two nodes in a directed graph	<b>backtracking</b><br><br>set/unset visited nodes
-Graph/paths: shortest path with a max delay constraint (edges have weight and delay)	<b>memoized DP</b><br>dp[destinationVertex,withDelay]<br><br>O(E maxDelay)
-Graph/paths: shortest path with exactly k edges in a directed and weighted graph	<b>DP dist[s][t][k]</b><br>fill with k increasing<br><br>O(V^3 k)
-Graph/paths: shortest paths special cases (2)	1. not oriented, no weights: BFS O(V + E)<br><br>2. DAG: topological sort + greedy, O(V + E)
-Graph/co: transitive closure def, algo	= reachable[s][t] matrix<br><br><b>(if undirected: = easy connected-co)</b><br><br>directed (2):<br><br>1. DFS on each vertex to fill reachable[src][*]<br>O(V (V + E))<br><br>2. or <b>Floyd-Warshall-like</b> O(n^3)
-Graph/prob: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard
-Heap: complexity and algo of insert, extract-min, search	use <b>last element</b>, bubble up or down<br>O(log n)<br><br>search: difficult O(n)
-Heap: from max-heap, check if k-th largest element is >= x in O(k)/O(k)	<b>recursive</b><br>gradual descent with larger/equal counters<br><br>stop early<br><br>nb calls is O(k) as counters are almost always incremented
-Heap: algorithm and complexity	heapify <b>from the lower levels</b> first,<br><b>sinkdown</b> nodes<br><br>O(n)
+Interval: Max number of intersecting intervals	<b>sort</b> events: <b>enter</b> and <b>exit</b> of intervals.<br><br>O(n log n)|O(n) aux
+Interval: Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
+Interval: from set of intervals, find all that <b>intersect a query interval</b><br>support insert/delete	use <b>Interval Tree</b><br><br>search for <b>one</b> intersecting interval<br>remove it<br>repeat
 LinkedList: 4 problems solved with 2 pointers	find where 2 linked list <b>merge</b><br><br><b>middle</b> of a linked list<br><br><b>last-M-th</b> element of a linked list<br><br><b>cycle</b>: detect/find beginning
 LinkedList: Select random node from linked list (2)	method1: naive count nodes in first pass. <br><br>method2: <b>reservoir</b> sampling O(n) one pass.
 LinkedList: Sort a linked list	use <b>merge sort</b>
@@ -42,3 +30,22 @@ LinkedList: copy postings linked-list with no additional storage	<b>3 passes</b>
 LinkedList: insertion in linked list tip	use dummy first node
 LinkedList: is a linked list a palindrome?	<b>reverse</b> second half, check (and restore)
 LinkedList: reverse a linked list	iterative, 3 pointers<br><b>"new head"</b>
+Prob: optimize parameter (find min) when difficult directly	<b>binary search</b> + checkValue(mid)
+Math: number of trailing zeroes in a factorial	powers of 2, 5
+OO: 2 aspects of polymorphism	code or operations or objects behave differently in different contexts<br><br>1. object of derived class can be treated as base class<br><br>2. virtual methods of base class can be overriden
+OO: 3 characteristics of OO	inheritance<br>encapsulation<br>polymorphism
+OO: abstract class	one or more of methods have no implementation<br><br>serves as <b>base class</b> for others
+OO: generics	class/method that defer specification of type until declared and instantiated in client code
+OO: member overloading	same name but different signature
+OO: static class, static member	class: can not be instantiated<br><br>member: one copy exists
+OO: virtual method	can be <b>overriden</b> in derived class
+Graph: 11 types of graphs	connected, directed, weighted, Tree, with cycles, DAG, bipartite, complete (all clique), intersection, planar, sparse
+Prob/perm: invert permutation with constant space	decompose in <b>cycles</b><br><br>invert each cycle<br><br>fix only one element at a time (min of cycle)
+Prob/top-f: find elements that appear more than k/n times	generalization of <b>voting</b><br><br><b>two passes</b><br>- keep <b>k</b> counters in <b>hash</b><br><br>purge hash table when needed<br><br>- second pass to check candidates
+Prob/top-f: find k-th most frequent, no time window (2)	1. 1 query<br><b>HashMap + quickselect</b><br>O(n)<br><br>2. <b>multiple queries</b><br><b>BST (count, elem) + HashMap[elem]=bstNode</b><br>O(n log n) + O(k)
+Prob/top-f: most visited pages in last W fixed seconds, query any time streaming	<b>3 structures</b>:<br><br>1. <b>BST</b>: (count, s)<br><br>2. <b>HashMap</b> bstNodeForString[s]<br><br>3. <b>Queue</b> Q of elements in current window<br><br>increase-decrease in BST when insert/remove from Q
+Prob/top-f: most visited pages, compute top-k by frequency:<br>-1. once at end<br>-2. any time streaming	1. hash map <b>freq[s]++</b><br>at end, do <b>k-selection</b> (quickselect O(n), heap O(n log n))<br><br>2. <b>BST</b> with (count, s) + <b>hashMap</b> bstNodeForString[s]<br><br>update by deleting/re-inserting in BST<br>answer: top-k from BST
+Prob/top: find k-th largest element from n streamed elements, with O(k) memory, once at the end (2)	- priority queue: O(n log k)<br><br>- better: <b>array of 2k</b><br><br>when full, purge to size <b>k</b><br>with O(k) <b>quickselect</b><br><br>total: O(n)
+Prob/top: find k-th largest elements (3, 1 or + queries)	1. <b>multiple queries</b>:<br>use <b>priority queue</b><br>O(n log k) + query<br><br><br>2. <b>1 query</b>:<br>2.a with <b>array</b>: <b>1 quickselect</b> O(n)<br>2.b with <b>stream multi-quickselect 2k-array</b> O(n) with O(k) memory
+Prob: DP 5 types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
+Prob: DP classical problems (5)	Knapsack<br>Coin change<br>Grid traversal<br>LCS/LIS/edit<br>TSP

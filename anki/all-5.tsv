@@ -1,46 +1,50 @@
-SD apps: chat, +protocol	end-to-end encryption? multi device? history on server? ack?<br>push updates: websocket?<br>message delivery queue for offline clients<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
-SD apps: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
-SD apps: docs	metadata+documents<br>can compress text<br>handle conflicts<br>handle offline
-SD components/kafka: how many Kafka messages per second at Uber<br><br>how much storage at FB/YT	billions<br><br>500+ PB
-SD apps: how many tweets <br>- per second<br>- per day	per second: 6000<br><br>per day: 500 million
-SD apps: instagram	features: feed, by user list, upload<br>metadata+blob store<br>read heavy, bias++, immutable<br>image compression pipeline<br>memory cache<br>e.g. FB Haystack for blob store
-SD apps: mechanism for asynchronicity	queues
-SD apps: most followers on twitter	1B
-SD apps: search	- <b>index servers</b> (random sharded on docs)<br>- <b>doc servers</b> (same)<br><br>scatter: build hit list<br>gather: compute relevance order<br><br>docserver: fetch doc from disk, get snippet for keyword
-SD apps: youtube	view/upload<br>read heavy but long tail of uploads<br>metadata and blob stores<br>data bias++<br>video processing pipeline
-SD components/kafka: 2 Kafka guarantees	at-least-once<br>in order within a partition only
-SD components/store: 4 cache strategies	cache aside: app does everything<br><br>write-through: cache interacts with DB<br><br>write-behind/back: app writes to cache and async write to DB<br><br>refresh ahead: auto refresh by cache
-SD components/store: 5 techniques to scale RDBMS<br>general/read/writes	general:<br>- federation<br>- denormalization<br>- SQL tuning<br><br>scale reads:<br>- master-slave replication<br><br>scale writes:<br>- sharding
-SD components/store: BigQuery/Dremel perf for 1T read	with 10K disks and 5K cpus<br><br><b>1 second to read 1TB</b>
-SD components/store: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second<br>billions of rows<br>thousands of columns
-SD components/store: BigTable: data model, API, 2 open source equivalents	1. row (row key)<br>2. column: column families + column qualifier within family<br>3. timestamp<br><br>sparse: no room taken for empty cells<br><br>- lookup by row key, range query<br>- HBase, Cassandra
-SD components/store: Dynamo<br>sharding, quorums, conflict, replica sync	consistent hashing<br>partial quorums for reading and writing<br>conflict detection and read repair via vector clocks<br>gossip for replica synchronization
-SD components: ETL	extract data from multiple sources<br><br>clean, join, aggregate, transform into format<br><br>load in warehouse
-SD components/kafka: Kafka perf: factors<br>produce, consume, latency	depends on: message size, replication (number and sync/async)<br><br>producer: <b>700K</b> msg/s<br>consumer: <b>1M</b> msg/s<br>end-to-end latency: <b>~3ms</b> 99p
+SD components/store: MySQL replication modes<br>(what is in the WAL)	statement-based ("insert ...") = logical<br><br><br>row-based: result of the statement = physical<br><br>or a mix
 SD components/store: MySQL storage engine (2)	<b>InnoDB</b>: row locking so better concurrency<br><br><b>MyISAM</b>: old, maybe table locking better when lots of reads
 SD components/store: NoSQL 4 types of stores	key-value: Redis, memcached<br><br>document store: MongoDB, CouchDB, ElasticSearch<br><br>wide-column store: BigTable, HBase, Cassandra<br><br>graph DB: neo4j, flockdb
 SD components/store: OLTP, OLAP	online transaction/analytical processing<br>RDBMS vs. datawarehouse<br>low vs high latency
+SD components/store: RDBMS one instance perf	no answer, depends on query/HW, if fits in RAM<br><br><b>1 TB</b> total size<br><b>billions</b> of rows<br><b>1K</b> r/w QPS<br><br>latency: SSD 1ms, HD: 20ms
 SD components/store: advantage/disadvantage of columnar storage, 3 examples	if usage pattern is to read whole table like OLAP/BI<br>but only some columns<br><br>don't read unused columns<br>can use <b>compression</b> to reduce disk size<br>disadv: <b>difficult to update</b><br>Parquet, Redshift, Dremel/BigQuery
-SD components/store: MySQL default replication	async primary/backup
-SD components/store: BigQuery/Dremel how it distribute queries	<b>Tree</b> Architecture<br>dispatching queries and aggregating results<br>thousands of machines in a few seconds
 SD components/store: in-memory K/V store perf	on machine with good network<br><br>read/write: 200k/s easily<br><br>latency: 1ms<br><br>no bound on size with sharding but $
+SD components/store: tablet definition	horizontal partition/shard of a table (Google)
+SD components/store:<br>2 data warehouses products for an analytical processing OLAP	Redshift, BigQuery/Dremel
+SD components: ETL	extract data from multiple sources<br><br>clean, join, aggregate, transform into format<br><br>load in warehouse
 SD components: load balancer multi setup (2)	active-passive or active-active
 SD components: load balancer routes traffic based on (6)	- random<br>- least load<br>- session/cookies<br>- (weighted) round robin<br>- layer 4<br>- layer 7
 SD components: load balancer used for (3), implemented with (2)	- don't send to bad servers<br>- don't overload<br>- eliminate SPOF<br><br>- hard or soft (HAProxy)
 SD components: load-balancer layer 4 vs. layer 7	4:<br>- look at transport layer: IP address, port<br>- do <b>NAT</b><br>- often hardware<br><br>7:<br> look at application layer, like URL for HTTP, cookies<br>terminates network traffic, remove TLS<br>called <b>reverse-proxy</b> server
-SD components/store: RDBMS one instance perf	no answer, depends on query/HW, if fits in RAM<br><br><b>1 TB</b> total size<br><b>billions</b> of rows<br><b>1K</b> r/w QPS<br><br>latency: SSD 1ms, HD: 20ms
-SD components/store: MySQL replication modes<br>(what is in the WAL)	statement-based ("insert ...") = logical<br><br><br>row-based: result of the statement = physical<br><br>or a mix
-SD components/store: tablet definition	horizontal partition/shard of a table (Google)
-SD components/store: BigQuery/Dremel when to use<br>when to use MapReduce	BigQuery: any query, SQL-like, no latency, small output (stats)<br><br>MapReduce: can do any processing, more latency, have to implement all jobs
-SD components/store:<br>2 data warehouses products for an analytical processing OLAP	Redshift, BigQuery/Dremel
-SD low-level: DMA definition, 3 steps	a device controls processor's memory directly<br>can transfer data to/from memory without processor<br><br>1. CPU initiates transfer<br>2. does other things<br>3. receives interrupt from device when done
-SD low-level: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
 SD low-level/net: OSI and TCP/IP models	OSI: PDNTSPA<br><br>TCP/IP: NITA
-SD low-level: RAM SSD HDD latency and R/W speed	RAM 100 ns<br>SSD <b>0.1 ms or less</b>    (x1000)<br>HDD 10 ms    (x100)<br><br>RAM 10 GB/s<br>SSD 500MB/s - 1+GB/s  (/20)<br> HDD 100 MB/s    (/5)
-SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
-SD low-level: Read 4K randomly from SSD	150 us
 SD low-level/net: Send 1K bytes over 1 Gbps network	10 us
 SD low-level/net: TCP definition, uses what to be reliable, limitations	reliable, connection-oriented ordered stream of bytes on IP network<br>congestion control<br>seqno and acknowledgments<br><br>no preservation of message boundaries
 SD low-level/net: UDP, def, can do/can not do	connectionless, message oriented (datagrams)<br>can broadcast<br><br>can be out-of-order or lost<br>no congestion control
 SD low-level/net: content of TCP segment (6)	ports, seq no, ackno, flags, checksum, payload
 SD low-level/net: how many round trips per second<br>- world-wide<br>- within a data center	world-wide: <b>6-7</b><br><br>datacenter: <b>2000</b>
+SD low-level/net: use cases of UDP	<b>best effort delivery</b> for voice/video streaming, games
+SD low-level: - default stack size<br>- size of empty stack<br>- max nb recursive calls	- <b>1 to 8 MB</b><br><br>= virtual<br>not allocated completely unless needed<br><br>- <b>< 100 bytes frame</b><br><br><b>5K+ calls</b>
+SD low-level: DMA definition, 3 steps	a device controls processor's memory directly<br>can transfer data to/from memory without processor<br><br>1. CPU initiates transfer<br>2. does other things<br>3. receives interrupt from device when done
+SD low-level: HDD and SSD IOPS	HDD: <b>~100</b> IOPS<br><br>SSD: <b>100K</b> IOPS
+SD low-level: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
+SD low-level: RAM SSD HDD latency and R/W speed	RAM 100 ns<br>SSD <b>0.1 ms or less</b>    (x1000)<br>HDD 10 ms    (x100)<br><br>RAM 10 GB/s<br>SSD 500MB/s - 1+GB/s  (/20)<br> HDD 100 MB/s    (/5)
+SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
+SD low-level: Read 4K randomly from SSD	150 us
+SD low-level: process vs thread	thread:<br>run in <b>shared memory</b> space<br>share resources<br>context switch faster<br><br>thread has <b>own stack</b>
+SD low-level: specs of usual machines	24G RAM, 8 cores<br>1Gb ethernet<br><br>- 2x1TB SSD<br>or<br>2x2TB hard drives
+SD low-level: time for a <b>context switch</b>	<b>5μs</b>
+SD meth: system design methodology (6)	1. Scope<br>2. Non-scope<br>3. Requirements: current and future scale<br>4. Req: reliability to which failures<br>5. SLO (latency, avail, dura, correct)<br>6. First design<br>7. storage
+SD meth: system design methodology for storage (5)	1. data model<br>2. size<br>3. Usage r/w<br>4. SLO<br>5. Bias (popular, geo)
+SD methodology: 3 questions to ask on iteration	possible to scale?<br>can do better?<br>resilient?
+SD methodology: types of SLO (5)	correctness<br>availability<br>latency<br>throughput<br>durability
+SD primitives/acid: ACID	atomicity, consistency, isolation, durability
+SD primitives/cap: why impossible to availability and strong consistency during network partition	<b>divergence</b><br><br>can not prevent divergence if partitioned nodes continue to work
+SD primitives/cons: 2PC<br>vote, master, failure, partition, network	unanimous vote: commit or abort<br>static master<br>fails if coordinator and a node fail when commit<br>not partition tolerant, tail latency sensitives
+SD primitives/cons: 3 consensus algos and their CAP status	<b>2PC</b>, full strict quorum protocols: CA<br><br><b>Paxos</b>, majority quorums with minority in partition: CP<br><br><b>Gossip</b>, Dynamo, conflict resolution: AP
+SD primitives/cons: Paxos<br>principle, master, failures, network, use where	<b>majority vote</b><br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br><br>used in Chubby, BigTable/Megastore, GFS, Spanner
+SD primitives/cons: how are conflicts resolved (2)	look at causal history with <b>metadata</b><br>last writer, timestamps, version numbers, vector clocks
+SD primitives/cons: latency of operation with Paxos between DCs	<b>25ms</b>
+SD primitives/cons: partition tolerant consensus<br>examples, how they work<br>what happens when partition	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
+SD primitives/cons: replication algs with single-copy consistency (+ nb of msg)	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
+SD primitives/consist: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
+SD primitives/consist: strong consistency models	<b>linearizable</b> consistency: real world ordering respected<br><br><b>sequential</b> consistency: can be reordered as long as consistent on each node
+SD primitives: 2 classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
+SD primitives: CA systems, based on, main problem, used by	more common, <b>not partition aware</b>,<br>often 2PC<br>traditional <b>RDBMS</b>
+SD primitives: CP systems, work how, implementations	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
+SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain

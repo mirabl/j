@@ -1,49 +1,49 @@
-SD: SLO for S3 (2)	99.99 (4) availability<br><br>99.99999999 (10) durability
-DS: bucket queue<br>def, use case	<b>priority queue</b> when <b>restricted prio range</b><br>{0, 1, ..., C - 1}<br><br><b>array</b> of <b>C linked lists</b><br><br>to find min, search non-empty list from i=0: O(C)<br>(optimizations possible)<br><br>insert: O(1)
-SD: circuit breaker<br>def, how it works	<b>~proxy</b> for operations that might fail<br><br><b>3 states</b>: closed / half-open / open<br>change state by looking at <b>error rate</b>
-SD: classic consistency problem in DB	read-after-write
-SD: def, usual value for <b>page size</b>	smallest unit of virtual memory<br><br><b>4KB</b><br><br>can be more
-SD/para: dining philosophers problem, solutions (2)	round table, knife/fork<br><br>1. request <b>smaller index</b> resources first<br><br>or 2. add <b>arbitrator</b>
-SD: drawback of DNS load balancing	results are cached by intermediate servers, so not responsive when change
-SD: event-sourcing pattern	use append-only store of actions/events
-SD: hashing for sharding (2)	<b>consistent hashing</b>: circle with many pseudo-random points per node<br><br><br><b>Rendezvous</b> hashing
-SD: how many seconds in a day	90K
-SD/para: how to <b>avoid deadlock</b>	make <b>locking order fixed</b> when multiple locks
-SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
-SD/para: livelock	2+ processes change their states in response to changes in the other process(es), no useful work<br><br>ex. corridor
-SD DS: log structured merge trees (principle, components, good for, compare)	MemTable/SSTable<b>s</b><br>+ disk WAL<br><br>do only <b>sequential write on disk</b><br>thanks to in-memory buffer<br><br>better <b>write throughput</b> than B+<br>good for write-heavy<br><br>read: try all SST (Bloom)
-SD components/kafka: messaging system semantics	<b>at-least-once</b>: producer client retries when ack timeout or error<br><br><b>at-most-once</b>: no retries<br><br><b>exactly-once</b>: on Kafka, uses sequence numbers
-DS: monotonic priority queue<br>def, examples	min monotonic: inserted elements have <b>higher prio than min</b> of heap<br><br>ie. will not become min<br><br>Dijkstra, sweep line<br><br>can <b>optimize bucket queue</b>
-SD/para: mutex	one thread in <b>critical section</b> at a time
-SD low-level: process vs thread	thread:<br>run in <b>shared memory</b> space<br>share resources<br>context switch faster<br><br>thread has <b>own stack</b>
-SD/para: producer-consumer problem, solution	fixed size buffer<br>ensure that don't read if empty, don't write if full<br><br>use <b>2 semaphores</b>: remainingSpace, currentItems
-SD/para: readers-writers problem (3 variations)	<b>multiple readers</b> at the same time<br>only <b>1 writer</b><br><br>1. readers preference (can starve writers)<br>2. writers preference (starve readers)<br>3. fairness
-SD: replication lag for MySQL	time between read/write to master and replication to all slaves
-SD: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency prefered
-SD/para: semaphore	<b>count</b> how many units of resources are available<br><br>safe operations to modify count<br><br>counting/binary semaphore
-DS: skip list<br>- definition<br>- complexities<br>- used in	linked list for binary search<br>layers of sorted linked lists (<b>express lanes</b>)<br>p = 1/2 or 1/4, proba for element to be also in layer below<br><br><b>O(log n)</b> average for search/insert/delete, O(n) average space<br>used in LevelDB MemTable
-SD low-level: specs of usual machines	24G RAM, 8 cores<br>1Gb ethernet<br><br>- 2x1TB SSD<br>or<br>2x2TB hard drives
-SD/para: starvation	runnable process is overlooked indefinitely by the scheduler<br><br>although it is able to proceed, it is never chosen
-SD/para: thread model for a web server	use <b>thread pool</b><br><br><b>avoids overhead</b> when create/delete<br>caps <b>maxThreads</b><br><br>use <b>synchronized task queue</b>
 SD: three and four nines availability per year	99.9: <b>9</b> hours of downtime/year<br><br>99.99: <b>1</b> hour downtime/year
-SD low-level: time for a <b>context switch</b>	<b>5μs</b>
-DS: treap, def, use	<b>BST</b> and <b>heap</b><br><br>node is <b>pair</b> (x, y)<br>x: key in the <b>BST</b><br>y: key in the heap (<b>priority</b>)<br><br>random prio: will probably <b>make BST balanced</b>
-SD/cons: tunable consistency	from "writes never fail" to <br><br>"block for all replicas to be readable" with quorum levels
-SD/store: types of data store (9)	RDBMS<br>k/v<br>document<br>column-family<br>graph<br>analytics<br>blob<br>search engine DB<br>time series DB
 SD: vertical/horizontal scaling 	vertical: add more power to a machine<br><br>horizontal: add more machines
-SD components/kafka: why Kafka performance (2)	zero-copy<br><br>batching
 SD:<br>- how many FB users<br><br>- how many YT videos watched every day	- 2B Montly active users<br><br>- 5B
-Array/search: find element in a sorted rotated array	<b>double BS</b>: <br><br>find the frontier, <br>BS on left or right part
+Sort/gen: 3 big sorts on large data<br>+ advantages	quicksort: <b>fast</b>, not stable unless storage, bad <b>worst case</b><br><br>mergesort: <b>stable</b>, <b>not in-place</b>, parallelizable, contiguous access<br><br>heapsort: <b>in-place, not stable</b>, <b>slower</b> than quicksort
 Sort/gen: 6 questions on data	how many keys, duplicates, partially sorted, long to compare, small range, disk access possible
 Sort/gen: 6 sort properties	- stable<br>- in place<br>- comparison or not<br>- external<br>- good with pre-sorted<br>- method: partition, merge, select, insert, exchange   Sort
+Sort/gen: real world sorting	<b>insertion sort</b> on <b>small arrays</b> (incl. bottom of recursion)<br><br>need to be <b>good on pre-sorted</b><br><br>maybe be <b>stable</b><br><br>example: <b>timsort</b> (find runs, merge/insertion)
+Sort/gen: which sort for:<br>1. general large integer array (2)<br>2. small array<br>3. almost sorted (2)<br>4. small range array<br>5. many duplicates (2)<br>6. stability required (2)	1. quicksort, timsort<br>2. insertion sort<br>3. depends: heap/heapsort/insertion<br>4. counting sort in array or BST<br>5. BST<br>6. merge sort/decorate-sort (key, index)
+Sort: Heapsort: description, complexity	<b>heapify in O(n)</b><br>n times: get max, put at end, resize heap O(log n)<br><br><b>total: O(n log n)</b>
+Sort: QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
+Sort: QuickSort: best and worst case of QuickSort<br><br>memory complexity	best: pivot splits array in half each time O(n log n)/O(log n)<br>worst: pivot is min (or max), O(n^2)/O(log n)<br><br>Memory: O(log n) with in-place partitioning
+Sort: Radix sort: description, complexity	MSB or LSB<br>O(wn)
+Sort: Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
 Sort: Shell sort	choose <b>gap sequence</b><br><b>iterate on gaps</b><br><br><b>swap gapped pairs</b><br>like a bubble sort<br><br>in place<br><br>complexity: difficult
 Sort: bubble sort	swap pairs to put max at i=end of array<br>i--
+Sort: external merge sort	sort chunk & write to disk, load chunk of chuck and merge-write
+Sort: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
 Sort: insertion sort<br>selection sort	insertion: insert A[i] in sorted A[0]...A[i-1]<br><br>select min put it at A[i=0], i++
-Sort: merge sort	merge sorted subarrays with auxiliary array (allocate once)
-Sort: merge sort implementation (2)	- <b>top-down</b> using recursion<br><br>- <b>bottom-up</b> using loop
-Sort/gen: real world sorting	<b>insertion sort</b> on <b>small arrays</b> (incl. bottom of recursion)<br><br>need to be <b>good on pre-sorted</b><br><br>maybe be <b>stable</b><br><br>example: <b>timsort</b> (find runs, merge/insertion)
+Sort: mergesort	merge sorted subarrays with auxiliary array (allocate once)
+Sort: mergesort implementation (2)	- <b>top-down</b> using recursion<br><br>- <b>bottom-up</b> using loop
+Sort: mergesort<br>- time: best and worst case<br>- memory	time: always O(n log n)<br><br>memory: O(n) aux
 Sort: sort when element are nearly sorted (2 ways)	insertion sort<br>heapsort
 Sort: sort when limited range of keys (3)	3 <b>distribution sorts</b>:<br><br>counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
 Sort: sort without moving too many records (which might be expensive)	<b>indirect sort</b>:<br>1. sort secondary <b>array of indices</b><br><br>2. apply sort to array (move records)
 Sort: tournament sort	load elements in a <b>min winner tournament tree</b><br><br>extract top to a <b>sorted list</b><br><br>not all array fits at bottom of tree (memory tradeoff)<br><br>do <b>multiple passes</b> and <b>merge sorted lists</b>
-Sort/gen: which sort for:<br>1. general large integer array (2)<br>2. small array<br>3. almost sorted (2)<br>4. small range array<br>5. many duplicates (2)<br>6. stability required (2)	1. quicksort, timsort<br>2. insertion sort<br>3. depends: heap/heapsort/insertion<br>4. counting sort in array or BST<br>5. BST<br>6. merge sort/decorate-sort (key, index)
+String/ds: suffix array	same use as suffix tree but with <b>4 times less memory</b><br><br>sorted array of suffixes
+String/ds: suffix tree<br>- definition<br>- complexities<br>- 1 problem	<b>compressed trie</b> of <b>suffixes</b><br>naive: construction time and space O(n^2)<br>smart: O(n) / O(n)<br><br>substring search in O(m)
+String/match: Boyer-Moore	try to match from start of text but <b>from end of pattern</b><br>when <b>mismatch, skip chars</b> when possible<br><br>2 prepro tables to skip chars:<br>- indexOfLastOccurence[char]<br>- other table more complicated<br>O(n/m) to O(nm)
+String/match: Regex matching (2)	1. <b>recursive</b><br><br><b>DP</b> bool match[iStr][iPat]<br>O(mn)<br><br>offset from left to right<br>maybe store last char in table
+String/match: substring search (3)	naive O(n*m) <br><br>robin-karp rolling hash O(n + m) <br><br>Boyer-Moore: O(n/m) to O(nm)
+String/pal: Longest Palindromic Substring (3)	for each position, find longest even and odd length substring with this center O(n^2)|O(1)<br><br>DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1)<br><br>O(n) difficult Manacher.
+String/pal: longest palindromic subsequence (2)	1. <b>windowed DP</b><br>dp[i][j]: s[i..j], O(n^2)<br><br>2. <b>LCS</b> with <b>reverse</b> string<br>O(n^2)
+String/pal: minimum insertions to make string a palindrome (2)	1. <b>windowed DP</b> minIns[i][j] for substring(i, j)<br>O(n^2)<br><br>2. <b>LCS</b> with <b>reverse</b> string<br>answer: len(s) - lcs<br>O(n^2)
+String/pal: palindrome problems (3)	1. <b>max</b> palindrome <b>substring</b>: O(n^2) <b>greedy extend</b><br>or O(n) Manacher<br><br>2. <b>max</b> palindrome <b>subsequence</b>: <b>LCS</b> with <b>reverse</b> O(n^2)<br><br>3. <b>min insertions</b> to <b>make</b> palindrome: <b>LCS</b> with <b>reverse</b> O(n^2)
+String/paren: Is a string with (), {}, [] balanced	<b>stack</b> with active items O(n)
+String/paren: print valid n-parentheses	<b>backtrack</b>:<br><br>try a character, recurse if allowed
+String/subs: Find the smallest substring in a string containing all characters of another string	sliding window<br><br>O(n)
+String/subs: Longest Substring Without Repeating Characters	Window. left and right pointers, hash set for characters in the substring, move either left or right O(n)|O(n) // traverse left to right, maintaining longest valid substring ending at this position, use map<char,position> to know where current character appeared last O(n)|O(n)
+String: Edit Distance algo, complex	DP O(mn)
+String: Reverse words in a sentence (2)	1. Word by word from the end.<br><br> 2. <b>reverse whole string</b> char-by-char, <b>reverse within</b> each word
+String: determine if a string has only unique characters (2)	use a set, <br><br>or <b>sort</b> the string
+String: shortest superstring	<b>bitmask DP</b><br>dp[mask][endingWithString]<br><br>O(2^n n^2)
+String: word break<br>longstringwithoutspaces + dict	<b>DP</b>: canBreak[offset]
+Tree/bst: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if <b>in-order traversal</b> is <b>sorted</b> O(n)
+Tree/bst: balanced ST: complexity, 6 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>treap: binary<br>2-3 tree<br>B-tree<br>B+ tree
+Tree/bst: build from sorted linked list	avoid finding the middle over and over<br><br>have pointer in list<br><br>recursively create left subtree<br><b>move pointer</b> and set root value<br><br>recursively create right<br><br><b>O(n)</b>
+Tree/bst: from array, create BST with minimal height	sort, <br>take middle of array then recursive
+Tree/bst: insert/delete	- insert: recursive like searching<br><br>- delete: <b>replace by successor</b> in right subtree<br>careful corner cases
+Tree/bst: k-th highest element of BST	reverse inorder traversal of BST. O(h + k)
