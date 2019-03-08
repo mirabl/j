@@ -1,42 +1,42 @@
-Prob. solving:<br>optimize parameter (find min) when difficult directly	<b>binary search</b> + checkValue(mid)
-Prob: 5 DP types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
-Prob: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
-Prob: DS for insert/delete/getRandom in O(1)	<b>array + hash</b> (index into array)<br><br>to <b>remove</b> from array: <b>swap</b> with last element
+Prob: optimize parameter (find min) when difficult directly	<b>binary search</b> + checkValue(mid)
+Prob: DP 5 types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
+Geo: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
+Prob: DS for insert(val)/delete(val)/getRandom in O(1)	<b>array + hash</b> (index into array)<br><br>to <b>remove</b> from array: <b>swap</b> with last element
 Prob: Gaussian primes	primes with integer-complex numbers<br><br><br>Eratosthene <b>sieve</b><br><br>sort by <b>modulus</b> to order them and put in <b>BST</b>
 Prob: Huffman coding	sort characters by frequency<br>merge two <b>least common</b> chars into one node (with sum frequency)<br>repeat<br><br>use <b>min-heap</b><br><br>O(n log n)
 Prob: Sudoku Solver	Backtracking<br><br>check if one value is already in a row/col/square, recurse
-Prob: View from above (stacked segments of different color and height)	sort enter/exit list of segments<br>maintain <b>BST</b> (height, color)
+Prob: view from above (stacked segments of different color and height)	sort enter/exit list of segments<br>maintain <b>BST</b> (height, color)
 Prob: approximate warehouse location problem (k warehouse for n cities), with euclidian distance	heuristic: one warehouse at a time<br><br>choose warehouse <b>farthest</b> from existing warehouses
 Prob: arbitrage between a set of exchangeable currencies	take log of rates<br>look for <b>negative weight cycle</b><br>alg: <b>Bellman-Ford</b> O(VE)
 Prob: box stacking<br>highest stack with smaller on top of bigger<br>can reuse	careful rotations<br><br><b>DP</b> similar to <b>LIS</b><br><br>O(n^2)
-Prob: classical DP problems (5)	Knapsack<br>Coin change<br>Grid traversal<br>LCS/LIS/edit<br>TSP
-Prob: find elements that appear more than k/n times	generalization of <b>voting</b><br><br><b>two passes</b><br>- keep <b>k</b> counters in <b>hash</b><br><br>purge hash table when needed<br><br>- second pass to check candidates
-Prob: find k-th largest element from n streamed elements, with O(k) memory, once at the end (2)	- priority queue: O(n log k)<br><br>- better: <b>array of 2k</b><br><br>when full, purge to size <b>k</b><br>with O(k) <b>quickselect</b><br><br>total: O(n)
-Prob: find k-th largest elements (3, 1 or + queries)	1. <b>multiple queries</b>:<br>use <b>priority queue</b><br>O(n log k) + query<br><br><br>2. <b>1 query</b>:<br>2.a with <b>array</b>: <b>1 quickselect</b> O(n)<br>2.b with <b>stream multi-quickselect 2k-array</b> O(n) with O(k) memory
-Prob: find k-th most frequent, no time window (2)	1. 1 query<br><b>HashMap + quickselect</b><br>O(n)<br><br>2. <b>multiple queries</b><br><b>BST (count, elem) + HashMap[elem]=bstNode</b><br>O(n log n) + O(k)
+Prob: DP classical problems (5)	Knapsack<br>Coin change<br>Grid traversal<br>LCS/LIS/edit<br>TSP
+Prob/top-f: find elements that appear more than k/n times	generalization of <b>voting</b><br><br><b>two passes</b><br>- keep <b>k</b> counters in <b>hash</b><br><br>purge hash table when needed<br><br>- second pass to check candidates
+Prob/top: find k-th largest element from n streamed elements, with O(k) memory, once at the end (2)	- priority queue: O(n log k)<br><br>- better: <b>array of 2k</b><br><br>when full, purge to size <b>k</b><br>with O(k) <b>quickselect</b><br><br>total: O(n)
+Prob/top: find k-th largest elements (3, 1 or + queries)	1. <b>multiple queries</b>:<br>use <b>priority queue</b><br>O(n log k) + query<br><br><br>2. <b>1 query</b>:<br>2.a with <b>array</b>: <b>1 quickselect</b> O(n)<br>2.b with <b>stream multi-quickselect 2k-array</b> O(n) with O(k) memory
+Prob/top-f: find k-th most frequent, no time window (2)	1. 1 query<br><b>HashMap + quickselect</b><br>O(n)<br><br>2. <b>multiple queries</b><br><b>BST (count, elem) + HashMap[elem]=bstNode</b><br>O(n log n) + O(k)
 Prob: find missing one from 1 billion of IP adresses<br>using 2 MB of RAM	<b>two passes LSB/MSB</b><br><br>find missing <b>LSB</b>:<br>count LSB in RAM array<br><br>find <b>whole IP</b>, <b>filtering</b> on LSB
-Prob: from set of intervals, find all that <b>intersect a query interval</b><br>support insert/delete	use <b>Interval Tree</b><br><br>search for <b>one</b> intersecting interval<br>remove it<br>repeat
-Prob: invert permutation with constant space	decompose in <b>cycles</b><br><br>invert each cycle<br><br>fix only one element at a time (min of cycle)
-Prob: largest rectangle under histogram	iterate on bars: find <b>largest rectangle to the left with this bar and height</b><br><br><b>efficient frontier:</b> keep only past building with <b>increasing height (stack)</b><br><br>O(n)
-Prob: matrix chain multiplication order	<b>windowed DP</b><br><br>dp[i][j]: cost for Mi...Mj<br><br>fill with increasing window length
-Prob: most visited pages in last W fixed seconds, query any time streaming	<b>3 structures</b>:<br><br>1. <b>BST</b>: (count, s)<br><br>2. <b>HashMap</b> bstNodeForString[s]<br><br>3. <b>Queue</b> Q of elements in current window<br><br>increase-decrease in BST when insert/remove from Q
-Prob: most visited pages, compute top-k by frequency:<br>-1. once at end<br>-2. any time streaming	1. hash map <b>freq[s]++</b><br>at end, do <b>k-selection</b> (quickselect O(n), heap O(n log n))<br><br>2. <b>BST</b> with (count, s) + <b>hashMap</b> bstNodeForString[s]<br><br>update by deleting/re-inserting in BST<br>answer: top-k from BST
+Interval: from set of intervals, find all that <b>intersect a query interval</b><br>support insert/delete	use <b>Interval Tree</b><br><br>search for <b>one</b> intersecting interval<br>remove it<br>repeat
+Prob/perm: invert permutation with constant space	decompose in <b>cycles</b><br><br>invert each cycle<br><br>fix only one element at a time (min of cycle)
+Array: largest rectangle under histogram	iterate on bars: find <b>largest rectangle to the left with this bar and height</b><br><br><b>efficient frontier:</b> keep only past building with <b>increasing height (stack)</b><br><br>O(n)
+Array/Matrix: matrix chain multiplication order	<b>windowed DP</b><br><br>dp[i][j]: cost for Mi...Mj<br><br>fill with increasing window length
+Prob/top-f: most visited pages in last W fixed seconds, query any time streaming	<b>3 structures</b>:<br><br>1. <b>BST</b>: (count, s)<br><br>2. <b>HashMap</b> bstNodeForString[s]<br><br>3. <b>Queue</b> Q of elements in current window<br><br>increase-decrease in BST when insert/remove from Q
+Prob/top-f: most visited pages, compute top-k by frequency:<br>-1. once at end<br>-2. any time streaming	1. hash map <b>freq[s]++</b><br>at end, do <b>k-selection</b> (quickselect O(n), heap O(n log n))<br><br>2. <b>BST</b> with (count, s) + <b>hashMap</b> bstNodeForString[s]<br><br>update by deleting/re-inserting in BST<br>answer: top-k from BST
 Prob: n eggs / k floors<br>find minimum nb of trials in worst case to find the highest safe floor (2)	1. <b>DP</b> O(n k^2) dp[numEggs][floor]<br><br>2. other solution with binary search and binomial coef
 Prob: reflex A<br>1. permutation<br>2. DAG<br>3. "top k" (3)<br>4. Geometric problem (3)<br>5. Intervals (3)	1. cycles<br>2. topological sort<br>3. heap, k-selection, 2k quickselects<br>4. sweep line, convex hull, D&C<br>5. sort by start/end, in/out events, interval tree
 Prob: reflex B<br>1. linked list (2)<br>2. array range/subarray<br>3. search<br>4. palindrome (2)<br>5. 1D/2D problem	1. two pointers, reverse<br>2. prefix sum<br>3. sort before<br>4. look at reverse string (LCS), windowed DP<br>5. DP
 Prob: reflex C<br>1. get low complexity for conflicting ops<br>2. many strings/dictionary<br>3. graph (2)<br>4. in-place<br>5. small size set	1. use <b>multiple DS</b> (reverse index)<br>2. use <b>trie</b><br>3. connected co, MST<br>4. several <b>passes</b><br>5. use <b>bitmask</b>
 Prob: set of equality and inequality constraints on a set of boolean variables, find if possible	build undirected graph with <b>equality</b> only<br>compute <b>connected components</b><br><br>for <b>each inequality</b>: check that they are in <b>different connected components</b>
-Prob: skyline<br>how to solve, complex	 <b>divide and conquer</b><br>similar to merge sort<br><br>- divide in <b>2 equal sets</b> (no order or sort)<br>- compute skyline for each<br>- <b>merge</b>: <b>iterate</b> on both<br><br>O(n log n)
-Prob: solve recurrences + examples<br>T(n) = T(n / 2) + O(1)<br>T(n) = 2 T(n / 2) + O(1)<br>T(n) = 2T (n / 2) + O(log n)<br>T(n) = 2 T(n / 2) + O(n)<br>T(n) = T(n / 2) + O(n)	O(log n) binary search<br>O(n)<br>O(n)<br>O(n log n) mergesort<br>O(n) quickselect
+Array: skyline<br>how to solve, complex	 <b>divide and conquer</b><br>similar to merge sort<br><br>- divide in <b>2 equal sets</b> (no order or sort)<br>- compute skyline for each<br>- <b>merge</b>: <b>iterate</b> on both<br><br>O(n log n)
+Algo: solve recurrences + examples<br>T(n) = T(n / 2) + O(1)<br>T(n) = 2 T(n / 2) + O(1)<br>T(n) = 2T (n / 2) + O(log n)<br>T(n) = 2 T(n / 2) + O(n)<br>T(n) = T(n / 2) + O(n)	O(log n) binary search<br>O(n)<br>O(n)<br>O(n log n) mergesort<br>O(n) quickselect
 Prob:<br>0-1 Knapsack: description, solution, problem class	max weight, items with values and weights, maximize value<br><br>DP Best[i][w]<br>O(n W)<br>NP-complete
-Prob:<br>Container With Most Water<br>n vertical lines	<b>2 pointers, from start and end</b><br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
-Prob:<br>Max number of intersecting intervals	<b>sort</b> events: <b>enter</b> and <b>exit</b> of intervals.<br><br>O(n log n)|O(n) aux
-Prob:<br>Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
+Array/prob: container With Most Water<br>n vertical lines	<b>2 pointers, from start and end</b><br>reduce width and stop only when height increases, <br><br>O(n)|O(1)
+Interval: Max number of intersecting intervals	<b>sort</b> events: <b>enter</b> and <b>exit</b> of intervals.<br><br>O(n log n)|O(n) aux
+Interval: Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
 Prob:<br>combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., <br>same number can be repeated<br>	backtracking (or DP)
-Sort quickSort: best and worst case of QuickSort<br><br>memory complexity	best: pivot splits array in half each time O(n log n)/O(log n)<br>worst: pivot is min (or max), O(n^2)/O(log n)<br><br>Memory: O(log n) with in-place partitioning
+Sort QuickSort: best and worst case of QuickSort<br><br>memory complexity	best: pivot splits array in half each time O(n log n)/O(log n)<br>worst: pivot is min (or max), O(n^2)/O(log n)<br><br>Memory: O(log n) with in-place partitioning
 SD DS: LSM: MemTable, SSTable<br>stored where, read/writes, maintenance	MemTable in memory<br>SSTable on disk (except idx)<br>writes go to MemTable<br>reads go to MemTable first<br><br>periodically:<br>- MemTable flushed to SSTable<br>- SSTables merged
 SD DS: SSTable<br>def, internals, read, write	sorted immutable on disk<br>- Index (in-memory): PK (ex. B-Tree)<br>- Data 64KB block: k/v pairs<br>optimised for reads<br>written once, no in-place changes
-SD app: how to handle errors in a streaming processing system	rewrite to <b>errorTopic1</b> and <b>retry</b>, then eT2, ...<br><br>then to <b>dead letter topic</b><br><br>(Uber)
+SD apps: how to handle errors in a streaming processing system	rewrite to <b>errorTopic1</b> and <b>retry</b>, then eT2, ...<br><br>then to <b>dead letter topic</b><br><br>(Uber)
 SD apps: 2 difficulties of streaming systems	order<br>exactly once delivery
 SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
 SD apps: C numbers	BR 1M/s<br><br>NoSQL cache/persisted: 200To, 1k memcache, 1k couchbase, 1ms 99p, 60M QPS peak<br><br>HDFS: 300 PB, 3k nodes

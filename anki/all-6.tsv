@@ -1,48 +1,48 @@
-SD low-level: use cases of UDP	<b>best effort delivery</b> for voice/video streaming, games
+SD low-level/net: use cases of UDP	<b>best effort delivery</b> for voice/video streaming, games
 SD meth: system design methodology (6)	1. Scope<br>2. Non-scope<br>3. Requirements: current and future scale<br>4. Req: reliability to which failures<br>5. SLO (latency, avail, dura, correct)<br>6. First design<br>7. storage
 SD meth: system design methodology for storage (5)	1. data model<br>2. size<br>3. Usage r/w<br>4. SLO<br>5. Bias (popular, geo)
 SD methodology: 3 questions to ask on iteration	possible to scale?<br>can do better?<br>resilient?
 SD methodology: types of SLO (5)	correctness<br>availability<br>latency<br>throughput<br>durability
 SD primitives: 2 classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
-SD primitives: 2PC<br>vote, master, failure, partition, network	unanimous vote: commit or abort<br>static master<br>fails if coordinator and a node fail when commit<br>not partition tolerant, tail latency sensitives
-SD primitives: 3 consensus algos and their CAP status	<b>2PC</b>, full strict quorum protocols: CA<br><br><b>Paxos</b>, majority quorums with minority in partition: CP<br><br><b>Gossip</b>, Dynamo, conflict resolution: AP
-SD primitives: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
-SD primitives: ACID	atomicity, consistency, isolation, durability
+SD primitives/cons: 2PC<br>vote, master, failure, partition, network	unanimous vote: commit or abort<br>static master<br>fails if coordinator and a node fail when commit<br>not partition tolerant, tail latency sensitives
+SD primitives/cons: 3 consensus algos and their CAP status	<b>2PC</b>, full strict quorum protocols: CA<br><br><b>Paxos</b>, majority quorums with minority in partition: CP<br><br><b>Gossip</b>, Dynamo, conflict resolution: AP
+SD primitives/consist: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
+SD primitives/acid: ACID	atomicity, consistency, isolation, durability
 SD primitives: CA systems, based on, main problem, used by	more common, <b>not partition aware</b>,<br>often 2PC<br>traditional <b>RDBMS</b>
 SD primitives: CP systems, work how, implementations	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
 SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
 SD primitives: Gossip	probabilistic technique for <b>synchronizing replicas</b><br><br>nodes have some probability p of attempting to synchronize with each other<br><br>efficient thanks to <b>Merkle trees</b>
 SD primitives: N, R, W, usual recommendation	N replicas,<br>need R/W votes for read/write<br>R + W > N
-SD primitives: Paxos<br>principle, master, failures, network, use where	<b>majority vote</b><br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br><br>used in Chubby, BigTable/Megastore, GFS, Spanner
+SD primitives/cons: Paxos<br>principle, master, failures, network, use where	<b>majority vote</b><br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br><br>used in Chubby, BigTable/Megastore, GFS, Spanner
 SD primitives: WAL<br>def, goal	<b>write-ahead logging</b><br><b>first log</b> actions to be done to permanent storage<br><br><b>then do</b> the actions<br><br>gives <b>durability</b> and atomicity even if crash
 SD primitives: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
 SD primitives: how a Lamport clock works	when a process does work, increment<br>when send a message, include counter<br>when message received, take the <b>max</b> counter of self and message
-SD primitives: how are conflicts resolved (2)	look at causal history with <b>metadata</b><br>last writer, timestamps, version numbers, vector clocks
-SD primitives: latency of operation with Paxos between DCs	<b>25ms</b>
-SD primitives: partition tolerant consensus<br>examples, how they work<br>what happens when partition	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
+SD primitives/cons: how are conflicts resolved (2)	look at causal history with <b>metadata</b><br>last writer, timestamps, version numbers, vector clocks
+SD primitives/cons: latency of operation with Paxos between DCs	<b>25ms</b>
+SD primitives/cons: partition tolerant consensus<br>examples, how they work<br>what happens when partition	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
 SD primitives: primary/backup replication<br>master, works how, network, failover	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous variant: ensure that write are done one backups before returning to the client
 SD primitives: replace global clock by?<br>based on?	vector clock<br><br><br>(t1, ..., tN)<br>based on Lamport clock
-SD primitives: replication algs with single-copy consistency (+ nb of msg)	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
+SD primitives/cons: replication algs with single-copy consistency (+ nb of msg)	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
 SD primitives: split brain	failover to backup due to temporary network issue<br>primary and backup are active at the same time
-SD primitives: strong consistency models	<b>linearizable</b> consistency: real world ordering respected<br><br><b>sequential</b> consistency: can be reordered as long as consistent on each node
+SD primitives/consist: strong consistency models	<b>linearizable</b> consistency: real world ordering respected<br><br><b>sequential</b> consistency: can be reordered as long as consistent on each node
 SD primitives: why impossible to availability and strong consistency during network partition	<b>divergence</b><br><br>can not prevent divergence if partitioned nodes continue to work
-SD: - default stack size<br>- size of empty stack<br>- max nb recursive calls	- <b>1 to 8 MB</b><br><br>= virtual<br>not allocated completely unless needed<br><br>- <b>< 100 bytes frame</b><br><br><b>5K+ calls</b>
+SD low-level: - default stack size<br>- size of empty stack<br>- max nb recursive calls	- <b>1 to 8 MB</b><br><br>= virtual<br>not allocated completely unless needed<br><br>- <b>< 100 bytes frame</b><br><br><b>5K+ calls</b>
 SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
-SD: <b>synchronized</b> Java primitive	used to define a <b>critical section</b><br><br>only <b>one thread</b> can enter block of code<br><br>can be used on code blocks or methods
-SD: A in ACID	Atomicity<br><br>All or nothing for a transaction:<br>indivisible<br><b>done or not done</b>
-SD: Availability in CAP theorem (2)	every request receives a response about its success<br><br>or any reachable replica is available for reads and writes
-SD: C in ACID	Consistency<br><br>a transaction moves the DB from a <b>valid state to other valid state</b> (e.g. preserve unique keys)<br><br>Not the same as C in CAP
+SD/para: <b>synchronized</b> Java primitive	used to define a <b>critical section</b><br><br>only <b>one thread</b> can enter block of code<br><br>can be used on code blocks or methods
+SD/acid: A in ACID	Atomicity<br><br>All or nothing for a transaction:<br>indivisible<br><b>done or not done</b>
+SD/cap: Availability in CAP theorem (2)	every request receives a response about its success<br><br>or any reachable replica is available for reads and writes
+SD/acid: C in ACID	Consistency<br><br>a transaction moves the DB from a <b>valid state to other valid state</b> (e.g. preserve unique keys)<br><br>Not the same as C in CAP
 SD: CQRS	command query responsibility separation<br><br>separate read and write of data
-SD: Consistency in CAP theorem	all nodes see the same data all the time<br><br>equivalent to <b>single-copy</b> of the data
-SD: D in ACID	when a transaction is committed, it will <b>remain committed</b> even in the case of a system failure (power, crash)
+SD/cap: Consistency in CAP theorem	all nodes see the same data all the time<br><br>equivalent to <b>single-copy</b> of the data
+SD/acid: D in ACID	when a transaction is committed, it will <b>remain committed</b> even in the case of a system failure (power, crash)
 SD/para: Deadlock (def, example)	task waits forever for conditions that can not be met<br><br>tasks wait for other tasks<br><br>ex: 2 tasks with 2 resources with each 1 lock<br>dining philosophers
-SD: Denormalization	improve read perf at the expense of write perf. <br>Redundant copies of the data are written in multiple tables to avoid expensive joins. 
-SD: Federation	= functional partitioning<br><br>splits up databases by function. <br><br>For example, forums, users, and products
+SD/store: Denormalization	improve read perf at the expense of write perf. <br>Redundant copies of the data are written in multiple tables to avoid expensive joins. 
+SD/store: Federation	= functional partitioning<br><br>splits up databases by function. <br><br>For example, forums, users, and products
 SD: Geo load-balancing with DNS	some DNS servers have IP range tables and can have different responses for different ranges
-SD: HDD and SSD IOPS	HDD: <b>~100</b> IOPS<br><br>SSD: <b>100K</b> IOPS
+SD low-level: HDD and SSD IOPS	HDD: <b>~100</b> IOPS<br><br>SSD: <b>100K</b> IOPS
 SD: How many simultaneous connections on a whatsapp server	2 million
-SD: I in ACID	concurrent execution of transactions leaves the DB in same state than if the they were executed sequentially
+SD/acid: I in ACID	concurrent execution of transactions leaves the DB in same state than if the they were executed sequentially
 SD: Master-master replication	Both masters serve reads and writes and coordinate with each other on writes. <br>If either master goes down, the system can continue to operate with both reads and writes.
 SD: N+2 principle	other machines can absorb load if 2 largest instances are down<br><br>e.g. machine off or release
-SD: NoSQL	 is a collection of data items represented in a key-value store, document-store, wide column store, or a graph database. <br>Data is denormalized, and joins are generally done in the application code.
-SD: Partition tolerance in CAP theorem	system continues to operate despite message loss or failure of part of the system
+SD/store: NoSQL	 is a collection of data items represented in a key-value store, document-store, wide column store, or a graph database. <br>Data is denormalized, and joins are generally done in the application code.
+SD/cap: Partition tolerance in CAP theorem	system continues to operate despite message loss or failure of part of the system

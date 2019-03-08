@@ -1,46 +1,46 @@
 SD apps: chat, +protocol	end-to-end encryption? multi device? history on server? ack?<br>push updates: websocket?<br>message delivery queue for offline clients<br>low-latency delivery when recipient online<br>many online clients<br>XMPP
 SD apps: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
 SD apps: docs	metadata+documents<br>can compress text<br>handle conflicts<br>handle offline
-SD apps: how many Kafka messages per second at Uber<br><br>how much storage at FB/YT	billions<br><br>500+ PB
+SD components/kafka: how many Kafka messages per second at Uber<br><br>how much storage at FB/YT	billions<br><br>500+ PB
 SD apps: how many tweets <br>- per second<br>- per day	per second: 6000<br><br>per day: 500 million
 SD apps: instagram	features: feed, by user list, upload<br>metadata+blob store<br>read heavy, bias++, immutable<br>image compression pipeline<br>memory cache<br>e.g. FB Haystack for blob store
 SD apps: mechanism for asynchronicity	queues
 SD apps: most followers on twitter	1B
 SD apps: search	- <b>index servers</b> (random sharded on docs)<br>- <b>doc servers</b> (same)<br><br>scatter: build hit list<br>gather: compute relevance order<br><br>docserver: fetch doc from disk, get snippet for keyword
 SD apps: youtube	view/upload<br>read heavy but long tail of uploads<br>metadata and blob stores<br>data bias++<br>video processing pipeline
-SD components: 2 Kafka guarantees	at-least-once<br>in order within a partition only
-SD components: 4 cache strategies	cache aside: app does everything<br><br>write-through: cache interacts with DB<br><br>write-behind/back: app writes to cache and async write to DB<br><br>refresh ahead: auto refresh by cache
-SD components: 5 techniques to scale RDBMS<br>general/read/writes	general:<br>- federation<br>- denormalization<br>- SQL tuning<br><br>scale reads:<br>- master-slave replication<br><br>scale writes:<br>- sharding
-SD components: BigQuery/Dremel perf for 1T read	with 10K disks and 5K cpus<br><br><b>1 second to read 1TB</b>
-SD components: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second<br>billions of rows<br>thousands of columns
-SD components: BigTable: data model, API, 2 open source equivalents	1. row (row key)<br>2. column: column families + column qualifier within family<br>3. timestamp<br><br>sparse: no room taken for empty cells<br><br>- lookup by row key, range query<br>- HBase, Cassandra
-SD components: Dynamo<br>sharding, quorums, conflict, replica sync	consistent hashing<br>partial quorums for reading and writing<br>conflict detection and read repair via vector clocks<br>gossip for replica synchronization
+SD components/kafka: 2 Kafka guarantees	at-least-once<br>in order within a partition only
+SD components/store: 4 cache strategies	cache aside: app does everything<br><br>write-through: cache interacts with DB<br><br>write-behind/back: app writes to cache and async write to DB<br><br>refresh ahead: auto refresh by cache
+SD components/store: 5 techniques to scale RDBMS<br>general/read/writes	general:<br>- federation<br>- denormalization<br>- SQL tuning<br><br>scale reads:<br>- master-slave replication<br><br>scale writes:<br>- sharding
+SD components/store: BigQuery/Dremel perf for 1T read	with 10K disks and 5K cpus<br><br><b>1 second to read 1TB</b>
+SD components/store: BigTable scale	thousands of machines, <br>TB memory, <br>PB disk, <br>millions of r/w per second<br>billions of rows<br>thousands of columns
+SD components/store: BigTable: data model, API, 2 open source equivalents	1. row (row key)<br>2. column: column families + column qualifier within family<br>3. timestamp<br><br>sparse: no room taken for empty cells<br><br>- lookup by row key, range query<br>- HBase, Cassandra
+SD components/store: Dynamo<br>sharding, quorums, conflict, replica sync	consistent hashing<br>partial quorums for reading and writing<br>conflict detection and read repair via vector clocks<br>gossip for replica synchronization
 SD components: ETL	extract data from multiple sources<br><br>clean, join, aggregate, transform into format<br><br>load in warehouse
-SD components: Kafka perf: factors<br>produce, consume, latency	depends on: message size, replication (number and sync/async)<br><br>producer: <b>700K</b> msg/s<br>consumer: <b>1M</b> msg/s<br>end-to-end latency: <b>~3ms</b> 99p
-SD components: MySQL storage engine (2)	<b>InnoDB</b>: row locking so better concurrency<br><br><b>MyISAM</b>: old, maybe table locking better when lots of reads
-SD components: NoSQL 4 types of stores	key-value: Redis, memcached<br><br>document store: MongoDB, CouchDB, ElasticSearch<br><br>wide-column store: BigTable, HBase, Cassandra<br><br>graph DB: neo4j, flockdb
-SD components: OLTP, OLAP	online transaction/analytical processing<br>RDBMS vs. datawarehouse<br>low vs high latency
-SD components: advantage/disadvantage of columnar storage, 3 examples	if usage pattern is to read whole table like OLAP/BI<br>but only some columns<br><br>don't read unused columns<br>can use <b>compression</b> to reduce disk size<br>disadv: <b>difficult to update</b><br>Parquet, Redshift, Dremel/BigQuery
-SD components: default replication of MySQL	async primary/backup
-SD components: how does BigQuery/Dremel distribute queries	<b>Tree</b> Architecture<br>dispatching queries and aggregating results<br>thousands of machines in a few seconds
-SD components: in-memory K/V store perf	on machine with good network<br><br>read/write: 200k/s easily<br><br>latency: 1ms<br><br>no bound on size with sharding but $
+SD components/kafka: Kafka perf: factors<br>produce, consume, latency	depends on: message size, replication (number and sync/async)<br><br>producer: <b>700K</b> msg/s<br>consumer: <b>1M</b> msg/s<br>end-to-end latency: <b>~3ms</b> 99p
+SD components/store: MySQL storage engine (2)	<b>InnoDB</b>: row locking so better concurrency<br><br><b>MyISAM</b>: old, maybe table locking better when lots of reads
+SD components/store: NoSQL 4 types of stores	key-value: Redis, memcached<br><br>document store: MongoDB, CouchDB, ElasticSearch<br><br>wide-column store: BigTable, HBase, Cassandra<br><br>graph DB: neo4j, flockdb
+SD components/store: OLTP, OLAP	online transaction/analytical processing<br>RDBMS vs. datawarehouse<br>low vs high latency
+SD components/store: advantage/disadvantage of columnar storage, 3 examples	if usage pattern is to read whole table like OLAP/BI<br>but only some columns<br><br>don't read unused columns<br>can use <b>compression</b> to reduce disk size<br>disadv: <b>difficult to update</b><br>Parquet, Redshift, Dremel/BigQuery
+SD components/store: MySQL default replication	async primary/backup
+SD components/store: BigQuery/Dremel how it distribute queries	<b>Tree</b> Architecture<br>dispatching queries and aggregating results<br>thousands of machines in a few seconds
+SD components/store: in-memory K/V store perf	on machine with good network<br><br>read/write: 200k/s easily<br><br>latency: 1ms<br><br>no bound on size with sharding but $
 SD components: load balancer multi setup (2)	active-passive or active-active
 SD components: load balancer routes traffic based on (6)	- random<br>- least load<br>- session/cookies<br>- (weighted) round robin<br>- layer 4<br>- layer 7
 SD components: load balancer used for (3), implemented with (2)	- don't send to bad servers<br>- don't overload<br>- eliminate SPOF<br><br>- hard or soft (HAProxy)
 SD components: load-balancer layer 4 vs. layer 7	4:<br>- look at transport layer: IP address, port<br>- do <b>NAT</b><br>- often hardware<br><br>7:<br> look at application layer, like URL for HTTP, cookies<br>terminates network traffic, remove TLS<br>called <b>reverse-proxy</b> server
-SD components: one instance RDBMS perf	no answer, depends on query/HW, if fits in RAM<br><br><b>1 TB</b> total size<br><b>billions</b> of rows<br><b>1K</b> r/w QPS<br><br>latency: SSD 1ms, HD: 20ms
-SD components: replication modes of MySQL<br>(what is in the WAL)	statement-based ("insert ...") = logical<br><br><br>row-based: result of the statement = physical<br><br>or a mix
-SD components: tablet definition	horizontal partition/shard of a table (Google)
-SD components: when to use BigQuery/Dremel<br>when to use MapReduce	BigQuery: any query, SQL-like, no latency, small output (stats)<br><br>MapReduce: can do any processing, more latency, have to implement all jobs
-SD components:<br>2 data warehouses products for an analytical processing OLAP	Redshift, BigQuery/Dremel
+SD components/store: RDBMS one instance perf	no answer, depends on query/HW, if fits in RAM<br><br><b>1 TB</b> total size<br><b>billions</b> of rows<br><b>1K</b> r/w QPS<br><br>latency: SSD 1ms, HD: 20ms
+SD components/store: MySQL replication modes<br>(what is in the WAL)	statement-based ("insert ...") = logical<br><br><br>row-based: result of the statement = physical<br><br>or a mix
+SD components/store: tablet definition	horizontal partition/shard of a table (Google)
+SD components/store: BigQuery/Dremel when to use<br>when to use MapReduce	BigQuery: any query, SQL-like, no latency, small output (stats)<br><br>MapReduce: can do any processing, more latency, have to implement all jobs
+SD components/store:<br>2 data warehouses products for an analytical processing OLAP	Redshift, BigQuery/Dremel
 SD low-level: DMA definition, 3 steps	a device controls processor's memory directly<br>can transfer data to/from memory without processor<br><br>1. CPU initiates transfer<br>2. does other things<br>3. receives interrupt from device when done
 SD low-level: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>main memory 100 ns (x10)
-SD low-level: OSI and TCP/IP models	OSI: PDNTSPA<br><br>TCP/IP: NITA
+SD low-level/net: OSI and TCP/IP models	OSI: PDNTSPA<br><br>TCP/IP: NITA
 SD low-level: RAM SSD HDD latency and R/W speed	RAM 100 ns<br>SSD <b>0.1 ms or less</b>    (x1000)<br>HDD 10 ms    (x100)<br><br>RAM 10 GB/s<br>SSD 500MB/s - 1+GB/s  (/20)<br> HDD 100 MB/s    (/5)
 SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
 SD low-level: Read 4K randomly from SSD	150 us
-SD low-level: Send 1K bytes over 1 Gbps network	10 us
-SD low-level: TCP definition, uses what to be reliable, limitations	reliable, connection-oriented ordered stream of bytes on IP network<br>congestion control<br>seqno and acknowledgments<br><br>no preservation of message boundaries
-SD low-level: UDP, def, can do/can not do	connectionless, message oriented (datagrams)<br>can broadcast<br><br>can be out-of-order or lost<br>no congestion control
-SD low-level: content of TCP segment (6)	ports, seq no, ackno, flags, checksum, payload
-SD low-level: how many round trips per second<br>- world-wide<br>- within a data center	world-wide: <b>6-7</b><br><br>datacenter: <b>2000</b>
+SD low-level/net: Send 1K bytes over 1 Gbps network	10 us
+SD low-level/net: TCP definition, uses what to be reliable, limitations	reliable, connection-oriented ordered stream of bytes on IP network<br>congestion control<br>seqno and acknowledgments<br><br>no preservation of message boundaries
+SD low-level/net: UDP, def, can do/can not do	connectionless, message oriented (datagrams)<br>can broadcast<br><br>can be out-of-order or lost<br>no congestion control
+SD low-level/net: content of TCP segment (6)	ports, seq no, ackno, flags, checksum, payload
+SD low-level/net: how many round trips per second<br>- world-wide<br>- within a data center	world-wide: <b>6-7</b><br><br>datacenter: <b>2000</b>
