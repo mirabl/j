@@ -33,7 +33,7 @@ Prob:<br>Container With Most Water<br>n vertical lines	<b>2 pointers, from start
 Prob:<br>Max number of intersecting intervals	<b>sort</b> events: <b>enter</b> and <b>exit</b> of intervals.<br><br>O(n log n)|O(n) aux
 Prob:<br>Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
 Prob:<br>combination sum: Given a set of candidate numbers (C) (without duplicates) and a target number (T), find all unique combinations in C where the candidate numbers sums to T., <br>same number can be repeated<br>	backtracking (or DP)
-QuickSort: best and worst case of QuickSort<br><br>memory complexity	best: pivot splits array in half each time O(n log n)/O(log n)<br>worst: pivot is min (or max), O(n^2)/O(log n)<br><br>Memory: O(log n) with in-place partitioning
+Sort quickSort: best and worst case of QuickSort<br><br>memory complexity	best: pivot splits array in half each time O(n log n)/O(log n)<br>worst: pivot is min (or max), O(n^2)/O(log n)<br><br>Memory: O(log n) with in-place partitioning
 SD DS: LSM: MemTable, SSTable<br>stored where, read/writes, maintenance	MemTable in memory<br>SSTable on disk (except idx)<br>writes go to MemTable<br>reads go to MemTable first<br><br>periodically:<br>- MemTable flushed to SSTable<br>- SSTables merged
 SD DS: SSTable<br>def, internals, read, write	sorted immutable on disk<br>- Index (in-memory): PK (ex. B-Tree)<br>- Data 64KB block: k/v pairs<br>optimised for reads<br>written once, no in-place changes
 SD app: how to handle errors in a streaming processing system	rewrite to <b>errorTopic1</b> and <b>retry</b>, then eT2, ...<br><br>then to <b>dead letter topic</b><br><br>(Uber)

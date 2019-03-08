@@ -36,9 +36,9 @@ Heap: from max-heap, check if k-th largest element is >= x in O(k)/O(k)	<b>recur
 Heapify: algorithm and complexity	heapify <b>from the lower levels</b> first,<br><b>sinkdown</b> nodes<br><br>O(n)
 LinkedList: 4 problems solved with 2 pointers	find where 2 linked list <b>merge</b><br><br><b>middle</b> of a linked list<br><br><b>last-M-th</b> element of a linked list<br><br><b>cycle</b>: detect/find beginning
 LinkedList: Select random node from linked list (2)	method1: naive count nodes in first pass. <br><br>method2: <b>reservoir</b> sampling O(n) one pass.
-LinkedList: Sort a linked list	use merge sort
+LinkedList: Sort a linked list	use <b>merge sort</b>
 LinkedList: beginning of cycle	1. find point in cycle: tortoise/hare<br><br>2. Move one pointer to start, both go to speed 1<br>meeting point is start of cycle
 LinkedList: copy postings linked-list with no additional storage	<b>3 passes</b><br><br><b>modify</b> next pointer of original list<br>then <b>restore</b>
 LinkedList: insertion in linked list tip	use dummy first node
-LinkedList: is a linked list a palindrome?	reverse second half, check (and restore)
+LinkedList: is a linked list a palindrome?	<b>reverse</b> second half, check (and restore)
 LinkedList: reverse a linked list	iterative, 3 pointers<br><b>"new head"</b>

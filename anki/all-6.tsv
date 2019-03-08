@@ -35,7 +35,7 @@ SD: C in ACID	Consistency<br><br>a transaction moves the DB from a <b>valid stat
 SD: CQRS	command query responsibility separation<br><br>separate read and write of data
 SD: Consistency in CAP theorem	all nodes see the same data all the time<br><br>equivalent to <b>single-copy</b> of the data
 SD: D in ACID	when a transaction is committed, it will <b>remain committed</b> even in the case of a system failure (power, crash)
-SD: Deadlock (def, example)	task waits forever for conditions that can not be met<br><br>tasks wait for other tasks<br><br>ex: 2 tasks with 2 resources with each 1 lock<br>dining philosophers
+SD/para: Deadlock (def, example)	task waits forever for conditions that can not be met<br><br>tasks wait for other tasks<br><br>ex: 2 tasks with 2 resources with each 1 lock<br>dining philosophers
 SD: Denormalization	improve read perf at the expense of write perf. <br>Redundant copies of the data are written in multiple tables to avoid expensive joins. 
 SD: Federation	= functional partitioning<br><br>splits up databases by function. <br><br>For example, forums, users, and products
 SD: Geo load-balancing with DNS	some DNS servers have IP range tables and can have different responses for different ranges
