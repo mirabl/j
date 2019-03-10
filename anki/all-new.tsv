@@ -50,3 +50,4 @@ DS:<br>Adv/Disadvantage of BST vs. HashTable	<b>BST</b> can enumerate in <b>key 
 DS: Too large for memory (5)	D&C<br>External merge sort<br>Split in steps: ex. LSB/MSB<br>MapReduce<br>Graph: processing with iterations Pregel
 Array: techniques (5)	<b>two-p</b>ointers<br>sliding <b>window</b><br><b>sorted stack</b>/queue/dequeue<br><b>BS</b> in efficient array<br><b>D&C mergesort</b>-like when <b>order</b> matters
 Array/matrix: techniques (2)	- iterate on row(s) and <b>reduce</b> to <b>1D</b><br>- 2D/memoized DP
+Array: sliding window median	would like to use two heaps as in continuous medians, but we need to <b>remove</b><br><br>use <b>BST</b>(s) instead, deal with <b>duplicates</b><br><br>or use C++ <b>multiset</b><br><br>O(n log k)
