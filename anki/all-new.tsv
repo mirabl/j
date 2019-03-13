@@ -51,3 +51,4 @@ DS: Too large for memory (5)	D&C<br>External merge sort<br>Split in steps: ex. L
 Array: techniques (5)	<b>two-p</b>ointers<br>sliding <b>window</b><br><b>sorted stack</b>/queue/dequeue<br><b>BS</b> in efficient array<br><b>D&C mergesort</b>-like when <b>order</b> matters
 Array/matrix: techniques (2)	- iterate on row(s) and <b>reduce</b> to <b>1D</b><br>- 2D/memoized DP
 Array: sliding window median	would like to use two heaps as in continuous medians, but we need to <b>remove</b><br><br>use <b>BST</b>(s) instead, deal with <b>duplicates</b><br><br>or use C++ <b>multiset</b><br><br>O(n log k)
+Array: maximum gap<br>max diff of two consecutives values if array was sorted	- <b>bucket sort</b> but keep only min and max in bucket<br><br>buckets must be <b>big enough</b> so that <b>one is empty</b><br>will give max distance<br><br>- <b>scan buckets</b> to find max gap<br><br>O(n)
