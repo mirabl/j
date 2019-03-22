@@ -1,8 +1,8 @@
 Array: largest rectangle under histogram	iterate on bars: find <b>largest rectangle to the left with this bar and height</b><br><br><b>efficient frontier:</b> keep only past building with <b>increasing height (stack)</b><br><br>O(n)
-Array: length of longest increasing subsequence	- O(n^2) bestLISEndingAtOffset[i]<br><br>- O(n log n) <b>active lists</b> (duplicate and extend)<br>or <b>tail array</b>: t[i] smallest tail of all increasing subsequences with length i+1<br><b>update cell or extend</b>
-Array: longest increasing <b>subarray</b><br>+ trick	<b>one pass</b> O(n)<br><br>--<br>trick: if current max is L<br><b>skip</b> L chars and check in <b>reverse order first</b><br><br>improves best-case complexity<br>but not worst-case
+Array/subseq: length of longest increasing subsequence	- O(n^2) bestLISEndingAtOffset[i]<br><br>- O(n log n) <b>active lists</b> (duplicate and extend)<br>or <b>tail array</b>: t[i] smallest tail of all increasing subsequences with length i+1<br><b>update cell or extend</b>
+Array/subarray: longest increasing <b>subarray</b><br>+ trick	<b>one pass</b> O(n)<br><br>--<br>trick: if current max is L<br><b>skip</b> L chars and check in <b>reverse order first</b><br><br>improves best-case complexity<br>but not worst-case
 Array: skyline<br>how to solve, complex	 <b>divide and conquer</b><br>similar to merge sort<br><br>- divide in <b>2 equal sets</b> (no order or sort)<br>- compute skyline for each<br>- <b>merge</b>: <b>iterate</b> on both<br><br>O(n log n)
-Array: split array in m continous subarrays<br>minimize largest subarray sum	<b>Binary search</b> on answer<br><br>Greedy packing to check if valid
+Array/subarray: split array in m continous subarrays<br>minimize largest subarray sum	<b>Binary search</b> on answer<br><br>Greedy packing to check if valid
 Binary Search: find <b>first</b> element (2)	- tweak binary search<br><br>- or set <b>currentBest variable</b> and continue
 Bit: test if a number is a power of two	(n & (n-1)) == 0
 Combinatorics: compute<br>subsets of a set<br>permutations of a set	subsets: recursive, or iterative<br><br>permutations: recursive
@@ -21,21 +21,21 @@ DS/prob: check if item is in known set	<b>Bloom filter</b> if no space for hash 
 DS/prob: count–min sketch, def, use	probabilistic data structure: <b>frequency table of events</b> in a <b>stream</b> of data<br><br>same as <b>counting Bloom Filter</b><br><br><b>Table</b>: row=hash function, column: bucket (space of hash), entry: integer<br><br>ex: count views for many many videos
 DS/prob: probabilistic data structures (3)	<b>Bloom</b> filter: set<br><br><b>Count-Min sketch</b>: count by type<br><br><b>HyperLogLog</b>: count
 DS: <b>Interval tree</b>, search algo	red black tree<br>each node is interval<br><br>node contains:<br>1. start of interval=sort key<br>2. end of interval<br>3. maxEnd of intervals in subtree<br><br>search for intersection O(h):<br>go in right or left (bit tricky proof)
-DS: <br>Binary heap definition	complete binary<br><br>with heap property (children smaller than parent)
+DS Heap: <br>Binary heap definition	complete binary<br><br>with heap property (children smaller than parent)
 DS: LFU cache<br>implementation	<b>3 hash maps</b>, one with linked list as values
-DS: PriorityQueue <br>implementations (2) and stack (2)	- priority queue: <b>heap</b>, <b>BST</b><br><br>- stack: <b>linked list</b><br>or <b>array</b><br>(needs resizing, so amortized)
-DS: PriorityQueue bucket queue<br>def, use case	<b>priority queue</b> when <b>restricted prio range</b><br>{0, 1, ..., C - 1}<br><br><b>array</b> of <b>C linked lists</b><br><br>to find min, search non-empty list from i=0: O(C)<br>(optimizations possible)<br><br>insert: O(1)
-DS: Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of x to root of y. <br>Union by rank: attach smaller tree to larger. <br>Path compression<br><br>Amortized O(1) in time |O(n) space.
+DS PriorityQueue <br>implementations (2) and stack (2)	- priority queue: <b>heap</b>, <b>BST</b><br><br>- stack: <b>linked list</b><br>or <b>array</b><br>(needs resizing, so amortized)
+DS PriorityQueue bucket queue<br>def, use case	<b>priority queue</b> when <b>restricted prio range</b><br>{0, 1, ..., C - 1}<br><br><b>array</b> of <b>C linked lists</b><br><br>to find min, search non-empty list from i=0: O(C)<br>(optimizations possible)<br><br>insert: O(1)
+DS/uf: Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of x to root of y. <br>Union by rank: attach smaller tree to larger. <br>Path compression<br><br>Amortized O(1) in time |O(n) space.
 DS: implement LRU cache	= <b>DLL Queue + HashTable</b>: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
 DS: skip list<br>- definition<br>- complexities<br>- used in	linked list for binary search<br>layers of sorted linked lists (<b>express lanes</b>)<br>p = 1/2 or 1/4, proba for element to be also in layer below<br><br><b>O(log n)</b> average for search/insert/delete, O(n) average space<br>used in LevelDB MemTable
-DS: tournament tree, def, use	complete binary tree<br>2 case: <b>winner</b>, <b>loser</b> tree<br><br>player=leaves<br>min/max winner/loser<br><br>apps: sorting, first-fit bin packing, k-way merge
-DS: treap, def, use	<b>BST</b> and <b>heap</b><br><br>node is <b>pair</b> (x, y)<br>x: key in the <b>BST</b><br>y: key in the heap (<b>priority</b>)<br><br>random prio: will probably <b>make BST balanced</b>
+DS/tree: tournament tree, def, use	complete binary tree<br>2 case: <b>winner</b>, <b>loser</b> tree<br><br>player=leaves<br>min/max winner/loser<br><br>apps: sorting, first-fit bin packing, k-way merge
+DS/tree: treap, def, use	<b>BST</b> and <b>heap</b><br><br>node is <b>pair</b> (x, y)<br>x: key in the <b>BST</b><br>y: key in the heap (<b>priority</b>)<br><br>random prio: will probably <b>make BST balanced</b>
 Geo: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
 Geo: convex-hull algorithm (3)	wrapping O(nh)<br><br>sweep line O(n log n)<br><br>divide and conquer O(n log n)
 Geo: find 4th point of rectangle	just use <b>vector</b><br><br>a + (b - c)
 Geo: k-d tree<br>definition<br>4 complexities	split in 1 dimension at each node (median of coordinate to get balance)<br><br>search/insert/delete O(log n) average<br>Space: O(n)
 Geo: line through most points	<b>hash</b><br>H[line] = list of points<br><br>for each pair, add entry in H<br><br>tricky hash because floats<br>use rationals
-Geo: quad-tree	2D hierarchical partition in quadrants<br><br><b>4</b> children by node<br>split when max capacity reached.
+Geo DS: quad-tree	2D hierarchical partition in quadrants<br><br><b>4</b> children by node<br>split when max capacity reached.
 Graph/co: Find connected components of an undirected graph (2)	<b>- BFS/DFS</b> O(V + E), <br><br>- <b>or</b> process <b>edges</b>, <b>Union-Find</b> on vertices<br><br>If <b>dynamic</b> changes, keep track of components with <b>Union-Find</b>.
 Graph/co: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>K: first DFS topological sort<br>second DFS in inverse graph collect SCC<br><br>T: only one pass<br>O(V + E)
 Graph/co: transitive closure def, algo	= reachable[s][t] matrix<br><br><b>(if undirected: = easy connected-co)</b><br><br>directed (2):<br><br>1. DFS on each vertex to fill reachable[src][*]<br>O(V (V + E))<br><br>2. or <b>Floyd-Warshall-like</b> O(n^3)

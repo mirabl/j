@@ -20,3 +20,6 @@ Tree: check if two nodes are on same path in a tree, ie. if <b>ancestor</b><br>i
 Tree: compress binary trees to canonical form	use <b>hashing</b> on nodes/subtrees<br><br>recursive
 Tree: threaded binary tree, def, uses	<b>null right</b> pointers replaced by pointer to <b>next inorder</b> node<br><br><br>used for O(1) space iterative inorder traversal
 Tree: types of trees (8)	- Binary or not<br>- BST (balanced or not)<br>- Trie<br>- Heap<br>- Spanning (with a graph)<br>- Tournament (win/lose min/max)<br>- Segment tree<br>- Merkle
+SD components/kafka: Rabbit MQ vs. Kafka 	Rabbit:<br>- can’t rewind<br>- push to consumers<br>- no batching<br>- better for single messages<br>- worse for scale<br>- different topology
+Prob/games: Games WL-algorithm	isWinning(x):<br><br>true if any reachable pos x is !isWinning(x)<br><br>else false
+Prob/games: game of Nim (def, win)	several piles, can take any number from one pile<br><br>lose if empty<br><br>winning pos if <b>XOR</b> of pile size is != 0

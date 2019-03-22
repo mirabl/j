@@ -14,21 +14,20 @@ Sort: Selection and Insertion sort: best and worst case	- Selection: no differen
 Sort: Shell sort	choose <b>gap sequence</b><br><b>iterate on gaps</b><br><br><b>swap gapped pairs</b><br>like a bubble sort<br><br>in place<br><br>complexity: difficult
 Sort: bubble sort	swap pairs to put max at i=end of array<br>i--
 Sort: external merge sort	sort chunk & write to disk, load chunk of chuck and merge-write
-Sort: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
-Sort: insertion sort<br>selection sort	insertion: insert A[i] in sorted A[0]...A[i-1]<br><br>select min put it at A[i=0], i++
+Sort/gen: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
 Sort: mergesort	merge sorted subarrays with auxiliary array (allocate once)
 Sort: mergesort implementation (2)	- <b>top-down</b> using recursion<br><br>- <b>bottom-up</b> using loop
 Sort: mergesort<br>- time: best and worst case<br>- memory	time: always O(n log n)<br><br>memory: O(n) aux
-Sort: sort when element are nearly sorted (2 ways)	insertion sort<br>heapsort
-Sort: sort when limited range of keys (3)	3 <b>distribution sorts</b>:<br><br>counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
-Sort: sort without moving too many records (which might be expensive)	<b>indirect sort</b>:<br>1. sort secondary <b>array of indices</b><br><br>2. apply sort to array (move records)
+Sort/gen: sort when element are nearly sorted (2 ways)	insertion sort<br>heapsort
+Sort/gen: sort when limited range of keys (3)	3 <b>distribution sorts</b>:<br><br>counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
+Sort/gen: sort without moving too many records (which might be expensive)	<b>indirect sort</b>:<br>1. sort secondary <b>array of indices</b><br><br>2. apply sort to array (move records)
 Sort: tournament sort	load elements in a <b>min winner tournament tree</b><br><br>extract top to a <b>sorted list</b><br><br>not all array fits at bottom of tree (memory tradeoff)<br><br>do <b>multiple passes</b> and <b>merge sorted lists</b>
 String/ds: suffix array	same use as suffix tree but with <b>4 times less memory</b><br><br>sorted array of suffixes
 String/ds: suffix tree<br>- definition<br>- complexities<br>- 1 problem	<b>compressed trie</b> of <b>suffixes</b><br>naive: construction time and space O(n^2)<br>smart: O(n) / O(n)<br><br>substring search in O(m)
 String/match: Boyer-Moore	try to match from start of text but <b>from end of pattern</b><br>when <b>mismatch, skip chars</b> when possible<br><br>2 prepro tables to skip chars:<br>- indexOfLastOccurence[char]<br>- other table more complicated<br>O(n/m) to O(nm)
 String/match: Regex matching (2)	1. <b>recursive</b><br><br><b>DP</b> bool match[iStr][iPat]<br>O(mn)<br><br>offset from left to right<br>maybe store last char in table
 String/match: substring search (3)	naive O(n*m) <br><br>robin-karp rolling hash O(n + m) <br><br>Boyer-Moore: O(n/m) to O(nm)
-String/pal: Longest Palindromic Substring (3)	for each position, find longest even and odd length substring with this center O(n^2)|O(1)<br><br>DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1)<br><br>O(n) difficult Manacher.
+String/pal: longest Palindromic Substring (3)	for each position, find longest even and odd length substring with this center O(n^2)|O(1)<br><br>DP bottom-up with length-0 length-1 -2 ... substrings O(n^2)|O(1)<br><br>O(n) difficult Manacher.
 String/pal: longest palindromic subsequence (2)	1. <b>windowed DP</b><br>dp[i][j]: s[i..j], O(n^2)<br><br>2. <b>LCS</b> with <b>reverse</b> string<br>O(n^2)
 String/pal: minimum insertions to make string a palindrome (2)	1. <b>windowed DP</b> minIns[i][j] for substring(i, j)<br>O(n^2)<br><br>2. <b>LCS</b> with <b>reverse</b> string<br>answer: len(s) - lcs<br>O(n^2)
 String/pal: palindrome problems (3)	1. <b>max</b> palindrome <b>substring</b>: O(n^2) <b>greedy extend</b><br>or O(n) Manacher<br><br>2. <b>max</b> palindrome <b>subsequence</b>: <b>LCS</b> with <b>reverse</b> O(n^2)<br><br>3. <b>min insertions</b> to <b>make</b> palindrome: <b>LCS</b> with <b>reverse</b> O(n^2)
@@ -36,8 +35,7 @@ String/paren: Is a string with (), {}, [] balanced	<b>stack</b> with active item
 String/paren: print valid n-parentheses	<b>backtrack</b>:<br><br>try a character, recurse if allowed
 String/subs: Find the smallest substring in a string containing all characters of another string	sliding window<br><br>O(n)
 String/subs: Longest Substring Without Repeating Characters	Window. left and right pointers, hash set for characters in the substring, move either left or right O(n)|O(n) // traverse left to right, maintaining longest valid substring ending at this position, use map<char,position> to know where current character appeared last O(n)|O(n)
-String: Edit Distance algo, complex	DP O(mn)
-String: Reverse words in a sentence (2)	1. Word by word from the end.<br><br> 2. <b>reverse whole string</b> char-by-char, <b>reverse within</b> each word
+String/change: Reverse words in a sentence (2)	1. Word by word from the end.<br><br> 2. <b>reverse whole string</b> char-by-char, <b>reverse within</b> each word
 String: determine if a string has only unique characters (2)	use a set, <br><br>or <b>sort</b> the string
 String: shortest superstring	<b>bitmask DP</b><br>dp[mask][endingWithString]<br><br>O(2^n n^2)
 String: word break<br>longstringwithoutspaces + dict	<b>DP</b>: canBreak[offset]

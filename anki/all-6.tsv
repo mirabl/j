@@ -30,20 +30,20 @@ SD/store: Federation	= functional partitioning<br><br>splits up databases by fun
 SD/store: NoSQL	 is a collection of data items represented in a key-value store, document-store, wide column store, or a graph database. <br>Data is denormalized, and joins are generally done in the application code.
 SD/store: types of data store (9)	RDBMS<br>k/v<br>document<br>column-family<br>graph<br>analytics<br>blob<br>search engine DB<br>time series DB
 SD: 2 types of failover	active-passive (master-slave)<br><br>active-active (master-master)
-SD: CQRS	command query responsibility separation<br><br>separate read and write of data
-SD: Geo load-balancing with DNS	some DNS servers have IP range tables and can have different responses for different ranges
+SD/pattern: CQRS	command query responsibility separation<br><br>separate read and write of data
+SD components: Load balancer Geo load-balancing with DNS	some DNS servers have IP range tables and can have different responses for different ranges
 SD: How many simultaneous connections on a whatsapp server	2 million
-SD: Master-master replication	Both masters serve reads and writes and coordinate with each other on writes. <br>If either master goes down, the system can continue to operate with both reads and writes.
+SD components/store: Master-master replication	Both masters serve reads and writes and coordinate with each other on writes. <br>If either master goes down, the system can continue to operate with both reads and writes.
 SD: N+2 principle	other machines can absorb load if 2 largest instances are down<br><br>e.g. machine off or release
 SD: SLO for S3 (2)	99.99 (4) availability<br><br>99.99999999 (10) durability
-SD: circuit breaker<br>def, how it works	<b>~proxy</b> for operations that might fail<br><br><b>3 states</b>: closed / half-open / open<br>change state by looking at <b>error rate</b>
-SD: classic consistency problem in DB	read-after-write
-SD: def, usual value for <b>page size</b>	smallest unit of virtual memory<br><br><b>4KB</b><br><br>can be more
+SD/pattern: circuit breaker<br>def, how it works	<b>~proxy</b> for operations that might fail<br><br><b>3 states</b>: closed / half-open / open<br>change state by looking at <b>error rate</b>
+SD components/store: classic consistency problem in DB	read-after-write
+SD low-level: def, usual value for <b>page size</b>	smallest unit of virtual memory<br><br><b>4KB</b><br><br>can be more
 SD: drawback of DNS load balancing	results are cached by intermediate servers, so not responsive when change
-SD: event-sourcing pattern	use append-only store of actions/events
-SD: hashing for sharding (2)	<b>consistent hashing</b>: circle with many pseudo-random points per node<br><br><br><b>Rendezvous</b> hashing
+SD/pattern: event-sourcing pattern	use append-only store of actions/events
+SD/pattern: hashing for sharding (2)	<b>consistent hashing</b>: circle with many pseudo-random points per node<br><br><br><b>Rendezvous</b> hashing
 SD: how many seconds in a day	90K
 SD: how to send updates from server to client (3)	<b>short-polling</b> (client pull)<br><br><b>long-polling</b> (client pull): server doesn't answer request until new data<br><br><b>websocket</b> (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
-SD: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
-SD: replication lag for MySQL	time between read/write to master and replication to all slaves
-SD: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency prefered
+SD components/store: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
+SD components/store: replication lag for MySQL	time between read/write to master and replication to all slaves
+SD/pattern: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency prefered

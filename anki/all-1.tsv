@@ -33,17 +33,17 @@ Array/subsq: Count distinct occurrences of t as a subsequence of s	dp[offsetS][o
 Array/subsq: count distinct subsequences	c(n) = 2 * c(n - 1) - c(index of last occ of cur char)<br><br>use table for c[]<br><br>O(n)
 Array/top-f: find the majority element	Boyer-Moore <b>voting</b> algorithm<br><br>O(n)
 Array/window: find maximum in sliding window (2)	1. use self-balanced BST O(n log n). <br><br>2. Use <b>sorted dequeue</b> O(n)
-Array: 2sum (3)	same element twice?<br> Use hash table O(n)|O(n), <br>sort+two pointers O(n log n)|O(1), <br>sort+BS O(n log n)|O(1)
-Array: 3Sum  Find all unique triplets in the array which gives the sum of zero	sort, loop for first element and then 2sum sweep, <br>avoid duplicates by avoiding duplicate first element <br>O(n^2)|O(1)
+Array/subsum: 2sum (3)	same element twice?<br> Use hash table O(n)|O(n), <br>sort+two pointers O(n log n)|O(1), <br>sort+BS O(n log n)|O(1)
+Array/subsum: 3Sum  Find all unique triplets in the array which gives the sum of zero	sort, loop for first element and then 2sum sweep, <br>avoid duplicates by avoiding duplicate first element <br>O(n^2)|O(1)
 Array: Coin Game: coins in a row, pick one	<b>windowed DP</b><br><br>F(i,j) = max (coinChosen + whatIsLeftAfterOtherPlayer(=min))<br><br>F(from coin i to j) = max(. + min(), . + min())<br>O(n^2)
 Array: Coin change:<br>Given infinite coins of value V1..VN, find the minimum number of coins with sum S	DP<br><br><b>dp[amount]</b><br>loop on coin<br>loop on x to update dp[x]<br><br>O(N S)
 Array: Convert array into Zig-Zag fashion: distinct element or not cases	distinct O(n)|O(1) aux bubble sort-like swap <br> not distinct QuickSelect to find median, partition O(n)
-Array: Count triplets with sum smaller than a given value in O(n^2)	sort, loop for first element, use two-pointer-sum <br> O(n^2)|O(1) aux
+Array/subsum: Count triplets with sum smaller than a given value in O(n^2)	sort, loop for first element, use two-pointer-sum <br> O(n^2)|O(1) aux
 Array: Minimum difference partition	DP CanMakeSum[i][T] <br>T <= S/2<br>O(n S)
 Array: Product of array except self	two steps with <b>left+right prefix product</b><br><br>no need of additional array
-Array: Reverse an array without affecting special characters	O(n) one pass, in-place: two pointers at start and end <br> swap or skip and meet in the middle <br> O(n)|O(1) aux
-Array: Rotate an array<br>(3)	1. naive, step by step<br><br>2. With a temp array of size K. <br><br>3. With cycles (compute gcd)
-Array: Subset sum: a subset of array sums to T	DP CanMakeSum[i][T]<br>O(n S)
-Array: find K-th smallest pair distance<br>from integer array	<b>Sort</b> array<br><b>Binary search</b> on answer<br><b>Two pointers</b> to validate
+Array/change: Reverse an array without affecting special characters	O(n) one pass, in-place: two pointers at start and end <br> swap or skip and meet in the middle <br> O(n)|O(1) aux
+Array/change: Rotate an array<br>(3)	1. naive, step by step<br><br>2. With a temp array of size K. <br><br>3. With cycles (compute gcd)
+Array/subsum: Subset sum: a subset of array sums to T	DP CanMakeSum[i][T]<br>O(n S)
+Array/pair: find K-th smallest pair distance<br>from integer array	<b>Sort</b> array<br><b>Binary search</b> on answer<br><b>Two pointers</b> to validate
 Array: from 3 sorted arrays, find i, j, k s.t. d(i,j,k)=max(|A(i)-B(j)|, ...) is minimum	<b>1 pointer in each</b><br><b>move 1</b> (min) at each step<br><br>like intersection of sorted arrays<br><br>record minimum<br><br>O(len A + len B + ..)
-Array: in string, replace a by dd, delete b<br>O(1) space	<b>two passes</b>:<br><br>1. <b>forward</b> delete b's in place<br>and count a's<br><br>2. <b>backward</b> replace a's 
+Array/change: in string, replace a by dd, delete b<br>O(1) space	<b>two passes</b>:<br><br>1. <b>forward</b> delete b's in place<br>and count a's<br><br>2. <b>backward</b> replace a's 

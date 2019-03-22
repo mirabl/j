@@ -9,16 +9,17 @@ Graph/prob: matching, perfect matching	<b>set of edges</b> which <b>don't touch<
 Graph/prob: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
 Graph/prob: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard
 Graph: 4 classes of problems in polynomial time	- shortest paths<br>- MST<br>- matching<br>- max flow
-Graph: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br><br><br>O(V^2) if adjacency matrix/O(V)
+Graph/trav: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br><br><br>O(V^2) if adjacency matrix/O(V)
 Graph: Minimum Spanning tree Kruskal: algorithm and complexity	<b>sort, process edges from low weight</b> <br>(take min edge, check if it <b>adds cycle</b> in partial tree). <br><br>Cycle detection with <b>union-find</b><br><br>O(E log E)
 Graph: Minimum Spanning tree Prim: algorithm and complexity	<b>Dijkstra-like</b><br>greedy vertices: add new <b>vertex</b> of <b>minimum distance</b> to partial tree.<br><br>O(V^2), or less with binary heap
 Graph: Topological sort of DAG (2)	 1. <b>DFS</b>: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br><br>2.  <b>BFS-style</b> algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
-Graph: Word Ladder. <br>Given two words and dictionary, find path from one to the other changing one letter by one	<b>BFS from start word</b>
+Graph: Word Ladder<br>Given two words and dictionary, find path from one to the other changing one letter by one	<b>BFS from start word</b>
 Graph: approximate TSP in 2D plane when distance is euclidian	satisfies <b>triangle inequality</b><br><br>build <b>MST</b> from graph<br><br>tour: <b>like in-order walk</b> on MST skipping already seen vertices<br><br>thanks to triangle ineq., approximation factor: <b>2</b>
 Graph: edge cover<br>desc, problem and solution	<b>set of edges</b> such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
 Graph: find a mother vertex in directed graph<br>(all vertices can be reached from)	1. find last completely processed vertex in DFS (<b>pseudo toposort</b>)<br><br>2. check if it is a mother vertex<br><br><br>topo sort doesn't exist on cyclic graphs
 Graph: from undirected graph which is a tree, find a root of a tree which gives minimum height	<b>BFS from the leaves</b> to the inside<br><br>one or two remaining nodes<br><br>O(n)
-Graph: output of DFS (2)	vertex: entry/exit time,<br><br>edge: tree edge or back edge
+Graph/trav: output of DFS (2)	vertex: entry/exit time,<br><br>edge: tree edge or back edge
+Graph: 11 types of graphs	connected, directed, weighted, Tree, with cycles, DAG, bipartite, complete (all clique), intersection, planar, sparse
 Interval: Max number of intersecting intervals	<b>sort</b> events: <b>enter</b> and <b>exit</b> of intervals.<br><br>O(n log n)|O(n) aux
 Interval: Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
 Interval: from set of intervals, find all that <b>intersect a query interval</b><br>support insert/delete	use <b>Interval Tree</b><br><br>search for <b>one</b> intersecting interval<br>remove it<br>repeat
@@ -39,7 +40,6 @@ OO: generics	class/method that defer specification of type until declared and in
 OO: member overloading	same name but different signature
 OO: static class, static member	class: can not be instantiated<br><br>member: one copy exists
 OO: virtual method	can be <b>overriden</b> in derived class
-Graph: 11 types of graphs	connected, directed, weighted, Tree, with cycles, DAG, bipartite, complete (all clique), intersection, planar, sparse
 Prob/perm: invert permutation with constant space	decompose in <b>cycles</b><br><br>invert each cycle<br><br>fix only one element at a time (min of cycle)
 Prob/top-f: find elements that appear more than k/n times	generalization of <b>voting</b><br><br><b>two passes</b><br>- keep <b>k</b> counters in <b>hash</b><br><br>purge hash table when needed<br><br>- second pass to check candidates
 Prob/top-f: find k-th most frequent, no time window (2)	1. 1 query<br><b>HashMap + quickselect</b><br>O(n)<br><br>2. <b>multiple queries</b><br><b>BST (count, elem) + HashMap[elem]=bstNode</b><br>O(n log n) + O(k)

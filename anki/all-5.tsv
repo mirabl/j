@@ -42,8 +42,8 @@ SD primitives/cons: how are conflicts resolved (2)	look at causal history with <
 SD primitives/cons: latency of operation with Paxos between DCs	<b>25ms</b>
 SD primitives/cons: partition tolerant consensus<br>examples, how they work<br>what happens when partition	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
 SD primitives/cons: replication algs with single-copy consistency (+ nb of msg)	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
-SD primitives/consist: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
-SD primitives/consist: strong consistency models	<b>linearizable</b> consistency: real world ordering respected<br><br><b>sequential</b> consistency: can be reordered as long as consistent on each node
+SD primitives/cons: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
+SD primitives/cons: strong consistency models	<b>linearizable</b> consistency: real world ordering respected<br><br><b>sequential</b> consistency: can be reordered as long as consistent on each node
 SD primitives: 2 classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
 SD primitives: CA systems, based on, main problem, used by	more common, <b>not partition aware</b>,<br>often 2PC<br>traditional <b>RDBMS</b>
 SD primitives: CP systems, work how, implementations	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
