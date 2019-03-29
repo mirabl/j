@@ -5,7 +5,7 @@ Sort/gen: 3 big sorts on large data<br>+ advantages	quicksort: <b>fast</b>, not 
 Sort/gen: 6 questions on data	how many keys, duplicates, partially sorted, long to compare, small range, disk access possible
 Sort/gen: 6 sort properties	- stable<br>- in place<br>- comparison or not<br>- external<br>- good with pre-sorted<br>- method: partition, merge, select, insert, exchange   Sort
 Sort/gen: real world sorting	<b>insertion sort</b> on <b>small arrays</b> (incl. bottom of recursion)<br><br>need to be <b>good on pre-sorted</b><br><br>maybe be <b>stable</b><br><br>example: <b>timsort</b> (find runs, merge/insertion)
-Sort/gen: which sort for:<br>1. general large integer array (2)<br>2. small array<br>3. almost sorted (2)<br>4. small range array<br>5. many duplicates (2)<br>6. stability required (2)	1. quicksort, timsort<br>2. insertion sort<br>3. depends: heap/heapsort/insertion<br>4. counting sort in array or BST<br>5. BST<br>6. merge sort/decorate-sort (key, index)
+Sort/gen: which sort for:<br>1. general large integer array (2)<br>2. small array<br>3. almost sorted (2)<br>4. small range array<br>5. many duplicates<br>6. stability required (2)	1. quicksort, timsort<br>2. insertion sort<br>3. depends: heapsort/insertion<br>4. counting sort in array or BST<br>5. BST<br>6. merge sort/decorate-sort (key, index)
 Sort: Heapsort: description, complexity	<b>heapify in O(n)</b><br>n times: get max, put at end, resize heap O(log n)<br><br><b>total: O(n log n)</b>
 Sort: QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
 Sort: QuickSort: best and worst case of QuickSort<br><br>memory complexity	best: pivot splits array in half each time O(n log n)/O(log n)<br>worst: pivot is min (or max), O(n^2)/O(log n)<br><br>Memory: O(log n) with in-place partitioning
@@ -34,7 +34,7 @@ String/pal: palindrome problems (3)	1. <b>max</b> palindrome <b>substring</b>: O
 String/paren: Is a string with (), {}, [] balanced	<b>stack</b> with active items O(n)
 String/paren: print valid n-parentheses	<b>backtrack</b>:<br><br>try a character, recurse if allowed
 String/subs: Find the smallest substring in a string containing all characters of another string	sliding window<br><br>O(n)
-String/subs: Longest Substring Without Repeating Characters	Window. left and right pointers, hash set for characters in the substring, move either left or right O(n)|O(n) // traverse left to right, maintaining longest valid substring ending at this position, use map<char,position> to know where current character appeared last O(n)|O(n)
+String/subs: Longest Substring Without Repeating Characters	- <b>Window</b>: left and right pointers, hash set for characters in the substring, move either <b>left or right</b> O(n)<br><br>- <b>traverse left to right</b>, maintaining longest valid substring ending at <b>this position</b>, use <b>map</b><char,position> to know where current character appeared last<br>O(n)
 String/change: Reverse words in a sentence (2)	1. Word by word from the end.<br><br> 2. <b>reverse whole string</b> char-by-char, <b>reverse within</b> each word
 String: determine if a string has only unique characters (2)	use a set, <br><br>or <b>sort</b> the string
 String: shortest superstring	<b>bitmask DP</b><br>dp[mask][endingWithString]<br><br>O(2^n n^2)

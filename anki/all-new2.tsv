@@ -7,3 +7,5 @@ SD low-level: virtual memory (def, done by, uses (2))	<b>maps</b> addresses used
 SD/pattern: how to reduce <b>tail latencies</b>	<b>Backup requests</b><br><br>send <b>second request</b> to <b>other</b> server when first answer is late
 Array/Matrix: largest all-1 + sign, square, rectangle	+ sign: precompute 4D<br><br>- square: precompute 2D<br><br>- rectangle: precomp 1D (up)<br>n (row) * O(m) largestRectangleUnderHistogram with stack
 Array/Matrix sum: max sum square, rectangle	- square: standard O(nm) DP<br><br>- rectangle: n^2 (rows) * O(n) Kadane
+Array/subasum: smallest subarray with sum >= k (2)	- <b>Positive</b> numbers:<br><b>sliding window/two-pointers</b>: accumulate until sum greater than x, pop starting elements<br>O(n)<br><br>- <b>with negative numbers</b>: <br>monotonous stack/deque<br>O(n)
+Array/subasum: subarray sum (max, shortest >= k, max no more than k)	- max: Kadane O(n)<br><br>- 2p sliding window O(n) or monotonic stack<br><br>- max <= k: O(n log n) using <b>BST upper_bound</b>

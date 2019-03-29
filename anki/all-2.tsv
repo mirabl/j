@@ -12,7 +12,7 @@ DS Heap: complexity and algo of insert, extract-min, search	use <b>last element<
 DS Heap: from max-heap, check if k-th largest element is >= x in O(k)/O(k)	<b>recursive</b><br>gradual descent with larger/equal counters<br><br>stop early<br><br>nb calls is O(k) as counters are almost always incremented
 DS Heap: specialized heaps (2)	when <b>limited set</b> of keys,<br><br>or <b>monotonic</b> input
 DS Priority Queue: 6 example use of a priority queue	- continous top k<br>- k-way merge<br>- continous median<br>- sort when only k indices away<br>- heapsort/tree sort<br>- Dijkstra/Prim
-DS Priority Queue: monotonic priority queue<br>def, examples	min monotonic: inserted elements have <b>higher prio than min</b> of heap<br><br>ie. will not become min<br><br>Dijkstra, sweep line<br><br>can <b>optimize bucket queue</b>
+DS Priority Queue: monotonic priority queue<br>def, examples	min monotonic: inserted elements have <b>higher prio than min</b> of heap<br><br>Dijkstra, sweep line<br><br>can <b>optimize bucket queue</b>
 DS Queue: implement a queue using two stacks	empty first stack into second stack
 DS Stack: implement stack with O(1) min<br>(2 ways)	push (x, min) when pushing x, <br><br>or use second stack
 DS Stack: sort a stack (2)	using a second stack<br><br>or recursively:<br>need 2 recursions:<br>sort, insert in sorted
@@ -29,14 +29,14 @@ DS/uf: Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of
 DS: implement LRU cache	= <b>DLL Queue + HashTable</b>: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
 DS: skip list<br>- definition<br>- complexities<br>- used in	linked list for binary search<br>layers of sorted linked lists (<b>express lanes</b>)<br>p = 1/2 or 1/4, proba for element to be also in layer below<br><br><b>O(log n)</b> average for search/insert/delete, O(n) average space<br>used in LevelDB MemTable
 DS/tree: tournament tree, def, use	complete binary tree<br>2 case: <b>winner</b>, <b>loser</b> tree<br><br>player=leaves<br>min/max winner/loser<br><br>apps: sorting, first-fit bin packing, k-way merge
-DS/tree: treap, def, use	<b>BST</b> and <b>heap</b><br><br>node is <b>pair</b> (x, y)<br>x: key in the <b>BST</b><br>y: key in the heap (<b>priority</b>)<br><br>random prio: will probably <b>make BST balanced</b>
+DS/tree: treap, def, use	<b>BST</b> and <b>heap</b><br><br>node is <b>pair</b> (x, y)<br>x: real key, in the <b>BST</b><br>y: random key in the heap (<b>priority</b>)<br><br>random prio: will probably <b>make BST balanced</b>
 Geo: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
 Geo: convex-hull algorithm (3)	wrapping O(nh)<br><br>sweep line O(n log n)<br><br>divide and conquer O(n log n)
 Geo: find 4th point of rectangle	just use <b>vector</b><br><br>a + (b - c)
 Geo: k-d tree<br>definition<br>4 complexities	split in 1 dimension at each node (median of coordinate to get balance)<br><br>search/insert/delete O(log n) average<br>Space: O(n)
 Geo: line through most points	<b>hash</b><br>H[line] = list of points<br><br>for each pair, add entry in H<br><br>tricky hash because floats<br>use rationals
 Geo DS: quad-tree	2D hierarchical partition in quadrants<br><br><b>4</b> children by node<br>split when max capacity reached.
-Graph/co: Find connected components of an undirected graph (2)	<b>- BFS/DFS</b> O(V + E), <br><br>- <b>or</b> process <b>edges</b>, <b>Union-Find</b> on vertices<br><br>If <b>dynamic</b> changes, keep track of components with <b>Union-Find</b>.
+Graph/co: Find connected components of an undirected graph (2)	<b>- BFS/DFS</b> O(V + E), <br><br>- <b>or</b> process <b>edges</b>, <b>Union-Find</b> on vertices<br><br>If <b>dynamic</b> changes: <b>Union-Find</b>.
 Graph/co: Strongly Connected Components<br>definition and algo name/cplx	subgraphs s.t. if every vertex is reachable from every other vertex<br><br>K: first DFS topological sort<br>second DFS in inverse graph collect SCC<br><br>T: only one pass<br>O(V + E)
 Graph/co: transitive closure def, algo	= reachable[s][t] matrix<br><br><b>(if undirected: = easy connected-co)</b><br><br>directed (2):<br><br>1. DFS on each vertex to fill reachable[src][*]<br>O(V (V + E))<br><br>2. or <b>Floyd-Warshall-like</b> O(n^3)
 Graph/cycle: Eulerian cycle: def, check/find algos	visit each edge<br><br>linear time O(E)<br>vs. Hamiltonian is NP-hard<br><br>check if exists: look at conditions on degree<br><br>find: O(E) exists (Fleury)
