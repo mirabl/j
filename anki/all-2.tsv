@@ -1,7 +1,5 @@
-Array: largest rectangle under histogram	iterate on bars: find <b>largest rectangle to the left with this bar and height</b><br><br><b>efficient frontier:</b> keep only past building with <b>increasing height (stack)</b><br><br>O(n)
 Array/subseq: length of longest increasing subsequence	- O(n^2) bestLISEndingAtOffset[i]<br><br>- O(n log n) <b>active lists</b> (duplicate and extend)<br>or <b>tail array</b>: t[i] smallest tail of all increasing subsequences with length i+1<br><b>update cell or extend</b>
 Array/subarray: longest increasing <b>subarray</b><br>+ trick	<b>one pass</b> O(n)<br><br>--<br>trick: if current max is L<br><b>skip</b> L chars and check in <b>reverse order first</b><br><br>improves best-case complexity<br>but not worst-case
-Array: skyline<br>how to solve, complex	 <b>divide and conquer</b><br>similar to merge sort<br><br>- divide in <b>2 equal sets</b> (no order or sort)<br>- compute skyline for each<br>- <b>merge</b>: <b>iterate</b> on both<br><br>O(n log n)
 Array/subarray: split array in m continous subarrays<br>minimize largest subarray sum	<b>Binary search</b> on answer<br><br>Greedy packing to check if valid
 Binary Search: find <b>first</b> element (2)	- tweak binary search<br><br>- or set <b>currentBest variable</b> and continue
 Bit: test if a number is a power of two	(n & (n-1)) == 0
@@ -17,7 +15,6 @@ DS Queue: implement a queue using two stacks	empty first stack into second stack
 DS Stack: implement stack with O(1) min<br>(2 ways)	push (x, min) when pushing x, <br><br>or use second stack
 DS Stack: sort a stack (2)	using a second stack<br><br>or recursively:<br>need 2 recursions:<br>sort, insert in sorted
 DS/prob: HyperLogLog, def, use	<b>approximate count-distinct</b> with O(1) mem<br>hash stream entries and only record the <b>longest leading zero seq length</b><br><br>Improve with buckets, outliers and averaging<br><br>Use in ApproxCountDistinct in DBs.
-DS/prob: check if item is in known set	<b>Bloom filter</b> if no space for hash table
 DS/prob: count–min sketch, def, use	probabilistic data structure: <b>frequency table of events</b> in a <b>stream</b> of data<br><br>same as <b>counting Bloom Filter</b><br><br><b>Table</b>: row=hash function, column: bucket (space of hash), entry: integer<br><br>ex: count views for many many videos
 DS/prob: probabilistic data structures (3)	<b>Bloom</b> filter: set<br><br><b>Count-Min sketch</b>: count by type<br><br><b>HyperLogLog</b>: count
 DS: <b>Interval tree</b>, search algo	red black tree<br>each node is interval<br><br>node contains:<br>1. start of interval=sort key<br>2. end of interval<br>3. maxEnd of intervals in subtree<br><br>search for intersection O(h):<br>go in right or left (bit tricky proof)
@@ -44,6 +41,5 @@ Graph/cycle: how to check for negative weight cycles	<b>Bellman-Ford</b><br><br>
 Graph/paths: 4 SSSP/APSP algs	- BFS<br>- Dijkstra: O(V^2) or less with heap. Greedy closest edge.<br><br>- Bellman-Ford: O(VE) OK with negative weights, no cycles. Relax all edges |V| times<br><br>- Floyd-Warshall: same as Bellman-Ford but all pairs. O(V^3)/O(V^2)
 Graph/paths: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and <b>distance to target</b>
 Graph/paths: longest path from vertex in weighted graph<br>+ DAG	NP-hard for general graph<br>naive Bruteforce E!<br><br>linear for DAG: toposort, then loop<br>O(V + E)
-Graph/paths: number of paths from src to dest with k edges (2)	1. DP <b>numPaths[src][dest][edges]</b><br>O(k V^3)<br><br>2. Divide and Conquer <b>matrix power</b> G^k<br>O(log k) matrix power<br>total: O(V^3 log k)
 Graph/paths: print number of paths with no cycle between two nodes in a directed graph	<b>backtracking</b><br><br>set/unset visited nodes
 Graph/paths: shortest path with a max delay constraint (edges have weight and delay)	<b>memoized DP</b><br>dp[destinationVertex,withDelay]<br><br>O(E maxDelay)

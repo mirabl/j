@@ -1,4 +1,3 @@
-Graph/paths: shortest path with exactly k edges in a directed and weighted graph	<b>DP dist[s][t][k]</b><br>fill with k increasing<br><br>O(V^3 k)
 Graph/paths: shortest paths special cases (2)	1. not oriented, no weights: BFS O(V + E)<br><br>2. DAG: topological sort + greedy, O(V + E)
 Graph/prob: articulation point<br>def, algo, complex	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
 Graph/prob: bridge<br>def, algo, complexity	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time

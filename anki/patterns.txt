@@ -1,0 +1,42 @@
+// reverse vector A
+reverse(A.begin(), A.end())
+
+// reverse and custom sort
+sort(A.begin(), A.end(), greater<int>());
+
+bool cmp(int x, int y) { return x < y; }
+sort(A.begin(), A.end(), cmp);
+
+
+// reverse and custom Priority Queue PQ
+priority_queue<int, vector<int>, greater<int>> PQ;
+
+auto cmp = [](int x, int y) { return x < y; }
+priority_queue<int, vector<int>, decltype(cmp)> PQ(cmp);
+
+
+// custom set S and map M
+auto cmp = [](int x, int y) { return x < y; }
+set<int, decltype(cmp)> S(cmp);
+map<int, int, decltype(cmp)> M(cmp);
+
+
+// split string s on spaces to vector tokens
+istringstream iss(s);
+vector<string> tokens;
+string token;
+while (getline(iss, token, ' ')) {
+  tokens.push_back(token);
+}
+
+
+// on set or map:
+// smallest >= x, what if doesn't exist
+lower_bound(x)
+set::end
+
+
+// smallest > x
+upper_bound(x)
+
+
