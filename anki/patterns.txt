@@ -1,5 +1,6 @@
 // reverse vector A
-reverse(A.begin(), A.end())
+reverse(A.begin(), A.end());
+
 
 // reverse and custom sort
 sort(A.begin(), A.end(), greater<int>());
