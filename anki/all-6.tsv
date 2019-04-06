@@ -46,4 +46,6 @@ SD: how many seconds in a day	90K
 SD: how to send updates from server to client (3)	<b>short-polling</b> (client pull)<br><br><b>long-polling</b> (client pull): server doesn't answer request until new data<br><br><b>websocket</b> (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
 SD components/store: in MySQL master-slave, how to ensure read-after-write has most recent value	read from Master
 SD components/store: replication lag for MySQL	time between read/write to master and replication to all slaves
+SD components/store: Cassandra: coordinator	one <b>normal</b> node, can <b>change</b> at any request<br><br>in charge of the <b>whole request</b>:<br>- consistent hash to <b>find nodes</b> to query<br><br><b>responds to client</b> according to config consistency level 
+SD components/store: Cassandra: partitioning, replication, consistency	<b>Consistent hashing</b><br><br>Replication factor: <b>copy</b> to <b>RF</b> machines = neighbors in hash ring<br><br>Consistency read/write levels:<br>min numbers of nodes reached by a query<br>(One, Quorum=1+RF/2, All)
 SD/pattern: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency prefered

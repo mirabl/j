@@ -39,6 +39,7 @@ String/change: Reverse words in a sentence (2)	1. Word by word from the end.<br>
 String: determine if a string has only unique characters (2)	use a set, <br><br>or <b>sort</b> the string
 String: shortest superstring	<b>bitmask DP</b><br>dp[mask][endingWithString]<br><br>O(2^n n^2)
 String: word break<br>longstringwithoutspaces + dict	<b>DP</b>: canBreak[offset]
+String: <b>Longest Repeated</b> Substring and <b>Longest Common</b> Substring (LCS) with <b>Suffix Tree</b>	- repeated: <b>deepest non-leaf</b> node of ST<br>O(n)<br><br>- common: build ST with 1 <b>terminal symbol</b> for <b>each</b> string<br>find <b>deepest non-leaf</b> with <b>both</b> ends in subtree<br>O(n)
 Tree/bst: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if <b>in-order traversal</b> is <b>sorted</b> O(n)
 Tree/bst: balanced ST: complexity, 6 examples	Search/insert/delete O(log n)<br><br>AVL: binary<br>Red-black: binary<br>treap: binary<br>2-3 tree<br>B-tree<br>B+ tree
 Tree/bst: build from sorted linked list	avoid finding the middle over and over<br><br>have pointer in list<br><br>recursively create left subtree<br><b>move pointer</b> and set root value<br><br>recursively create right<br><br><b>O(n)</b>

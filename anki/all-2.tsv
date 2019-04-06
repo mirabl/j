@@ -23,10 +23,12 @@ DS: LFU cache<br>implementation	<b>3 hash maps</b>, one with linked list as valu
 DS PriorityQueue <br>implementations (2) and stack (2)	- priority queue: <b>heap</b>, <b>BST</b><br><br>- stack: <b>linked list</b><br>or <b>array</b><br>(needs resizing, so amortized)
 DS PriorityQueue bucket queue<br>def, use case	<b>priority queue</b> when <b>restricted prio range</b><br>{0, 1, ..., C - 1}<br><br><b>array</b> of <b>C linked lists</b><br><br>to find min, search non-empty list from i=0: O(C)<br>(optimizations possible)<br><br>insert: O(1)
 DS/uf: Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of x to root of y. <br>Union by rank: attach smaller tree to larger. <br>Path compression<br><br>Amortized O(1) in time |O(n) space.
+DS/uf: Union-Find optimizations (1, 3)	- <b>path compression</b>: <b>set parent</b> when doing a <b>find</b><br><br>- <b>union</b> (3):<br>a. union by <b>size</b><br>b. union by <b>depth</b><br>c. <b>randomized union</b> (simpler, same complexity)
 DS: implement LRU cache	= <b>DLL Queue + HashTable</b>: <br><br>queue: doubly linked list (size: cache size). MRU at front.<br><br>hash: address of the queue node as value
 DS: skip list<br>- definition<br>- complexities<br>- used in	linked list for binary search<br>layers of sorted linked lists (<b>express lanes</b>)<br>p = 1/2 or 1/4, proba for element to be also in layer below<br><br><b>O(log n)</b> average for search/insert/delete, O(n) average space<br>used in LevelDB MemTable
 DS/tree: tournament tree, def, use	complete binary tree<br>2 case: <b>winner</b>, <b>loser</b> tree<br><br>player=leaves<br>min/max winner/loser<br><br>apps: sorting, first-fit bin packing, k-way merge
 DS/tree: treap, def, use	<b>BST</b> and <b>heap</b><br><br>node is <b>pair</b> (x, y)<br>x: real key, in the <b>BST</b><br>y: random key in the heap (<b>priority</b>)<br><br>random prio: will probably <b>make BST balanced</b>
+DS:<br>Adv/Disadvantage of BST vs. HashTable	<b>BST</b> can enumerate in <b>key order</b> (range search, prev/next)<br><br>HashTable simpler when <b>duplicate keys</b><br><br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
 Geo: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
 Geo: convex-hull algorithm (3)	wrapping O(nh)<br><br>sweep line O(n log n)<br><br>divide and conquer O(n log n)
 Geo: find 4th point of rectangle	just use <b>vector</b><br><br>a + (b - c)

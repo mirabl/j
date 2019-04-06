@@ -1,25 +1,25 @@
 // reverse vector A
-reverse(A.begin(), A.end());
+reverse(A.begin(), A.end())
 
 
 // reverse and custom sort
-sort(A.begin(), A.end(), greater<int>());
+sort(A.begin(), A.end(), greater<int>())
 
 bool cmp(int x, int y) { return x < y; }
-sort(A.begin(), A.end(), cmp);
+sort(A.begin(), A.end(), cmp)
 
 
 // reverse and custom Priority Queue PQ
-priority_queue<int, vector<int>, greater<int>> PQ;
+priority_queue<int, vector<int>, greater<int>> PQ
 
 auto cmp = [](int x, int y) { return x < y; }
-priority_queue<int, vector<int>, decltype(cmp)> PQ(cmp);
+priority_queue<int, vector<int>, decltype(cmp)> PQ(cmp)
 
 
 // custom set S and map M
 auto cmp = [](int x, int y) { return x < y; }
-set<int, decltype(cmp)> S(cmp);
-map<int, int, decltype(cmp)> M(cmp);
+set<int, decltype(cmp)> S(cmp)
+map<int, int, decltype(cmp)> M(cmp)
 
 
 // split string s on spaces to vector tokens
@@ -40,4 +40,30 @@ set::end
 // smallest > x
 upper_bound(x)
 
+
+// find an element x in V, what if doesn't exist
+auto it = find(V.begin(), V.end(), x)
+V.end()
+
+
+// test if value x exists in sorted sequence V
+bool exists = binary_search(V.begin(), V.end(), x)
+
+
+// count occurences of value x in range V
+int cnt = count(V.begin(), V.end(), x)
+
+
+// quickselect and get top k of V
+// state of V?
+auto it = nth_element(V.begin(), V.begin() + k, V.end())
+smaller, V[k], greater
+
+
+// lexicographic order next permutation V
+bool next_permutation(V.begin(), V.end())
+
+
+// get max element of int vector V to x
+int x = *max_element(V.begin(), V.end())
 
