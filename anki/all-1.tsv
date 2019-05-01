@@ -1,47 +1,50 @@
 Algo: 5 NP-complete problems	SAT<br>knapsack<br>traveling salesman<br>set cover<br>Hamiltonian cycle
 Algo: NP-complete/NP-hard definition	in NP, and any NP problem can be transformed in a NP-complete<br><br>NP-hard: same but not in NP necessarily
-Algo: P, NP definition	solvable in polynomial time<br>a solution can be verified in polynomial time
+Algo: by complexity O(1) (2), log n (3), n (7)	- <b>constant</b>: HashTable, Union-Find<br><br>- <b>log n</b>: binary search, tree/BST, heap (log k)<br><br>n: heapify, quickselect, distribution sort, 2-pointers, Kadane, BFS/DFS, monotonic stack/queue
+Algo: by complexity n log n (5), n^2 (2), n^3 (2)	- <b>n log n</b>: sort, divide and conquer, mergesort-like, LIS, convex hull<br><br><b>n^2</b>: LCS/edit, Dijkstra V^2<br><br><b>n^3</b>: Bellman-Ford EV, Floyd-Warshall V^3
 Algo: pseudo-polynomial time	running time polynomial in the numeric value of input<br>but exponential in the length of the input
 Algo: solve recurrences + examples<br>T(n) = T(n / 2) + O(1)<br>T(n) = 2 T(n / 2) + O(1)<br>T(n) = 2T (n / 2) + O(log n)<br>T(n) = 2 T(n / 2) + O(n)<br>T(n) = T(n / 2) + O(n)	O(log n) binary search<br>O(n)<br>O(n)<br>O(n log n) mergesort<br>O(n) quickselect
+Array/Matrix sum: max sum square, rectangle	- square: difficult, except if fixed size<br><br>- rectangle: n^2 (rows) * O(n) Kadane
 Array/Matrix: Boggle (Find all possible words in a board of characters)	<b>DFS</b> <b>from every start cell</b>, mark <b>visited</b> cells.<br><br>Complexity?<br>Store dict in <b>Trie</b>.
 Array/Matrix: Find the longest path in a matrix increasing by 1 at each cell	<b>DP with memoization</b>
-Array/Matrix: Print matrix in spiral	four variables top bottom left right. Reduce
 Array/Matrix: k-th smallest number in multiplication table	<b>Binary search</b><br><br>O(m log(mn))
+Array/Matrix: largest all-1 + sign, square, rectangle	+ sign: precompute 4D<br><br>- square: natural O(nm) DP<br><br>- rectangle: precomp 1D (up)<br>n (row) * O(m) largestRectangleUnderHistogram with stack
 Array/Matrix: matrix chain multiplication order	<b>windowed DP</b><br><br>dp[i][j]: cost for Mi...Mj<br><br>fill with increasing window length
-Array/Matrix: rotate image by 90 degrees (3)	- ring by ring, <br><br>- reverse up to down and transpose<br><br>- if n=2^k, recursive quadrants
 Array/Matrix: search: find element in row-and-column-sorted matrix	start from NE corner
 Array/Matrix: set matrix zeroes	set cell in <b>first</b> row/column to zero if element in 0<br><br>use 2 variables for first row/column<br><br>set all zeroes by looking at first row/column<br>O(mn)
 Array/Matrix: swim in rising water	<b>BS</b> on answer + DFS check<br>O(n^2 log n)<br><br>BFS with priority queue<br>O(n^2 log n)
+Array/change: Reverse an array without affecting special characters	O(n) one pass, in-place: two pointers at start and end <br> swap or skip and meet in the middle <br> O(n)|O(1) aux
+Array/change: in string, replace a by dd, delete b<br>O(1) space	<b>two passes</b>:<br><br>1. <b>forward</b> delete b's in place<br>and count a's<br><br>2. <b>backward</b> replace a's 
+Array/matrix: techniques (2)	- iterate on row(s) and <b>reduce</b> to <b>1D</b><br>- 2D/memoized DP
 Array/median: find the <b>median</b> of non-sorted array<br>+ approximate and why	QuickSelect O(n)<br><br>median of medians: approximate, first step of quicksort/select<br>split in groups of 5<br>find median of each group, recurse
-Array/missing: Given an array of integers, every element appears twice except for one. Find that single one	XOR O(n)
 Array/missing: array where all elements appear 3 times and one appears once, find it	<b>bit decomposition</b><br><br>for each <b>bit position</b>:<br><b>count modulo 3</b><br><br>at the end, count=0,1,3<br><br>missing element: counts=1
 Array/missing: first missing positive	<b>swap pairs</b> to put at its place<br>O(n) time<br>O(1) memory
+Array/pair: find K-th smallest pair distance<br>from integer array	<b>Sort</b> array<br><b>Binary search</b> on answer<br><b>Two pointers</b> to validate
+Array/pair: max diff of two consecutives values if array was sorted	- <b>bucket sort</b> but keep only min and max in bucket<br><br>buckets must be <b>big enough</b> so that <b>one is empty</b><br>will give max distance<br><br>- <b>then scan buckets</b> to find max gap<br><br>O(n)
+Array/pair: shortest distance pair (x, y) such that y >= x + k (2)	- from <b>right to left</b> with <b>increasing stack</b><br><br>- from <b>left to right</b> with <b>increasing dequeue</b>
+Array/prob: trapping rain water (3)<br>n vertical lines	- DP with <b>2 precomp arrays</b>: maxHeightFrom[i], maxHeightUntil[i], take <b>min[i]</b>=intersection O(n)<br><br>- <b>stack</b><br><br>- <b>2 pointers, from start and end</b><br><b>move smaller one</b> at each step<br><br>O(n)|O(1)
 Array/search: find element in a sorted rotated array	<b>double BS</b>: <br><br>find the frontier, <br>BS on left or right part
-Array/select: Selection algorithm<br>def, algo, complex	find <b>k-th greatest</b> element(s)<br>find <b>median</b><br><br>use <b>Quickselect</b><br><b>O(n) average</b><br><br>but worst case <b>O(n^2) if bad pivot</b><br>use <b>random</b> or median of medians
 Array/select: median of two sorted arrays	<b>Binary search</b><br><br>O(log(m + n))<br><br>tricky cases due to parity
 Array/sided: count number of inversions i<j A(i)>A(j)	<b>divide and conquer</b>: within two halves + merge<br>= <b>modified merge sort</b><br><br>merge function sorts and returns inversion count<br><br>O(n log n)<br><br>like smaller elements to the right
+Array/sided: count pairs (x, y) with y in [x + a, x + b] (y to the right of x) (2/3)	like <b>count smaller elements on the right side</b><br><br><b>D&C mergesort-like</b> O(n log n)<br><br><br>also: BST with size, BIT maybe
+Array/sided: count smaller elements on the right side (3)	- augmented BST with size field<br>O(n log n)<br><br>- Fenwick/Binary Index Tree<br>O(n log n)<br><br>- BEST: <b>D&C mergesort-based</b><br>avg O(n log n)<br>like <b>inversions</b>
+Array/sided: count smaller elements on the right side with <b>D&C</b>	<b>mergesort</b>-based<br><br><br><b>recursively solve</b> for left, right halves (and sort subarrays)<br><br>add count of <b>left/right pairs</b> by <b>sorted-merge step</b><br>O(n log n)
 Array/sided: next Greater element in an array (2)	- from right to left, using a stack<br><br>- or left to right with stack, but map also<br><br>O(n)/O(n)
-Array/subasum: find subarray with maximum sum	one pass, accumulate (Kadane)<br><br>at each position either extend or start new subarray O(n)|O(1)
+Array/subarray: longest increasing <b>subarray</b><br>+ trick	<b>one pass</b> O(n)<br><br>--<br>trick: if current max is L<br><b>skip</b> L chars and check in <b>reverse order first</b><br><br>improves best-case complexity<br>but not worst-case
+Array/subarray: split array in m continous subarrays<br>minimize largest subarray sum	<b>Binary search</b> on answer<br><br>Greedy packing to check if valid
+Array/subasum: find subarray of size >=k with maximum average	<b>Binary Search</b> on max <b>avg value</b><br><br>Check: is there a subarray of size k+ with average >= X<br>substract X from each cell, find subarray with sum >= 0<br><br>O(n log S)
 Array/subasum: longest subarray with sum <= k	build <b>prefix sum array R</b><br>prob: for i, pick largest j s.t. R(j) <= R(i) + k<br><br><b>efficient frontier</b> array of R:<br>ignore decreasing values: build <b>staircase increasing</b> array<br><br>then: for each i, do <b>binary search</b> to find j<br><br>O(n log n)
 Array/subasum: maximum circular subarray sum	1. compute non-circular<br>2. compute circular: <b>careful</b><br><br>need to try all cutting points O(n)<br><br>or compute <b>minimum non-circular</b> and <b>complement</b><br><br>O(n)
+Array/subasum: smallest subarray with sum >= k (2)	- <b>Positive</b> numbers:<br><b>sliding window/two-pointers</b>: accumulate until sum greater than x, pop starting elements<br>O(n)<br><br>- <b>with negative numbers</b>: <br>monotonous stack/deque<br>O(n)
 Array/subasum: subarray of size n array which sums to 0 mod n	<b>prefix sums: 0 or collisions</b><br><br>either:<br>- one is <b>0</b><br><br>- <b>two are equal</b>, so difference is solution<br><br>O(n)
+Array/subasum: subarray sum (max, shortest >= k, max no more than k)	- max: Kadane O(n)<br><br>- positive: 2p sliding window O(n)<br>general: monotonic stack<br><br>- max <= k: O(n log n) using <b>BST upper_bound</b>
 Array/subasum: subarray sum closest to 0	build <b>prefix sum</b> array<br><b>sort</b> it<br><br>loop and find min consecutive difference<br><br>O(n log n)
 Array/subs: 3 subsequence problems/solutions/cplx	1. <b>Is Subsequence</b>: iterate greedy O(n), no DP<br><br>2. <b>Longest Common Subsequence</b>: DP O(nm)<br><br>3. <b>Longest Increase Subsequence</b><br>- DP O(n^2)<br>- O(n log n): active lists and binary search
+Array/subseq: length of longest increasing subsequence	- O(n^2) bestLISEndingAtOffset[i]<br><br>- O(n log n) <b>active lists</b> (duplicate and extend)<br>or <b>tail array</b>: t[i] smallest tail of all increasing subsequences with length i+1<br><b>update cell or extend</b>
 Array/subsq: Count distinct occurrences of t as a subsequence of s	dp[offsetS][offsetT]<br><br>O(nm)
 Array/subsq: count distinct subsequences	c(n) = 2 * c(n - 1) - c(index of last occ of cur char)<br><br>use table for c[]<br><br>O(n)
-Array/top-f: find the majority element	Boyer-Moore <b>voting</b> algorithm<br><br>O(n)
 Array/window: find maximum in sliding window (2)	1. use self-balanced BST O(n log n). <br><br>2. Use <b>sorted dequeue</b> O(n)
-Array/subsum: 2sum (3)	same element twice?<br> Use hash table O(n)|O(n), <br>sort+two pointers O(n log n)|O(1), <br>sort+BS O(n log n)|O(1)
-Array/subsum: 3Sum  Find all unique triplets in the array which gives the sum of zero	sort, loop for first element and then 2sum sweep, <br>avoid duplicates by avoiding duplicate first element <br>O(n^2)|O(1)
+Array/window: sliding window median	would like to use 2 heaps as in continuous medians, <b>but</b> we need to <b>remove</b><br><br>use <b>BST</b>(s) instead, deal with <b>duplicates</b><br><br>or use C++ <b>multiset</b><br><br>O(n log k)
 Array: Coin Game: coins in a row, pick one	<b>windowed DP</b><br><br>F(i,j) = max (coinChosen + whatIsLeftAfterOtherPlayer(=min))<br><br>F(from coin i to j) = max(. + min(), . + min())<br>O(n^2)
 Array: Coin change:<br>Given infinite coins of value V1..VN, find the minimum number of coins with sum S	DP<br><br><b>dp[amount]</b><br>loop on coin<br>loop on x to update dp[x]<br><br>O(N S)
 Array: Convert array into Zig-Zag fashion: distinct element or not cases	distinct O(n)|O(1) aux bubble sort-like swap <br> not distinct QuickSelect to find median, partition O(n)
-Array/subsum: Count triplets with sum smaller than a given value in O(n^2)	sort, loop for first element, use two-pointer-sum <br> O(n^2)|O(1) aux
-Array: Minimum difference partition	DP CanMakeSum[i][T] <br>T <= S/2<br>O(n S)
-Array: Product of array except self	two steps with <b>left+right prefix product</b><br><br>no need of additional array
-Array/change: Reverse an array without affecting special characters	O(n) one pass, in-place: two pointers at start and end <br> swap or skip and meet in the middle <br> O(n)|O(1) aux
-Array/change: Rotate an array<br>(3)	1. naive, step by step<br><br>2. With a temp array of size K. <br><br>3. With cycles (compute gcd)
-Array/subsum: Subset sum: a subset of array sums to T	DP CanMakeSum[i][T]<br>O(n S)
-Array/pair: find K-th smallest pair distance<br>from integer array	<b>Sort</b> array<br><b>Binary search</b> on answer<br><b>Two pointers</b> to validate
-Array: from 3 sorted arrays, find i, j, k s.t. d(i,j,k)=max(|A(i)-B(j)|, ...) is minimum	<b>1 pointer in each</b><br><b>move 1</b> (min) at each step<br><br>like intersection of sorted arrays<br><br>record minimum<br><br>O(len A + len B + ..)
-Array/change: in string, replace a by dd, delete b<br>O(1) space	<b>two passes</b>:<br><br>1. <b>forward</b> delete b's in place<br>and count a's<br><br>2. <b>backward</b> replace a's 

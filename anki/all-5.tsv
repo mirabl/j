@@ -1,15 +1,3 @@
-SD components/store: MySQL replication modes<br>(what is in the WAL)	statement-based ("insert ...") = logical<br><br><br>row-based: result of the statement = physical<br><br>or a mix
-SD components/store: MySQL storage engine (2)	<b>InnoDB</b>: row locking so better concurrency<br><br><b>MyISAM</b>: old, maybe table locking better when lots of reads
-SD components/store: NoSQL 4 types of stores	key-value: Redis, memcached<br><br>document store: MongoDB, CouchDB, ElasticSearch<br><br>wide-column store: BigTable, HBase, Cassandra<br><br>graph DB: neo4j, flockdb
-SD components/store: OLTP, OLAP	online transaction/analytical processing<br>RDBMS vs. datawarehouse<br>low vs high latency
-SD components/store: RDBMS one instance perf	no answer, depends on query/HW, if fits in RAM<br><br><b>1 TB</b> total size<br><b>billions</b> of rows<br><b>1K</b> r/w QPS<br><br>latency: SSD 1ms, HD: 20ms
-SD components/store: advantage/disadvantage of columnar storage, 3 examples	if usage pattern is to read whole table like OLAP/BI<br>but only some columns<br><br>don't read unused columns<br>can use <b>compression</b> to reduce disk size<br>disadv: <b>difficult to update</b><br>Parquet, Redshift, Dremel/BigQuery
-SD components/store: in-memory K/V store perf	on machine with good network<br><br>read/write: 200k/s easily<br><br>latency: 1ms<br><br>no bound on size with sharding but $
-SD components/store: tablet definition	horizontal partition/shard of a table (Google)
-SD components/store:<br>2 data warehouses products for an analytical processing OLAP	Redshift, BigQuery/Dremel
-SD components: ETL	extract data from multiple sources<br><br>clean, join, aggregate, transform into format<br><br>load in warehouse
-SD components: load balancer multi setup (2)	active-passive or active-active
-SD components: load balancer routes traffic based on (6)	- random<br>- least load<br>- session/cookies<br>- (weighted) round robin<br>- layer 4<br>- layer 7
 SD components: load balancer used for (3), implemented with (2)	- don't send to bad servers<br>- don't overload<br>- eliminate SPOF<br><br>- hard or soft (HAProxy)
 SD components: load-balancer layer 4 vs. layer 7	4:<br>- look at transport layer: IP address, port<br>- do <b>NAT</b><br>- often hardware<br><br>7:<br> look at application layer, like URL for HTTP, cookies<br>terminates network traffic, remove TLS<br>called <b>reverse-proxy</b> server
 SD low-level/net: OSI and TCP/IP models	OSI: PDNTSPA<br><br>TCP/IP: NITA
@@ -26,25 +14,37 @@ SD low-level: L1/L2 cache, main memory reference	 L1 1 ns<br>L2 10 ns (x10)<br>m
 SD low-level: RAM SSD HDD latency and R/W speed	RAM 100 ns<br>SSD <b>0.1 ms or less</b>    (x1000)<br>HDD 10 ms    (x100)<br><br>RAM 10 GB/s<br>SSD 500MB/s - 1+GB/s  (/20)<br> HDD 100 MB/s    (/5)
 SD low-level: Read 1 MB sequentially from memory, SSD, HDD	memory 250 us,<br> SSD 1 ms    (x4),<br> HDD 20ms    (x20)
 SD low-level: Read 4K randomly from SSD	150 us
+SD low-level: def, usual value for <b>page size</b>	smallest unit of virtual memory<br><br><b>4KB</b><br><br>can be more
 SD low-level: process vs thread	thread:<br>run in <b>shared memory</b> space<br>share resources<br>context switch faster<br><br>thread has <b>own stack</b>
 SD low-level: specs of usual machines	24G RAM, 8 cores<br>1Gb ethernet<br><br>- 2x1TB SSD<br>or<br>2x2TB hard drives
 SD low-level: time for a <b>context switch</b>	<b>5μs</b>
+SD low-level: virtual memory (def, done by, uses (2))	<b>maps</b> addresses used by program (<b>virtual</b>) into <b>physical</b> addresses in memory<br><br>mem appears as a <b>contiguous</b> address space<br><br><b>MMU</b> translates addresses with <b>Page tables</b><br><br>Allows swapping
 SD meth: system design methodology (6)	1. Scope<br>2. Non-scope<br>3. Requirements: current and future scale<br>4. Req: reliability to which failures<br>5. SLO (latency, avail, dura, correct)<br>6. First design<br>7. storage
 SD meth: system design methodology for storage (5)	1. data model<br>2. size<br>3. Usage r/w<br>4. SLO<br>5. Bias (popular, geo)
 SD methodology: 3 questions to ask on iteration	possible to scale?<br>can do better?<br>resilient?
 SD methodology: types of SLO (5)	correctness<br>availability<br>latency<br>throughput<br>durability
-SD primitives/acid: ACID	atomicity, consistency, isolation, durability
 SD primitives/cap: why impossible to availability and strong consistency during network partition	<b>divergence</b><br><br>can not prevent divergence if partitioned nodes continue to work
 SD primitives/cons: 2PC<br>vote, master, failure, partition, network	unanimous vote: commit or abort<br>static master<br>fails if coordinator and a node fail when commit<br>not partition tolerant, tail latency sensitives
 SD primitives/cons: 3 consensus algos and their CAP status	<b>2PC</b>, full strict quorum protocols: CA<br><br><b>Paxos</b>, majority quorums with minority in partition: CP<br><br><b>Gossip</b>, Dynamo, conflict resolution: AP
+SD primitives/cons: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
 SD primitives/cons: Paxos<br>principle, master, failures, network, use where	<b>majority vote</b><br>dynamic master<br>tolerates failures (2f+1)<br>less sensitive to latency<br><br>used in Chubby, BigTable/Megastore, GFS, Spanner
 SD primitives/cons: how are conflicts resolved (2)	look at causal history with <b>metadata</b><br>last writer, timestamps, version numbers, vector clocks
 SD primitives/cons: latency of operation with Paxos between DCs	<b>25ms</b>
 SD primitives/cons: partition tolerant consensus<br>examples, how they work<br>what happens when partition	Paxos, Raft<br>require majority vote (2PC: all nodes)<br>minority can be down or slow, it stops processing ops to prevent divergence
 SD primitives/cons: replication algs with single-copy consistency (+ nb of msg)	1n msg: asynchronous primary/backup<br><br>2n msg: synchronous primary/backup<br><br>4n msg: 2-phase commit, Multi-Paxos<br><br>6n msg: 3-phase commit, Paxos with repeated leader election
-SD primitives/cons: 3 implementations of strong consistency	Primary/backup<br>2PC (CA)<br>Paxos (CP)
 SD primitives/cons: strong consistency models	<b>linearizable</b> consistency: real world ordering respected<br><br><b>sequential</b> consistency: can be reordered as long as consistent on each node
+SD primitives: 2 <b>rate limiters</b> (with 1 def)	- <b>leaky bucket</b>: <b>2</b> parameters (burst size=bucket size, rate)<br>><b>increment</b> counter when new request<br><b>decrement</b> counter at given rate<br>reject request if bucket full<br><br>- token bucket
 SD primitives: 2 classifications of replication techniques	-synchronous<br>-asynchronous<br><br>- prevent divergence: single-copy<br>- risk divergence: multi master
+SD primitives: 3 weak consistency models + strong	<b>eventual</b>: after some time all replicas agree<br><br><b>client-centric/session</b>: ex. client will never see older value, read-my-writes<br><br><b>causal</b>: strongest<br><br><b>strong</b>: value of latest put
 SD primitives: CA systems, based on, main problem, used by	more common, <b>not partition aware</b>,<br>often 2PC<br>traditional <b>RDBMS</b>
 SD primitives: CP systems, work how, implementations	tolerate network partition, <br>majority and minority partition<br>Paxos, Raft
 SD primitives: Disadvantage of primary/backup	susceptible to lost updates, <br>split brain
+SD primitives: Gossip	probabilistic technique for <b>synchronizing replicas</b><br><br>nodes have some probability p of attempting to synchronize with each other<br><br>efficient thanks to <b>Merkle trees</b>
+SD primitives: N, R, W, usual recommendation	N replicas,<br>need R/W votes for read/write<br>R + W > N
+SD primitives: WAL<br>def, goal	<b>write-ahead logging</b><br><b>first log</b> actions to be done to permanent storage<br><br><b>then do</b> the actions<br><br>gives <b>durability</b> and atomicity even if crash
+SD primitives: disadvantage of master-master replication	loosely consistent (violating ACID) or big write latency due to synchronization
+SD primitives: how a Lamport clock works	when a process does work, increment<br>when send a message, include counter<br>when message received, take the <b>max</b> counter of self and message
+SD primitives: primary/backup replication<br>master, works how, network, failover	single, static master<br>replicated log: slaves execute<br>no bound on operation delay<br>not partition tolerant<br>manual/ad-hoc failover, not fault tolerant<br>synchronous variant: ensure that write are done one backups before returning to the client
+SD primitives: replace global clock by?<br>based on?	vector clock<br><br><br>(t1, ..., tN)<br>based on Lamport clock
+SD primitives: split brain	failover to backup due to temporary network issue<br>primary and backup are active at the same time
+SD/acid: A in ACID	Atomicity<br><br>All or nothing for a transaction:<br>indivisible<br><b>done or not done</b>

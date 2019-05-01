@@ -1,37 +1,21 @@
-Graph/paths: shortest paths special cases (2)	1. not oriented, no weights: BFS O(V + E)<br><br>2. DAG: topological sort + greedy, O(V + E)
-Graph/prob: articulation point<br>def, algo, complex	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
-Graph/prob: bridge<br>def, algo, complexity	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
-Graph/prob: clique<br>definition, 2 problems and solutions	complete subgraph<br>maximum clique: largest in the graph (difficult in general, heuristics)<br><br>maximal: can not be extended (greedy)
-Graph/prob: color graph with k colors, algo/complex	<b>backtracking</b><br><br>O(k^V)?
-Graph/prob: color theorem	a <b>planar</b> graph can be vertex-colored with most <b>4 colors</b>
 Graph/prob: matching, perfect matching	<b>set of edges</b> which <b>don't touch</b><br><br>perfect: all vertices are matched,<br>like minimum size edge cover
 Graph/prob: max flow problem edge with capacities<br>algorithm	 maximum flow from a source vertex to a destination<br><br>solved with Ford-Fulkerson (or others)
 Graph/prob: vertex cover, difficulty of minimum VC	set of vertices such that each edge is incident to at least one vertex of the set<br>minimum VC: NP-hard
-Graph: 4 classes of problems in polynomial time	- shortest paths<br>- MST<br>- matching<br>- max flow
 Graph/trav: Complexity of BFS and DFS for a Graph<br>depending on implementation	O(V + E) if adjacency list<br><br><br>O(V^2) if adjacency matrix/O(V)
+Graph: 11 types of graphs	connected, directed, weighted, Tree, with cycles, DAG, bipartite, complete (all clique), intersection, planar, sparse
 Graph: Minimum Spanning tree Kruskal: algorithm and complexity	<b>sort, process edges from low weight</b> <br>(take min edge, check if it <b>adds cycle</b> in partial tree). <br><br>Cycle detection with <b>union-find</b><br><br>O(E log E)
 Graph: Minimum Spanning tree Prim: algorithm and complexity	<b>Dijkstra-like</b><br>greedy vertices: add new <b>vertex</b> of <b>minimum distance</b> to partial tree.<br><br>O(V^2), or less with binary heap
 Graph: Topological sort of DAG (2)	 1. <b>DFS</b>: prepend to list after calling DFS on adjacent vertices (so they are on the stack below). O(V + E). <br><br>2.  <b>BFS-style</b> algorithm: find vertices of in-degree 0, process, remove edges to other vertices, repeat
-Graph: Word Ladder<br>Given two words and dictionary, find path from one to the other changing one letter by one	<b>BFS from start word</b>
 Graph: approximate TSP in 2D plane when distance is euclidian	satisfies <b>triangle inequality</b><br><br>build <b>MST</b> from graph<br><br>tour: <b>like in-order walk</b> on MST skipping already seen vertices<br><br>thanks to triangle ineq., approximation factor: <b>2</b>
 Graph: edge cover<br>desc, problem and solution	<b>set of edges</b> such that every vertex is incident to at least of edge of the set<br>minimum EC: polynomial time by finding maximum matching (Edmonds) and extending greedily
 Graph: find a mother vertex in directed graph<br>(all vertices can be reached from)	1. find last completely processed vertex in DFS (<b>pseudo toposort</b>)<br><br>2. check if it is a mother vertex<br><br><br>topo sort doesn't exist on cyclic graphs
 Graph: from undirected graph which is a tree, find a root of a tree which gives minimum height	<b>BFS from the leaves</b> to the inside<br><br>one or two remaining nodes<br><br>O(n)
-Graph/trav: output of DFS (2)	vertex: entry/exit time,<br><br>edge: tree edge or back edge
-Graph: 11 types of graphs	connected, directed, weighted, Tree, with cycles, DAG, bipartite, complete (all clique), intersection, planar, sparse
-Interval: Max number of intersecting intervals	<b>sort</b> events: <b>enter</b> and <b>exit</b> of intervals.<br><br>O(n log n)|O(n) aux
-Interval: Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
+Graph: shortest path visiting all nodes	<b>BFS</b> with <b>bitmask</b> for visited nodes in queue item
 Interval: from set of intervals, find all that <b>intersect a query interval</b><br>support insert/delete	use <b>Interval Tree</b><br><br>search for <b>one</b> intersecting interval<br>remove it<br>repeat
-LinkedList: 4 problems solved with 2 pointers	find where 2 linked list <b>merge</b><br><br><b>middle</b> of a linked list<br><br><b>last-M-th</b> element of a linked list<br><br><b>cycle</b>: detect/find beginning
-LinkedList: Select random node from linked list (2)	method1: naive count nodes in first pass. <br><br>method2: <b>reservoir</b> sampling O(n) one pass.
-LinkedList: Sort a linked list	use <b>merge sort</b>
+Lang: DS when duplicates	multiset<br><br>does multimap exist?
+Lang: how is set/map implemented in C++	<b>Red-Black</b> trees
 LinkedList: beginning of cycle	1. find point in cycle: tortoise/hare<br><br>2. Move one pointer to start, both go to speed 1<br>meeting point is start of cycle
 LinkedList: copy postings linked-list with no additional storage	<b>3 passes</b><br><br><b>modify</b> next pointer of original list<br>then <b>restore</b>
-LinkedList: insertion in linked list tip	use dummy first node
-LinkedList: is a linked list a palindrome?	<b>reverse</b> second half, check (and restore)
-LinkedList: reverse a linked list	iterative, 3 pointers<br><b>"new head"</b>
-Prob: optimize parameter (find min) when difficult directly	<b>binary search</b> + checkValue(mid)
-Math: number of trailing zeroes in a factorial	powers of 2, 5
 OO: 2 aspects of polymorphism	code or operations or objects behave differently in different contexts<br><br>1. object of derived class can be treated as base class<br><br>2. virtual methods of base class can be overriden
 OO: 3 characteristics of OO	inheritance<br>encapsulation<br>polymorphism
 OO: abstract class	one or more of methods have no implementation<br><br>serves as <b>base class</b> for others
@@ -39,12 +23,28 @@ OO: generics	class/method that defer specification of type until declared and in
 OO: member overloading	same name but different signature
 OO: static class, static member	class: can not be instantiated<br><br>member: one copy exists
 OO: virtual method	can be <b>overriden</b> in derived class
+Prob/ds: Increment(key), Decrement(key), GetMaxKey(), GetMinKey() all in O(1)	1 <b>Doubly Linked-List</b> for <b>each counter</b> value<br><br>+ <b>HashMap</b> to <b>look up</b> a <b>DLL node</b> by its <b>key</b>
+Prob/games: Games WL-algorithm	isWinning(x):<br><br>true if any reachable pos x is !isWinning(x)<br><br>else false
+Prob/games: game of Nim (def, win)	several piles, can take any number from one pile<br><br>lose if empty<br><br>winning pos if <b>XOR</b> of pile size is != 0
+Prob/meth: problem solving steps	<b>CEEBEMTT</b><br><b>C</b>larify<br><b>E</b>xample<br><b>E</b>dge cases<br><b>B</b>rute force<br><b>E</b>fficient solution<br><b>M</b>anual run<br><b>T</b>rade-offs<br><b>T</b>ests
 Prob/perm: invert permutation with constant space	decompose in <b>cycles</b><br><br>invert each cycle<br><br>fix only one element at a time (min of cycle)
+Prob/search: f real-valued. search x s.t. a. f(x) = 0, and b. f(x) maximum if f unimodal	a. <b>binary search</b><br><br>b. <b>ternary</b> search<br>split in <b>3</b> and evaluates <b>2 points</b>
 Prob/top-f: find elements that appear more than k/n times	generalization of <b>voting</b><br><br><b>two passes</b><br>- keep <b>k</b> counters in <b>hash</b><br><br>purge hash table when needed<br><br>- second pass to check candidates
 Prob/top-f: find k-th most frequent, no time window 1Q/multiple Q (2)	1. 1 query<br><b>HashMap + quickselect</b><br>O(n)<br><br>2. <b>multiple queries</b><br><b>BST (count, elem) + HashMap[elem]=bstNode</b><br>O(n log n) + O(k)
 Prob/top-f: most visited pages in last W fixed seconds, query any time streaming	<b>3 structures</b>:<br><br>1. <b>BST</b>: (count, s)<br><br>2. <b>HashMap</b> bstNodeForString[s]<br><br>3. <b>Queue</b> Q of elements in current window<br><br>increase-decrease in BST when insert/remove from Q
 Prob/top-f: most visited pages, compute top-k by frequency:<br>-1. once at end<br>-2. any time streaming	1. hash map <b>freq[s]++</b><br>at end, do <b>k-selection</b> (quickselect O(n), heap O(n log n))<br><br>2. <b>BST</b> with (count, s) + <b>hashMap</b> bstNodeForString[s]<br><br>update by deleting/re-inserting in BST<br>answer: top-k from BST
 Prob/top: find k-th largest element from n streamed elements, with O(k) memory, once at the end (2)	- priority queue: O(n log k)<br><br>- better: <b>array of 2k</b><br><br>when full, purge to size <b>k</b><br>with O(k) <b>quickselect</b><br><br>total: O(n)
 Prob/top: find k-th largest elements (3, 1 or + queries)	1. <b>multiple queries</b>:<br>use <b>priority queue</b><br>O(n log k) + query<br><br><br>2. <b>1 query</b>:<br>2.a with <b>array</b>: <b>1 quickselect</b> O(n)<br>2.b with <b>stream multi-quickselect 2k-array</b> O(n) with O(k) memory
+Prob: Compress jumps along a segment / Painting subarrays offline	use <b>Union-Find</b><br><br>paint:<br>take [l,r],color painting requests in <b>reverse order</B><br><br>store <b>nextUnpainted >= i</b> and use U-F to quickly <b>skip over</b> painted sections
 Prob: DP 5 types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
 Prob: DP classical problems (5)	Knapsack<br>Coin change<br>Grid traversal<br>LCS/LIS/edit<br>TSP
+Prob: DS for insert(val)/delete(val)/getRandom in O(1)	<b>array + hash</b> (index into array)<br><br>to <b>remove</b> from array: <b>swap</b> with last element
+Prob: Huffman coding	sort characters by frequency<br>merge two <b>least common</b> chars into one node (with sum frequency)<br>repeat<br><br>use <b>min-heap</b><br><br>O(n log n)
+Prob: approximate warehouse location problem (k warehouse for n cities), with euclidian distance	heuristic: one warehouse at a time<br><br>choose warehouse <b>farthest</b> from existing warehouses
+Prob: arbitrage between a set of exchangeable currencies	take log of rates<br>look for <b>negative weight cycle</b><br>alg: <b>Bellman-Ford</b> O(VE)
+Prob: assignment problem (def, solution, complex)	<b>maximum-weight matching</b> in weighted <b>bipartite</b> graph<br><br>matchs n agents and n tasks<br>can do any tasks but with diff cost<br><br>O(n^3) Hungarian algo on matrix
+Prob: box stacking<br>highest stack with smaller on top of bigger<br>can reuse	careful rotations<br><br><b>DP</b> similar to <b>LIS</b><br><br>O(n^2)
+Prob: find missing one from 1 billion of IP adresses<br>using 2 MB of RAM	<b>two passes LSB/MSB</b><br><br>find missing <b>LSB</b>:<br>count LSB in RAM array<br><br>find <b>whole IP</b>, <b>filtering</b> on LSB
+Prob: n eggs / k floors<br>find minimum nb of trials in worst case to find the highest safe floor (2)	1. <b>DP</b> O(n k^2) dp[numEggs][floor]<br><br>2. other solution with binary search and binomial coef
+Prob: optimize parameter (find min) when difficult directly	<b>binary search</b> + checkValue(mid)
+Prob: reflex A<br>1. permutation<br>2. DAG<br>3. "top k" (3)<br>4. Geometric problem (3)<br>5. Intervals (3)	1. cycles<br>2. topological sort<br>3. heap, k-selection, 2k quickselects<br>4. sweep line, convex hull, D&C<br>5. sort by start/end, in/out events, interval tree

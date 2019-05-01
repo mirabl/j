@@ -1,0 +1,89 @@
+Algo: P, NP definition	solvable in polynomial time<br>a solution can be verified in polynomial time
+Array/Matrix: Print matrix in spiral	four variables top bottom left right. Reduce
+Array/Matrix: rotate image by 90 degrees (3)	- ring by ring, <br><br>- reverse up to down and transpose<br><br>- if n=2^k, recursive quadrants
+Array/missing: Given an array of integers, every element appears twice except for one. Find that single one	XOR O(n)
+Array/select: Selection algorithm<br>def, algo, complex	find <b>k-th greatest</b> element(s)<br>find <b>median</b><br><br>use <b>Quickselect</b><br><b>O(n) average</b><br><br>but worst case <b>O(n^2) if bad pivot</b><br>use <b>random</b> or median of medians
+Array/subasum: find subarray with maximum sum	one pass, accumulate (Kadane)<br><br>at each position either extend or start new subarray O(n)|O(1)
+Array/top-f: find the majority element	Boyer-Moore <b>voting</b> algorithm<br><br>O(n)
+Array/subsum: 2sum (3)	same element twice?<br> Use hash table O(n)|O(n), <br>sort+two pointers O(n log n)|O(1), <br>sort+BS O(n log n)|O(1)
+Array/subsum: 3Sum  Find all unique triplets in the array which gives the sum of zero	sort, loop for first element and then 2sum sweep, <br>avoid duplicates by avoiding duplicate first element <br>O(n^2)|O(1)
+Array/subsum: Count triplets with sum smaller than a given value in O(n^2)	sort, loop for first element, use two-pointer-sum <br> O(n^2)|O(1) aux
+Array: Product of array except self	two steps with <b>left+right prefix product</b><br><br>no need of additional array
+Array: Minimum difference partition	DP CanMakeSum[i][T] <br>T <= S/2<br>O(n S)
+Array/change: Rotate an array<br>(3)	1. naive, step by step<br><br>2. With a temp array of size K. <br><br>3. With cycles (compute gcd)
+Array/subsum: Subset sum: a subset of array sums to T	DP CanMakeSum[i][T]<br>O(n S)
+Bit: test if a number is a power of two	(n & (n-1)) == 0
+DS Heap: algorithm and complexity	heapify <b>from the lower levels</b> first,<br><b>sinkdown</b> nodes<br><br>O(n)
+DS Heap: complexity and algo of insert, extract-min, search	use <b>last element</b>, bubble up or down<br>O(log n)<br><br>search: difficult O(n)
+DS Heap: from max-heap, check if k-th largest element is >= x in O(k)/O(k)	<b>recursive</b><br>gradual descent with larger/equal counters<br><br>stop early<br><br>nb calls is O(k) as counters are almost always incremented
+DS Queue: implement a queue using two stacks	empty first stack into second stack
+DS Stack: implement stack with O(1) min<br>(2 ways)	push (x, min) when pushing x, <br><br>or use second stack
+DS Stack: sort a stack (2)	using a second stack<br><br>or recursively:<br>need 2 recursions:<br>sort, insert in sorted
+DS Heap: <br>Binary heap definition	complete binary<br><br>with heap property (children smaller than parent)
+DS/uf: Union-find: naive + 2 optimizations.<br>Complexity.	naive: attach root of x to root of y. <br>Union by rank: attach smaller tree to larger. <br>Path compression<br><br>Amortized O(1) in time |O(n) space.
+DS/uf: Union-Find optimizations (1, 3)	- <b>path compression</b>: <b>set parent</b> when doing a <b>find</b><br><br>- <b>union</b> (3):<br>a. union by <b>size</b><br>b. union by <b>depth</b><br>c. <b>randomized union</b> (simpler, same complexity)
+DS:<br>Adv/Disadvantage of BST vs. HashTable	<b>BST</b> can enumerate in <b>key order</b> (range search, prev/next)<br><br>HashTable simpler when <b>duplicate keys</b><br><br>HashTable better average perf O(1)<br>BST better worse case perf O(n log n)
+Geo: 5 problems solved by sweep line	closest pair<br>union of rectangles<br>convex hull<br>line intersection<br>Voronoi diagrams
+Geo: find 4th point of rectangle	just use <b>vector</b><br><br>a + (b - c)
+Graph/cycle: how to check for negative weight cycles	<b>Bellman-Ford</b><br><br>run the <b>relaxing-loop once more</b><br>if relaxing decreases distance to a vertex, then there is a negative cycle<br><br>O(VE)
+Graph/paths: A*: idea, difference with dijkstra	choose vertex which score minimizing distance processed vertices and <b>distance to target</b>
+Graph/paths: shortest paths special cases (2)	1. not oriented, no weights: BFS O(V + E)<br><br>2. DAG: topological sort + greedy, O(V + E)
+Graph/prob: articulation point<br>def, algo, complex	remove the vertex (and its edges) increases the number of connected components<br><br>O(V + E) DFS looking at backedges
+Graph/prob: bridge<br>def, algo, complexity	remove this edge and there is no path left between u and v<br><br>O(V + E) DFS looking at backedges and visiting time
+Graph/prob: color theorem	a <b>planar</b> graph can be vertex-colored with most <b>4 colors</b>
+Graph: 4 classes of problems in polynomial time	- shortest paths<br>- MST<br>- matching<br>- max flow
+Graph: Word Ladder<br>Given two words and dictionary, find path from one to the other changing one letter by one	<b>BFS from start word</b>
+Graph/trav: output of DFS (2)	vertex: entry/exit time,<br><br>edge: tree edge or back edge
+Interval: Max number of intersecting intervals	<b>sort</b> events: <b>enter</b> and <b>exit</b> of intervals.<br><br>O(n log n)|O(n) aux
+Interval: Merge intervals	sort by start, <br>one pass <br><br>O(nlog n)|O(n)
+LinkedList: 4 problems solved with 2 pointers	find where 2 linked list <b>merge</b><br><br><b>middle</b> of a linked list<br><br><b>last-M-th</b> element of a linked list<br><br><b>cycle</b>: detect/find beginning
+LinkedList: Sort a linked list	use <b>merge sort</b>
+LinkedList: Select random node from linked list (2)	method1: naive count nodes in first pass. <br><br>method2: <b>reservoir</b> sampling O(n) one pass.
+LinkedList: insertion in linked list tip	use dummy first node
+LinkedList: is a linked list a palindrome?	<b>reverse</b> second half, check (and restore)
+LinkedList: reverse a linked list	iterative, 3 pointers<br><b>"new head"</b>
+Math: number of trailing zeroes in a factorial	powers of 2, 5
+Prob: Sudoku Solver	Backtracking<br><br>check if one value is already in a row/col/square, recurse
+Prob: Gaussian primes	primes with integer-complex numbers<br><br><br>Eratosthene <b>sieve</b><br><br>sort by <b>modulus</b> to order them and put in <b>BST</b>
+Prob: Gray code construction	recursive, G_{n-1}, G_{n-1} reversed with top bit set<br><br>gray(n) = n ^ (n >> 1)
+Prob: set of equality and inequality constraints on a set of boolean variables, find if possible	build undirected graph with <b>equality</b> only<br>compute <b>connected components</b><br><br>for <b>each inequality</b>: check that they are in <b>different connected components</b>
+Prob: set cover problem	find minimum number of subsets which union to universe<br><br>maybe weights<br><br>NP-complete
+SD apps: Back pressure	feedback mechanism used by producers to let know consumers how they should adjust their requests
+SD apps: citymapper	complex data model<br>latency of read queries with real-time info<br>some pre-computation
+SD/patterns: how to handle errors in a streaming processing system	rewrite to <b>errorTopic1</b> and <b>retry</b>, then eT2, ...<br><br>then to <b>dead letter topic</b><br><br>(Uber)
+SD/patterns: mechanism for asynchronicity	queues
+SD apps: most followers on twitter	1B
+SD components/store: MySQL replication modes<br>(what is in the WAL)	statement-based ("insert ...") = logical<br><br><br>row-based: result of the statement = physical<br><br>or a mix
+SD components/store: MySQL storage engine (2)	<b>InnoDB</b>: row locking so better concurrency<br><br><b>MyISAM</b>: old, maybe table locking better when lots of reads
+SD components/store: tablet definition	horizontal partition/shard of a table (Google)
+SD primitives/acid: ACID	atomicity, consistency, isolation, durability
+SD/cons: tunable consistency	from "writes never fail" to <br><br>"block for all replicas to be readable" with quorum levels
+SD components/store: classic consistency problem in DB	read-after-write
+SD: how many seconds in a day	90K
+SD/pattern: hashing for sharding (2)	<b>consistent hashing</b>: circle with many pseudo-random points per node<br><br><br><b>Rendezvous</b> hashing
+SD/pattern: circuit breaker<br>def, how it works	<b>~proxy</b> for operations that might fail<br><br><b>3 states</b>: closed / half-open / open<br>change state by looking at <b>error rate</b>
+SD: how to send updates from server to client (3)	<b>short-polling</b> (client pull)<br><br><b>long-polling</b> (client pull): server doesn't answer request until new data<br><br><b>websocket</b> (server push): persistent bi-directionnal connnection over TCP less overhead than HTTP no need to do new TCP handshake
+SD/pattern: event-sourcing pattern	use append-only store of actions/events
+SD/pattern: retry pattern	depending on error from service, client can have 3 strategies<br>- retry immediately<br>- retry later<br>don't retry<br><br>careful: idempotency preferedSD: three and four nines availability per year	99.9: <b>9</b> hours of downtime/year<br><br>99.99: <b>1</b> hour downtime/year
+SD:<br>- how many FB users<br><br>- how many YT videos watched every day	- 2B Montly active users<br><br>- 5B
+Sort: Heapsort: description, complexity	<b>heapify in O(n)</b><br>n times: get max, put at end, resize heap O(log n)<br><br><b>total: O(n log n)</b>
+Sort: QuickSort: algorithm	(randomize first), <br>select pivot, <br>partition, <br>sort left and right partition
+Sort: Radix sort: description, complexity	MSB or LSB<br>O(wn)
+Sort: Selection and Insertion sort: best and worst case	- Selection: no difference, <br>always O(n^2)/O(1) auxiliary<br><br>- Insertion: sorted O(n)/O(1) aux<br>worst: reverse sorted O(n^2)/O(1) aux
+Sort: bubble sort	swap pairs to put max at i=end of array<br>i--
+Sort/gen: good sort for a linked list	good: merge sort<br><br>possible but more difficult?: quick sort
+Sort: external merge sort	sort chunk & write to disk, load chunk of chuck and merge-write
+Sort: mergesort	merge sorted subarrays with auxiliary array (allocate once)
+String/paren: Is a string with (), {}, [] balanced	<b>stack</b> with active items O(n)
+String: shortest superstring	<b>bitmask DP</b><br>dp[mask][endingWithString]<br><br>O(2^n n^2)
+String: word break<br>longstringwithoutspaces + dict	<b>DP</b>: canBreak[offset]
+Tree/bst: Check if a tree is a BST (2)	1. recursive propagate min/max O(n), <br>2. check if <b>in-order traversal</b> is <b>sorted</b> O(n)
+Tree/bst: from array, create BST with minimal height	sort, <br>take middle of array then recursive
+Tree/bst: k-th highest element of BST	reverse inorder traversal of BST. O(h + k)String: determine if a string has only unique characters (2)	use a set, <br><br>or <b>sort</b> the string
+String: determine if a string has only unique characters (2)	use a set, <br><br>or <b>sort</b> the string
+Sort/gen: sort when limited range of keys (3)	3 <b>distribution sorts</b>:<br><br>counting sort O(n + k)/O(n + k)<br><br>bucket sort O(n + k)/O(nk)<br><br>radix sort O(w n)/O(w + n)
+Sort/gen: sort without moving too many records (which might be expensive)	<b>indirect sort</b>:<br>1. sort secondary <b>array of indices</b><br><br>2. apply sort to array (move records)
+SD: vertical/horizontal scaling 	vertical: add more power to a machine<br><br>horizontal: add more machines
+Tree: Bottom view of binary tree	BFS with (ordered) map: <br>M[x-coordinate] = value<br><br>O(n)/O(n)
+Tree: Maximum path sum in a binary tree (or diameter)	recursive divide and conquer<br><br>rec function <b>maxStraightPathDown</b> + <b>global</b> variable<br><br>O(n)
+Tree: compress binary trees to canonical form	use <b>hashing</b> on nodes/subtrees<br><br>recursive
