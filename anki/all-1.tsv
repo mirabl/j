@@ -10,7 +10,6 @@ Array/Matrix: Find the longest path in a matrix increasing by 1 at each cell	<b>
 Array/Matrix: k-th smallest number in multiplication table	<b>Binary search</b><br><br>O(m log(mn))
 Array/Matrix: largest all-1 + sign, square, rectangle	+ sign: precompute 4D<br><br>- square: natural O(nm) DP<br><br>- rectangle: precomp 1D (up)<br>n (row) * O(m) largestRectangleUnderHistogram with stack
 Array/Matrix: matrix chain multiplication order	<b>windowed DP</b><br><br>dp[i][j]: cost for Mi...Mj<br><br>fill with increasing window length
-Array/Matrix: search: find element in row-and-column-sorted matrix	start from NE corner
 Array/Matrix: set matrix zeroes	set cell in <b>first</b> row/column to zero if element in 0<br><br>use 2 variables for first row/column<br><br>set all zeroes by looking at first row/column<br>O(mn)
 Array/Matrix: swim in rising water	<b>BS</b> on answer + DFS check<br>O(n^2 log n)<br><br>BFS with priority queue<br>O(n^2 log n)
 Array/change: Reverse an array without affecting special characters	O(n) one pass, in-place: two pointers at start and end <br> swap or skip and meet in the middle <br> O(n)|O(1) aux
@@ -23,7 +22,6 @@ Array/pair: find K-th smallest pair distance<br>from integer array	<b>Sort</b> a
 Array/pair: max diff of two consecutives values if array was sorted	- <b>bucket sort</b> but keep only min and max in bucket<br><br>buckets must be <b>big enough</b> so that <b>one is empty</b><br>will give max distance<br><br>- <b>then scan buckets</b> to find max gap<br><br>O(n)
 Array/pair: shortest distance pair (x, y) such that y >= x + k (2)	- from <b>right to left</b> with <b>increasing stack</b><br><br>- from <b>left to right</b> with <b>increasing dequeue</b>
 Array/prob: trapping rain water (3)<br>n vertical lines	- DP with <b>2 precomp arrays</b>: maxHeightFrom[i], maxHeightUntil[i], take <b>min[i]</b>=intersection O(n)<br><br>- <b>stack</b><br><br>- <b>2 pointers, from start and end</b><br><b>move smaller one</b> at each step<br><br>O(n)|O(1)
-Array/search: find element in a sorted rotated array	<b>double BS</b>: <br><br>find the frontier, <br>BS on left or right part
 Array/select: median of two sorted arrays	<b>Binary search</b><br><br>O(log(m + n))<br><br>tricky cases due to parity
 Array/sided: count number of inversions i<j A(i)>A(j)	<b>divide and conquer</b>: within two halves + merge<br>= <b>modified merge sort</b><br><br>merge function sorts and returns inversion count<br><br>O(n log n)<br><br>like smaller elements to the right
 Array/sided: count pairs (x, y) with y in [x + a, x + b] (y to the right of x) (2/3)	like <b>count smaller elements on the right side</b><br><br><b>D&C mergesort-like</b> O(n log n)<br><br><br>also: BST with size, BIT maybe

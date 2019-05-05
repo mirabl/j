@@ -27,7 +27,6 @@ Tree: LCA (5)	no parent pointer: O(n) recursive<br><br>parent pointer: O(h)<br><
 Tree: LCA using RMQ	compute <b>Euler tour</b><br>store <b>level</b> of each node in the tour (with repeats)<br><br>LCA is RMQ between first occurence of nodes
 Tree: LCA with parent pointer on Tree	<b>go up</b> the tree to <b>find depth</b><br><br><b>synchronize</b><br><br><b>meet</b> while going up
 Tree: LCA without parent pointer on Tree	<b>recursive</b>, returns node*<br>return <b>non-null if one present</b><br><br>if left and right return non-null: root<br>otherwise: the non-null is solution<br><br>O(n)
-Tree: Print tree perimeter (border)	print left boundary without leaf,<br> print leaves, <br>print right in reverse (recursive)
 Tree: check if two nodes are on same path in a tree, ie. if <b>ancestor</b><br>in O(1) per query	preprocessing: DFS record <b>enter/exit times</b><br><br>check times for (u, v) to see if same subtree
 Tree: threaded binary tree, def, uses	<b>null right</b> pointers replaced by pointer to <b>next inorder</b> node<br><br><br>used for O(1) space iterative inorder traversal
 Tree: types of trees (8)	- Binary or not<br>- BST (balanced or not)<br>- Trie<br>- Heap<br>- Spanning (with a graph)<br>- Tournament (win/lose min/max)<br>- Segment tree<br>- Merkle

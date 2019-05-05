@@ -43,7 +43,6 @@ Sort: Shell sort	choose <b>gap sequence</b><br><b>iterate on gaps</b><br><br><b>
 Sort: mergesort implementation (2)	- <b>top-down</b> using recursion<br><br>- <b>bottom-up</b> using loop
 Sort: mergesort<br>- time: best and worst case<br>- memory	time: always O(n log n)<br><br>memory: O(n) aux
 Sort: tournament sort	load elements in a <b>min winner tournament tree</b><br><br>extract top to a <b>sorted list</b><br><br>not all array fits at bottom of tree (memory tradeoff)<br><br>do <b>multiple passes</b> and <b>merge sorted lists</b>
-String/change: Reverse words in a sentence (2)	1. Word by word from the end.<br><br> 2. <b>reverse whole string</b> char-by-char, <b>reverse within</b> each word
 String/ds: suffix array	same use as suffix tree but with <b>4 times less memory</b><br><br>sorted array of suffixes
 String/ds: suffix tree<br>- definition<br>- complexities<br>- 1 problem	<b>compressed trie</b> of <b>suffixes</b><br>naive: construction time and space O(n^2)<br>smart: O(n) / O(n)<br><br>substring search in O(m)
 String/match: Boyer-Moore	try to match from start of text but <b>from end of pattern</b><br>when <b>mismatch, skip chars</b> when possible<br><br>2 prepro tables to skip chars:<br>- indexOfLastOccurence[char]<br>- other table more complicated<br>O(n/m) to O(nm)

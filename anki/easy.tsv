@@ -87,3 +87,8 @@ SD: vertical/horizontal scaling 	vertical: add more power to a machine<br><br>ho
 Tree: Bottom view of binary tree	BFS with (ordered) map: <br>M[x-coordinate] = value<br><br>O(n)/O(n)
 Tree: Maximum path sum in a binary tree (or diameter)	recursive divide and conquer<br><br>rec function <b>maxStraightPathDown</b> + <b>global</b> variable<br><br>O(n)
 Tree: compress binary trees to canonical form	use <b>hashing</b> on nodes/subtrees<br><br>recursive
+Array/Matrix: search: find element in row-and-column-sorted matrix	start from NE corner
+Array/search: find element in a sorted rotated array	<b>double BS</b>: <br><br>find the frontier, <br>BS on left or right part
+OO: abstract class	one or more of methods have no implementation<br><br>serves as <b>base class</b> for others
+Tree: Print tree perimeter (border)	print left boundary without leaf,<br> print leaves, <br>print right in reverse (recursive)
+String/change: Reverse words in a sentence (2)	1. Word by word from the end.<br><br> 2. <b>reverse whole string</b> char-by-char, <b>reverse within</b> each word

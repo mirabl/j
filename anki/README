@@ -1,0 +1,1 @@
+cat all-?.tsv | sed 's/<br><br>/. /g'| sed -e 's/<br>/. /g'|sed 's/<b>//g'|sed 's|</b>||g' > all-all.tsv

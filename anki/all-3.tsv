@@ -18,7 +18,6 @@ LinkedList: beginning of cycle	1. find point in cycle: tortoise/hare<br><br>2. M
 LinkedList: copy postings linked-list with no additional storage	<b>3 passes</b><br><br><b>modify</b> next pointer of original list<br>then <b>restore</b>
 OO: 2 aspects of polymorphism	code or operations or objects behave differently in different contexts<br><br>1. object of derived class can be treated as base class<br><br>2. virtual methods of base class can be overriden
 OO: 3 characteristics of OO	inheritance<br>encapsulation<br>polymorphism
-OO: abstract class	one or more of methods have no implementation<br><br>serves as <b>base class</b> for others
 OO: generics	class/method that defer specification of type until declared and instantiated in client code
 OO: member overloading	same name but different signature
 OO: static class, static member	class: can not be instantiated<br><br>member: one copy exists
@@ -30,12 +29,11 @@ Prob/meth: problem solving steps	<b>CEEBEMTT</b><br><b>C</b>larify<br><b>E</b>xa
 Prob/perm: invert permutation with constant space	decompose in <b>cycles</b><br><br>invert each cycle<br><br>fix only one element at a time (min of cycle)
 Prob/search: f real-valued. search x s.t. a. f(x) = 0, and b. f(x) maximum if f unimodal	a. <b>binary search</b><br><br>b. <b>ternary</b> search<br>split in <b>3</b> and evaluates <b>2 points</b>
 Prob/top-f: find elements that appear more than k/n times	generalization of <b>voting</b><br><br><b>two passes</b><br>- keep <b>k</b> counters in <b>hash</b><br><br>purge hash table when needed<br><br>- second pass to check candidates
-Prob/top-f: find k-th most frequent, no time window 1Q/multiple Q (2)	1. 1 query<br><b>HashMap + quickselect</b><br>O(n)<br><br>2. <b>multiple queries</b><br><b>BST (count, elem) + HashMap[elem]=bstNode</b><br>O(n log n) + O(k)
 Prob/top-f: most visited pages in last W fixed seconds, query any time streaming	<b>3 structures</b>:<br><br>1. <b>BST</b>: (count, s)<br><br>2. <b>HashMap</b> bstNodeForString[s]<br><br>3. <b>Queue</b> Q of elements in current window<br><br>increase-decrease in BST when insert/remove from Q
 Prob/top-f: most visited pages, compute top-k by frequency:<br>-1. once at end<br>-2. any time streaming	1. hash map <b>freq[s]++</b><br>at end, do <b>k-selection</b> (quickselect O(n), heap O(n log n))<br><br>2. <b>BST</b> with (count, s) + <b>hashMap</b> bstNodeForString[s]<br><br>update by deleting/re-inserting in BST<br>answer: top-k from BST
 Prob/top: find k-th largest element from n streamed elements, with O(k) memory, once at the end (2)	- priority queue: O(n log k)<br><br>- better: <b>array of 2k</b><br><br>when full, purge to size <b>k</b><br>with O(k) <b>quickselect</b><br><br>total: O(n)
 Prob/top: find k-th largest elements (3, 1 or + queries)	1. <b>multiple queries</b>:<br>use <b>priority queue</b><br>O(n log k) + query<br><br><br>2. <b>1 query</b>:<br>2.a with <b>array</b>: <b>1 quickselect</b> O(n)<br>2.b with <b>stream multi-quickselect 2k-array</b> O(n) with O(k) memory
-Prob: Compress jumps along a segment / Painting subarrays offline	use <b>Union-Find</b><br><br>paint:<br>take [l,r],color painting requests in <b>reverse order</B><br><br>store <b>nextUnpainted >= i</b> and use U-F to quickly <b>skip over</b> painted sections
+Prob: Compress jumps along a segment / Painting subarrays offline	use <b>Union-Find</b><br><br>paint:<br>take [l,r],color painting requests in <b>reverse order</b><br><br>store <b>nextUnpainted >= i</b> and use U-F to quickly <b>skip over</b> painted sections
 Prob: DP 5 types	1-D<br>2-D<br>interval/window<br>tree<br>bitmask/subset (TSP, Hamilton, assignment: n! to n^x 2^n)
 Prob: DP classical problems (5)	Knapsack<br>Coin change<br>Grid traversal<br>LCS/LIS/edit<br>TSP
 Prob: DS for insert(val)/delete(val)/getRandom in O(1)	<b>array + hash</b> (index into array)<br><br>to <b>remove</b> from array: <b>swap</b> with last element
