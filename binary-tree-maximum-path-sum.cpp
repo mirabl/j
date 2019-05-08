@@ -91,3 +91,33 @@ public:
         return best;
     }
 };
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int best = -1e8;
+    
+    int rec(TreeNode* root) {
+        if (!root) {
+            return 0;
+        }
+        int l = rec(root->left);
+        int r = rec(root->right);
+        best = max(best, root->val + r + l);
+        return max(root->val + max(l, r), 0);
+    }
+    
+    int maxPathSum(TreeNode* root) {
+        rec(root);
+        return best;
+    }
+};
