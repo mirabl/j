@@ -216,3 +216,66 @@ public:
         return res;
     }
 };
+
+
+class Solution {
+public:
+    int firstGreater(vector<pair<int, int>>& A, int x) {
+        int best = -1;
+        int lo = 0;
+        int hi = int(A.size()) - 1;
+        
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (A[mid].first >= x) {
+                best = A[mid].second;
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        
+        return best;
+    }
+    
+    vector<int> findRightInterval(vector<vector<int>>& intervals) {
+        vector<pair<int, int>> starts;
+        int n = intervals.size();
+        for (int i = 0; i < n; i++) {
+            starts.push_back({intervals[i][0], i});
+        }
+        sort(starts.begin(), starts.end());
+        
+        vector<int> res;
+        for (int i = 0; i < n; i++) {
+            res.push_back(firstGreater(starts, intervals[i][1]));
+        }
+        return res;
+    }
+};
+
+
+class Solution {
+public:
+    vector<int> findRightInterval(vector<vector<int>>& intervals) {
+        map<int, int> starts;
+        for (int i = 0; i < intervals.size(); i++) {
+            int s = intervals[i][0];
+            int e = intervals[i][1];
+            if (starts.count(s) == 0) {
+                starts[s] = i;
+            }
+        }
+        
+        vector<int> res;
+        for (auto i: intervals) {
+            auto it = starts.lower_bound(i[1]);
+            if (it == starts.end()) {
+                res.push_back(-1);
+            } else {
+                res.push_back((*it).second);
+            }
+        }
+        return res;
+    }
+};

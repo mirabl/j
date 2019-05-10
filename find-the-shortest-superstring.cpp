@@ -242,3 +242,83 @@ public:
         return r;
     }
 };
+
+
+
+class Solution {
+public:
+    int ovlp(string& s, string& t) {
+        int n = min(s.size(), t.size());
+        for (int l = n; l > 0; l--) {
+            string a = s.substr(s.size() - l);
+            string b = t.substr(0, l);
+            if (a == b) {
+                return l;
+            }
+        }
+        
+        return 0;
+    }
+    
+    string shortestSuperstring(vector<string>& A) {
+        int n = A.size();
+        int M = 1 << n;
+        vector<vector<int>> O(n, vector<int>(n));
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (j == i) {
+                    continue;
+                }
+                    O[i][j] = ovlp(A[i], A[j]);
+            }
+        }
+        int infty = 1e8;
+        vector<vector<int>> dp(M, vector<int>(n, infty));
+        vector<vector<int>> prev(M, vector<int>(n, -1));
+        
+        for (int i = 0; i < n; i++) {
+            dp[1 << i][i] = A[i].size();
+        }
+
+        for (int m = 0; m < M; m++) {
+            for (int i = 0; i < n; i++) {
+                if ((m >> i) & 1 == 1) {
+                    continue;
+                }
+                for (int j = 0; j < n; j++) {
+                    if ((m >> j) & 1 == 0) {
+                        continue;
+                    }
+                    
+                    int newMask = m | (1 << i);
+                    if (dp[m][j] + A[i].size() - O[j][i] < dp[newMask][i]) {
+                        dp[newMask][i] = dp[m][j] + A[i].size() - O[j][i];
+                        prev[newMask][i] = j;
+                    }
+                } 
+            }
+        }
+        
+        int i = 0;
+        int m = M - 1;
+        for (int j = 1; j < n; j++) {
+            if (dp[m][j] < dp[m][i]) {
+                i = j;
+            }
+        }
+        vector<int> idx;
+        while (i != -1) {
+            idx.insert(idx.begin(), i);
+            int next = prev[m][i];
+            m = m ^ (1 << i);
+            i = next;
+        }
+        
+        string res = A[idx[0]];
+        for (int i = 1; i < idx.size(); i++) {
+            res += A[idx[i]].substr(O[idx[i - 1]][idx[i]]);
+        }
+        
+        return res;
+    }
+};
