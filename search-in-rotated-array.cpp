@@ -324,3 +324,51 @@ public:
         }
     }
 };
+
+
+class Solution {
+public:
+    int fm(vector<int>& A) {
+        int n = A.size();
+        int lo = 0;
+        int hi = n - 1;
+        int best = -1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (A[mid] <= A[n - 1]) {
+                best = mid;
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        return best;
+    }
+    
+    int bs(vector<int>& A, int x, int lo, int hi) {
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (A[mid] == x) {
+                return mid;
+            } else if (A[mid] > x) {
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        return -1;
+    }
+    
+    int search(vector<int>& nums, int target) {
+        if (nums.empty()) {
+            return -1;
+        }
+        
+        int iMin = fm(nums);
+        if (target > nums[nums.size() - 1]) {
+            return bs(nums, target, 0, iMin - 1);
+        } else {
+            return bs(nums, target, iMin, nums.size() - 1);
+        }
+    }
+};
