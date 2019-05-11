@@ -284,3 +284,49 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    enum {
+        NOT_VISITED,
+        VISITING,
+        VISITED
+    };
+    
+    bool dfs(vector<vector<int>>& G, int i, vector<int>& state, vector<int>& order) {
+        if (state[i] == VISITED) {
+            return true;
+        } else if (state[i] == VISITING) {
+            return false;
+        }
+        
+        state[i] = VISITING;
+        for (int j: G[i]) {
+            if (!dfs(G, j, state, order)) {
+                return false;
+            }
+        }
+        
+        order.push_back(i);
+        state[i] = VISITED;
+        return true;
+    }
+    
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>> G(numCourses);
+        for (auto p: prerequisites) {
+            G[p[1]].push_back(p[0]);
+        }
+        
+        vector<int> order;
+        vector<int> state(numCourses, NOT_VISITED);
+        for (int i = 0; i < numCourses; i++) {
+            if (!dfs(G, i, state, order)) {
+                return {};
+            }
+        }
+        
+        reverse(order.begin(), order.end());
+        return order;
+    }
+};
