@@ -404,3 +404,71 @@ public:
         return vector<string>(found.begin(), found.end());
     }
 };
+
+struct TrieNode {
+    bool isWord;
+    map<char, TrieNode*> children;
+};
+
+class Solution {
+public:
+    int nrows;
+    int ncols;
+    
+    void dfs(int row, int col, TrieNode* p, vector<vector<char>>& board, set<string>& found, string& s) {
+        if (row < 0 || row >= nrows || col < 0 || col >= ncols) {
+            return;
+        }
+        char c = board[row][col];
+        p = p->children[c];
+        
+        if (!p) {
+            return;            
+        }
+        
+        board[row][col] = ' ';
+        s.push_back(c);
+        if (p->isWord) {
+            found.insert(s);
+        }
+        
+        dfs(row + 1, col, p, board, found, s);
+        dfs(row - 1, col, p, board, found, s);
+        dfs(row, col + 1, p, board, found, s);
+        dfs(row, col - 1, p, board, found, s);
+
+        board[row][col] = c;
+        s.pop_back();
+    }
+    
+    vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
+        TrieNode* root = new TrieNode();
+        root->isWord = false;
+        
+        for (auto w: words) {
+            TrieNode *p = root;
+            for (auto c: w) {
+                if (p->children.count(c) == 0) {
+                    p->children[c] = new TrieNode();
+                    p->children[c]->isWord = false;
+                }
+                p = p->children[c];
+            }
+            p->isWord = true;
+        }
+        
+        nrows = board.size();
+        ncols = board[0].size();
+        
+        set<string> found;
+        
+        for (int row = 0; row < nrows; row++) {
+            for (int col = 0; col < ncols; col++) {
+                string s;
+                dfs(row, col, root, board, found, s);
+            }
+        }
+        
+        return vector<string>(found.begin(), found.end());
+    }
+};
