@@ -255,3 +255,68 @@ public:
         return s == t;
     }
 };
+
+class Solution {
+public:
+    int n;
+    vector<char> H;
+    
+    void sink(int i) {
+        int infty = 1e9;
+        int l = 2 * i <= n ? H[2 * i] : infty;
+        int r = (2 * i + 1) <= n ? H[2 * i + 1] : infty;
+        
+        if (l <= r && l < H[i]) {
+            swap(H[i], H[2 * i]);
+            sink(2 * i);
+        } else if (r < l && r < H[i]) {
+            swap(H[i], H[2 * i + 1]);
+            sink(2 * i + 1);
+        }
+    }
+    
+    int extract() {
+        int x = H[1];
+        H[1] = H[n];
+        n--;
+        sink(1);
+        return x;
+    }
+    
+    void heaps(string& s) {
+        n = s.size();
+        H.resize(1 + n);
+        
+        for (int i = 0; i < n; i++) {
+            H[1 + i] = s[i];
+        }
+        
+        int p = 1;
+        int l = 0;
+        while (2 * p <= n) {
+            p = 2 * p;
+            l++;
+        }
+        l--;
+ 
+        for (int h = l; h >= 0; h--) {
+            int b = 1 << h;
+            int e = 1 << (h + 1);
+            for (int i = b; i < e; i++) {
+                sink(i);
+            }
+        }
+        
+        for (int i = 0; i < s.size(); i++) {
+            int x = extract();
+            s[i] = x;
+        }
+    }
+    
+    bool isAnagram(string s, string t) {
+        heaps(s);
+        heaps(t);        
+        return s == t;
+    }
+};
+
