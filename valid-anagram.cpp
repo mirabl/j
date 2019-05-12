@@ -64,3 +64,38 @@ int main() {
 	cout << isAnagram("anagram", "nagaram") << " 1" << endl;
 	cout << isAnagram("rat", "car") << " 0" << endl;
 }
+
+
+class Solution {
+public:
+    void rec(string& s, int lo, int hi) {
+        if (lo > hi) {
+            return;
+        }
+        
+        int iP = lo;
+        int n = s.size();
+        for (int i = iP + 1; i <= hi; i++) {
+            if (s[i] < s[iP]) {
+                swap(s[i], s[iP + 1]);
+                swap(s[iP + 1], s[iP]);
+                iP++;
+            }
+        }
+        rec(s, lo, iP - 1);
+        rec(s, iP + 1, hi);
+    }
+    
+    void qs(string& s) {
+        int n = s.size();
+        rec(s, 0, n - 1);
+    }
+    
+    bool isAnagram(string s, string t) {
+        qs(s);
+        qs(t);
+        return s == t;
+    }
+};
+
+
