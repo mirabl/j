@@ -99,3 +99,159 @@ public:
 };
 
 
+/*
+Lomuto’s Partition Scheme
+
+partition(arr[], lo, hi) 
+    pivot = arr[hi]
+    i = lo     // place for swapping
+    for j := lo to hi – 1 do
+        if arr[j] <= pivot then
+            swap arr[i] with arr[j]
+            i = i + 1
+    swap arr[i] with arr[hi]
+    return i
+*/
+
+
+class Solution {
+public:
+    void rec(string& s, int lo, int hi, vector<int>& aux) {
+        if (lo >= hi) {
+            return;
+        }
+        int mid = lo + (hi - lo) / 2;
+        rec(s, lo, mid, aux);
+        rec(s, mid + 1, hi, aux);
+        
+        int i = lo;
+        int j = mid + 1;
+        while (i <= mid || j <= hi) {
+            if (j > hi || (i <= mid && s[i] <= s[j])) {
+                aux[i - lo + j - mid - 1] = s[i];
+                i++;
+            } else {
+                aux[i - lo + j - mid - 1] = s[j];
+                j++;
+            }
+        }
+        for (int k = 0; k < hi - lo + 1; k++) {
+            s[lo + k] = aux[k];
+        }
+    }
+    
+    void ms(string& s) {
+        int n = s.size();
+        vector<int> aux(n);
+        rec(s, 0, n - 1, aux);
+    }
+    
+    bool isAnagram(string s, string t) {
+        ms(s);
+        ms(t);
+        return s == t;
+    }
+};
+
+class Solution {
+public:
+    void rec(string& s, int lo, int hi, vector<int>& aux) {
+        if (lo >= hi) {
+            return;
+        }
+        int mid = lo + (hi - lo) / 2;
+        rec(s, lo, mid, aux);
+        rec(s, mid + 1, hi, aux);
+        
+        int i = lo;
+        int j = mid + 1;
+        int k = 0;
+        while (i <= mid && j <= hi) {
+            if (s[i] <= s[j]) {
+                aux[k] = s[i];
+                i++;
+            } else {
+                aux[k] = s[j];
+                j++;
+            }
+            k++;
+        }
+        while (i <= mid) {
+            aux[k] = s[i];
+            i++;
+            k++;
+        }
+        while (j <= hi) {
+            aux[k] = s[j];
+            j++;
+            k++;
+        }
+        
+        
+        for (int k = 0; k < hi - lo + 1; k++) {
+            s[lo + k] = aux[k];
+        }
+    }
+    
+    void ms(string& s) {
+        int n = s.size();
+        vector<int> aux(n);
+        rec(s, 0, n - 1, aux);
+    }
+    
+    bool isAnagram(string s, string t) {
+        ms(s);
+        ms(t);
+        return s == t;
+    }
+};
+
+
+class Solution {
+public:
+    void ms(string& s) {
+        int n = s.size();
+        vector<int> aux(n);
+        for (int l = 1; l < n; l *= 2) {
+            for (int b = 0; b < n; b += 2 * l) {
+                int loLeft = b;
+                int hiLeft = min(b + l - 1, n - 1);
+                int loRight = min(b + l, n - 1);
+                int hiRight = min(b + 2 * l - 1, n - 1);
+                int i = b;
+                int j = loRight;
+                int k = 0;
+                while (i <= hiLeft && j <= hiRight) {
+                    if (s[i] <= s[j]) {
+                        aux[k] = s[i];
+                        i++;
+                    } else {
+                        aux[k] = s[j];
+                        j++;
+                    }
+                    k++;
+                }
+                while (i <= hiLeft) {
+                    aux[k] = s[i];
+                    i++;
+                    k++;
+                }
+                while (j <= hiRight) {
+                    aux[k] = s[j];
+                    j++;
+                    k++;
+                }
+                
+                for (i = 0; i < k; i++) {
+                    s[loLeft + i] = aux[i];
+                }
+            }
+        }
+    }
+    
+    bool isAnagram(string s, string t) {
+        ms(s);
+        ms(t);
+        return s == t;
+    }
+};
