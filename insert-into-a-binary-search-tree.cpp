@@ -31,3 +31,36 @@ public:
         return root;
     }
 };
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* insertIntoBST(TreeNode* root, int val) {
+        TreeNode* p = new TreeNode(val);
+        if (!root) {
+            return p;
+        }
+        if (val < root->val) {
+            if (!root->left) {
+                root->left = p;
+            } else {
+                insertIntoBST(root->left, val);
+            }
+        } else {
+            if (!root->right) {
+                root->right = p;
+            } else {
+                insertIntoBST(root->right, val);
+            }
+        }
+        return root;
+    }
+};
