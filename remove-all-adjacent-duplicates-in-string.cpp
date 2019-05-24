@@ -18,3 +18,19 @@ public:
         return t;
     }
 };
+
+class Solution {
+public:
+    string removeDuplicates(string s) {
+        vector<char> S;
+        for (auto c: s) {
+            if (!S.empty() && c == S.back()) {
+                S.pop_back();
+            } else {
+                S.push_back(c);
+            }
+        }
+
+        return string(S.begin(), S.end());
+    }
+};
