@@ -30,3 +30,21 @@ public:
         
     }
 };
+class Solution {
+public:
+    int r(vector<int>& A, int lo, int hi) {
+        int mid = lo + (hi - lo) / 2;
+        if (A[mid] > A[mid - 1] && A[mid] > A[mid + 1]) {
+            return mid;
+        }
+        if (A[mid] < A[mid + 1]) {
+            return r(A, mid + 1, hi);
+        } else {
+            return r(A, lo, mid - 1);
+        }
+    }
+    
+    int peakIndexInMountainArray(vector<int>& A) {
+        return r(A, 1, int(A.size()) - 2);
+    }
+};
