@@ -19,10 +19,19 @@ public:
         if (!root) {
             return 0;
         }
-        int b = 1;
-        for (auto c: root->children) {
-            b = max(b, 1 + maxDepth(c));
+        
+        unordered_set<Node*> visited;
+        queue<pair<Node*, int>> Q;
+        Q.push({root, 1});
+        int d = 0;
+        while (!Q.empty()) {
+            auto p = Q.front();
+            Q.pop();
+            for (auto c: (p.first)->children) {
+                Q.push({c, p.second + 1});
+            }
+            d = p.second;
         }
-        return b;
+        return d;
     }
 };
