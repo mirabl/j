@@ -15,3 +15,22 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        int lo = 0;
+        int hi = int(arr.size()) - 1;
+        
+        while (hi - lo + 1 > k) {
+            if (abs(arr[hi] - x) < abs(arr[lo] - x)) {
+                lo++;
+            } else {
+                hi--;
+            }
+        }
+        
+        vector<int> res(arr.begin() + lo, arr.begin() + hi + 1);
+        return res;
+    }
+};
