@@ -22,3 +22,38 @@ public:
         return M[n][m];
     }
 };
+
+class Solution {
+public:
+    int get(vector<vector<int>>& T, int i, int j) {
+        if (i < 0 || j < 0) {
+            return 0;
+        }
+        return T[i][j];
+    }
+    
+    int lcs(string& s, string& t) {
+        if (s.empty() || t.empty()) {
+            return 0;
+        }
+        
+        int n = s.size();
+        int m = t.size();
+        vector<vector<int>> T(n, vector<int>(m));
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (s[i] == t[j]) {
+                    T[i][j] = 1 + get(T, i - 1, j - 1);
+                } else {
+                    T[i][j] = max(get(T, i - 1, j), get(T, i, j - 1));
+                }
+            }
+        }
+        return T[n - 1][m - 1];
+    }
+    
+    int minDistance(string word1, string word2) {
+        int l = lcs(word1, word2);
+        return word1.size() - l + word2.size() - l;
+    }
+};
