@@ -35,3 +35,20 @@ int main() {
 	print_vector(v);
 	cout << endl;
 }
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int n = nums.size();
+        int lo = 0;
+        int hi = 0;
+        while (hi < n) {
+            if (nums[hi] != val) {
+                nums[lo] = nums[hi];
+                lo++;
+            }
+            hi++;
+        }
+        return lo;
+    }
+};
