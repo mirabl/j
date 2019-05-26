@@ -459,3 +459,188 @@ public:
         return m < infty ? m : -1;
     }
 };
+
+
+// Disjktra priority queue with multiple inserts
+class Solution {
+public:
+    typedef priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq_t;
+    pair<int, int> kNotFound{-1, -1};
+    
+    pair<int, int> getMinPQ(pq_t& PQ, vector<bool>& done) {
+        while (!PQ.empty() && done[PQ.top().second]) {
+            PQ.pop();
+        }
+        
+        if (!PQ.empty()) {
+            auto p = PQ.top();
+            PQ.pop();
+            return p;
+        }
+        
+        return kNotFound;
+    }
+    
+    void updatePQ(pq_t& PQ, int v, int w) {
+        PQ.push({w, v});
+    }
+    
+    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
+        int infty = 1e8;
+        K--;
+        map<int, vector<pair<int, int>>> G;
+        for (auto t: times) {
+            G[t[0] - 1].push_back({t[1] - 1, t[2]});
+        }
+        vector<int> D(N, infty);
+        vector<bool> done(N, false);
+        
+        pq_t PQ;
+        PQ.push({0, K});
+        
+        while (true) {
+            auto pnext = getMinPQ(PQ, done);
+            // cout << "next: w=" << pnext.first << ", i=" << pnext.second << endl;
+            int next = pnext.second;
+            if (pnext == kNotFound) {
+                break;
+            } 
+            D[pnext.second] = pnext.first;       
+            // cout << "getMinPQ returned " << "next=" << next << " with D[next]=" << D[next] << endl; 
+            
+            done[next] = true;
+            for (auto p: G[next]) {
+                auto v = p.first;
+                auto w = p.second;
+                int tw = D[next] + w;
+                if (tw < D[v]) {
+                    updatePQ(PQ, v, tw);
+                    D[v] = tw;
+                }
+            }
+        }
+        
+        int m = *max_element(D.begin(), D.end());
+        return m < infty ? m : -1;
+    }
+};
+
+// Disjktra custom priority queue with decreaseKey
+class PrioQueue {
+    int N;
+    vector<pair<int, int>> T;
+    vector<int> index;
+    int kAbsent = -1;
+public:
+    PrioQueue() {
+        T.resize(10000);
+        index = vector<int>(10000, kAbsent);
+        N = 0;
+    }
+    
+    bool empty() {
+        return N == 0;
+    }
+    
+    pair<int, int> top() {
+        return T[1];
+    }
+    
+    void push(pair<int, int> p) {
+        N++;
+        T[N] = p;
+        index[p.second] = N;
+        bubbleUp(N);
+    }
+    
+    void bubbleUp(int i) {
+        if (i > 1) {
+            int j = i / 2;
+            if (T[i] < T[j]) {
+                swap(T[i], T[j]);
+                index[T[i].second] = i;
+                index[T[j].second] = j;
+                bubbleUp(j);
+            }
+        }
+    }
+    
+    void pop() {
+        index[T[1].second] = kAbsent;
+        T[1] = T[N];
+        index[T[1].second] = 1;
+        N--;
+        
+        if (!empty()) {
+            heapify(1);
+        }
+    }
+    
+    void heapify(int i) {
+        if (2 * i > N) {
+            return;
+        }
+        
+        int minI = 2 * i + 1 <= N && T[2 * i + 1] < T[2 * i] ? 2 * i + 1 : 2 * i;
+        if (T[minI] < T[i]) {
+            swap(T[minI], T[i]);
+            index[T[minI].second] = minI;
+            index[T[i].second] = i;
+            heapify(minI);
+        }
+    }
+    
+    void decreaseOrPush(pair<int, int> p) {
+        int k = p.first;
+        int v = p.second;
+        int i = index[v];
+        
+        if (i == kAbsent) {
+            push(p);
+        } else {        
+            T[i] = { k, v };
+            bubbleUp(i);
+        }
+    }
+    
+};
+
+class Solution {
+public:
+    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
+        int infty = 1e8;
+        K--;
+        map<int, vector<pair<int, int>>> G;
+        for (auto t: times) {
+            G[t[0] - 1].push_back({t[1] - 1, t[2]});
+        }
+        vector<int> D(N, infty);
+        
+        PrioQueue PQ2;
+        PQ2.push({0, K});
+        
+        while (!PQ2.empty()) {
+            auto pnext = PQ2.top();
+            PQ2.pop();
+
+            cout << "next: w=" << pnext.first << ", i=" << pnext.second << endl;
+            int next = pnext.second;
+
+            D[pnext.second] = pnext.first;       
+            cout << "getMinPQ returned " << "next=" << next << " with D[next]=" << D[next] << endl; 
+            
+            for (auto p: G[next]) {
+                auto v = p.first;
+                auto w = p.second;
+                int tw = D[next] + w;
+                if (tw < D[v]) {
+                    PQ2.decreaseOrPush({tw, v});
+                    D[v] = tw;
+                }
+            }
+        }
+        
+        int m = *max_element(D.begin(), D.end());
+        return m < infty ? m : -1;
+    }
+};

@@ -152,3 +152,18 @@ public:
         return dp[amount] < infty ? dp[amount] : -1;
     }
 };
+
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        int infty = 1e8;
+        vector<int> T(amount + 1, infty);
+        T[0] = 0;
+        for (auto c: coins) {
+            for (int x = c; x <= amount; x++) {
+                T[x] = min(T[x], 1 + T[x - c]);
+            }
+        }
+        return T[amount] < infty ? T[amount] : -1;
+    }
+};
