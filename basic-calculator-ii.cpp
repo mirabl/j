@@ -75,3 +75,56 @@ public:
         return S.top();
     }
 };
+
+
+class Solution {
+public:
+    stack<int> S;
+    stack<char> T;
+    
+    int apply(char op, int x, int y) {
+        if (op == '+') return x + y;
+        if (op == '-') return x - y;
+        if (op == '*') return x * y;
+        else return x / y;
+    }
+    
+    void go() {
+        char op = T.top();
+        T.pop();
+        int y = S.top(); 
+        S.pop();
+        int x = S.top();
+        S.pop();
+        S.push(apply(op, x, y));
+    }
+    
+    int calculate(string ss) {
+        istringstream iss(ss);
+        int x;
+        char op;
+        
+        while (true) {
+            iss >> x;
+            S.push(x);
+            if (!(iss >> op)) {
+                break;
+            }
+            while (!T.empty() 
+                && ((T.top() == '*' || T.top() == '/') 
+                    || ((op == '+' || op == '-') && T.top() == '-'))) {
+                go();
+            }
+            T.push(op);
+        }
+        
+        while (!T.empty()) {
+            go();
+        }
+                
+        return S.top();
+    }
+};
+
+
+// clear solution https://leetcode.com/problems/basic-calculator-ii/discuss/63000/My-28ms-C%2B%2B-code-with-two-stacks-(one-for-op-one-for-oprand)-extension-to-cover-'('-and-')'-also-given
