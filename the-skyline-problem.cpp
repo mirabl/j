@@ -148,3 +148,50 @@ public:
         return s(buildings, 0, int(buildings.size()) - 1);
     }
 };
+
+// sort + PQ with active building
+struct Building {
+    int l;
+    int r;
+    int h;
+    Building(int ll, int rr, int hh) : l(ll), r(rr), h(hh) {}
+};
+
+bool cmp(const Building& x, const Building& y) {
+    return vector<int>{ x.l, - x.h, x.r } < vector<int>{ y.l, - y.h, y.r }; 
+}
+
+class Solution {
+public:    
+    vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
+        vector<Building> B;
+        for (auto b: buildings) {
+            B.push_back(Building(b[0], b[1], b[2]));
+        }
+        sort(B.begin(), B.end(), cmp);
+        int n = B.size();
+        
+        priority_queue<pair<int, int>> PQ;
+        vector<vector<int>> res;
+        for (int i = 0; i < n; i++) {
+            if (PQ.empty() || B[i].h > PQ.top().first) {
+                res.push_back({B[i].l, B[i].h});
+            }
+            PQ.push({B[i].h, B[i].r});
+            
+            while (!PQ.empty() && (i == n - 1 || PQ.top().second < B[i + 1].l)) {
+                auto p = PQ.top();
+                PQ.pop();
+                while (!PQ.empty() && PQ.top().second <= p.second) {
+                    PQ.pop();
+                }
+                int newH = PQ.empty() ? 0 : PQ.top().first;
+                if (newH != res.back()[1]) {
+                    res.push_back({p.second, newH});
+                }
+            }
+        }
+        
+        return res;
+    }
+};
