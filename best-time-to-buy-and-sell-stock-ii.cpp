@@ -36,3 +36,20 @@ public:
         return profit;
     }
 };
+
+class Solution {
+public:
+    int maxProfit(vector<int>& A) {
+        if (A.empty()) {
+            return 0;
+        }
+        int p = 0;
+        for (int i = 1; i < A.size(); i++) {
+            if (A[i] > A[i - 1]) {
+                p += A[i] - A[i - 1];
+            }
+        }
+        return p;
+    }
+    
+};

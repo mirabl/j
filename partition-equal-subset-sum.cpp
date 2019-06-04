@@ -16,3 +16,23 @@ public:
         return M[T] != 0;
     }
 };
+
+class Solution {
+public:
+    bool canPartition(vector<int>& nums) {
+        int s = accumulate(nums.begin(), nums.end(), 0);
+        if (s % 2 == 1) {
+            return false;
+        }
+        int T = s / 2;
+        vector<bool> A(T + 1);
+        A[0] = true;
+        
+        for (int x: nums) {
+            for (int y = T; y >= x; y--) {
+                A[y] = A[y] || A[y - x];
+            }
+        }
+        return A[T];
+    }
+};

@@ -33,3 +33,23 @@ public:
         return profit;
     }
 };
+
+class Solution {
+public:
+    int maxProfit(vector<int>& A) {
+        int best = 0;
+        int infty = 1e6;
+        int curMin = infty;
+        int curMax = - infty;
+        for (int x: A) {
+            if (x < curMin) {
+                curMin = x;
+                curMax = - infty;
+            } else if (x > curMax) {
+                curMax = x;
+                best = max(best, curMax - curMin);
+            }
+        }
+        return best;
+    }
+};
