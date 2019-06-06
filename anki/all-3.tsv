@@ -14,6 +14,7 @@ Graph: shortest path visiting all nodes	<b>BFS</b> with <b>bitmask</b> for visit
 Interval: from set of intervals, find all that <b>intersect a query interval</b><br>support insert/delete	use <b>Interval Tree</b><br><br>search for <b>one</b> intersecting interval<br>remove it<br>repeat
 Lang: DS when duplicates	multiset<br><br>does multimap exist?
 Lang: how is set/map implemented in C++	<b>Red-Black</b> trees
+Lang: smart pointers, why	pointer-like type with functionality, like automatic memory deallocation, reference counting
 LinkedList: beginning of cycle	1. find point in cycle: tortoise/hare<br><br>2. Move one pointer to start, both go to speed 1<br>meeting point is start of cycle
 LinkedList: copy postings linked-list with no additional storage	<b>3 passes</b><br><br><b>modify</b> next pointer of original list<br>then <b>restore</b>
 OO: 2 aspects of polymorphism	code or operations or objects behave differently in different contexts<br><br>1. object of derived class can be treated as base class<br><br>2. virtual methods of base class can be overriden
