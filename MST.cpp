@@ -273,3 +273,57 @@ int main() {
     cout << totalw << endl;
 	return totalw;
 }
+
+
+
+// Prim
+#include <iostream>
+#include <vector>
+#include <set>
+
+using namespace std;
+
+int main() {
+	
+	int N, M;
+	cin >> N >> M;
+	vector<set<pair<int, int>>> G(N);
+	for (int i = 0; i < M; i++) {
+		int u, v, w;
+		cin >> u >> v >> w;
+		u--;
+		v--;
+		G[u].insert({v, w});
+		G[v].insert({u, w});
+	}
+	
+	vector<bool> done(N, false);
+	int kInfinity = 1e8;
+	vector<int> dist(N, kInfinity);
+	dist[0] = 0;
+	int totalWeight = 0;
+	
+	while (true) {
+		int next = -1;
+		for (int i = 0; i < N; i++) {
+			if (done[i]) {
+				continue;
+			}
+			if (next == -1 || dist[i] < dist[next]) {
+				next = i;
+			}
+		}
+		if (next == -1) {
+			break;
+		}
+		
+		for (auto p: G[next]) {
+			dist[p.first] = min(dist[p.first], p.second);
+		}
+		
+		totalWeight += dist[next];
+		done[next] = true;
+	}
+
+	return totalWeight;
+}
