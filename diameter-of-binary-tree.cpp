@@ -27,3 +27,35 @@ public:
     }
 };
 
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int res;
+    
+    int maxPathDown(TreeNode *root) {
+        if (!root) {
+            return 0;
+        }
+        int l = maxPathDown(root->left);
+        int r = maxPathDown(root->right);
+        res = max(res, l + r);
+        
+        return 1 + max(l, r);
+    }
+    
+    int diameterOfBinaryTree(TreeNode* root) {
+        res = 0;
+        maxPathDown(root);
+        return res;
+    }
+};
