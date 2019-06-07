@@ -67,22 +67,29 @@ bool next_permutation(V.begin(), V.end())
 // get max element of int vector V to x
 int x = *max_element(V.begin(), V.end())
 
+
 // queue API Q add, remove, peek
 Q.push()
 Q.pop()
 Q.front()
 
+
 // deque API D add (2), remove (2), peek (2)
-D.push_back()
-D.push_front()
-D.pop_back()
-D.pop_front()
-D.back()
-D.front()
+D.push_back() D.push_front()
+D.pop_back() D.pop_front()
+D.back() D.front()
+
 
 // struct ListNode
 struct ListNode {
   int val;
   ListNode *next;
   ListNode(int v) : val(v) { }
+};
+
+
+// enum "State" with A, B
+enum State {
+  A,
+  B
 };
