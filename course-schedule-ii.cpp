@@ -371,3 +371,38 @@ public:
         return order;
     }
 };
+
+
+class Solution {
+public:
+    vector<int> findOrder(int N, vector<vector<int>>& prerequisites) {
+        vector<set<int>> G(N);
+        vector<int> inDegree(N);
+        for (auto p: prerequisites) {
+            G[p[1]].insert(p[0]);
+            inDegree[p[0]]++;
+        }
+        set<int> toProcess;
+        for (int i = 0; i < N; i++) {
+            if (inDegree[i] == 0) {
+                toProcess.insert(i);
+            }
+        }
+        
+        vector<int> res;
+        while (!toProcess.empty()) {
+            int i = *toProcess.begin();
+            toProcess.erase(i);
+            for (int j: G[i]) {
+                inDegree[j]--;
+                if (inDegree[j] == 0) {
+                    toProcess.insert(j);
+                }
+            }
+            res.push_back(i);
+        }     
+        
+        return res.size() == N ? res : vector<int>{};
+        
+    }
+};
