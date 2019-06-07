@@ -320,3 +320,37 @@ public:
     }
 };
 
+
+
+
+class Solution {
+public:
+    void qs(string& s, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
+        
+        int j = lo;
+        for (int i = lo; i < hi; i++) {
+            if (s[i] < s[hi]) {
+                swap(s[i], s[j]);
+                j++;
+            }
+        }
+        
+        swap(s[hi], s[j]);
+        qs(s, lo, j - 1);
+        qs(s, j + 1, hi);
+    }
+    
+    void sort(string& s) {
+        int n = s.size();
+        qs(s, 0, n - 1);
+    }
+    
+    bool isAnagram(string s, string t) {
+        sort(s);
+        sort(t);
+        return s == t;
+    }
+};
