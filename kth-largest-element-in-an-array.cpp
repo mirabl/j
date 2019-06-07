@@ -55,3 +55,42 @@ public:
         return qs(nums, 0, n - 1, n - k);
     }
 };
+
+
+class Solution {
+public:
+    int partition(vector<int>& nums, int lo, int hi) {
+        if (lo == hi) {
+            return lo;
+        }
+        int iP = lo;
+        for (int i = lo + 1; i <= hi; i++) {
+            if (nums[i] < nums[iP]) {
+                swap(nums[i], nums[iP + 1]);
+                swap(nums[iP + 1], nums[iP]);
+                iP++;
+            }
+        }
+        
+        return iP;
+    }
+    
+    int qs(vector<int>& nums, int lo, int hi, int k) {
+        int iP = partition(nums, lo, hi);
+        int kPivot = iP - lo;
+        
+        if (kPivot == k) {
+            return nums[iP];
+        } else if (kPivot > k) {
+            return qs(nums, lo, iP, k);
+        } else {
+            return qs(nums, iP + 1, hi, k - kPivot - 1);
+        }
+    }
+    
+    int findKthLargest(vector<int>& nums, int k) {
+        int n = nums.size();
+        qs(nums, 0, n - 1, n - k);
+        return nums[n - k];
+    }
+};
