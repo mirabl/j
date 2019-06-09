@@ -279,3 +279,40 @@ public:
         return res;
     }
 };
+
+
+class Solution {
+public:
+    int bs(vector<pair<int, int>>& A, int t) {
+        int best = -1;
+        int lo = 0;
+        int hi = int(A.size()) - 1;
+        
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (A[mid].first >= t) {
+                best = mid;
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        
+        return best == -1 ? -1 : A[best].second;
+    }
+    
+    vector<int> findRightInterval(vector<vector<int>>& intervals) {
+        vector<pair<int, int>> starts;
+        int n = intervals.size();
+        for (int i = 0; i < n; i++) {
+            starts.push_back({intervals[i][0], i});
+        }
+        sort(starts.begin(), starts.end());
+        vector<int> res;
+        
+        for (int i = 0; i < n; i++) {
+            res.push_back(bs(starts, intervals[i][1]));
+        }
+        return res;
+    }
+};
