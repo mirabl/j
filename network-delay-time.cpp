@@ -644,3 +644,44 @@ public:
         return m < infty ? m : -1;
     }
 };
+
+// dijkstra
+class Solution {
+public:
+    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
+        K--;
+        vector<vector<pair<int, int>>> G(N);
+        for (auto t: times) {
+            G[t[0] - 1].push_back({t[1] - 1, t[2]});
+        }
+        
+        vector<bool> done(N, false);
+        int infty = 1e8;
+        vector<int> dist(N, infty);
+        dist[K] = 0;
+        
+        while (true) {
+            int next = -1;
+            for (int i = 0; i < N; i++) {
+                if (done[i]) {
+                    continue;
+                }
+                if (next == -1 || dist[i] < dist[next]) {
+                    next = i;
+                }
+            }
+            if (next == -1) {
+                break;
+            }
+            
+            for (auto p: G[next]) {
+                dist[p.first] = min(dist[p.first], dist[next] + p.second);
+            }
+            done[next] = true;
+        }
+        
+        int m = *max_element(dist.begin(), dist.end());
+        return m < infty ? m : -1;
+        
+    }
+};
