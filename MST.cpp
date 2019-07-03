@@ -383,3 +383,57 @@ int main() {
 	
 	return totalWeight;
 }
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+vector<int> UF(10000 + 1);
+
+int do_find(int x) {
+	if (UF[x] != x) {
+		UF[x] = do_find(UF[x]);
+	}
+	return UF[x];
+}
+
+void do_union(int x, int y) {
+	UF[do_find(x)] = do_find(y);
+}
+
+int main() {
+	
+	int N, M;
+	cin >> N >> M;
+	vector<pair<int, pair<int, int>>> edges;
+	for (int i = 0; i < M; i++) {
+		int u, v, w;
+		cin >> u >> v >> w;
+		u--;
+		v--;
+		edges.push_back({w, {u, v}});
+	}
+	int tw = 0;
+	int k = 0;
+	sort(edges.begin(), edges.end());
+	
+	for (int i = 0; i < N; i++) {
+		UF[i] = i;
+	}
+	
+	for (int i = 0; i < int(edges.size()) && k < N - 1; i++) {
+		auto edge = edges[i];
+		int w = edge.first;
+		int u = edge.second.first;
+		int v = edge.second.second;
+		if (do_find(u) != do_find(v)) {
+			k++;
+			do_union(u, v);
+			tw += w;
+		}
+	}
+
+	cout << tw << endl;
+}
