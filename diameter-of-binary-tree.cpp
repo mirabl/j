@@ -59,3 +59,34 @@ public:
         return res;
     }
 };
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int b = 0;
+    
+    int pathLenDown(TreeNode *root) {
+        if (!root) {
+            return 0;
+        }
+        int l = pathLenDown(root->left);
+        int r = pathLenDown(root->right);
+        
+        b = max(l + r, b);
+        return 1 + max(l, r);
+    }
+    
+    int diameterOfBinaryTree(TreeNode* root) {
+        pathLenDown(root);
+        return b;
+    }
+};
