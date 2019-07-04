@@ -59,3 +59,27 @@ int main() {
 		cout << endl;
 	}
 }
+
+class Solution {
+public:
+    void r(vector<int>& nums, int offset, vector<vector<int>>& res) {
+        int n = nums.size();
+        
+        if (offset == n) {
+            res.push_back(nums);
+            return;
+        }
+        
+        for (int i = offset; i < n; i++) {
+            swap(nums[i], nums[offset]);
+            r(nums, offset + 1, res);
+            swap(nums[i], nums[offset]);
+        }
+    }
+    
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> res;
+        r(nums, 0, res);
+        return res;
+    }
+};
