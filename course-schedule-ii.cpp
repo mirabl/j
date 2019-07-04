@@ -453,3 +453,40 @@ public:
         return res;
     }
 };
+
+
+class Solution {
+public:
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        int N = numCourses;
+        vector<vector<int>> G(N);
+        vector<int> inDegree(N);
+        for (auto p: prerequisites) {
+            G[p[1]].push_back(p[0]);
+            inDegree[p[0]]++;
+        }
+        vector<int> res;
+        for (int i = 0; i < N; i++) {
+            if (inDegree[i] == 0) {
+                res.push_back(i);
+            }
+        }
+        
+        int j = 0;
+        while (res.size() != N) {
+            if (j >= res.size()) {
+                return {};
+            }
+            int x = res[j];
+            j++;
+            for (int y: G[x]) {
+                inDegree[y]--;
+                if (inDegree[y] == 0) {
+                    res.push_back(y);
+                }
+            }
+        }
+        
+        return res;
+    }
+};
