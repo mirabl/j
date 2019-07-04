@@ -57,3 +57,35 @@ public:
         return word1.size() - l + word2.size() - l;
     }
 };
+
+class Solution {
+public:
+    int get(vector<vector<int>>& T, int i, int j) {
+        if (i < 0 || j < 0) {
+            return 0;
+        }
+        return T[i][j];
+    }
+    
+    int lcs(string& s, string& t) {
+        int n = s.size();
+        int m = t.size();
+        
+        if (s.empty() || t.empty()) { 
+            return 0;
+        }
+        
+        vector<vector<int>> T(n, vector<int>(m));
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                T[i][j] = max(max(get(T, i - 1, j - 1) + (s[i] == t[j] ? 1 : 0),
+                             get(T, i - 1, j)), get(T, i, j - 1));
+            }
+        }
+        return T[n - 1][m - 1];
+    }
+    
+    int minDistance(string word1, string word2) {
+        return word1.size() + word2.size() - 2 * lcs(word1, word2);
+    }
+};
