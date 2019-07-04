@@ -33,12 +33,12 @@ while (getline(iss, token, ' ')) {
 
 // on set or map:
 // smallest >= x, what if doesn't exist
-lower_bound(x)
+S.lower_bound(x)
 set::end
 
 
 // smallest > x
-upper_bound(x)
+S.upper_bound(x)
 
 
 // find an element x in V, what if doesn't exist
@@ -68,14 +68,14 @@ bool next_permutation(V.begin(), V.end())
 int x = *max_element(V.begin(), V.end())
 
 
-// queue API Q add, remove, peek
-Q.push()
+// queue API Q add x, remove, peek
+Q.push(x)
 Q.pop()
 Q.front()
 
 
-// deque API D add (2), remove (2), peek (2)
-D.push_back() D.push_front()
+// deque API D add x (2), remove (2), peek (2)
+D.push_back(x) D.push_front(x)
 D.pop_back() D.pop_front()
 D.back() D.front()
 
