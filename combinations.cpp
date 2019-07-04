@@ -91,3 +91,35 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    vector<int> z(int m) {
+        vector<int> res;
+        for (int i = 0; i <= 24; i++) {
+            if ((m >> i) & 1 == 1) {
+                res.push_back(i + 1);
+            }
+        }
+        return res;
+    }
+    
+    void r(int n, int cur, int offset, int remain, vector<vector<int>>& res) {
+        if (remain == 0) {
+            res.push_back(z(cur));
+            return;
+        }
+        if (offset == n) {
+            return;
+        }
+        for (int j = offset; j < n; j++) {
+            r(n, cur ^ (1 << j), j + 1, remain - 1, res);
+        }
+    }
+    
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>> res;
+        r(n, 0, 0, k, res);
+        return res;
+    }
+};

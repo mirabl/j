@@ -720,3 +720,32 @@ public:
         
     }
 };
+
+class Solution {
+public:
+    void dfs(int x, vector<vector<pair<int, int>>>& G, vector<int>& D, int d) {
+        if (d >= D[x]) {
+            return;
+        }
+        D[x] = d;
+        for (auto p: G[x]) {
+            int y = p.first;
+            int w = p.second;
+            dfs(y, G, D, d + w);
+        }
+    }
+    
+    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
+        K--;
+        vector<vector<pair<int, int>>> G(N);
+        for (auto time: times) {
+            G[time[0] - 1].push_back({time[1] - 1, time[2]});
+        }
+        int infty = 1e8;
+        vector<int> D(N, infty);
+        dfs(K, G, D, 0);
+        
+        int m = *max_element(D.begin(), D.end());
+        return m < infty ? m : -1;
+    }
+};
