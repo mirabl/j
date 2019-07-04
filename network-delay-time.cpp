@@ -749,3 +749,24 @@ public:
         return m < infty ? m : -1;
     }
 };
+
+// BF
+class Solution {
+public:
+    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
+        K--;
+
+        int infty = 1e8;
+        vector<int> D(N, infty);
+        D[K] = 0;
+        
+        for (int l = 0; l < N; l++) {
+            for (auto time: times) {
+                D[time[1] - 1] = min(D[time[1] - 1], D[time[0] - 1] + time[2]);
+            }
+        }
+
+        int m = *max_element(D.begin(), D.end());
+        return m < infty ? m : -1;
+    }
+};
