@@ -60,3 +60,34 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    void r(vector<int>& nums, int offset, int k, vector<int>& cur, vector<vector<int>>& res) {
+        if (cur.size() == k) {
+            res.push_back(cur);
+            return;
+        }
+        if (offset == nums.size()) {
+            return;
+        }
+        
+        r(nums, offset + 1, k, cur, res);
+        cur.push_back(nums[offset]);
+        r(nums, offset + 1, k, cur, res);
+        cur.pop_back();
+        
+    }
+    
+    
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>> res;
+        vector<int> nums;
+        for (int i = 1; i <= n; i++) {
+            nums.push_back(i);
+        }
+        vector<int> cur;
+        r(nums, 0, k, cur, res);
+        return res;
+    }
+};
