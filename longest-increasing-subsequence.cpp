@@ -71,3 +71,57 @@ public:
     }
 };
 
+
+// n2
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        vector<int> T;
+        for (int x: nums) {
+            int i = 0;
+            while (i < T.size()) {
+                if (T[i] >= x) {
+                    T[i] = x;
+                    break;
+                }
+                i++;
+            }
+            if (i == T.size()) {
+                T.push_back(x);
+            }
+        }
+        return T.size();
+    }
+};
+
+class Solution {
+public:
+    int firstLargerOrEqual(vector<int>& T, int x) {
+        int best = -1;
+        int lo = 0;
+        int hi = int(T.size()) - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (T[mid] >= x) {
+                best = mid;
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            } 
+        }
+        return best;
+    }
+    
+    int lengthOfLIS(vector<int>& nums) {
+        vector<int> T;
+        for (int x: nums) {
+            int i = firstLargerOrEqual(T, x);
+            if (i == -1) {
+                T.push_back(x);
+            } else {
+                T[i] = x;
+            }
+        }
+        return T.size();
+    }
+};
