@@ -437,3 +437,46 @@ int main() {
 
 	cout << tw << endl;
 }
+
+
+// Prim
+#include <iostream>
+#include <vector>
+#include <set>
+using namespace std;
+
+int main() {
+	int N, M;
+	cin >> N >> M;
+	vector<vector<pair<int, int>>> G(N);
+	for (int i = 0; i < M; i++) {
+		int u, v, w;
+		cin >> u >> v >> w;
+		G[u - 1].push_back({v - 1, w});
+	}
+	int infty = 1e8;
+	vector<int> D(N, infty);
+	D[0] = 0;
+	set<int> done;
+	
+	int tw = 0;
+	
+	while (done.size() != N) {
+		int next = -1;
+		for (int i = 0; i < N; i++) {
+			if (!done.count(i) && (next == -1 || D[i] < D[next])) {
+				next = i;
+			}
+		}
+		if (next == -1) {
+			break;
+		}
+		for (auto p: G[next]) {
+			D[p.first] = min(D[p.first], p.second);
+		}
+		done.insert(next);
+		tw += D[next];
+	}
+	
+	return tw;
+}
