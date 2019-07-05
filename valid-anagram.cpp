@@ -354,3 +354,62 @@ public:
         return s == t;
     }
 };
+
+
+class Solution {
+public:
+    void sort(string& s, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
+        
+        int firstGreater = lo;
+        for (int i = lo; i < hi; i++) {
+            if (s[i] <= s[hi]) {
+                swap(s[i], s[firstGreater]);
+                firstGreater++;
+            }
+        }
+        swap(s[hi], s[firstGreater]);
+        sort(s, lo, firstGreater - 1);
+        sort(s, firstGreater, hi);
+        
+    }
+    
+    bool isAnagram(string s, string t) {
+        sort(s, 0, s.size() - 1);
+        cout << s << endl;
+        sort(t, 0, t.size() - 1);
+        cout << t << endl;
+        return s == t;
+    }
+};
+
+class Solution {
+public:
+    void sort(string& s, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
+        
+        int firstGreater = lo;
+        for (int i = lo; i < hi; i++) {
+            if (s[i] < s[hi]) {
+                swap(s[i], s[firstGreater]);
+                firstGreater++;
+            }
+        }
+        swap(s[hi], s[firstGreater]);
+        sort(s, lo, firstGreater - 1);
+        sort(s, firstGreater + 1, hi);
+        
+    }
+    
+    bool isAnagram(string s, string t) {
+        sort(s, 0, s.size() - 1);
+        cout << s << endl;
+        sort(t, 0, t.size() - 1);
+        cout << t << endl;
+        return s == t;
+    }
+};
