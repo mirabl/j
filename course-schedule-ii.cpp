@@ -490,3 +490,48 @@ public:
         return res;
     }
 };
+
+enum State {
+    TODO,
+    DOING,
+    DONE
+};
+
+class Solution {
+public:
+    bool dfs(int i, vector<State>& state, vector<vector<int>>& G, vector<int>& res) {
+        if (state[i] == DONE) {
+            return true;
+        } else if (state[i] == DOING) {
+            return false;
+        }
+        
+        state[i] = DOING;
+        for (int j: G[i]) {
+            if (!dfs(j, state, G, res)) {
+                return false;
+            }
+        }
+        state[i] = DONE;
+        res.push_back(i);
+        return true;
+    }
+    
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        int N = numCourses;
+        vector<vector<int>> G(N);        
+        for (auto p: prerequisites) {
+            G[p[1]].push_back(p[0]);
+        }
+        
+        vector<int> res;
+        vector<State> state(N, TODO);
+        for (int i = 0; i < N; i++) {
+            if (!dfs(i, state, G, res)) {
+                return {};
+            }
+        }
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};
