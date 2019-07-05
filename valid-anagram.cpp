@@ -413,3 +413,76 @@ public:
         return s == t;
     }
 };
+
+
+class Heap {
+public:
+    int N;
+    vector<char> T;
+    Heap() {
+        T.resize(1 << 16);
+        N = 0;
+    }
+    
+    void add(char c) {
+        N++;
+        T[N - 1] = c;
+        bubbleUp(N - 1);
+    }
+    
+    void bubbleUp(int x) {
+        if (x == 0) {
+            return;
+        }
+        int p = x / 2;
+        if (T[p] < T[x]) {
+            swap(T[p], T[x]);
+            bubbleUp(p);
+        }
+    }
+    
+    void sinkDown(int x) {
+        if (2 * x >= N - 1) {
+            return;
+        }
+        int iMax = T[2*x] > T[2*x + 1] ? 2*x : 2*x + 1;
+        if (T[iMax] > T[x]) {
+            swap(T[iMax], T[x]);
+            sinkDown(iMax);
+        }
+    }
+    
+    void extractMax() {
+        swap(T[0], T[N - 1]);
+        N--;
+        sinkDown(0);
+    }
+    
+    bool empty() {
+        return N > 0;
+    }
+    
+    string getString(int M) {
+        return string(T.begin(), T.begin() + M);
+    } 
+};
+
+class Solution {
+public:
+    void xsort(string& s) {
+        Heap H;
+        for (auto c: s) {
+            H.add(c);
+        }
+        for (int i = 0; i < s.size(); i++) {
+            H.extractMax();
+        }
+        s = H.getString(s.size());
+    }
+    
+    bool isAnagram(string s, string t) {
+        xsort(s);
+        sort(t.begin(), t.end());
+        return s == t;
+    }
+};
