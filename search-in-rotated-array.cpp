@@ -420,3 +420,50 @@ public:
         }
     }
 };
+
+class Solution {
+public:
+    int f(vector<int>& nums) {
+        int n = nums.size();
+        int lo = 0;
+        int hi = n - 1;
+        int best = -1;
+        while (lo <= hi) {
+            int mid = (hi + lo) / 2;
+            if (nums[mid] <= nums[n - 1]) {
+                best = mid;
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        return best;
+    }
+    
+    int g(vector<int>& nums, int target, int lo, int hi) {
+        while (lo <= hi) {
+            int mid = (lo + hi) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] > target) {
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        return -1;
+    }
+    
+    int search(vector<int>& nums, int target) {
+        if (nums.empty()) {
+            return -1;
+        }
+        int minI = f(nums);
+        int n = nums.size();
+        if (target <= nums[n - 1]) {
+            return g(nums, target, minI, n - 1);
+        } else {
+            return g(nums, target, 0, minI - 1);
+        }
+    }
+};
