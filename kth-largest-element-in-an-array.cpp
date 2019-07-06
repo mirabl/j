@@ -94,3 +94,43 @@ public:
         return nums[n - k];
     }
 };
+
+
+class Solution {
+public:
+    int ksma(vector<int>& nums, int lo, int hi, int k) {
+        if (lo == hi) {
+            return 0;
+        }
+        /*
+         [lo]  [l-1]  [l]        [hi]
+                <0    >=         pivot
+        */
+        int l = lo;
+        for (int i = lo; i < hi; i++) {
+            if (nums[i] < nums[hi]) {
+                swap(nums[i], nums[l]);
+                l++;
+            }
+        }
+        swap(nums[hi], nums[l]);
+
+        if (k == l - lo) {
+            return k;
+        } else if (k < l - lo) {
+            return ksma(nums, lo, l - 1, k);
+        } else {
+            int b = l - lo + 1;
+            k -= b;
+            lo = l + 1;
+            
+            return b + ksma(nums, lo, hi, k);
+        }
+    }
+    
+    int findKthLargest(vector<int>& nums, int k) {
+        int n = nums.size();
+        int p = ksma(nums, 0, n - 1, n - k);
+        return nums[p];
+    }
+};
