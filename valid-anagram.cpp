@@ -486,3 +486,54 @@ public:
         return s == t;
     }
 };
+
+// MS
+class Solution {
+public:
+    string A;
+    
+    void ms(string& s, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
+        int mid = (hi + lo) / 2;
+        ms(s, lo, mid);
+        ms(s, mid + 1, hi);
+        
+        int i = lo;
+        int j = mid + 1;
+        int k = 0;
+        while (i <= mid && j <= hi) {
+            if (s[i] <= s[j]) {
+                A[k] = s[i];
+                i++;
+            } else {
+                A[k] = s[j];
+                j++;
+            }
+            k++;
+        }
+        while (i <= mid) {
+            A[k] = s[i];
+            i++;
+            k++;
+        }
+        while (j <= hi) {
+            A[k] = s[j];
+            j++;
+            k++;
+        }
+        
+        for (int i = lo; i <= hi; i++) {
+            s[i] = A[i - lo];
+        }
+        
+    }
+    
+    bool isAnagram(string s, string t) {
+        A.resize(s.size());
+        ms(s, 0, int(s.size()) - 1);
+        sort(t.begin(), t.end());
+        return s == t;
+    }
+};
