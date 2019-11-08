@@ -11,3 +11,6 @@ alias rlcm='./rlc.sh 2'
 alias rlch='./rlc.sh 3'
 alias pat="cat patterns.txt |grep -E '(//|^$)' > patterns_todo.txt ; nano patterns_todo.txt"
 alias patc="diff -y patterns*"
+
+git config --local user.name "a"
+git config --local user.email ""
