@@ -91,3 +91,50 @@ public:
  * int param_3 = obj->top();
  * bool param_4 = obj->empty();
  */
+struct LLNode {
+    int val;
+    LLNode *next;
+    LLNode(int v): val(v), next(NULL) { }
+};
+
+class MyStack {
+public:
+    LLNode *h;
+    /** Initialize your data structure here. */
+    MyStack() {
+        h = NULL;
+    }
+    
+    /** Push element x onto stack. */
+    void push(int x) {
+        LLNode *n = new LLNode(x);
+        n->next = h;
+        h = n;
+    }
+    
+    /** Removes the element on top of the stack and returns that element. */
+    int pop() {
+        int v = top();
+        h = h->next;
+        return v;
+    }
+    
+    /** Get the top element. */
+    int top() {
+        return h->val;
+    }
+    
+    /** Returns whether the stack is empty. */
+    bool empty() {
+        return h == NULL;
+    }
+};
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack* obj = new MyStack();
+ * obj->push(x);
+ * int param_2 = obj->pop();
+ * int param_3 = obj->top();
+ * bool param_4 = obj->empty();
+ */
