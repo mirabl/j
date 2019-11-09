@@ -467,3 +467,52 @@ public:
         }
     }
 };
+
+class Solution {
+private:
+    int findMin(vector<int>& nums) {
+        int lo = 0;
+        int hi = int(nums.size()) - 1;
+        int n = nums.size();
+        int best = hi;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (nums[mid] <= nums[n - 1]) {
+                best = mid;
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        return best;
+    }
+    
+    int s(vector<int>& nums, int lo, int hi, int t) {
+        if (lo > hi) {
+            return -1;
+        }
+        int mid = lo + (hi - lo) / 2;
+        if (nums[mid] == t) {
+            return mid;
+        } else if (nums[mid] > t) {
+            return s(nums, lo, mid - 1, t);
+        } else {
+            return s(nums, mid + 1, hi, t);
+        }
+    }
+    
+public:
+    int search(vector<int>& nums, int target) {
+        if (nums.empty()) {
+            return -1;
+        }
+        int n = nums.size();
+        int m = findMin(nums);
+        cout << "m=" << m << endl;
+        if (target > nums[n - 1]) {
+            return s(nums, 0, m - 1, target);
+        } else {
+            return s(nums, m, n - 1, target);
+        }
+    }
+};
