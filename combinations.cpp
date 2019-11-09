@@ -123,3 +123,33 @@ public:
         return res;
     }
 };
+class Solution {
+public:
+    void r(vector<int>& A, int i, int k, vector<vector<int>>& res, vector<int>& cur) {
+        int n = A.size();
+        if (k == 0) {
+            res.push_back(cur);
+            return;
+        }
+        if (i == n) {
+            return;
+        }
+        for (int j = i; j < n; j++) {
+            cur.push_back(A[j]);
+            r(A, j + 1, k - 1, res, cur);
+            cur.pop_back();
+        }
+    }
+    
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>> res;
+        vector<int> A;
+        for (int i = 1; i <= n; i++) {
+            A.push_back(i);
+        }
+        vector<int> cur;
+        r(A, 0, k, res, cur);
+        
+        return res;
+    }
+};
