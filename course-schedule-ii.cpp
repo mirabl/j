@@ -577,3 +577,37 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        int n = numCourses;
+        map<int, vector<int>> G;
+        vector<int> inD(n, 0);
+        for (auto p: prerequisites) {
+            G[p[1]].push_back(p[0]);
+            inD[p[0]]++;
+        }
+        queue<int> todo;
+        for (int i = 0; i < n; i++) {
+            if (inD[i] == 0) {
+                todo.push(i);
+            }
+        }
+        vector<int> res;
+        
+        while (!todo.empty()) {
+            int u = todo.front();
+            todo.pop();
+            res.push_back(u);
+            for (int v: G[u]) {
+                inD[v]--;
+                if (inD[v] == 0) {
+                    todo.push(v);
+                }
+             }
+        }
+        
+        return res.size() == n ? res : vector<int>{};
+    }
+};
