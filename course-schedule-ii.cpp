@@ -535,3 +535,45 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    enum { TO_VISIT, VISITING, VISITED };
+    
+    bool dfs(int i, map<int, vector<int>>& G, vector<int>& done, vector<int>& res) {
+        if (done[i] == VISITING) {
+            return false;
+        } else if (done[i] == VISITED) {
+            return true;
+        }
+        done[i] = VISITING;
+        for (int j: G[i]) {
+            if (!dfs(j, G, done, res)) {
+                return false;
+            }
+        }
+        res.push_back(i);
+        done[i] = VISITED;
+        return true;
+    }
+    
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<int> res;
+        
+        int n = numCourses;
+        vector<int> done(n, TO_VISIT);
+        map<int, vector<int>> G;
+        for (auto p: prerequisites) {
+            G[p[1]].push_back(p[0]);
+        }
+        
+        for (int i = 0; i < n; i++) {
+            if (!dfs(i, G, done, res)) {
+                return {};
+            }
+        }
+        
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};
