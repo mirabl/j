@@ -83,3 +83,28 @@ public:
         return res;
     }
 };
+
+class Solution {
+public:
+    int n;
+    vector<vector<int>> res;
+    void r(vector<int>& nums, int offset) {
+        if (offset == n) {
+            res.push_back(nums);
+            return;
+        }
+        
+        for (int i = offset; i < n; i++) {
+            swap(nums[i], nums[offset]);
+            r(nums, offset + 1);
+            swap(nums[i], nums[offset]);
+        }
+        
+    }
+    
+    vector<vector<int>> permute(vector<int>& nums) {
+        n = nums.size();
+        r(nums, 0);
+        return res;
+    }
+};
