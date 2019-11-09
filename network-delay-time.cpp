@@ -798,3 +798,35 @@ public:
         return m < infty ? m : -1;
     }
 };
+//DFS
+class Solution {
+public:
+    void dfs(vector<vector<pair<int, int>>>& G, int u, vector<int>& D, int cur) {
+        for (auto p: G[u]) {
+            int v = p.first;
+            int w = p.second;
+            if (D[u] + w < D[v]) {
+                D[v] = D[u] + w;
+                dfs(G, v, D, 0);
+            }
+           
+        }
+    }
+    
+    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
+        int n = N;
+        int infty = 1e8;
+        vector<int> D(n, infty);
+        K--;
+        vector<vector<pair<int, int>>> G(n);
+        for (auto time: times) {
+            G[time[0] - 1].push_back({time[1] - 1, time[2]});
+        }
+        D[K] = 0;
+        dfs(G, K, D, 0);
+        
+        int m = *max_element(D.begin(), D.end());
+        return m < infty ? m : -1;
+    }
+};
+
