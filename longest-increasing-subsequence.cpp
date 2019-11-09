@@ -149,3 +149,43 @@ public:
         return *max_element(dp.begin(), dp.end());
     }
 };
+
+class Solution {
+public:
+    int indexGeq(vector<int>& nums, int t) {
+        int lo = 0;
+        int hi = int(nums.size()) - 1;
+        
+        int best = -1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (nums[mid] >= t) {
+                best = mid;
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        
+        return best;
+    }
+    
+    int lengthOfLIS(vector<int>& nums) {
+        if (nums.empty()) {
+            return 0;
+        }
+        
+        vector<int> T;
+        
+        for (int x: nums) {
+            int i = indexGeq(T, x);
+            if (i == -1) {
+                T.push_back(x);
+            } else {
+                T[i] = x;
+            }
+        }
+        
+        return T.size();
+    }
+};
