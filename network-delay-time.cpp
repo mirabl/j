@@ -830,3 +830,36 @@ public:
     }
 };
 
+class Solution {
+public:
+    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
+        int infty = 1e8;
+        vector<int> D(N, infty);
+        K--;
+        D[K] = 0;
+        map<int, vector<pair<int, int>>> G;
+        for (auto time: times) {
+            G[time[0] - 1].push_back({time[1] - 1, time[2]});
+        }
+        
+        vector<bool> done(N, false);
+        while (true) {
+            int u = -1;
+            for (int i = 0; i < N; i++) {
+                if (!done[i] && (u == -1 || D[i] < D[u])) {
+                    u = i;
+                }
+            }
+            if (u == -1) {
+                break;
+            }
+            for (auto p: G[u]) {
+                D[p.first] = min(D[p.first], D[u] + p.second);
+            }
+            done[u] = true;
+        }
+        
+        int m = *max_element(D.begin(), D.end());
+        return m < infty ? m : -1;
+    }
+};
