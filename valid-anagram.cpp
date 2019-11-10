@@ -570,3 +570,58 @@ public:
         return s == t;
     }
 };
+
+class Solution {
+public:
+    void r(string& s, int lo, int hi, vector<char>& aux) {
+        if (lo >= hi) {
+            return;
+        }
+        
+        int mid = lo + (hi - lo) / 2;
+        r(s, lo, mid, aux);
+        r(s, mid + 1, hi, aux);
+        
+        int i = lo;
+        int j = mid + 1;
+        int k = 0;
+        while (i <= mid && j <= hi) {
+            if (s[i] <= s[j]) {
+                aux[k] = s[i];
+                i++;
+            } else {
+                aux[k] = s[j];
+                j++;
+            }
+            k++;
+        }
+        while (i <= mid) {
+            aux[k] = s[i];
+            i++;
+            k++;
+        }
+        while (j <= hi) {
+            aux[k] = s[j];
+            j++;
+            k++;
+        }
+        
+        for (int i = lo; i <= hi; i++) {
+            s[i] = aux[i - lo];
+        }
+        
+    }
+    
+    void ms(string& s) {
+        int n = s.size();
+        vector<char> aux(n);
+        r(s, 0, n - 1, aux);
+    }
+    
+    bool isAnagram(string s, string t) {
+        ms(s);
+        ms(t);
+        
+        return s == t;
+    }
+};
