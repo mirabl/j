@@ -537,3 +537,36 @@ public:
         return s == t;
     }
 };
+
+class Solution {
+public:
+    void qs(string& s, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
+        int firstGreater = lo;
+        
+        int i = lo;
+        while (i < hi) {
+            if (s[i] >= s[hi]) {
+                i++;
+                
+            } else {
+                swap(s[i], s[firstGreater]);
+                firstGreater++;
+                i++;
+            }
+        }
+        
+        swap(s[hi], s[firstGreater]);
+        qs(s, lo, firstGreater - 1);
+        qs(s, firstGreater + 1, hi);
+    }
+    
+    bool isAnagram(string s, string t) {
+        qs(s, 0, int(s.size()) - 1);
+        qs(t, 0, int(t.size()) - 1);
+        
+        return s == t;
+    }
+};
